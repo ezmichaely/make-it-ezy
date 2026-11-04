@@ -4,8 +4,10 @@ import {
   formatAnalysis,
   formatDoctor,
   formatInspect,
+  formatRecommend,
   formatSearch,
   inspectSkill,
+  recommendSkills,
   runDoctor,
   searchSkills,
 } from "@make-it-ezy/core";
@@ -18,12 +20,14 @@ Usage:
   ezy analyze
   ezy search <query> [--local-only]
   ezy inspect <skill> [--local-only]
+  ezy recommend <query> [--local-only]
 
 Commands:
-  doctor     Check Node, pnpm, Git, OS, and project root
-  analyze    Read-only project/environment inspection
-  search     Discover skills (local + skills.sh). Never installs.
-  inspect    Inspect a local skill (provenance, files, risk notes)
+  doctor      Check Node, pnpm, Git, OS, and project root
+  analyze     Read-only project/environment inspection
+  search      Discover skills (local + skills.sh). Never installs.
+  inspect     Inspect a local skill (provenance, files, risk notes)
+  recommend   Shortlist Recommended / Optional / Not needed. Never installs.
 
 Flags:
   --local-only   Skip skills.sh network lookups
@@ -81,6 +85,21 @@ async function main(argv: string[]): Promise<number> {
     });
     process.stdout.write(formatInspect(report) + "\n");
     return report.found ? 0 : 1;
+  }
+
+  if (command === "recommend") {
+    const flags = new Set(args.slice(1).filter((a) => a.startsWith("--")));
+    const queryParts = args.slice(1).filter((a) => !a.startsWith("--"));
+    const query = queryParts.join(" ").trim();
+    if (!query) {
+      process.stderr.write("Usage: ezy recommend <query> [--local-only]\n");
+      return 1;
+    }
+    const report = await recommendSkills(query, {
+      localOnly: flags.has("--local-only"),
+    });
+    process.stdout.write(formatRecommend(report) + "\n");
+    return 0;
   }
 
   process.stderr.write(`Unknown command: ${command}\n\n${HELP}`);

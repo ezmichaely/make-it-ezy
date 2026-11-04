@@ -12,20 +12,23 @@
 - `ezy --help` / `ezy doctor` / `ezy analyze`
 - Vitest coverage; TypeScript / pnpm monorepo
 
-## Phase 2 — Discovery (**in progress**)
+## Phase 2 — Discovery (**implemented**)
 
-- `ezy search <query> [--local-only]` — **implemented**
-- `ezy inspect <skill> [--local-only]` — **implemented** (provenance, files, shallow risk notes)
+- `ezy search <query> [--local-only]`
+- `ezy inspect <skill> [--local-only]`
+- `ezy recommend <query> [--local-only]` — Recommended / Optional / Not needed (heuristic, never installs)
 - Sources: local `.agents/skills` + `skills-lock.json`, skills.sh API
-- Still TODO: compare/recommend UX, approval-gated install
+- North star later: suggest-then-go → trusted auto-run (not this phase)
 
 ## Phase 3 — Decision engine
 
-- Minimum useful capability selection + explanations
+- Freeform outcome → minimum useful capability selection + explanations
+  (`ezy "Build me a beautiful SaaS dashboard"`)
 
 ## Phase 4 — Install + one runtime adapter
 
-- Approval UX; single tested adapter first
+- Approval UX (suggest-then-go); single tested adapter first
+- Path to trusted auto for allowlisted skills/sources
 
 ## Phase 5 — Verification + memory (only if needed)
 

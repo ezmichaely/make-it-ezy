@@ -4,7 +4,7 @@ Local-first **AI capability discovery and orchestration** layer.
 
 > The user describes the outcome. Make It Ezy figures out the minimum useful process.
 
-**Status:** Phase 1 CLI + Phase 2 `ezy search` (discover only, never installs).
+**Status:** Phase 1 CLI + Phase 2 discovery (`search` / `inspect` / `recommend`). Discover only — never installs.
 
 **Source of truth:** [`MAKE-IT-EZY-MASTER-HANDOFF.md`](./MAKE-IT-EZY-MASTER-HANDOFF.md)
 
@@ -32,12 +32,13 @@ pnpm ezy analyze
 pnpm ezy search "frontend design"
 pnpm ezy search ponytail --local-only
 pnpm ezy inspect ponytail
+pnpm ezy recommend "frontend design" --local-only
 ```
 
 During development without building:
 
 ```bash
-pnpm dev:ezy search "frontend design"
+pnpm dev:ezy recommend "frontend design" --local-only
 ```
 
 ## Repository layout
@@ -51,8 +52,8 @@ docs/             Research + architecture (Phase 0)
 
 ## Deliberately not built yet
 
-- Auto-install / skill execution
-- Decision engine
+- Auto-install / skill execution (Phase 4+; suggest-then-go → trusted auto)
+- Decision engine for freeform outcomes (Phase 3)
 - Runtime adapters
 - Web UI
 - Databases
