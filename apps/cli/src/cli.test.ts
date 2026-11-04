@@ -25,6 +25,7 @@ describe("ezy CLI", () => {
     expect(result.stdout).toContain("search");
     expect(result.stdout).toContain("inspect");
     expect(result.stdout).toContain("recommend");
+    expect(result.stdout).toContain("plan");
   });
 
   it("searches local skills", () => {
@@ -67,6 +68,20 @@ describe("ezy CLI", () => {
     const result = runEzy(["recommend"]);
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("Usage: ezy recommend");
+  });
+
+  it("plans an outcome from local skills", () => {
+    const result = runEzy(["plan", "Build a SaaS dashboard", "--local-only"]);
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("Make It Ezy — plan");
+    expect(result.stdout).toContain("Capabilities");
+    expect(result.stdout).toContain("nothing was installed");
+  });
+
+  it("requires a plan outcome", () => {
+    const result = runEzy(["plan"]);
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("Usage: ezy plan");
   });
 
   it("runs doctor", () => {

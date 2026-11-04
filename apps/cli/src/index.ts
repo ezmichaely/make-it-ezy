@@ -4,15 +4,17 @@ import {
   formatAnalysis,
   formatDoctor,
   formatInspect,
+  formatPlan,
   formatRecommend,
   formatSearch,
   inspectSkill,
+  planOutcome,
   recommendSkills,
   runDoctor,
   searchSkills,
 } from "@make-it-ezy/core";
 
-const HELP = `Make It Ezy — local-first AI capability discovery (Phase 2)
+const HELP = `Make It Ezy — local-first AI capability discovery (Phase 3)
 
 Usage:
   ezy --help
@@ -21,6 +23,7 @@ Usage:
   ezy search <query> [--local-only]
   ezy inspect <skill> [--local-only]
   ezy recommend <query> [--local-only]
+  ezy plan "<outcome>" [--local-only]
 
 Commands:
   doctor      Check Node, pnpm, Git, OS, and project root
@@ -28,12 +31,13 @@ Commands:
   search      Discover skills (local + skills.sh). Never installs.
   inspect     Inspect a local skill (provenance, files, risk notes)
   recommend   Shortlist Recommended / Optional / Not needed. Never installs.
+  plan        Outcome → capabilities + minimum skill set. Never installs/runs.
 
 Flags:
   --local-only   Skip skills.sh network lookups
 
-Discovery flow: DISCOVER → INSPECT → COMPARE → RECOMMEND
-Installation and AI providers are still out of scope.
+Flow: DISCOVER → INSPECT → RECOMMEND → PLAN
+Installation / execution = Phase 4 (suggest-then-go).
 `;
 
 async function main(argv: string[]): Promise<number> {
@@ -99,6 +103,21 @@ async function main(argv: string[]): Promise<number> {
       localOnly: flags.has("--local-only"),
     });
     process.stdout.write(formatRecommend(report) + "\n");
+    return 0;
+  }
+
+  if (command === "plan") {
+    const flags = new Set(args.slice(1).filter((a) => a.startsWith("--")));
+    const outcomeParts = args.slice(1).filter((a) => !a.startsWith("--"));
+    const outcome = outcomeParts.join(" ").trim();
+    if (!outcome) {
+      process.stderr.write('Usage: ezy plan "<outcome>" [--local-only]\n');
+      return 1;
+    }
+    const report = await planOutcome(outcome, {
+      localOnly: flags.has("--local-only"),
+    });
+    process.stdout.write(formatPlan(report) + "\n");
     return 0;
   }
 

@@ -6,11 +6,21 @@ export { detectPackageManager } from "./detect-package-manager.js";
 export { detectFrameworks, readPackageJson } from "./detect-frameworks.js";
 export { findProjectRoot } from "./find-project-root.js";
 export { isGitRepository } from "./is-git-repo.js";
-export { formatAnalysis, formatDoctor, formatInspect, formatRecommend, formatSearch } from "./format.js";
+export {
+  formatAnalysis,
+  formatDoctor,
+  formatInspect,
+  formatPlan,
+  formatRecommend,
+  formatSearch,
+} from "./format.js";
 export { searchSkills } from "./search.js";
 export type { SearchOptions } from "./search.js";
 export { recommendSkills } from "./recommend.js";
 export type { RecommendItem, RecommendReport } from "./recommend-types.js";
+export { extractCapabilities } from "./capabilities.js";
+export { planOutcome } from "./plan.js";
+export type { PlanReport } from "./plan-types.js";
 export { inspectSkill } from "./inspect-skill.js";
 export type { InspectOptions } from "./inspect-skill.js";
 export { loadLocalSkills, loadSkillsLock } from "./load-local-skills.js";

@@ -1,4 +1,5 @@
 import type { SkillInspection } from "./inspect-types.js";
+import type { PlanReport } from "./plan-types.js";
 import type { RecommendReport } from "./recommend-types.js";
 import type { SearchReport } from "./search-types.js";
 import type { DoctorReport, ProjectAnalysis } from "./types.js";
@@ -220,6 +221,57 @@ export function formatRecommend(report: RecommendReport): string {
 
   lines.push("");
   lines.push("Next: ezy inspect <name>");
+  lines.push("Notes");
+  for (const note of report.notes) {
+    lines.push(`- ${note}`);
+  }
+
+  return lines.join("\n");
+}
+
+export function formatPlan(report: PlanReport): string {
+  const lines = ["Make It Ezy — plan", "", `Outcome: ${report.outcome || "(empty)"}`, ""];
+
+  lines.push("Capabilities");
+  if (!report.capabilities.length) {
+    lines.push("(none)");
+  } else {
+    for (const cap of report.capabilities) {
+      lines.push(`- ${cap}`);
+    }
+  }
+
+  lines.push("");
+  lines.push("Recommended");
+  if (!report.recommended.length) {
+    lines.push("(none)");
+  } else {
+    report.recommended.forEach((item, index) => {
+      const where = item.hit.sourceKind === "local" ? "local" : "skills.sh";
+      lines.push(`${index + 1}. ${item.hit.name} (${where}) — ${item.reason}`);
+    });
+  }
+
+  lines.push("");
+  lines.push("Optional");
+  if (!report.optional.length) {
+    lines.push("(none)");
+  } else {
+    for (const item of report.optional) {
+      lines.push(`- ${item.hit.name} — ${item.reason}`);
+    }
+  }
+
+  lines.push("");
+  lines.push("Not needed");
+  for (const line of report.notNeeded) {
+    lines.push(`- ${line}`);
+  }
+
+  lines.push("");
+  lines.push("Next");
+  lines.push("- ezy inspect <name>");
+  lines.push("- Installation / run = Phase 4 (suggest-then-go)");
   lines.push("Notes");
   for (const note of report.notes) {
     lines.push(`- ${note}`);

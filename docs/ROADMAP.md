@@ -14,16 +14,13 @@
 
 ## Phase 2 — Discovery (**implemented**)
 
-- `ezy search <query> [--local-only]`
-- `ezy inspect <skill> [--local-only]`
-- `ezy recommend <query> [--local-only]` — Recommended / Optional / Not needed (heuristic, never installs)
+- `ezy search` / `ezy inspect` / `ezy recommend`
 - Sources: local `.agents/skills` + `skills-lock.json`, skills.sh API
-- North star later: suggest-then-go → trusted auto-run (not this phase)
 
-## Phase 3 — Decision engine
+## Phase 3 — Decision engine (**implemented**)
 
-- Freeform outcome → minimum useful capability selection + explanations
-  (`ezy "Build me a beautiful SaaS dashboard"`)
+- `ezy plan "<outcome>" [--local-only]` — capabilities + minimum skill set
+- Heuristic lexicon + reuse of recommend; never installs/runs
 
 ## Phase 4 — Install + one runtime adapter
 
