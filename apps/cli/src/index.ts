@@ -3,21 +3,33 @@ import {
   analyzeProject,
   formatAnalysis,
   formatDoctor,
+  formatInspect,
+  formatSearch,
+  inspectSkill,
   runDoctor,
+  searchSkills,
 } from "@make-it-ezy/core";
 
-const HELP = `Make It Ezy — local-first AI capability discovery (Phase 1)
+const HELP = `Make It Ezy — local-first AI capability discovery (Phase 2)
 
 Usage:
   ezy --help
   ezy doctor
   ezy analyze
+  ezy search <query> [--local-only]
+  ezy inspect <skill> [--local-only]
 
 Commands:
   doctor     Check Node, pnpm, Git, OS, and project root
   analyze    Read-only project/environment inspection
+  search     Discover skills (local + skills.sh). Never installs.
+  inspect    Inspect a local skill (provenance, files, risk notes)
 
-Installation, skill search, and AI providers are still out of scope.
+Flags:
+  --local-only   Skip skills.sh network lookups
+
+Discovery flow: DISCOVER → INSPECT → COMPARE → RECOMMEND
+Installation and AI providers are still out of scope.
 `;
 
 async function main(argv: string[]): Promise<number> {
@@ -39,6 +51,36 @@ async function main(argv: string[]): Promise<number> {
     const analysis = analyzeProject();
     process.stdout.write(formatAnalysis(analysis) + "\n");
     return 0;
+  }
+
+  if (command === "search") {
+    const flags = new Set(args.slice(1).filter((a) => a.startsWith("--")));
+    const queryParts = args.slice(1).filter((a) => !a.startsWith("--"));
+    const query = queryParts.join(" ").trim();
+    if (!query) {
+      process.stderr.write("Usage: ezy search <query> [--local-only]\n");
+      return 1;
+    }
+    const report = await searchSkills(query, {
+      localOnly: flags.has("--local-only"),
+    });
+    process.stdout.write(formatSearch(report) + "\n");
+    return 0;
+  }
+
+  if (command === "inspect") {
+    const flags = new Set(args.slice(1).filter((a) => a.startsWith("--")));
+    const nameParts = args.slice(1).filter((a) => !a.startsWith("--"));
+    const name = nameParts.join(" ").trim();
+    if (!name) {
+      process.stderr.write("Usage: ezy inspect <skill> [--local-only]\n");
+      return 1;
+    }
+    const report = await inspectSkill(name, {
+      skipRemote: flags.has("--local-only"),
+    });
+    process.stdout.write(formatInspect(report) + "\n");
+    return report.found ? 0 : 1;
   }
 
   process.stderr.write(`Unknown command: ${command}\n\n${HELP}`);

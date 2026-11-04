@@ -6,7 +6,21 @@ export { detectPackageManager } from "./detect-package-manager.js";
 export { detectFrameworks, readPackageJson } from "./detect-frameworks.js";
 export { findProjectRoot } from "./find-project-root.js";
 export { isGitRepository } from "./is-git-repo.js";
-export { formatAnalysis, formatDoctor } from "./format.js";
+export { formatAnalysis, formatDoctor, formatInspect, formatSearch } from "./format.js";
+export { searchSkills } from "./search.js";
+export type { SearchOptions } from "./search.js";
+export { inspectSkill } from "./inspect-skill.js";
+export type { InspectOptions } from "./inspect-skill.js";
+export { loadLocalSkills, loadSkillsLock } from "./load-local-skills.js";
+export { searchSkillsSh } from "./search-remote.js";
+export { parseSkillFrontmatter } from "./parse-skill-frontmatter.js";
+export { scoreSkillText, tokenizeQuery } from "./score-skill.js";
+export type { SearchReport, SkillHit, SkillSourceKind } from "./search-types.js";
+export type {
+  InspectFinding,
+  InspectRiskLevel,
+  SkillInspection,
+} from "./inspect-types.js";
 export type {
   Confidence,
   DetectedItem,

@@ -22,6 +22,36 @@ describe("ezy CLI", () => {
     expect(result.stdout).toContain("Usage:");
     expect(result.stdout).toContain("doctor");
     expect(result.stdout).toContain("analyze");
+    expect(result.stdout).toContain("search");
+    expect(result.stdout).toContain("inspect");
+  });
+
+  it("searches local skills", () => {
+    const result = runEzy(["search", "ponytail", "--local-only"]);
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("Make It Ezy — search");
+    expect(result.stdout).toContain("ponytail");
+    expect(result.stdout).toContain("nothing was installed");
+  });
+
+  it("requires a search query", () => {
+    const result = runEzy(["search"]);
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("Usage: ezy search");
+  });
+
+  it("inspects a local skill", () => {
+    const result = runEzy(["inspect", "ponytail", "--local-only"]);
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("Make It Ezy — inspect");
+    expect(result.stdout).toContain("ponytail");
+    expect(result.stdout).toContain("Risk findings");
+  });
+
+  it("fails inspect for unknown skills", () => {
+    const result = runEzy(["inspect", "definitely-missing-skill-xyz", "--local-only"]);
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain("not found locally");
   });
 
   it("runs doctor", () => {
