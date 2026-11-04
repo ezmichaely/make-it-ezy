@@ -26,6 +26,7 @@ describe("ezy CLI", () => {
     expect(result.stdout).toContain("inspect");
     expect(result.stdout).toContain("recommend");
     expect(result.stdout).toContain("plan");
+    expect(result.stdout).toContain("install");
   });
 
   it("searches local skills", () => {
@@ -82,6 +83,30 @@ describe("ezy CLI", () => {
     const result = runEzy(["plan"]);
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("Usage: ezy plan");
+  });
+
+  it("requires install target or plan/query", () => {
+    const result = runEzy(["install"]);
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("Usage: ezy install");
+  });
+
+  it("previews install and refuses without --yes when non-TTY", () => {
+    const result = runEzy([
+      "install",
+      "definitely-missing-for-preview-xyz",
+      "--source",
+      "example/repo",
+    ]);
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain("Make It Ezy — install preview");
+    expect(result.stderr).toMatch(/--yes|Pass --yes/);
+  });
+
+  it("reports already-installed skills without --yes", () => {
+    const result = runEzy(["install", "ponytail", "--source", "DietrichGebert/ponytail"]);
+    expect(result.status).toBe(0);
+    expect(result.stdout).toMatch(/Already installed|already installed/i);
   });
 
   it("runs doctor", () => {

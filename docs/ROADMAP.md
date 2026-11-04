@@ -1,31 +1,23 @@
 # Roadmap
 
-## Phase 0 — Research (updated 2026-11-05)
+## Phase 0 — Research (**done**)
 
-- Live-verified priority references
-- GSD marked archived / IGNORE
-- Layer A skills installed for development (Superpowers, Ponytail, Graphify, …)
-- Architecture docs aligned to master handoff
+## Phase 1 — Minimal CLI (**done**)
 
-## Phase 1 — Minimal CLI (**implemented**)
+## Phase 2 — Discovery (**done**)
 
-- `ezy --help` / `ezy doctor` / `ezy analyze`
-- Vitest coverage; TypeScript / pnpm monorepo
+- `search` / `inspect` / `recommend`
 
-## Phase 2 — Discovery (**implemented**)
+## Phase 3 — Decision engine (**done**)
 
-- `ezy search` / `ezy inspect` / `ezy recommend`
-- Sources: local `.agents/skills` + `skills-lock.json`, skills.sh API
+- `ezy plan "<outcome>"`
 
-## Phase 3 — Decision engine (**implemented**)
+## Phase 4 — Install + adapter #0 (**in progress**)
 
-- `ezy plan "<outcome>" [--local-only]` — capabilities + minimum skill set
-- Heuristic lexicon + reuse of recommend; never installs/runs
-
-## Phase 4 — Install + one runtime adapter
-
-- Approval UX (suggest-then-go); single tested adapter first
-- Path to trusted auto for allowlisted skills/sources
+- `ezy install <skill> [--yes] [--source …]`
+- `ezy install --plan "…" / --query "…"` with TTY arrow picker
+- Install via `npx skills add` → `.agents/skills` (Cursor-local)
+- Still TODO: skill execution / trusted auto / other runtime adapters
 
 ## Phase 5 — Verification + memory (only if needed)
 

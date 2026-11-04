@@ -10,6 +10,8 @@ export {
   formatAnalysis,
   formatDoctor,
   formatInspect,
+  formatInstallPreview,
+  formatInstallResult,
   formatPlan,
   formatRecommend,
   formatSearch,
@@ -21,6 +23,12 @@ export type { RecommendItem, RecommendReport } from "./recommend-types.js";
 export { extractCapabilities } from "./capabilities.js";
 export { planOutcome } from "./plan.js";
 export type { PlanReport } from "./plan-types.js";
+export {
+  buildInstallPreview,
+  isSkillInstalledLocally,
+  runInstall,
+} from "./install.js";
+export type { InstallPreview, InstallResult } from "./install-types.js";
 export { inspectSkill } from "./inspect-skill.js";
 export type { InspectOptions } from "./inspect-skill.js";
 export { loadLocalSkills, loadSkillsLock } from "./load-local-skills.js";

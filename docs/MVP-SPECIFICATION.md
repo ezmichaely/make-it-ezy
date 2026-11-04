@@ -1,34 +1,22 @@
 # MVP Specification
 
-## Phase 1 MVP (done)
+## Phases 1–3 (done)
 
-| Command | Behavior |
-|---|---|
-| `ezy --help` | Usage |
-| `ezy doctor` | Node ≥20, pnpm, Git, OS, project root |
-| `ezy analyze` | Read-only root/git/pm/package.json/TS/frameworks |
+`doctor` / `analyze` / `search` / `inspect` / `recommend` / `plan` — discover & plan only.
 
-## Phase 2 MVP (done)
+## Phase 4 slice (current)
 
 ```bash
-pnpm ezy search "frontend design"
-pnpm ezy inspect ponytail
-pnpm ezy recommend "frontend design" --local-only
+pnpm ezy install <skill> --source owner/repo --yes
+pnpm ezy install --plan "Build a SaaS dashboard"   # TTY: arrow select + confirm
 ```
 
-## Phase 3 MVP (done)
-
-```bash
-pnpm ezy plan "Create a promotional video" --local-only
-pnpm ezy plan "Build me a beautiful SaaS dashboard" --local-only
-```
-
-Maps outcome → capability labels → Recommended / Optional / Not needed.
-**Never installs or executes.**
-
-Still out: auto-install, runtime adapters, bare `ezy "…"` alias.
+- Preview source, destination, risk notes, exact command
+- Require `--yes` or interactive confirm
+- Install with `npx skills add …` into `.agents/skills`
+- **Does not** execute the skill’s outcome
 
 ## Source of truth
 
 - `MAKE-IT-EZY-MASTER-HANDOFF.md`
-- `docs/superpowers/specs/2026-11-05-phase3-plan-design.md`
+- `docs/superpowers/specs/2026-11-05-phase4-install-design.md`

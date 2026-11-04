@@ -1,4 +1,5 @@
 import type { SkillInspection } from "./inspect-types.js";
+import type { InstallPreview, InstallResult } from "./install-types.js";
 import type { PlanReport } from "./plan-types.js";
 import type { RecommendReport } from "./recommend-types.js";
 import type { SearchReport } from "./search-types.js";
@@ -278,4 +279,58 @@ export function formatPlan(report: PlanReport): string {
   }
 
   return lines.join("\n");
+}
+
+export function formatInstallPreview(preview: InstallPreview): string {
+  const lines = [
+    "Make It Ezy — install preview",
+    "",
+    `Skill: ${preview.skillName}`,
+    `Source: ${preview.source}`,
+    `Destination: ${preview.destination}`,
+  ];
+  if (preview.url) {
+    lines.push(`URL: ${preview.url}`);
+  }
+  if (preview.alreadyInstalled) {
+    lines.push("Status: already installed locally");
+  }
+  lines.push("");
+  lines.push("Risk");
+  for (const note of preview.riskNotes) {
+    lines.push(`- ${note}`);
+  }
+  lines.push("");
+  lines.push("Will run:");
+  lines.push(`  ${preview.command}`);
+  lines.push("");
+  lines.push("Notes");
+  for (const note of preview.notes) {
+    lines.push(`- ${note}`);
+  }
+  return lines.join("\n");
+}
+
+export function formatInstallResult(result: InstallResult): string {
+  if (result.alreadyInstalled && result.skipped) {
+    return [
+      `Already installed: ${result.skillName}`,
+      `Path: ${result.destination}`,
+      `Next: ezy inspect ${result.skillName}`,
+    ].join("\n");
+  }
+  if (!result.ok) {
+    return [
+      `Install failed: ${result.skillName}`,
+      result.error ? `Error: ${result.error}` : "",
+      result.stderr.trim() ? result.stderr.trim() : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  }
+  return [
+    `Installed ${result.skillName} → ${result.destination}`,
+    `Next: ezy inspect ${result.skillName}`,
+    "Note: skill execution / outcome run is not in this slice.",
+  ].join("\n");
 }
