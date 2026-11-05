@@ -305,7 +305,8 @@ export function formatHandoff(report: HandoffReport): string {
   } else {
     for (const s of report.skills) {
       const status = s.installed ? "installed" : "not installed";
-      lines.push(`- ${s.name} · ${status} · ${s.reason}`);
+      const bucket = s.bucket === "optional" ? "optional" : "recommended";
+      lines.push(`- ${s.name} · ${bucket} · ${status} · ${s.source} · ${s.reason}`);
     }
   }
 

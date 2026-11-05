@@ -1,8 +1,27 @@
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-import { planOutcome } from "./plan.js";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { planOutcome, preferRecommendItem } from "./plan.js";
+import * as recommendMod from "./recommend.js";
+import type { RecommendItem } from "./recommend-types.js";
+import type { SkillHit } from "./search-types.js";
+
+function hit(partial: Partial<SkillHit> & Pick<SkillHit, "name" | "source">): SkillHit {
+  return {
+    sourceKind: "remote",
+    description: "",
+    url: null,
+    score: 5,
+    installs: null,
+    installedLocally: false,
+    ...partial,
+  };
+}
+
+function item(partial: Partial<SkillHit> & Pick<SkillHit, "name" | "source">, reason = "match"): RecommendItem {
+  return { hit: hit(partial), reason };
+}
 
 function fixtureProject(): string {
   const root = mkdtempSync(join(tmpdir(), "ezy-plan-"));
@@ -60,5 +79,33 @@ describe("planOutcome", () => {
     });
     const names = [...report.recommended, ...report.optional].map((i) => i.hit.name);
     expect(names.filter((n) => n === "frontend-design").length).toBeLessThanOrEqual(1);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("preferRecommendItem keeps higher installs when scores tie", () => {
+    const weak = item({ name: "onboarding", source: "a/skills", score: 8, installs: 10 });
+    const strong = item({ name: "onboarding", source: "b/skills", score: 8, installs: 50_000 });
+    expect(preferRecommendItem(weak, strong).hit.source).toBe("b/skills");
+  });
+
+  it("collapses same skill name from different sources to one pick", async () => {
+    vi.spyOn(recommendMod, "recommendSkills").mockImplementation(async (query) => ({
+      query,
+      recommended: [
+        item({ name: "onboarding", source: "alice/skills", score: 7, installs: 100 }),
+        item({ name: "onboarding", source: "bob/skills", score: 9, installs: 9_000 }),
+      ],
+      optional: [item({ name: "onboarding", source: "carol/skills", score: 6, installs: 1 })],
+      notNeeded: [],
+      notes: [],
+    }));
+
+    const report = await planOutcome("Improve onboarding flow", { localOnly: true });
+    const all = [...report.recommended, ...report.optional];
+    expect(all.filter((i) => i.hit.name === "onboarding")).toHaveLength(1);
+    expect(all[0]?.hit.source).toBe("bob/skills");
   });
 });

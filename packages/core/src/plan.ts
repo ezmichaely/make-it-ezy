@@ -8,16 +8,31 @@ const RECOMMENDED_MAX = 4;
 const OPTIONAL_MAX = 4;
 const TOTAL_CAP = 8;
 
-function mergeItems(items: RecommendItem[]): RecommendItem[] {
-  const byKey = new Map<string, RecommendItem>();
-  for (const item of items) {
-    const key = `${item.hit.source}/${item.hit.name}`.toLowerCase();
-    const existing = byKey.get(key);
-    if (!existing || item.hit.score > existing.hit.score) {
-      byKey.set(key, item);
-    }
+/** Prefer local / higher score / more installs — same skill name from many sources collapses to one. */
+export function preferRecommendItem(a: RecommendItem, b: RecommendItem): RecommendItem {
+  if (a.hit.installedLocally !== b.hit.installedLocally) {
+    return a.hit.installedLocally ? a : b;
   }
-  return [...byKey.values()].sort(
+  if (a.hit.sourceKind !== b.hit.sourceKind) {
+    return a.hit.sourceKind === "local" ? a : b;
+  }
+  if (a.hit.score !== b.hit.score) {
+    return a.hit.score > b.hit.score ? a : b;
+  }
+  if ((a.hit.installs ?? 0) !== (b.hit.installs ?? 0)) {
+    return (a.hit.installs ?? 0) > (b.hit.installs ?? 0) ? a : b;
+  }
+  return a;
+}
+
+function mergeItems(items: RecommendItem[]): RecommendItem[] {
+  const byName = new Map<string, RecommendItem>();
+  for (const item of items) {
+    const key = item.hit.name.toLowerCase();
+    const existing = byName.get(key);
+    byName.set(key, existing ? preferRecommendItem(existing, item) : item);
+  }
+  return [...byName.values()].sort(
     (a, b) =>
       b.hit.score - a.hit.score ||
       (b.hit.installs ?? 0) - (a.hit.installs ?? 0) ||

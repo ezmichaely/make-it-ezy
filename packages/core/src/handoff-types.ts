@@ -1,5 +1,6 @@
 export type HandoffSkill = {
   name: string;
+  source: string;
   reason: string;
   installed: boolean;
   path: string | null;

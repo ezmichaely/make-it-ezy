@@ -25,7 +25,7 @@ export type { SearchOptions } from "./search.js";
 export { recommendSkills } from "./recommend.js";
 export type { RecommendItem, RecommendReport } from "./recommend-types.js";
 export { extractCapabilities } from "./capabilities.js";
-export { planOutcome } from "./plan.js";
+export { planOutcome, preferRecommendItem } from "./plan.js";
 export type { PlanReport } from "./plan-types.js";
 export {
   buildInstallPreview,

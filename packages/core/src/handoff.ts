@@ -1,7 +1,7 @@
 import { join } from "node:path";
 import { findProjectRoot } from "./find-project-root.js";
 import { isSkillInstalledLocally } from "./install.js";
-import { planOutcome } from "./plan.js";
+import { planOutcome, preferRecommendItem } from "./plan.js";
 import type { RecommendItem } from "./recommend-types.js";
 import type { SearchOptions } from "./search.js";
 import type { HandoffReport, HandoffSkill } from "./handoff-types.js";
@@ -35,7 +35,7 @@ function buildPrompt(outcome: string, skills: HandoffSkill[]): string {
       const loc = s.installed
         ? (s.path ?? "(path unknown)")
         : `${s.path ?? "(path unknown)"} (install first)`;
-      lines.push(`- ${s.name} — ${loc}`);
+      lines.push(`- ${s.name} (${s.source}) — ${loc}`);
     }
   }
 
@@ -46,7 +46,7 @@ function buildPrompt(outcome: string, skills: HandoffSkill[]): string {
       const loc = s.installed
         ? (s.path ?? "(path unknown)")
         : `${s.path ?? "(path unknown)"} (install first)`;
-      lines.push(`- ${s.name} — ${loc}`);
+      lines.push(`- ${s.name} (${s.source}) — ${loc}`);
     }
   }
 
@@ -55,17 +55,30 @@ function buildPrompt(outcome: string, skills: HandoffSkill[]): string {
   return lines.join("\n");
 }
 
+function dedupeItems(items: RecommendItem[]): RecommendItem[] {
+  const byName = new Map<string, RecommendItem>();
+  for (const item of items) {
+    const key = item.hit.name.toLowerCase();
+    const existing = byName.get(key);
+    byName.set(key, existing ? preferRecommendItem(existing, item) : item);
+  }
+  return [...byName.values()];
+}
+
 function mapItems(
   items: RecommendItem[],
   bucket: "recommended" | "optional",
   cwd: string,
   projectRoot: string,
 ): HandoffSkill[] {
-  return items.map((item) => {
+  return dedupeItems(items).map((item) => {
     const installed = isSkillInstalledLocally(item.hit.name, cwd);
+    const installs =
+      item.hit.installs != null ? ` · ${item.hit.installs.toLocaleString()} installs` : "";
     return {
       name: item.hit.name,
-      reason: item.reason,
+      source: item.hit.source || "(unknown)",
+      reason: `${item.reason}${installs}`,
       installed,
       path: skillPath(projectRoot, item.hit.name),
       bucket,
@@ -98,15 +111,21 @@ export function composeHandoffFromItems(
 
   const cwd = options.cwd ?? process.cwd();
   const projectRoot = findProjectRoot(cwd) ?? cwd;
+  // Recommended wins if the same name also appears optional
+  const optionalOnly = items.optional.filter(
+    (o) => !items.recommended.some((r) => r.hit.name.toLowerCase() === o.hit.name.toLowerCase()),
+  );
   const skills = [
     ...mapItems(items.recommended, "recommended", cwd, projectRoot),
-    ...mapItems(items.optional, "optional", cwd, projectRoot),
+    ...mapItems(optionalOnly, "optional", cwd, projectRoot),
   ];
 
   const checklist: string[] = [];
+  const seenInstall = new Set<string>();
   for (const s of skills) {
-    if (s.bucket === "recommended" && !s.installed) {
-      checklist.push(`ezy install ${s.name}`);
+    if (s.bucket === "recommended" && !s.installed && !seenInstall.has(s.name)) {
+      seenInstall.add(s.name);
+      checklist.push(`ezy install ${s.name} --source ${s.source}`);
     }
   }
   checklist.push("Paste the prompt below into your agent");
