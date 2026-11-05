@@ -19,6 +19,7 @@
 - Install via `npx skills add` → `.agents/skills` (Cursor-local) — adapter #0
 - `ezy next "<outcome>"` — paste-ready checklist + agent prompt
 - Agent Skill adapter #1: `skills/ezy/SKILL.md` (Claude `/ezy`, Cursor/Codex skills)
+- CI: strict ESLint + `tsc` + Vitest + build + `pnpm audit` + CodeQL (`docs/CI.md`)
 - Still TODO: deep verify, soft-C spawn, Codex marketplace plugin, trusted auto
 
 ## Phase 5 — Verification + memory (only if needed)

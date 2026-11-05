@@ -135,8 +135,9 @@ function resolveLocalSkillDir(projectRoot: string, query: string): string | null
 
   // partial directory name match if unique
   const partial = entries.filter((e) => e.name.toLowerCase().includes(needle));
-  if (partial.length === 1) {
-    return join(skillsDir, partial[0]!.name);
+  const only = partial[0];
+  if (partial.length === 1 && only) {
+    return join(skillsDir, only.name);
   }
 
   return null;

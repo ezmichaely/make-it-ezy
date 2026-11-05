@@ -73,7 +73,7 @@ describe("recommendSkills", () => {
 
     const report = await recommendSkills("frontend", {
       cwd: root,
-      fetchImpl: fetchImpl as typeof fetch,
+      fetchImpl: fetchImpl,
     });
     expect(report.recommended.some((r) => r.hit.name === "frontend-design")).toBe(true);
     expect(report.optional.some((r) => r.hit.name === "ui-kit")).toBe(true);

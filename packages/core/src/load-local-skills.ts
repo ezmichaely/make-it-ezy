@@ -45,7 +45,7 @@ export function loadLocalSkills(projectRoot: string, query: string): SkillHit[] 
       continue;
     }
 
-    let raw = "";
+    let raw: string;
     try {
       raw = readFileSync(skillMd, "utf8");
     } catch {

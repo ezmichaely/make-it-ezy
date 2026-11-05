@@ -11,7 +11,7 @@ export function findProjectRoot(startDir: string): string | null {
   let current = resolve(startDir);
   const { root } = parse(current);
 
-  while (true) {
+  for (;;) {
     for (const marker of MARKERS) {
       if (existsSync(join(current, marker))) {
         return current;

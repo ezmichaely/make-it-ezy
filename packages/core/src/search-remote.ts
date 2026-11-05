@@ -30,14 +30,15 @@ export async function searchSkillsSh(
   const limit = options.limit ?? 10;
   const timeoutMs = options.timeoutMs ?? 8000;
   const fetchImpl = options.fetchImpl ?? globalThis.fetch;
-
-  if (!fetchImpl) {
+  if (typeof fetchImpl !== "function") {
     return { hits: [], error: "fetch is unavailable in this runtime" };
   }
 
   const url = `https://skills.sh/api/search?q=${encodeURIComponent(query)}`;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  const timer = setTimeout(() => {
+    controller.abort();
+  }, timeoutMs);
 
   try {
     const res = await fetchImpl(url, {
