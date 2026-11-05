@@ -27,6 +27,28 @@ describe("ezy CLI", () => {
     expect(result.stdout).toContain("recommend");
     expect(result.stdout).toContain("plan");
     expect(result.stdout).toContain("install");
+    expect(result.stdout).toContain("next");
+  });
+
+  it("prints next handoff from local plan", () => {
+    const result = runEzy(["next", "Build a SaaS dashboard", "--local-only"]);
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("Make It Ezy — next");
+    expect(result.stdout).toContain("Checklist");
+    expect(result.stdout).toContain("Prompt");
+    expect(result.stdout).not.toMatch(/skills were executed|executed the skill/i);
+  });
+
+  it("requires a next outcome", () => {
+    const result = runEzy(["next"]);
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("Usage: ezy next");
+  });
+
+  it("plain install without plan/query does not print handoff block", () => {
+    const result = runEzy(["install", "ponytail", "--source", "DietrichGebert/ponytail"]);
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain("Make It Ezy — next");
   });
 
   it("searches local skills", () => {

@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import {
   analyzeProject,
+  buildHandoff,
   buildInstallPreview,
   formatAnalysis,
   formatDoctor,
+  formatHandoff,
   formatInspect,
   formatInstallPreview,
   formatInstallResult,
@@ -29,6 +31,7 @@ Usage:
   ezy inspect <skill> [--local-only]
   ezy recommend <query> [--local-only]
   ezy plan "<outcome>" [--local-only]
+  ezy next "<outcome>" [--local-only]
   ezy install <skill> [--yes] [--source owner/repo]
   ezy install --plan "<outcome>" [--yes]
   ezy install --query "<topic>" [--yes]
@@ -40,16 +43,17 @@ Commands:
   inspect     Inspect a local skill (provenance, files, risk notes)
   recommend   Shortlist Recommended / Optional / Not needed. Never installs.
   plan        Outcome → capabilities + minimum skill set. Never installs/runs.
+  next        Paste-ready checklist + agent prompt (does not install/run).
   install     Suggest-then-go install into .agents/skills (arrow-pick on TTY).
 
 Flags:
-  --local-only   Skip skills.sh network lookups (search/inspect/recommend/plan)
+  --local-only   Skip skills.sh network lookups (search/inspect/recommend/plan/next)
   --yes, -y      Approve install without interactive confirm
   --source       Explicit skills source (owner/repo)
   --plan         Build candidate list from ezy plan
   --query        Build candidate list from ezy recommend
 
-Flow: DISCOVER → INSPECT → RECOMMEND → PLAN → INSTALL
+Flow: DISCOVER → INSPECT → RECOMMEND → PLAN → INSTALL → NEXT
 Skill execution / outcome run is not in this slice.
 `;
 
@@ -191,6 +195,13 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
   };
 }
 
+async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
+  const text = parsed.plan ?? parsed.query;
+  if (!text) return;
+  const handoff = await buildHandoff(text);
+  process.stdout.write("\n" + formatHandoff(handoff) + "\n");
+}
+
 async function handleInstall(args: string[]): Promise<number> {
   const parsed = parseInstallArgs(args);
   const target = await resolveInstallTarget(parsed);
@@ -217,6 +228,7 @@ async function handleInstall(args: string[]): Promise<number> {
       stderr: "",
       error: null,
     }) + "\n");
+    await appendInstallHandoff(parsed);
     return 0;
   }
 
@@ -246,6 +258,9 @@ async function handleInstall(args: string[]): Promise<number> {
   process.stdout.write(formatInstallResult(result) + "\n");
   if (result.stdout.trim()) {
     process.stdout.write(result.stdout.trim() + "\n");
+  }
+  if (result.ok) {
+    await appendInstallHandoff(parsed);
   }
   return result.ok ? 0 : 1;
 }
@@ -328,6 +343,21 @@ async function main(argv: string[]): Promise<number> {
       localOnly: flags.has("--local-only"),
     });
     process.stdout.write(formatPlan(report) + "\n");
+    return 0;
+  }
+
+  if (command === "next") {
+    const flags = new Set(args.slice(1).filter((a) => a.startsWith("--")));
+    const outcomeParts = args.slice(1).filter((a) => !a.startsWith("--"));
+    const outcome = outcomeParts.join(" ").trim();
+    if (!outcome) {
+      process.stderr.write('Usage: ezy next "<outcome>" [--local-only]\n');
+      return 1;
+    }
+    const report = await buildHandoff(outcome, {
+      localOnly: flags.has("--local-only"),
+    });
+    process.stdout.write(formatHandoff(report) + "\n");
     return 0;
   }
 

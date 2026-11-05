@@ -17,7 +17,8 @@
 - `ezy install <skill> [--yes] [--source …]`
 - `ezy install --plan "…" / --query "…"` with TTY arrow picker
 - Install via `npx skills add` → `.agents/skills` (Cursor-local)
-- Still TODO: skill execution / trusted auto / other runtime adapters
+- `ezy next "<outcome>"` — paste-ready checklist + agent prompt (handoff slice)
+- Still TODO: deep verify, skill execution / trusted auto / other runtime adapters
 
 ## Phase 5 — Verification + memory (only if needed)
 
