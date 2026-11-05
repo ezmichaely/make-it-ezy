@@ -25,7 +25,7 @@ pnpm typecheck
 ## PR workflow
 
 1. Branch off `main`
-2. Open PR — CI + CodeQL must pass
+2. Open PR (GitHub fills `.github/PULL_REQUEST_TEMPLATE.md`) — CI + CodeQL must pass
 3. Merge
 4. Enable **Settings → General → Automatically delete head branches** so merged branches disappear (ask a maintainer if you can’t toggle it)
 
