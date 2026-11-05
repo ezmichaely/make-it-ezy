@@ -6,7 +6,7 @@ export function isGitRepository(startDir: string): boolean {
   let current = resolve(startDir);
   const { root } = parse(current);
 
-  while (true) {
+  for (;;) {
     if (existsSync(join(current, ".git"))) {
       return true;
     }

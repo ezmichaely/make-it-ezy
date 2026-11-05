@@ -118,9 +118,12 @@ function runSpawn(
     });
     let stdout = "";
     let stderr = "";
+    // ChildProcess typings mark pipe streams as nullable; keep ?. for editor strictness.
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- stdout typed Readable | null
     child.stdout?.on("data", (chunk: Buffer | string) => {
       stdout += String(chunk);
     });
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- stderr typed Readable | null
     child.stderr?.on("data", (chunk: Buffer | string) => {
       stderr += String(chunk);
     });

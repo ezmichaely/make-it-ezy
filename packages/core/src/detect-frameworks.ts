@@ -28,13 +28,13 @@ export function detectFrameworks(projectRoot: string, pkg: PackageJsonLike | nul
   const items: DetectedItem[] = [];
   const deps = pkg ? allDeps(pkg) : {};
 
-  const rules: Array<{
+  const rules: {
     id: string;
     label: string;
     dep?: string;
     files?: string[];
     valueFromDep?: boolean;
-  }> = [
+  }[] = [
     { id: "next", label: "Next.js", dep: "next", valueFromDep: true },
     { id: "react", label: "React", dep: "react", valueFromDep: true },
     { id: "vue", label: "Vue", dep: "vue", valueFromDep: true },

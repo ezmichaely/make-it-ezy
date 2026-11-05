@@ -36,7 +36,7 @@ export function runDoctor(options: DoctorOptions = {}): DoctorReport {
     id: "pnpm",
     label: "pnpm",
     status: pnpmVersion ? "ok" : "warn",
-    detail: pnpmVersion ? pnpmVersion : "not found on PATH (recommended for this project)",
+    detail: pnpmVersion ?? "not found on PATH (recommended for this project)",
   });
 
   const gitVersion = tryVersion("git", ["--version"]);

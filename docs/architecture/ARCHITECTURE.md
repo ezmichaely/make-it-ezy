@@ -15,9 +15,10 @@ USER OUTCOME
   → plan capabilities
   → discover candidates (skills/tools/workflows/runtimes)
   → decide minimum useful set
-  → risk / permission check
-  → execute via existing runtime adapter
-  → verify
+  → risk / permission check (thin today)
+  → suggest-then-go install
+  → handoff prompt (ezy next) / Agent Skill continues in runtime
+  → verify (later)
   → result
 ```
 
@@ -29,25 +30,35 @@ Avoid: building a new swarm framework.
 | Layer | Purpose | Examples today |
 |---|---|---|
 | **A — Build Make It Ezy** | Skills/workflows used by coding agents developing this repo | Superpowers, Ponytail, Graphify, Anthropic/Vercel skills |
-| **B — Product** | Make It Ezy discovers/evaluates/composes the ecosystem for end users | Phase 2+ |
+| **B — Product** | Make It Ezy discovers/evaluates/composes the ecosystem for end users | CLI + `skills/ezy` adapter |
 
 Layer A tools are **not** mandatory runtime dependencies of the product.
 
-## Current implementation (Phase 1)
+## Current implementation (Phase 4)
 
 ```text
-apps/cli            argv → help | doctor | analyze
-packages/core       read-only detection + formatting
+apps/cli            doctor | analyze | search | inspect | recommend | plan | next | install
+packages/core       detection, search, plan, install, handoff
+skills/ezy          Agent Skill adapter #1 (Claude /ezy, Cursor/Codex skills)
 catalog/            reserved (empty)
-docs/               Phase 0 research + architecture
+docs/               research, architecture, specs, plans, handoff
 .agents/skills/     Layer A installs (gitignored; skills-lock.json tracked)
 ```
 
-No AI SDK. No network discovery. No install path. No web UI. No database.
+No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/Claude) and deep verify are not shipped.
 
-## Conceptual boxes not yet packages
+## Shipped vs later
 
-Task classifier, decision engine, registries, adapters, verification — exist only as docs until Phase 2+.
+| Box | Status |
+|---|---|
+| Discovery (search / inspect / recommend) | Shipped |
+| Decision engine (`ezy plan`) | Shipped (heuristic) |
+| Gated install + Cursor `.agents/skills` | Shipped (adapter #0) |
+| Handoff (`ezy next`) | Shipped |
+| Agent Skill (`skills/ezy`) | Shipped (adapter #1) |
+| Deep verify / trusted-auto | Later |
+| Soft-C / Codex marketplace plugin | Later |
+| Web UI | Phase 6 |
 
 ## Non-goals (near term)
 

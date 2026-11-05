@@ -47,7 +47,7 @@ export function analyzeProject(options: AnalyzeOptions = {}): ProjectAnalysis {
     {
       id: "os",
       label: "Operating system",
-      value: `${platform()}`,
+      value: platform(),
       confidence: "high" as const,
       evidence: "node:os.platform()",
     },

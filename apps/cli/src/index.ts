@@ -74,7 +74,10 @@ function parseInstallArgs(args: string[]): InstallArgs {
   const positional: string[] = [];
 
   for (let i = 0; i < args.length; i++) {
-    const a = args[i]!;
+    const a = args[i];
+    if (a === undefined) {
+      continue;
+    }
     if (a === "--yes" || a === "-y") {
       yes = true;
       continue;
@@ -383,7 +386,7 @@ main(process.argv)
   .then((code) => {
     process.exitCode = code;
   })
-  .catch((err) => {
+  .catch((err: unknown) => {
     process.stderr.write(String(err instanceof Error ? err.stack ?? err.message : err) + "\n");
     process.exitCode = 1;
   });

@@ -11,12 +11,15 @@ Not a replacement for pnpm/npm.
 
 ## Phased integrations
 
-| Phase | Integration | Gate |
+| Phase | Integration | Status |
 |---|---|---|
-| 1 (done) | Local filesystem + PATH doctor checks | shipped |
-| 2 | skills.sh / Vercel Skills / local `.agents/skills` discovery | search only, no auto-install |
-| 3 | Ranking + explainable minimum set | after discovery works |
-| 4 | One runtime adapter (prefer Claude Code, then Codex/Cursor) | after approval UX |
+| 1 | Local filesystem + PATH doctor checks | **done** |
+| 2 | skills.sh + local `.agents/skills` discovery | **done** (search / inspect / recommend) |
+| 3 | Ranking + explainable minimum set (`plan`) | **done** (heuristic) |
+| 4a | Gated install → Cursor `.agents/skills` | **done** (adapter #0) |
+| 4b | Handoff `ezy next` | **done** |
+| 4c | Agent Skill `skills/ezy` (Claude / Cursor / Codex) | **done** (adapter #1) |
+| Later | Deep verify, soft-C spawn, Codex marketplace plugin | TODO |
 | Optional | Taste, OpenSEO, REA, Graphify, browser tools | only when task needs them |
 
 ## Layer A vs Layer B
@@ -24,6 +27,8 @@ Not a replacement for pnpm/npm.
 Development may install Superpowers/Ponytail/Graphify into `.agents/skills`.  
 Product must not require them to run `ezy doctor` / `ezy analyze`.
 
+Product ships its own skill at repo `skills/ezy` for agents consuming Make It Ezy.
+
 ## Compatibility claims
 
-Only after tested against a real runtime install.
+Only after tested against a real runtime install. Agent Skill path tested manually via Claude/Codex/Cursor loading `skills/ezy`.

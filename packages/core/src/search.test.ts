@@ -79,7 +79,7 @@ describe("searchSkills", () => {
 
     const report = await searchSkills("frontend", {
       cwd: root,
-      fetchImpl: fetchImpl as typeof fetch,
+      fetchImpl: fetchImpl,
     });
     expect(report.remoteCount).toBe(2);
     expect(report.remoteError).toBeNull();
@@ -95,7 +95,7 @@ describe("searchSkills", () => {
     };
     const report = await searchSkills("frontend", {
       cwd: root,
-      fetchImpl: fetchImpl as typeof fetch,
+      fetchImpl: fetchImpl,
     });
     expect(report.remoteError).toContain("network down");
     expect(report.localCount).toBeGreaterThan(0);

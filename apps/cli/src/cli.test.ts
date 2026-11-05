@@ -1,16 +1,48 @@
-import { spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "../../..");
-const cliEntry = join(root, "apps/cli/src/index.ts");
-const tsx = join(root, "node_modules/tsx/dist/cli.mjs");
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "../../..");
+const cliEntry = join(repoRoot, "apps/cli/src/index.ts");
+const tsx = join(repoRoot, "node_modules/tsx/dist/cli.mjs");
 
-function runEzy(args: string[]) {
+function fixtureWithSkill(skillName = "ponytail"): string {
+  const root = mkdtempSync(join(tmpdir(), "ezy-cli-"));
+  writeFileSync(join(root, "package.json"), JSON.stringify({ name: "cli-fixture" }));
+  const skillDir = join(root, ".agents", "skills", skillName);
+  mkdirSync(skillDir, { recursive: true });
+  writeFileSync(
+    join(skillDir, "SKILL.md"),
+    `---
+name: ${skillName}
+description: Fixture skill for CLI tests
+---
+
+# ${skillName}
+`,
+  );
+  writeFileSync(
+    join(root, "skills-lock.json"),
+    JSON.stringify({
+      version: 1,
+      skills: {
+        [skillName]: {
+          source: "example/fixture-skills",
+          skillPath: `skills/${skillName}/SKILL.md`,
+        },
+      },
+    }),
+  );
+  return root;
+}
+
+function runEzy(args: string[], cwd = repoRoot) {
   return spawnSync(process.execPath, [tsx, cliEntry, ...args], {
     encoding: "utf8",
-    cwd: root,
+    cwd,
     env: process.env,
   });
 }
@@ -31,7 +63,8 @@ describe("ezy CLI", () => {
   });
 
   it("prints next handoff from local plan", () => {
-    const result = runEzy(["next", "Build a SaaS dashboard", "--local-only"]);
+    const cwd = fixtureWithSkill();
+    const result = runEzy(["next", "Build a SaaS dashboard", "--local-only"], cwd);
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("Make It Ezy — next");
     expect(result.stdout).toContain("Checklist");
@@ -46,13 +79,18 @@ describe("ezy CLI", () => {
   });
 
   it("plain install without plan/query does not print handoff block", () => {
-    const result = runEzy(["install", "ponytail", "--source", "DietrichGebert/ponytail"]);
+    const cwd = fixtureWithSkill("ponytail");
+    const result = runEzy(
+      ["install", "ponytail", "--source", "example/fixture-skills"],
+      cwd,
+    );
     expect(result.status).toBe(0);
     expect(result.stdout).not.toContain("Make It Ezy — next");
   });
 
   it("searches local skills", () => {
-    const result = runEzy(["search", "ponytail", "--local-only"]);
+    const cwd = fixtureWithSkill("ponytail");
+    const result = runEzy(["search", "ponytail", "--local-only"], cwd);
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("Make It Ezy — search");
     expect(result.stdout).toContain("ponytail");
@@ -66,7 +104,8 @@ describe("ezy CLI", () => {
   });
 
   it("inspects a local skill", () => {
-    const result = runEzy(["inspect", "ponytail", "--local-only"]);
+    const cwd = fixtureWithSkill("ponytail");
+    const result = runEzy(["inspect", "ponytail", "--local-only"], cwd);
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("Make It Ezy — inspect");
     expect(result.stdout).toContain("ponytail");
@@ -74,13 +113,18 @@ describe("ezy CLI", () => {
   });
 
   it("fails inspect for unknown skills", () => {
-    const result = runEzy(["inspect", "definitely-missing-skill-xyz", "--local-only"]);
+    const cwd = fixtureWithSkill();
+    const result = runEzy(
+      ["inspect", "definitely-missing-skill-xyz", "--local-only"],
+      cwd,
+    );
     expect(result.status).toBe(1);
     expect(result.stdout).toContain("not found locally");
   });
 
   it("recommends from local skills", () => {
-    const result = runEzy(["recommend", "ponytail", "--local-only"]);
+    const cwd = fixtureWithSkill("ponytail");
+    const result = runEzy(["recommend", "ponytail", "--local-only"], cwd);
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("Make It Ezy — recommend");
     expect(result.stdout).toContain("Recommended");
@@ -94,7 +138,8 @@ describe("ezy CLI", () => {
   });
 
   it("plans an outcome from local skills", () => {
-    const result = runEzy(["plan", "Build a SaaS dashboard", "--local-only"]);
+    const cwd = fixtureWithSkill("ponytail");
+    const result = runEzy(["plan", "Build a SaaS dashboard", "--local-only"], cwd);
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("Make It Ezy — plan");
     expect(result.stdout).toContain("Capabilities");
@@ -114,19 +159,27 @@ describe("ezy CLI", () => {
   });
 
   it("previews install and refuses without --yes when non-TTY", () => {
-    const result = runEzy([
-      "install",
-      "definitely-missing-for-preview-xyz",
-      "--source",
-      "example/repo",
-    ]);
+    const cwd = fixtureWithSkill();
+    const result = runEzy(
+      [
+        "install",
+        "definitely-missing-for-preview-xyz",
+        "--source",
+        "example/repo",
+      ],
+      cwd,
+    );
     expect(result.status).toBe(1);
     expect(result.stdout).toContain("Make It Ezy — install preview");
     expect(result.stderr).toMatch(/--yes|Pass --yes/);
   });
 
   it("reports already-installed skills without --yes", () => {
-    const result = runEzy(["install", "ponytail", "--source", "DietrichGebert/ponytail"]);
+    const cwd = fixtureWithSkill("ponytail");
+    const result = runEzy(
+      ["install", "ponytail", "--source", "example/fixture-skills"],
+      cwd,
+    );
     expect(result.status).toBe(0);
     expect(result.stdout).toMatch(/Already installed|already installed/i);
   });
