@@ -17,10 +17,12 @@ pnpm ezy next "Build a SaaS dashboard" --local-only
 - Install with `npx skills add …` into `.agents/skills`
 - `ezy next` — checklist + paste-ready agent prompt (does not install/run)
 - After `install --plan` / `--query`, reprints that handoff
-- **Does not** execute the skill’s outcome; deep verify is later
+- Agent Skill `skills/ezy` — agent runs CLI then **continues building** (adapter #1)
+- **Does not** soft-C spawn Codex/Claude; deep verify is later
 
 ## Source of truth
 
 - `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`
 - `docs/superpowers/specs/2026-11-05-phase4-install-design.md`
 - `docs/superpowers/specs/2026-11-05-phase4-handoff-design.md`
+- `docs/superpowers/specs/2026-11-05-phase4-agent-skill-design.md`

@@ -18,7 +18,8 @@
 - `ezy install --plan "…" / --query "…"` with TTY arrow picker
 - Install via `npx skills add` → `.agents/skills` (Cursor-local)
 - `ezy next "<outcome>"` — paste-ready checklist + agent prompt (handoff slice)
-- Still TODO: deep verify, skill execution / trusted auto / other runtime adapters
+- Agent Skill adapter #1: `skills/ezy/SKILL.md` (Claude `/ezy`, Cursor/Codex skills)
+- Still TODO: deep verify, soft-C spawn, Codex marketplace plugin, trusted auto
 
 ## Phase 5 — Verification + memory (only if needed)
 

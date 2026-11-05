@@ -4,7 +4,7 @@ Local-first **AI capability discovery and orchestration** layer.
 
 > The user describes the outcome. Make It Ezy figures out the minimum useful process.
 
-**Status:** Phase 4 `ezy install` + `ezy next` (suggest-then-go install, paste-ready handoff). Does not execute skill outcomes yet.
+**Status:** Phase 4 CLI (`install` / `next`) + Agent Skill adapter (`skills/ezy`). Soft-C spawn and deep verify still later.
 
 **Source of truth:** [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)
 
@@ -21,6 +21,12 @@ pnpm build
 pnpm test
 ```
 
+Set `MAKE_IT_EZY_ROOT` to this repo’s absolute path so agents can find the CLI:
+
+```bash
+export MAKE_IT_EZY_ROOT=/absolute/path/to/make-it-ezy
+```
+
 ## CLI
 
 ```bash
@@ -33,12 +39,30 @@ pnpm ezy inspect taste
 
 On a TTY, `ezy install --plan "…"` / `--query "…"` lets you **↑/↓** select a recommended skill, then confirm and prints `ezy next` handoff. Scripts/CI use `ezy install <skill> --yes`.
 
+## Agent Skill (`/ezy`)
+
+Product skill: [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md). It tells the agent to run the CLI, gated-install, then **keep building**.
+
+Install into another project (Claude Code / Cursor / Codex skills):
+
+```bash
+mkdir -p /path/to/your-app/.agents/skills
+cp -R /path/to/make-it-ezy/skills/ezy /path/to/your-app/.agents/skills/ezy
+# or: ln -s /path/to/make-it-ezy/skills/ezy /path/to/your-app/.agents/skills/ezy
+```
+
+Then:
+
+- **Claude Code:** `/ezy build me a profile page`
+- **Cursor:** ask to use the `ezy` skill for an outcome
+- **Codex:** enable/select skill `ezy` via `/skills`, then describe the outcome
+
 ## Deliberately not built yet
 
 - Deep skill verification
-- Auto-running skills / outcome execution
+- Soft-C (CLI spawning Codex/Claude)
 - Trusted-auto allowlists
-- Full Claude Code / Codex adapters (files land in `.agents/skills` for Cursor today)
+- Codex marketplace plugin package
 
 See `docs/MVP-SPECIFICATION.md` and `docs/ROADMAP.md`.
 
