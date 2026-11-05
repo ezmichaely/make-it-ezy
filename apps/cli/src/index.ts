@@ -22,7 +22,7 @@ import {
 } from "@make-it-ezy/core";
 import { confirmYesNo, selectWithArrows, type SelectChoice } from "./select.js";
 
-const HELP = `Make It Ezy — local-first AI capability discovery (Phase 4)
+const HELP = `Make It Ezy — local-first AI capability discovery (Phase 5 planner)
 
 Usage:
   ezy --help
@@ -43,7 +43,7 @@ Commands:
   search      Discover skills (local + skills.sh). Never installs.
   inspect     Inspect a local skill (provenance, files, risk notes)
   recommend   Shortlist Recommended / Optional / Not needed. Never installs.
-  plan        Outcome → capabilities + minimum skill set. Never installs/runs.
+  plan        Outcome + project → requirements + minimum skill set. Never installs/runs.
   next        Paste-ready checklist + agent prompt (does not install/run).
   install     Suggest-then-go install into .agents/skills (arrow-pick on TTY).
 
@@ -54,7 +54,7 @@ Flags:
   --plan         Build candidate list from ezy plan
   --query        Build candidate list from ezy recommend
 
-Flow: DISCOVER → INSPECT → RECOMMEND → PLAN → INSTALL → NEXT
+Flow: ANALYZE → REQUIREMENTS → DISCOVER → FILTER → PLAN → INSTALL → NEXT
 Skill execution / outcome run is not in this slice.
 `;
 

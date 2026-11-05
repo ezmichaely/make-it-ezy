@@ -67,12 +67,37 @@ describe("buildHandoff", () => {
     const fakePlan: PlanReport = {
       outcome: "Ship a verified skill recommender",
       capabilities: ["discovery"],
+      requirements: [
+        {
+          id: "discovery",
+          label: "discovery",
+          rationale: "test",
+          priority: "required",
+        },
+      ],
+      project: {
+        projectRoot: root,
+        packageName: "empty",
+        language: "JavaScript (inferred from package.json; no TypeScript evidence)",
+        frameworks: [],
+        localSkills: [],
+      },
+      decisions: [
+        {
+          name: "missing-skill",
+          source: "example/skills",
+          decision: "install",
+          reason: "strong match",
+        },
+      ],
       recommended: [
         {
           hit: {
+            id: "remote:example/skills/missing-skill",
             name: "missing-skill",
             source: "example/skills",
             sourceKind: "remote",
+            path: null,
             description: "fake",
             url: null,
             score: 10,

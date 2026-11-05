@@ -5,7 +5,7 @@ Do not collapse everything into “agent.”
 | Concept | Meaning | Product status |
 |---|---|---|
 | Specialist | Logical domain role | Schema later; Agency Agents = STUDY |
-| Capability | Task that must be done | `ezy plan` / `ezy next` (heuristic labels) |
+| Capability | Task that must be done | `ezy plan` / `ezy next` (heuristic labels today; Phase 5 adds project-aware requirements) |
 | Skill | Reusable `SKILL.md` knowledge/scripts | Discovery + gated install; Agent Skills format |
 | Tool | Software that acts (CLI, MCP, FFmpeg) | Optional INTEGRATE |
 | Workflow | Ordered process | Superpowers/BMAD/gstack = STUDY/OPTIONAL |

@@ -34,7 +34,7 @@ Avoid: building a new swarm framework.
 
 Layer A tools are **not** mandatory runtime dependencies of the product.
 
-## Current implementation (Phase 4)
+## Current implementation (Phase 4 shipped; Phase 5 next)
 
 ```text
 apps/cli            doctor | analyze | search | inspect | recommend | plan | next | install
@@ -45,6 +45,8 @@ docs/               research, architecture, specs, plans, handoff
 .agents/skills/     Layer A installs (gitignored; skills-lock.json tracked)
 ```
 
+Gap to close in Phase 5: `analyze` is not yet wired into `plan` / `next`.
+
 No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/Claude) and deep verify are not shipped.
 
 ## Shipped vs later
@@ -52,13 +54,18 @@ No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/
 | Box | Status |
 |---|---|
 | Discovery (search / inspect / recommend) | Shipped |
-| Decision engine (`ezy plan`) | Shipped (heuristic) |
+| Decision engine (`ezy plan`) | Shipped (heuristic, outcome-only) |
 | Gated install + Cursor `.agents/skills` | Shipped (adapter #0) |
 | Handoff (`ezy next`) | Shipped |
 | Agent Skill (`skills/ezy`) | Shipped (adapter #1) |
+| Project Capability Planner (project-aware `plan`) | **Phase 5 — shipped** |
+| Project Brain (lightweight persistent knowledge) | Phase 6 |
+| Outcome verification | Phase 7 |
 | Deep verify / trusted-auto | Later |
 | Soft-C / Codex marketplace plugin | Later |
-| Web UI | Phase 6 |
+| Web UI | Phase 8 |
+
+See `docs/ROADMAP.md` for the locked sequence.
 
 ## Non-goals (near term)
 

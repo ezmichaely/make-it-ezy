@@ -142,7 +142,8 @@ describe("ezy CLI", () => {
     const result = runEzy(["plan", "Build a SaaS dashboard", "--local-only"], cwd);
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("Make It Ezy — plan");
-    expect(result.stdout).toContain("Capabilities");
+    expect(result.stdout).toContain("Project");
+    expect(result.stdout).toContain("Requirements");
     expect(result.stdout).toContain("nothing was installed");
   });
 

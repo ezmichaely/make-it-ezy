@@ -9,7 +9,7 @@ External skills, MCP servers, install scripts, and catalogs are **untrusted** un
 | Surface | Behavior |
 |---|---|
 | `doctor` / `analyze` | Local filesystem / PATH only |
-| `search` / `recommend` / `plan` / `next` | May query skills.sh; **never installs or executes** skills |
+| `search` / `recommend` / `plan` / `next` | May query skills.sh + read local project; **never installs or executes** skills |
 | `inspect` | Local skill read + risk notes; optional remote metadata |
 | `install` | Preview + explicit approval (`--yes` or TTY confirm) before `npx skills add` |
 | Agent Skill `ezy` | Must ask before install; must not invent `--yes` |

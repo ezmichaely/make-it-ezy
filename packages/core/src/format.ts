@@ -234,12 +234,39 @@ export function formatRecommend(report: RecommendReport): string {
 export function formatPlan(report: PlanReport): string {
   const lines = ["Make It Ezy — plan", "", `Outcome: ${report.outcome || "(empty)"}`, ""];
 
-  lines.push("Capabilities");
-  if (!report.capabilities.length) {
-    lines.push("(none)");
+  lines.push("Project");
+  if (!report.project.projectRoot) {
+    lines.push("(no project markers)");
   } else {
-    for (const cap of report.capabilities) {
-      lines.push(`- ${cap}`);
+    lines.push(`Root: ${report.project.projectRoot}`);
+    if (report.project.packageName) {
+      lines.push(`Name: ${report.project.packageName}`);
+    }
+    if (report.project.language) {
+      lines.push(`Language: ${report.project.language}`);
+    }
+    if (report.project.frameworks.length) {
+      lines.push(`Frameworks: ${report.project.frameworks.join(", ")}`);
+    }
+    if (report.project.localSkills.length) {
+      lines.push(`Local skills: ${report.project.localSkills.slice(0, 8).join(", ")}`);
+    }
+  }
+
+  lines.push("");
+  lines.push("Requirements");
+  if (!report.requirements.length) {
+    if (!report.capabilities.length) {
+      lines.push("(none)");
+    } else {
+      for (const cap of report.capabilities) {
+        lines.push(`- ${cap}`);
+      }
+    }
+  } else {
+    for (const req of report.requirements) {
+      const mark = req.priority === "optional" ? "optional" : "required";
+      lines.push(`- [${mark}] ${req.label} — ${req.rationale}`);
     }
   }
 
@@ -288,7 +315,7 @@ export function formatHandoff(report: HandoffReport): string {
     "",
     `Outcome: ${report.outcome || "(empty)"}`,
     "",
-    "Capabilities",
+    "Requirements",
   ];
   if (!report.capabilities.length) {
     lines.push("(none)");
