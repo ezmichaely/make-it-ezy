@@ -17,8 +17,8 @@ export {
   formatRecommend,
   formatSearch,
 } from "./format.js";
-export { buildHandoff } from "./handoff.js";
-export type { BuildHandoffOptions } from "./handoff.js";
+export { buildHandoff, composeHandoffFromItems } from "./handoff.js";
+export type { BuildHandoffOptions, HandoffItemInput } from "./handoff.js";
 export type { HandoffReport, HandoffSkill } from "./handoff-types.js";
 export { searchSkills } from "./search.js";
 export type { SearchOptions } from "./search.js";

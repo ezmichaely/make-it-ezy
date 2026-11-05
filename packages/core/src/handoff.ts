@@ -2,10 +2,17 @@ import { join } from "node:path";
 import { findProjectRoot } from "./find-project-root.js";
 import { isSkillInstalledLocally } from "./install.js";
 import { planOutcome } from "./plan.js";
+import type { RecommendItem } from "./recommend-types.js";
 import type { SearchOptions } from "./search.js";
 import type { HandoffReport, HandoffSkill } from "./handoff-types.js";
 
 export type BuildHandoffOptions = SearchOptions & { cwd?: string };
+
+export type HandoffItemInput = {
+  capabilities?: string[];
+  recommended: RecommendItem[];
+  optional: RecommendItem[];
+};
 
 function skillPath(projectRoot: string, name: string): string {
   return join(projectRoot, ".agents", "skills", name);
@@ -22,10 +29,12 @@ function buildPrompt(outcome: string, skills: HandoffSkill[]): string {
   ];
 
   if (!recommended.length) {
-    lines.push("- (none recommended yet — install skills first if checklist says so)");
+    lines.push("- (none recommended yet)");
   } else {
     for (const s of recommended) {
-      const loc = s.installed && s.path ? s.path : "(not installed)";
+      const loc = s.installed
+        ? (s.path ?? "(path unknown)")
+        : `${s.path ?? "(path unknown)"} (install first)`;
       lines.push(`- ${s.name} — ${loc}`);
     }
   }
@@ -34,7 +43,9 @@ function buildPrompt(outcome: string, skills: HandoffSkill[]): string {
     lines.push("");
     lines.push("Optional (only if needed):");
     for (const s of optional) {
-      const loc = s.installed && s.path ? s.path : "(not installed)";
+      const loc = s.installed
+        ? (s.path ?? "(path unknown)")
+        : `${s.path ?? "(path unknown)"} (install first)`;
       lines.push(`- ${s.name} — ${loc}`);
     }
   }
@@ -44,52 +55,53 @@ function buildPrompt(outcome: string, skills: HandoffSkill[]): string {
   return lines.join("\n");
 }
 
-export async function buildHandoff(
-  outcome: string,
-  options: BuildHandoffOptions = {},
-): Promise<HandoffReport> {
-  const cwd = options.cwd ?? process.cwd();
-  const { cwd: _ignored, ...searchOpts } = options;
-  const plan = await planOutcome(outcome, { ...searchOpts, cwd });
-  const notes = [
-    "Handoff only — does not install or run skills.",
-    "Paste the prompt into your agent after installing any missing recommended skills.",
-  ];
+function mapItems(
+  items: RecommendItem[],
+  bucket: "recommended" | "optional",
+  cwd: string,
+  projectRoot: string,
+): HandoffSkill[] {
+  return items.map((item) => {
+    const installed = isSkillInstalledLocally(item.hit.name, cwd);
+    return {
+      name: item.hit.name,
+      reason: item.reason,
+      installed,
+      path: skillPath(projectRoot, item.hit.name),
+      bucket,
+    };
+  });
+}
 
-  if (!plan.outcome) {
+const BASE_NOTES = [
+  "Handoff only — does not install or run skills.",
+  "Paste the prompt into your agent after installing any missing recommended skills.",
+];
+
+/** Build handoff from an already-chosen recommend/plan shortlist (e.g. install --query). */
+export function composeHandoffFromItems(
+  outcome: string,
+  items: HandoffItemInput,
+  options: { cwd?: string } = {},
+): HandoffReport {
+  const trimmed = outcome.trim();
+  if (!trimmed) {
     return {
       outcome: "",
       capabilities: [],
       skills: [],
       checklist: [],
       prompt: "",
-      notes: [...notes, 'Provide an outcome, e.g. ezy next "Build a SaaS dashboard".'],
+      notes: [...BASE_NOTES, 'Provide an outcome, e.g. ezy next "Build a SaaS dashboard".'],
     };
   }
 
+  const cwd = options.cwd ?? process.cwd();
   const projectRoot = findProjectRoot(cwd) ?? cwd;
-  const skills: HandoffSkill[] = [];
-
-  for (const item of plan.recommended) {
-    const installed = isSkillInstalledLocally(item.hit.name, cwd);
-    skills.push({
-      name: item.hit.name,
-      reason: item.reason,
-      installed,
-      path: installed ? skillPath(projectRoot, item.hit.name) : null,
-      bucket: "recommended",
-    });
-  }
-  for (const item of plan.optional) {
-    const installed = isSkillInstalledLocally(item.hit.name, cwd);
-    skills.push({
-      name: item.hit.name,
-      reason: item.reason,
-      installed,
-      path: installed ? skillPath(projectRoot, item.hit.name) : null,
-      bucket: "optional",
-    });
-  }
+  const skills = [
+    ...mapItems(items.recommended, "recommended", cwd, projectRoot),
+    ...mapItems(items.optional, "optional", cwd, projectRoot),
+  ];
 
   const checklist: string[] = [];
   for (const s of skills) {
@@ -100,11 +112,34 @@ export async function buildHandoff(
   checklist.push("Paste the prompt below into your agent");
 
   return {
-    outcome: plan.outcome,
-    capabilities: plan.capabilities,
+    outcome: trimmed,
+    capabilities: items.capabilities ?? [],
     skills,
     checklist,
-    prompt: buildPrompt(plan.outcome, skills),
-    notes,
+    prompt: buildPrompt(trimmed, skills),
+    notes: [...BASE_NOTES],
   };
+}
+
+export async function buildHandoff(
+  outcome: string,
+  options: BuildHandoffOptions = {},
+): Promise<HandoffReport> {
+  const cwd = options.cwd ?? process.cwd();
+  const { cwd: _ignored, ...searchOpts } = options;
+  const plan = await planOutcome(outcome, { ...searchOpts, cwd });
+
+  if (!plan.outcome) {
+    return composeHandoffFromItems("", { recommended: [], optional: [] }, { cwd });
+  }
+
+  return composeHandoffFromItems(
+    plan.outcome,
+    {
+      capabilities: plan.capabilities,
+      recommended: plan.recommended,
+      optional: plan.optional,
+    },
+    { cwd },
+  );
 }

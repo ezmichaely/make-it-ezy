@@ -3,6 +3,7 @@ import {
   analyzeProject,
   buildHandoff,
   buildInstallPreview,
+  composeHandoffFromItems,
   formatAnalysis,
   formatDoctor,
   formatHandoff,
@@ -196,10 +197,19 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
 }
 
 async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
-  const text = parsed.plan ?? parsed.query;
-  if (!text) return;
-  const handoff = await buildHandoff(text);
-  process.stdout.write("\n" + formatHandoff(handoff) + "\n");
+  if (parsed.plan) {
+    const handoff = await buildHandoff(parsed.plan);
+    process.stdout.write("\n" + formatHandoff(handoff) + "\n");
+    return;
+  }
+  if (parsed.query) {
+    const rec = await recommendSkills(parsed.query);
+    const handoff = composeHandoffFromItems(parsed.query, {
+      recommended: rec.recommended,
+      optional: rec.optional,
+    });
+    process.stdout.write("\n" + formatHandoff(handoff) + "\n");
+  }
 }
 
 async function handleInstall(args: string[]): Promise<number> {

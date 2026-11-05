@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { buildHandoff } from "./handoff.js";
+import { buildHandoff, composeHandoffFromItems } from "./handoff.js";
 import { formatHandoff } from "./format.js";
 import * as planMod from "./plan.js";
 import type { PlanReport } from "./plan-types.js";
@@ -97,7 +97,40 @@ describe("buildHandoff", () => {
     expect(report.prompt.length).toBeGreaterThan(0);
     expect(report.prompt).toContain("Ship a verified skill recommender");
     expect(report.skills[0]?.installed).toBe(false);
-    expect(report.skills[0]?.path).toBeNull();
+    expect(report.skills[0]?.path).toMatch(/\.agents[/\\]skills[/\\]missing-skill$/);
+    expect(report.prompt).toMatch(/missing-skill.*\.agents[/\\]skills[/\\]missing-skill/);
+    expect(report.prompt).toMatch(/install first/i);
+  });
+
+  it("composeHandoffFromItems keeps recommend picks (query path)", () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-compose-"));
+    writeFileSync(join(root, "package.json"), JSON.stringify({ name: "compose" }));
+    const report = composeHandoffFromItems(
+      "ponytail workflow",
+      {
+        capabilities: [],
+        recommended: [
+          {
+            hit: {
+              name: "ponytail",
+              source: "DietrichGebert/ponytail",
+              sourceKind: "remote",
+              description: "lazy senior",
+              url: null,
+              score: 9,
+              installs: null,
+              installedLocally: false,
+            },
+            reason: "topic match",
+          },
+        ],
+        optional: [],
+      },
+      { cwd: root },
+    );
+    expect(report.skills.some((s) => s.name === "ponytail")).toBe(true);
+    expect(report.prompt).toContain("ponytail");
+    expect(report.checklist.some((c) => c.includes("ezy install ponytail"))).toBe(true);
   });
 
   it("returns guidance when outcome is empty", async () => {
