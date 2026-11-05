@@ -1,8 +1,15 @@
-import { extractCapabilities } from "./capabilities.js";
+import { analyzeProject } from "./analyze.js";
+import { loadLocalSkills } from "./load-local-skills.js";
 import { recommendSkills } from "./recommend.js";
+import { extractRequirements } from "./requirements.js";
 import type { RecommendItem } from "./recommend-types.js";
 import type { SearchOptions } from "./search.js";
-import type { PlanReport } from "./plan-types.js";
+import {
+  EMPTY_PLAN_PROJECT,
+  type CapabilityDecision,
+  type PlanProjectSummary,
+  type PlanReport,
+} from "./plan-types.js";
 
 const RECOMMENDED_MAX = 4;
 const OPTIONAL_MAX = 4;
@@ -40,16 +47,50 @@ function mergeItems(items: RecommendItem[]): RecommendItem[] {
   );
 }
 
-function defaultNotNeeded(capabilities: string[]): string[] {
-  const joined = capabilities.join(" ").toLowerCase();
-  const hints = [
-    "multi-agent swarm — start with the minimum skill set first",
-    "vector database — not required for planning/discovery",
-  ];
-  if (/frontend|ui\/ux|video|media/.test(joined)) {
-    hints.push("full autonomous research pipeline — overkill for this outcome");
+function summarizeProject(
+  analysis: ReturnType<typeof analyzeProject>,
+  localSkills: string[],
+): PlanProjectSummary {
+  return {
+    projectRoot: analysis.projectRoot,
+    packageName: analysis.packageJson.name,
+    language: analysis.language,
+    frameworks: analysis.frameworks
+      .filter((f) => f.id !== "typescript")
+      .map((f) => f.label),
+    localSkills,
+  };
+}
+
+function shouldSkipSkill(name: string, skipHints: string[]): string | null {
+  const n = name.toLowerCase();
+  if (n.includes("graphify") && skipHints.some((h) => h.toLowerCase().includes("graphify"))) {
+    return "Skipped — Graphify not needed for this outcome/project.";
   }
-  return hints;
+  if (
+    n.includes("superpowers") &&
+    skipHints.some((h) => {
+      const lower = h.toLowerCase();
+      return lower.includes("swarm") || lower.includes("small ui");
+    })
+  ) {
+    return "Skipped — heavyweight workflow not needed for this outcome.";
+  }
+  return null;
+}
+
+function emptyReport(notes: string[]): PlanReport {
+  return {
+    outcome: "",
+    capabilities: [],
+    requirements: [],
+    project: EMPTY_PLAN_PROJECT,
+    decisions: [],
+    recommended: [],
+    optional: [],
+    notNeeded: [],
+    notes,
+  };
 }
 
 export async function planOutcome(
@@ -57,32 +98,38 @@ export async function planOutcome(
   options: SearchOptions = {},
 ): Promise<PlanReport> {
   const trimmed = outcome.trim();
+  const cwd = options.cwd ?? process.cwd();
   const baseNotes = [
     "Discovery only — nothing was installed or executed.",
     "Heuristic planning, not a model.",
-    "Installation / run = Phase 4 (suggest-then-go).",
+    "Installation uses suggest-then-go (ezy install).",
   ];
 
   if (!trimmed) {
-    return {
-      outcome: "",
-      capabilities: [],
-      recommended: [],
-      optional: [],
-      notNeeded: [],
-      notes: [...baseNotes, 'Provide an outcome, e.g. ezy plan "Create a promotional video".'],
-    };
+    return emptyReport([
+      ...baseNotes,
+      'Provide an outcome, e.g. ezy plan "Create a promotional video".',
+    ]);
   }
 
-  const capabilities = extractCapabilities(trimmed);
-  const queries = capabilities.length ? capabilities : [trimmed];
+  const analysis = analyzeProject({ cwd });
+  const projectRoot = analysis.projectRoot ?? cwd;
+  const localSkills = loadLocalSkills(projectRoot, "").map((h) => h.name);
+  const project = summarizeProject(analysis, localSkills);
+  const { requirements, skipHints } = extractRequirements(trimmed, analysis);
+
+  const queries = requirements.length
+    ? requirements.filter((r) => r.priority === "required").map((r) => r.label)
+    : [trimmed];
+  const searchQueries = queries.length ? queries : [trimmed];
 
   const collected: RecommendItem[] = [];
   const extraNotes: string[] = [];
 
-  for (const query of queries.slice(0, 4)) {
+  for (const query of searchQueries.slice(0, 4)) {
     const report = await recommendSkills(query, {
       ...options,
+      cwd,
       limit: options.limit ?? 8,
     });
     collected.push(...report.recommended, ...report.optional);
@@ -93,26 +140,103 @@ export async function planOutcome(
     }
   }
 
-  const merged = mergeItems(collected).slice(0, TOTAL_CAP);
-  const recommended = merged.slice(0, RECOMMENDED_MAX);
-  const optional = merged.slice(RECOMMENDED_MAX, RECOMMENDED_MAX + OPTIONAL_MAX);
+  const merged = mergeItems(collected);
+  const decisions: CapabilityDecision[] = [];
+  const recommended: RecommendItem[] = [];
+  const optional: RecommendItem[] = [];
+  const skippedNames = new Set<string>();
+
+  for (const item of merged) {
+    const skipReason = shouldSkipSkill(item.hit.name, skipHints);
+    if (skipReason) {
+      decisions.push({
+        name: item.hit.name,
+        source: item.hit.source,
+        decision: "skip",
+        reason: skipReason,
+      });
+      skippedNames.add(item.hit.name.toLowerCase());
+      continue;
+    }
+
+    const useOrInstall =
+      item.hit.installedLocally || item.hit.sourceKind === "local" ? "use" : "install";
+
+    if (recommended.length < RECOMMENDED_MAX && recommended.length + optional.length < TOTAL_CAP) {
+      // Prefer local/strong into recommended
+      const strong =
+        item.hit.score >= 6 || item.hit.installedLocally || item.hit.sourceKind === "local";
+      if (strong && recommended.length < RECOMMENDED_MAX) {
+        recommended.push(item);
+        decisions.push({
+          name: item.hit.name,
+          source: item.hit.source,
+          decision: useOrInstall,
+          reason: item.reason,
+        });
+      } else if (optional.length < OPTIONAL_MAX) {
+        optional.push(item);
+        decisions.push({
+          name: item.hit.name,
+          source: item.hit.source,
+          decision: "optional",
+          reason: item.reason,
+        });
+      }
+    }
+  }
+
+  // Fill recommended from remaining if still empty but we have optional-quality matches
+  if (!recommended.length && optional.length) {
+    const promoted = optional.splice(0, Math.min(RECOMMENDED_MAX, optional.length));
+    for (const item of promoted) {
+      recommended.push(item);
+      const d = decisions.find((x) => x.name === item.hit.name && x.decision === "optional");
+      if (d) {
+        d.decision =
+          item.hit.installedLocally || item.hit.sourceKind === "local" ? "use" : "install";
+      }
+    }
+  }
+
+  const notNeeded = [
+    ...skipHints,
+    ...[...skippedNames].map((n) => `${n} — filtered out for this project/outcome`),
+  ];
 
   const notes = [...baseNotes, ...extraNotes];
   if (options.localOnly) {
     notes.push("Local-only mode: skills.sh was not queried.");
   }
-  if (!merged.length) {
+  if (project.projectRoot) {
+    notes.push(
+      `Project-aware plan for ${project.packageName ?? project.projectRoot}` +
+        (project.frameworks.length ? ` (${project.frameworks.join(", ")})` : "") +
+        ".",
+    );
+  } else {
+    notes.push("No project markers — planning from outcome only.");
+  }
+  if (!recommended.length && !optional.length) {
     notes.push(
       "No matching skills found — try installing relevant skills locally or broaden the outcome.",
     );
   }
 
+  const capabilities = [
+    ...requirements.filter((r) => r.priority === "required").map((r) => r.label),
+    ...requirements.filter((r) => r.priority === "optional").map((r) => r.label),
+  ];
+
   return {
     outcome: trimmed,
     capabilities,
-    recommended,
-    optional,
-    notNeeded: defaultNotNeeded(capabilities),
+    requirements,
+    project,
+    decisions,
+    recommended: recommended.slice(0, RECOMMENDED_MAX),
+    optional: optional.slice(0, OPTIONAL_MAX),
+    notNeeded,
     notes,
   };
 }

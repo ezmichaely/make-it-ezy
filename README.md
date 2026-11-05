@@ -4,9 +4,10 @@ Local-first **AI capability discovery and orchestration** layer.
 
 > The user describes the outcome. Make It Ezy figures out the minimum useful process.
 
-**Status:** Phase 4 CLI (`install` / `next`) + Agent Skill adapter (`skills/ezy`). Soft-C spawn and deep verify still later.
+**Status:** Phase 5 shipped — project-aware `plan` / `next` (plus Phase 4 install + `skills/ezy`). **Next:** Phase 6 Project Brain (optional). Soft-C, deep verify, and Web UI are later — see [`docs/ROADMAP.md`](./docs/ROADMAP.md).
 
-**Source of truth:** [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)
+**Product intent:** [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)  
+**Phase status / sequence:** [`docs/ROADMAP.md`](./docs/ROADMAP.md)
 
 ## Requirements
 
@@ -59,10 +60,12 @@ Then:
 
 ## Deliberately not built yet
 
-- Deep skill verification
+- Project Brain (Phase 6)
+- Outcome verification (Phase 7)
+- Deep skill verification / trusted-auto allowlists
 - Soft-C (CLI spawning Codex/Claude)
-- Trusted-auto allowlists
 - Codex marketplace plugin package
+- Web UI (Phase 8)
 
 See `docs/MVP-SPECIFICATION.md` and `docs/ROADMAP.md`.
 

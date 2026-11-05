@@ -6,6 +6,23 @@
 >
 > **Important development principle:** We should use the existing AI skill ecosystem to build Make It Ezy rather than reinventing that ecosystem.
 
+## Phase map update (2026-11-05) — read this first
+
+Shipped CLI through Phase 4 (`install` / `next` / `skills/ezy`). The **live sequence** is now:
+
+| Phase | Name | Status |
+|---|---|---|
+| 0–4 | Research → CLI → Discovery → Plan → Install/adapters | **done** |
+| **5** | **Project Capability Planner** (project-aware `plan`) | **done** |
+| 6 | Project Brain (lightweight persistent knowledge; was “Memory”) | later |
+| 7 | Outcome verification (was numbered Phase 5 below) | later |
+| 8 | Web UI (was numbered Phase 7 below) | later |
+
+Canonical tracker: [`../ROADMAP.md`](../ROADMAP.md).  
+Phase 5 design: [`../superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`](../superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md).
+
+Older section headings in this file that still say “Phase 5 — Verification” / “Phase 6 — Memory” / “Phase 7 — Web UI” are **historical wording**; use the table above.
+
 ---
 
 # 1. Vision
@@ -893,7 +910,15 @@ Do not hard-code the entire architecture around one runtime.
 
 ---
 
-# 21. Phase 5 — Verification
+# 21. Phase 5 — Project Capability Planner (inserted 2026-11-05)
+
+**Next implementation milestone.** Evolve `ezy plan` / `ezy next` so planning uses the current project, derives requirements, discovers candidates, filters unnecessary capabilities, and emits a minimum useful set — still heuristic, still no Soft-C / LLM / mandatory Graphify.
+
+See `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md` and `docs/ROADMAP.md`.
+
+---
+
+# 21b. Phase 7 — Verification (was “Phase 5” in early drafts)
 
 After a workflow executes, Make It Ezy should verify the outcome.
 
@@ -963,11 +988,13 @@ For high-risk domains:
 
 ---
 
-# 23. Phase 6 — Memory
+# 23. Phase 6 — Project Brain / Memory (was “Phase 6 — Memory”)
 
 Do not add a vector database simply because AI projects commonly have one.
 
-Memory should be added only when there is a demonstrated requirement.
+**Project Brain** should preserve only useful project knowledge (architecture, decisions, conventions, constraints, available capabilities) — not a copy of the repository — so the next agent does not rediscover what the last one learned.
+
+Memory / Brain should be added only when there is a demonstrated requirement (after the Phase 5 planner exists).
 
 Potential future memory:
 
@@ -979,11 +1006,11 @@ Potential future memory:
 - trusted sources
 - rejected recommendations
 
-Start with simple local configuration/files if sufficient.
+Start with simple local configuration/files if sufficient. Graphify may be an optional understanding provider — never mandatory infrastructure.
 
 ---
 
-# 24. Phase 7 — Web UI
+# 24. Phase 8 — Web UI (was “Phase 7”)
 
 Do not begin with the web UI.
 

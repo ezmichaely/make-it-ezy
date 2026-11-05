@@ -10,23 +10,43 @@ export type BuildHandoffOptions = SearchOptions & { cwd?: string };
 
 export type HandoffItemInput = {
   capabilities?: string[];
+  projectSummary?: string | null;
   recommended: RecommendItem[];
   optional: RecommendItem[];
 };
+
+function summarizeForPrompt(project: {
+  projectRoot: string | null;
+  packageName: string | null;
+  frameworks: string[];
+}): string | null {
+  if (!project.projectRoot) {
+    return "no project markers (greenfield / empty)";
+  }
+  const parts = [project.packageName ?? project.projectRoot];
+  if (project.frameworks.length) {
+    parts.push(project.frameworks.join(", "));
+  }
+  return parts.join(" · ");
+}
 
 function skillPath(projectRoot: string, name: string): string {
   return join(projectRoot, ".agents", "skills", name);
 }
 
-function buildPrompt(outcome: string, skills: HandoffSkill[]): string {
+function buildPrompt(
+  outcome: string,
+  skills: HandoffSkill[],
+  projectSummary?: string | null,
+): string {
   const recommended = skills.filter((s) => s.bucket === "recommended");
   const optional = skills.filter((s) => s.bucket === "optional");
 
-  const lines = [
-    `Outcome: ${outcome}`,
-    "",
-    "Use these skills (read each SKILL.md):",
-  ];
+  const lines = [`Outcome: ${outcome}`];
+  if (projectSummary) {
+    lines.push("", `Project: ${projectSummary}`);
+  }
+  lines.push("", "Use these skills (read each SKILL.md):");
 
   if (!recommended.length) {
     lines.push("- (none recommended yet)");
@@ -135,7 +155,7 @@ export function composeHandoffFromItems(
     capabilities: items.capabilities ?? [],
     skills,
     checklist,
-    prompt: buildPrompt(trimmed, skills),
+    prompt: buildPrompt(trimmed, skills, items.projectSummary),
     notes: [...BASE_NOTES],
   };
 }
@@ -156,6 +176,7 @@ export async function buildHandoff(
     plan.outcome,
     {
       capabilities: plan.capabilities,
+      projectSummary: summarizeForPrompt(plan.project),
       recommended: plan.recommended,
       optional: plan.optional,
     },

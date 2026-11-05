@@ -30,8 +30,9 @@ Always run commands with **cwd = the project the user wants changed** (not the M
 1. **Clarify the outcome** in one short phrase if the user was vague.
 2. **Handoff:**  
    `ezy next "<outcome>"`  
-   (or the `node …/dist/index.js next "…"` form). Use network unless the user asked for `--local-only`.
-3. **Show** Capabilities / Skills / Checklist briefly to the user.
+   (or the `node …/dist/index.js next "…"` form). Use network unless the user asked for `--local-only`.  
+   Planning is **project-aware** (uses the current project + outcome; prefers a minimum skill set).
+3. **Show** Project / Requirements / Skills / Checklist briefly to the user.
 4. **Install (gated):** If the checklist lists `ezy install …`, ask for approval, then run those install commands (include `--source` when the checklist provides it). Do **not** pass `--yes` unless the user already approved non-interactive install.
 5. **Re-run** `ezy next "<outcome>"` after installs if skills were missing before.
 6. **Execute the Prompt block:**  
