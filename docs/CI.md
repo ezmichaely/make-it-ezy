@@ -17,10 +17,11 @@ No paid CodeRabbit required. Public GitHub Actions + CodeQL are free for this re
 
 ```bash
 pnpm install
-pnpm check          # lint + typecheck + test + build
-pnpm lint
-pnpm typecheck
+pnpm check:ci       # build → lint → typecheck → test → audit (same as Actions CI)
+pnpm check          # build → lint → typecheck → test
 ```
+
+Before push/PR, agents should follow `.cursor/skills/ci-before-push/SKILL.md`.
 
 ## PR workflow
 
