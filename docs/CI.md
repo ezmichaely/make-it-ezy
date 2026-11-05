@@ -30,6 +30,16 @@ Before push/PR, agents should follow `.cursor/skills/ci-before-push/SKILL.md`.
 3. Merge
 4. Enable **Settings → General → Automatically delete head branches** so merged branches disappear (ask a maintainer if you can’t toggle it)
 
+## Releases & changelog
+
+On every push to `main`, [release-please](https://github.com/googleapis/release-please) opens/updates a release PR that:
+
+- bumps `package.json` version from Conventional Commits
+- updates `CHANGELOG.md`
+- tags `vX.Y.Z` and creates a GitHub Release when that PR is merged
+
+Bootstrap: current version is **0.1.0** (see `.release-please-manifest.json`). Keep using Conventional Commit subjects (`feat:`, `fix:`, etc.).
+
 ## Not included (paid / optional)
 
 - CodeRabbit / Copilot PR narrative review (trial or paid on some plans)
