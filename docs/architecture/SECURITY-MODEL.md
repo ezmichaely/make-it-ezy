@@ -4,19 +4,26 @@
 
 External skills, MCP servers, install scripts, and catalogs are **untrusted** until inspected. Popularity is not safety.
 
-## Phase 1 guarantees (current)
+## What is safe by default
 
-- Analyze: filesystem reads only
-- Doctor: version checks for Node / pnpm / git
-- No network discovery, no auto-install, no third-party script execution
+| Surface | Behavior |
+|---|---|
+| `doctor` / `analyze` | Local filesystem / PATH only |
+| `search` / `recommend` / `plan` / `next` | May query skills.sh; **never installs or executes** skills |
+| `inspect` | Local skill read + risk notes; optional remote metadata |
+| `install` | Preview + explicit approval (`--yes` or TTY confirm) before `npx skills add` |
+| Agent Skill `ezy` | Must ask before install; must not invent `--yes` |
 
-## Install gate (Phase 4+)
+## Install gate (Phase 4 — partial)
 
-1. Identify source + provenance  
-2. Inspect license, deps, scripts, permissions  
-3. Classify risk  
-4. Show planned changes  
-5. Require explicit approval  
+Shipped today:
+
+1. Resolve source + destination  
+2. Show preview (command, path, thin risk notes)  
+3. Require explicit approval  
+4. Install via `npx skills add` into `.agents/skills`
+
+**Not shipped yet (deep verify):** full license/deps/scripts static analysis, Verified vs Unverified badges, trusted-auto allowlist.
 
 ## Risk levels
 
