@@ -59,6 +59,15 @@ describe("inspectSkill", () => {
     expect(report.notes.join(" ")).toContain("No local skill");
   });
 
+  it("reports when the skill directory lacks SKILL.md", async () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-inspect-empty-"));
+    writeFileSync(join(root, "package.json"), JSON.stringify({ name: "fixture" }));
+    mkdirSync(join(root, ".agents", "skills", "hollow"), { recursive: true });
+    const report = await inspectSkill("hollow", { cwd: root, skipRemote: true });
+    expect(report.found).toBe(false);
+    expect(report.notes.join(" ")).toContain("SKILL.md is missing");
+  });
+
   it("requires a name", async () => {
     const report = await inspectSkill("  ", { skipRemote: true });
     expect(report.found).toBe(false);

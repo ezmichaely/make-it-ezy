@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { findProjectRoot } from "./find-project-root.js";
 import type { InspectFinding, SkillInspection } from "./inspect-types.js";
@@ -214,11 +214,12 @@ export async function inspectSkill(query: string, options: InspectOptions = {}):
 
   const dirName = skillDir.split(/[/\\]/).pop() ?? trimmed;
   const skillMdPath = join(skillDir, "SKILL.md");
-  if (!existsSync(skillMdPath) || !statSync(skillMdPath).isFile()) {
+  let raw: string;
+  try {
+    raw = readFileSync(skillMdPath, "utf8");
+  } catch {
     return empty([`Skill directory found (${dirName}) but SKILL.md is missing.`]);
   }
-
-  const raw = readFileSync(skillMdPath, "utf8");
   const fm = parseSkillFrontmatter(raw);
   const lock = loadSkillsLock(projectRoot);
   const lockEntry = (lock.skills?.[dirName] ?? lock.skills?.[fm.name ?? ""] ?? {}) as LockEntry;
