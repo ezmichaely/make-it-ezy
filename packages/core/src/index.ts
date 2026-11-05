@@ -10,12 +10,16 @@ export {
   formatAnalysis,
   formatDoctor,
   formatInspect,
+  formatHandoff,
   formatInstallPreview,
   formatInstallResult,
   formatPlan,
   formatRecommend,
   formatSearch,
 } from "./format.js";
+export { buildHandoff } from "./handoff.js";
+export type { BuildHandoffOptions } from "./handoff.js";
+export type { HandoffReport, HandoffSkill } from "./handoff-types.js";
 export { searchSkills } from "./search.js";
 export type { SearchOptions } from "./search.js";
 export { recommendSkills } from "./recommend.js";

@@ -1,3 +1,4 @@
+import type { HandoffReport } from "./handoff-types.js";
 import type { SkillInspection } from "./inspect-types.js";
 import type { InstallPreview, InstallResult } from "./install-types.js";
 import type { PlanReport } from "./plan-types.js";
@@ -271,8 +272,60 @@ export function formatPlan(report: PlanReport): string {
 
   lines.push("");
   lines.push("Next");
+  lines.push(`- ezy next "${report.outcome || "<outcome>"}"`);
   lines.push("- ezy inspect <name>");
-  lines.push("- Installation / run = Phase 4 (suggest-then-go)");
+  lines.push("Notes");
+  for (const note of report.notes) {
+    lines.push(`- ${note}`);
+  }
+
+  return lines.join("\n");
+}
+
+export function formatHandoff(report: HandoffReport): string {
+  const lines = [
+    "Make It Ezy — next",
+    "",
+    `Outcome: ${report.outcome || "(empty)"}`,
+    "",
+    "Capabilities",
+  ];
+  if (!report.capabilities.length) {
+    lines.push("(none)");
+  } else {
+    for (const cap of report.capabilities) {
+      lines.push(`- ${cap}`);
+    }
+  }
+
+  lines.push("");
+  lines.push("Skills");
+  if (!report.skills.length) {
+    lines.push("(none)");
+  } else {
+    for (const s of report.skills) {
+      const status = s.installed ? "installed" : "not installed";
+      lines.push(`- ${s.name} · ${status} · ${s.reason}`);
+    }
+  }
+
+  lines.push("");
+  lines.push("Checklist");
+  if (!report.checklist.length) {
+    lines.push("(none)");
+  } else {
+    report.checklist.forEach((item, i) => {
+      lines.push(`${i + 1}. ${item}`);
+    });
+  }
+
+  lines.push("");
+  lines.push("Prompt");
+  lines.push("```");
+  lines.push(report.prompt || "(provide an outcome)");
+  lines.push("```");
+
+  lines.push("");
   lines.push("Notes");
   for (const note of report.notes) {
     lines.push(`- ${note}`);
@@ -317,6 +370,7 @@ export function formatInstallResult(result: InstallResult): string {
       `Already installed: ${result.skillName}`,
       `Path: ${result.destination}`,
       `Next: ezy inspect ${result.skillName}`,
+      `Next: ezy next "<outcome>"`,
     ].join("\n");
   }
   if (!result.ok) {
@@ -331,6 +385,7 @@ export function formatInstallResult(result: InstallResult): string {
   return [
     `Installed ${result.skillName} → ${result.destination}`,
     `Next: ezy inspect ${result.skillName}`,
+    `Next: ezy next "<outcome>"`,
     "Note: skill execution / outcome run is not in this slice.",
   ].join("\n");
 }
