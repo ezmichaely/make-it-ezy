@@ -1,6 +1,6 @@
 # Architecture
 
-Aligned to `MAKE-IT-EZY-MASTER-HANDOFF.md` after 2026-11-05 re-analysis.
+Aligned to `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` after 2026-11-05 re-analysis.
 
 ## What Make It Ezy is
 

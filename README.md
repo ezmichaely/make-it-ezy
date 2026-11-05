@@ -6,7 +6,7 @@ Local-first **AI capability discovery and orchestration** layer.
 
 **Status:** Phase 4 `ezy install` + `ezy next` (suggest-then-go install, paste-ready handoff). Does not execute skill outcomes yet.
 
-**Source of truth:** [`MAKE-IT-EZY-MASTER-HANDOFF.md`](./MAKE-IT-EZY-MASTER-HANDOFF.md)
+**Source of truth:** [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)
 
 ## Requirements
 

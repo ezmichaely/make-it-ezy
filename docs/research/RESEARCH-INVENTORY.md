@@ -1,6 +1,6 @@
 # Research Inventory
 
-Re-analysis against `MAKE-IT-EZY-MASTER-HANDOFF.md` + live GitHub checks (2026-11-05).
+Re-analysis against `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` + live GitHub checks (2026-11-05).
 
 **Not approved product dependencies.** Decisions are provisional for Make It Ezy core vs optional task tooling.
 

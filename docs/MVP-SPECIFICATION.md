@@ -21,6 +21,6 @@ pnpm ezy next "Build a SaaS dashboard" --local-only
 
 ## Source of truth
 
-- `MAKE-IT-EZY-MASTER-HANDOFF.md`
+- `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`
 - `docs/superpowers/specs/2026-11-05-phase4-install-design.md`
 - `docs/superpowers/specs/2026-11-05-phase4-handoff-design.md`
