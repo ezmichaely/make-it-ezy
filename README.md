@@ -1,20 +1,101 @@
-# Make It Ezy
+<p align="center">
+  <img src="make-it-ezy.png" width="280" alt="Make It Ezy">
+</p>
 
-Local-first **AI capability discovery and orchestration** layer.
+<h1 align="center">Make It Ezy</h1>
 
-> The user describes the outcome. Make It Ezy figures out the minimum useful process.
+<p align="center">
+  <em>Tell Ezy what you want. It figures out what you need.</em>
+</p>
 
-**Status:** Phase 5 shipped — project-aware `plan` / `next` (plus Phase 4 install + `skills/ezy`). **Next:** Phase 6 Project Brain (optional). Soft-C, deep verify, and Web UI are later — see [`docs/ROADMAP.md`](./docs/ROADMAP.md).
+<p align="center">
+  <img src="https://img.shields.io/github/license/ezmichaely/make-it-ezy?style=flat-square&color=111111" alt="MIT license">
+  <img src="https://img.shields.io/badge/status-phase%205-111111?style=flat-square" alt="Phase 5">
+  <img src="https://img.shields.io/badge/node-%3E%3D20-111111?style=flat-square" alt="Node 20+">
+</p>
 
-**Product intent:** [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)  
-**Phase status / sequence:** [`docs/ROADMAP.md`](./docs/ROADMAP.md)
+---
 
-## Requirements
+**Make It Ezy** is an **AI capability orchestration layer**. Give it a goal, and it determines the capabilities, context, tools, agents, and workflow needed to accomplish it—using the **minimum necessary** to get the job done reliably.
 
-- Node.js 20+
-- [pnpm](https://pnpm.io/) 9+ (10.x recommended)
+It is **not** another coding agent, skill manager, MCP manager, marketplace, or prompt tool. Those are things Ezy can *select and compose*. Ezy sits **above** them.
 
-## Setup
+```text
+             HUMAN
+                │
+                ▼
+          MAKE IT EZY
+       "What do I need?"
+                │
+      ┌─────────┼─────────┐
+      ▼         ▼         ▼
+    Skills     Tools     Agents
+      │         │         │
+      └─────────┼─────────┘
+                ▼
+              WORK
+```
+
+## What Ezy does
+
+```text
+User: "Build me a SaaS" / "Add Stripe subscriptions" / "Refactor auth"
+                     │
+                     ▼
+              ┌─────────────┐
+              │ MAKE IT EZY │
+              └──────┬──────┘
+                     │
+        ┌────────────┼────────────┐
+        ▼            ▼            ▼
+   Understand     Discover     Understand
+     Goal       Capabilities    Project
+        │            │            │
+        └────────────┼────────────┘
+                     ▼
+           Select what's actually needed
+                     │
+                     ▼
+              Execution / handoff plan
+                     │
+                     ▼
+          Agents · Tools · Skills · Services
+                     │
+                     ▼
+               Verify (later) · Update knowledge (later)
+```
+
+**Two jobs in one layer:**
+
+1. **Capability router** — what skills, tools, agents, workflows, or services are actually needed?
+2. **Context router** — what does that stack need to know, so the next agent doesn’t rediscover the whole repo?
+
+```text
+"Add subscriptions to my app."
+
+              Ezy
+               │
+       ┌───────┴────────┐
+       ▼                ▼
+ Capability          Context
+ selection            selection
+       │                │
+       ▼                ▼
+ Stripe skill       Existing auth
+ Testing            DB / billing
+ Security           Project conventions
+ Coding agent
+       │                │
+       └───────┬────────┘
+               ▼
+             Agent
+```
+
+A **capability** can be a skill, tool, MCP, agent, model, workflow, service, API, knowledge source—or later, a human expert. Today the product focuses on software development; the engine is capability-centered so it can grow beyond that.
+
+**Principle:** minimum sufficient capabilities + minimum sufficient context.
+
+## Quick start
 
 ```bash
 pnpm install
@@ -22,53 +103,42 @@ pnpm build
 pnpm test
 ```
 
-Set `MAKE_IT_EZY_ROOT` to this repo’s absolute path so agents can find the CLI:
+Node.js 20+ · pnpm 9+ (10.x recommended).
 
 ```bash
 export MAKE_IT_EZY_ROOT=/absolute/path/to/make-it-ezy
 ```
 
-## CLI
-
 ```bash
 pnpm ezy plan "Build me a beautiful SaaS dashboard" --local-only
 pnpm ezy next "Build me a beautiful SaaS dashboard" --local-only
-pnpm ezy install --plan "Build me a beautiful SaaS dashboard"   # arrow-pick on TTY; then handoff
-pnpm ezy install taste --source Leonxlnx/taste-skill --yes
+pnpm ezy install --plan "Build me a beautiful SaaS dashboard"   # ↑/↓ pick on TTY
 pnpm ezy inspect taste
 ```
 
-On a TTY, `ezy install --plan "…"` / `--query "…"` lets you **↑/↓** select a recommended skill, then confirm and prints `ezy next` handoff. Scripts/CI use `ezy install <skill> --yes`.
-
 ## Agent Skill (`/ezy`)
 
-Product skill: [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md). It tells the agent to run the CLI, gated-install, then **keep building**.
-
-Install into another project (Claude Code / Cursor / Codex skills):
+Product adapter: [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md) — run the CLI, gated-install, then **keep building** in the host agent (Claude Code / Cursor / Codex).
 
 ```bash
 mkdir -p /path/to/your-app/.agents/skills
 cp -R /path/to/make-it-ezy/skills/ezy /path/to/your-app/.agents/skills/ezy
-# or: ln -s /path/to/make-it-ezy/skills/ezy /path/to/your-app/.agents/skills/ezy
 ```
 
-Then:
+Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 
-- **Claude Code:** `/ezy build me a profile page`
-- **Cursor:** ask to use the `ezy` skill for an outcome
-- **Codex:** enable/select skill `ezy` via `/skills`, then describe the outcome
+## Status
 
-## Deliberately not built yet
+**Phase 5 shipped** — project-aware `plan` / `next` (plus install + `/ezy`).
 
-- Project Brain (Phase 6)
-- Outcome verification (Phase 7)
-- Deep skill verification / trusted-auto allowlists
-- Soft-C (CLI spawning Codex/Claude)
-- Codex marketplace plugin package
-- Web UI (Phase 8)
+| Next | Later |
+|---|---|
+| Phase 6 — Project Brain | Soft-C, deep verify, trusted-auto |
+| Phase 7 — Outcome verification | Codex marketplace plugin |
+| Phase 8 — Web UI | Giant catalog / marketplace |
 
-See `docs/MVP-SPECIFICATION.md` and `docs/ROADMAP.md`.
+Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)
 
 ## License
 
-MIT
+[MIT](LICENSE).
