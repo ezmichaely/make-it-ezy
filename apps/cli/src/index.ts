@@ -27,7 +27,7 @@ import {
 } from "@make-it-ezy/core";
 import { confirmYesNo, selectWithArrows, type SelectChoice } from "./select.js";
 
-const HELP = `Make It Ezy — local-first AI capability discovery (Phase 5 planner)
+const HELP = `Make It Ezy — local-first AI capability discovery (Phase 6 agent brief + planner)
 
 Usage:
   ezy --help
@@ -441,6 +441,7 @@ async function main(argv: string[]): Promise<number> {
     const opts = { localOnly: flags.has("--local-only"), ...(brief ? { brief } : {}) };
     if (command === "plan") {
       const report = await planOutcome(outcome, opts);
+      if (briefPath !== undefined) report.briefPath = briefPath;
       report.notes.push(...briefNotes);
       process.stdout.write(formatPlan(report) + "\n");
     } else {

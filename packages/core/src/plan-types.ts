@@ -41,6 +41,8 @@ export type PlanReport = {
   research: ResearchFinding[];
   uncovered: Requirement[];
   excluded: Exclusion[];
+  /** Path of the brief file the plan was built from (set by the CLI; used for the Next hint). */
+  briefPath?: string;
 };
 
 export const EMPTY_PLAN_PROJECT: PlanProjectSummary = {

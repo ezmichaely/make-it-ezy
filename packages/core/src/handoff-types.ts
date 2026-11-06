@@ -1,4 +1,5 @@
-import type { ResearchFinding } from "./brief-types.js";
+import type { Exclusion, ResearchFinding } from "./brief-types.js";
+import type { Requirement } from "./plan-types.js";
 
 export type HandoffSkill = {
   name: string;
@@ -19,4 +20,6 @@ export type HandoffReport = {
   notes: string[];
   basis: "brief" | "heuristic";
   research: ResearchFinding[];
+  uncovered: Requirement[];
+  excluded: Exclusion[];
 };

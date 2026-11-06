@@ -94,14 +94,15 @@ describe("selectCapabilities", () => {
     expect(sel.uncovered.map((r) => r.id)).toEqual(["misc"]);
   });
 
-  it("caps recommended at 4", () => {
+  it("stretches recommended past 4 to cover all required requirements", () => {
     const names = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot"];
     const reqs = names.map((n) => req(n, [n]));
     const cands = scoreCandidates(names.map((n) => hit(`${n}-skill`)), reqs);
     const sel = selectCapabilities(cands, reqs, []);
-    expect(sel.recommended).toHaveLength(4);
-    expect(sel.optional).toHaveLength(2);
+    expect(sel.recommended).toHaveLength(6);
+    expect(sel.optional).toHaveLength(0);
     expect(sel.uncovered).toEqual([]);
+    expect(sel.recommendedStretched).toBe(true);
   });
 
   it("reports only requirements with no candidate as uncovered", () => {
@@ -110,12 +111,21 @@ describe("selectCapabilities", () => {
     expect(sel.uncovered.map((r) => r.id)).toEqual(["none"]);
   });
 
-  it("does not report a required requirement covered via an optional pick", () => {
+  it("leaves required requirements uncovered once the total cap of 8 is exhausted", () => {
+    const names = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india"];
+    const reqs = names.map((n) => req(n, [n]));
+    const sel = selectCapabilities(scoreCandidates(names.map((n) => hit(`${n}-skill`)), reqs), reqs, []);
+    expect(sel.recommended).toHaveLength(8);
+    expect(sel.optional).toHaveLength(0);
+    expect(sel.uncovered).toHaveLength(1);
+  });
+
+  it("puts all required-covering picks in recommended even beyond 4", () => {
     const names = ["alpha", "bravo", "charlie", "delta", "echo"];
     const reqs = names.map((n) => req(n, [n]));
     const sel = selectCapabilities(scoreCandidates(names.map((n) => hit(`${n}-skill`)), reqs), reqs, []);
-    expect(sel.recommended).toHaveLength(4);
-    expect(sel.optional).toHaveLength(1);
+    expect(sel.recommended).toHaveLength(5);
+    expect(sel.optional).toHaveLength(0);
     expect(sel.uncovered).toEqual([]);
   });
 

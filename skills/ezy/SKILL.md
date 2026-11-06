@@ -34,7 +34,7 @@ Always run commands with **cwd = the project the user wants changed** (not the M
    (omit `--brief` if you skipped the brief). Use network unless the user asked for `--local-only`. If it exits 2, fix the brief at the reported paths and re-run.  
    Planning is **project-aware** (uses the current project + outcome + brief; prefers a minimum skill set).
 4. **Show** Project / Requirements / Skills / Checklist briefly to the user.
-5. **Install (gated):** If the checklist lists `ezy install …`, ask for approval, then run those install commands (include `--source` when the checklist provides it, and `--brief .ezy/brief.json` if you used one). Do **not** pass `--yes` unless the user already approved non-interactive install.
+5. **Install (gated):** If the checklist lists `ezy install …`, ask for approval, then run those install commands (include `--source` when the checklist provides it; add `--brief .ezy/brief.json` only to `ezy install --plan …` commands, if you used a brief). Do **not** pass `--yes` unless the user already approved non-interactive install.
 6. **Re-run** `ezy next "<outcome>" [--brief .ezy/brief.json]` (brief only if used) after installs if skills were missing before.
 7. **Execute the Prompt block:**  
    - Read each listed skill’s `SKILL.md` under `.agents/skills/<name>/`  

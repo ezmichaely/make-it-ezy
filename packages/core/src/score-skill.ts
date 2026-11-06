@@ -23,6 +23,11 @@ export function nameTokens(name: string): string[] {
     .filter((t) => t.length > 0);
 }
 
+/** Strip one trailing "s" from tokens of length >= 4 (not "ss"-ending) so plurals match singulars. */
+export function stemToken(token: string): string {
+  return token.length >= 4 && token.endsWith("s") && !token.endsWith("ss") ? token.slice(0, -1) : token;
+}
+
 function descriptionWords(description: string): Set<string> {
   return new Set(description.toLowerCase().split(/[^a-z0-9+]+/i).filter((t) => t.length > 0));
 }
@@ -32,23 +37,24 @@ function scoreTokens(
   name: string,
   description: string,
 ): { score: number; nameHits: string[]; descHits: string[] } {
-  const nameL = name.toLowerCase();
-  const parts = new Set(nameTokens(name));
-  const words = descriptionWords(description);
+  const nameStem = nameTokens(name).map(stemToken).join("-");
+  const parts = new Set(nameTokens(name).map(stemToken));
+  const words = new Set([...descriptionWords(description)].map(stemToken));
   let score = 0;
   const nameHits: string[] = [];
   const descHits: string[] = [];
 
-  for (const token of tokens) {
-    if (nameL === token) {
+  for (const raw of tokens) {
+    const token = stemToken(raw);
+    if (nameStem === token) {
       score += 10;
-      nameHits.push(token);
+      nameHits.push(raw);
     } else if (parts.has(token)) {
       score += 6;
-      nameHits.push(token);
+      nameHits.push(raw);
     } else if (words.has(token)) {
       score += 2;
-      descHits.push(token);
+      descHits.push(raw);
     }
   }
 

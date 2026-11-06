@@ -139,6 +139,10 @@ describe("sanitizeText", () => {
   it("replaces controls with spaces and trims", () => {
     expect(sanitizeText(" a\nb\tc\u0085d ")).toBe("a b c d");
   });
+
+  it("strips soft hyphen, ALM, word joiners and line/paragraph separators", () => {
+    expect(sanitizeText("a\u061Cb\u00ADc\u2060d\u2064e\u2028f\u2029g")).toBe("abcdefg");
+  });
 });
 
 describe("loadBrief", () => {
@@ -161,6 +165,17 @@ describe("loadBrief", () => {
     const r = loadBrief(p);
     expect(!r.ok && r.errors[0]).toContain("invalid JSON");
   });
+
+  it("sanitizes terminal escapes from parse errors and paths", () => {
+    const p = join(dir, "esc\u001b]0;PATH\u0007.json");
+    writeFileSync(p, "X\u001b]0;PWNED\u0007\u001b[31mRED");
+    const r = loadBrief(p);
+    expect(r.ok).toBe(false);
+    const joined = r.ok ? "" : r.errors.join("\n");
+    expect(joined).not.toContain("\u001b");
+    expect(joined).not.toContain("\u0007");
+    expect(joined).toContain("invalid JSON");
+  });
 });
 
 describe("formatBriefInstructions", () => {
@@ -173,6 +188,7 @@ describe("formatBriefInstructions", () => {
       localSkills: Array.from({ length: 10 }, (_, i) => `skill-${i}`),
     });
     expect(out).toContain(".ezy/brief.json");
+    expect(out).toContain("singular and plural");
     expect(out).toContain("searchTerms");
     expect(out).toContain("primary sources");
     expect(out).toContain('ezy next "add stripe" --brief .ezy/brief.json');

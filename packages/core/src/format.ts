@@ -321,15 +321,18 @@ export function formatPlan(report: PlanReport): string {
     }
   }
 
+  const lowRelevance = report.notNeeded.filter((l) => l.startsWith("low relevance:"));
   lines.push("");
   lines.push("Not needed");
-  for (const line of report.notNeeded) {
+  for (const line of lowRelevance) {
     lines.push(`- ${line}`);
   }
 
   lines.push("");
   lines.push("Next");
-  lines.push(`- ezy next "${report.outcome || "<outcome>"}"`);
+  const briefFlag =
+    report.basis === "brief" && report.briefPath ? ` --brief ${report.briefPath}` : "";
+  lines.push(`- ezy next "${report.outcome || "<outcome>"}"${briefFlag}`);
   lines.push("- ezy inspect <name>");
   lines.push("Notes");
   for (const note of report.notes) {
@@ -344,6 +347,8 @@ export function formatHandoff(report: HandoffReport): string {
     "Make It Ezy — next",
     "",
     `Outcome: ${report.outcome || "(empty)"}`,
+    "",
+    `Basis: ${report.basis === "brief" ? "agent brief" : "heuristic fallback — run ezy brief for a researched plan"}`,
     "",
     "Requirements",
   ];
@@ -364,6 +369,22 @@ export function formatHandoff(report: HandoffReport): string {
       const status = s.installed ? "installed" : "not installed";
       const bucket = s.bucket === "optional" ? "optional" : "recommended";
       lines.push(`- ${s.name} · ${bucket} · ${status} · ${s.source} · ${s.reason}`);
+    }
+  }
+
+  if (report.excluded.length) {
+    lines.push("");
+    lines.push("Excluded");
+    for (const e of report.excluded) {
+      lines.push(`- ${e.label} — ${e.why}`);
+    }
+  }
+
+  if (report.uncovered.length) {
+    lines.push("");
+    lines.push("Uncovered");
+    for (const u of report.uncovered) {
+      lines.push(`- ${u.label} — no matching skill; agent handles directly`);
     }
   }
 

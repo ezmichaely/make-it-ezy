@@ -87,4 +87,21 @@ describe("formatPlan", () => {
     expect(text).not.toContain("strong match");
     expect(text).not.toContain("high installs");
   });
+
+  it("keeps --brief in the Next hint for brief-based plans", () => {
+    const text = formatPlan(report({ briefPath: ".ezy/brief.json" }));
+    expect(text).toContain('- ezy next "Add Stripe payments" --brief .ezy/brief.json');
+    const heur = formatPlan(report({ basis: "heuristic", briefPath: ".ezy/brief.json" }));
+    expect(heur).not.toContain("--brief");
+  });
+
+  it("prints excluded entries once and limits Not needed to low relevance", () => {
+    const text = formatPlan(
+      report({
+        notNeeded: ["game changelog — unrelated", "low relevance: 3 candidates filtered"],
+      }),
+    );
+    expect(text.split("game changelog — unrelated")).toHaveLength(2);
+    expect(text).toContain("Not needed\n- low relevance: 3 candidates filtered");
+  });
 });

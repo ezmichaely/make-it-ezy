@@ -39,7 +39,12 @@ function isInvisible(code: number): boolean {
     (code >= 0x200b && code <= 0x200f) ||
     code === 0xfeff ||
     (code >= 0x202a && code <= 0x202e) ||
-    (code >= 0x2066 && code <= 0x2069)
+    (code >= 0x2066 && code <= 0x2069) ||
+    code === 0x061c ||
+    code === 0x00ad ||
+    (code >= 0x2060 && code <= 0x2064) ||
+    code === 0x2028 ||
+    code === 0x2029
   );
 }
 
@@ -187,7 +192,7 @@ export function loadBrief(path: string): BriefResult {
   try {
     text = readFileSync(path, "utf8");
   } catch {
-    return { ok: false, errors: [`${path}: cannot read file`] };
+    return { ok: false, errors: [`${sanitizeText(path)}: cannot read file`] };
   }
   if (text.charCodeAt(0) === 0xfeff) text = text.slice(1);
   let raw: unknown;
@@ -195,7 +200,7 @@ export function loadBrief(path: string): BriefResult {
     raw = JSON.parse(text);
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
-    return { ok: false, errors: [`${path}: invalid JSON: ${message}`] };
+    return { ok: false, errors: [`${sanitizeText(path)}: invalid JSON: ${sanitizeText(message)}`] };
   }
   return parseBrief(raw);
 }
@@ -244,7 +249,7 @@ export function formatBriefInstructions(outcome: string, project: PlanProjectSum
     "Instructions for the agent",
     "1. Classify the research type(s) this outcome needs (technical, repository, web, decision, empirical, scientific, project, verification).",
     "2. Research only what the decision needs; do not survey the whole topic.",
-    "3. Prefer primary sources (official docs, source code, specs) and record each in research[].source.",
+    "3. Prefer primary sources (official docs, source code, specs) and record each in research[].source. In searchTerms, include both singular and plural forms of key terms (e.g. webhook, webhooks).",
     "4. List exclusions with reasons: capabilities you considered and decided not to need.",
     "5. Write the result to .ezy/brief.json using the schema below.",
     `6. Then run: ezy next "${quoted}" --brief .ezy/brief.json`,

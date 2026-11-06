@@ -14,6 +14,8 @@ export type Selection = {
   excluded: Exclusion[];
   uncovered: Requirement[];
   filteredCount: number;
+  /** True when recommended grew past the soft cap to cover all required requirements. */
+  recommendedStretched: boolean;
 };
 
 /** Prefer installed / local / higher score / more installs — same skill name from many sources collapses to one. */
@@ -126,30 +128,28 @@ export function selectCapabilities(
   }
 
   const requiredIds = new Set(requirements.filter((r) => r.priority === "required").map((r) => r.id));
-  const recommended = greedy(pool, requiredIds, RECOMMENDED_MAX);
+  // R5b: required-covering picks all go to recommended; the soft cap of 4 stretches up to the total cap.
+  const recommended = greedy(pool, requiredIds, TOTAL_CAP);
   const coveredByRec = new Set(recommended.flatMap((c) => c.covers));
 
-  const stillRequired = new Set([...requiredIds].filter((id) => !coveredByRec.has(id)));
-  const rest = pool.filter((c) => !recommended.includes(c));
-  const optionalLimit = TOTAL_CAP - recommended.length;
-  const optional = greedy(rest, stillRequired, optionalLimit);
-  const coveredByOpt = new Set(optional.flatMap((c) => c.covers));
   const optionalIds = new Set(
-    requirements
-      .filter((r) => r.priority === "optional" && !coveredByRec.has(r.id) && !coveredByOpt.has(r.id))
-      .map((r) => r.id),
+    requirements.filter((r) => r.priority === "optional" && !coveredByRec.has(r.id)).map((r) => r.id),
   );
-  optional.push(
-    ...greedy(
-      rest.filter((c) => !optional.includes(c)),
-      optionalIds,
-      optionalLimit - optional.length,
-    ),
+  const optional = greedy(
+    pool.filter((c) => !recommended.includes(c)),
+    optionalIds,
+    TOTAL_CAP - recommended.length,
   );
 
-  const covered = new Set([...coveredByRec, ...optional.flatMap((c) => c.covers)]);
-  const uncovered = requirements.filter((r) => r.priority === "required" && !covered.has(r.id));
-  return { recommended, optional, excluded, uncovered, filteredCount };
+  const uncovered = requirements.filter((r) => r.priority === "required" && !coveredByRec.has(r.id));
+  return {
+    recommended,
+    optional,
+    excluded,
+    uncovered,
+    filteredCount,
+    recommendedStretched: recommended.length > RECOMMENDED_MAX,
+  };
 }
 
 export function coverageReason(candidate: Candidate, requirements: Requirement[]): string {

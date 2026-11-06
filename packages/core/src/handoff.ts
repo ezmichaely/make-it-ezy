@@ -1,8 +1,9 @@
 import { join } from "node:path";
 import { findProjectRoot } from "./find-project-root.js";
 import { isSkillInstalledLocally } from "./install.js";
-import type { Brief, ResearchFinding } from "./brief-types.js";
+import type { Brief, Exclusion, ResearchFinding } from "./brief-types.js";
 import { planOutcome, preferRecommendItem } from "./plan.js";
+import type { Requirement } from "./plan-types.js";
 import type { RecommendItem } from "./recommend-types.js";
 import type { SearchOptions } from "./search.js";
 import type { HandoffReport, HandoffSkill } from "./handoff-types.js";
@@ -18,6 +19,10 @@ export type HandoffItemInput = {
   coversByName?: Map<string, string[]>;
   basis?: "brief" | "heuristic";
   research?: ResearchFinding[];
+  uncovered?: Requirement[];
+  excluded?: Exclusion[];
+  /** Extra notes (e.g. plan notes) merged into handoff notes, deduped. */
+  notes?: string[];
 };
 
 function summarizeForPrompt(project: {
@@ -44,6 +49,7 @@ function buildPrompt(
   skills: HandoffSkill[],
   projectSummary?: string | null,
   research: ResearchFinding[] = [],
+  uncovered: Requirement[] = [],
 ): string {
   const recommended = skills.filter((s) => s.bucket === "recommended");
   const optional = skills.filter((s) => s.bucket === "optional");
@@ -88,6 +94,13 @@ function buildPrompt(
     lines.push("Why these skills:");
     for (const s of withCovers) {
       lines.push(`- ${s.name} → ${s.covers.join(", ")}`);
+    }
+  }
+
+  if (uncovered.length) {
+    lines.push("");
+    for (const u of uncovered) {
+      lines.push(`Uncovered (handle directly): ${u.label} — ${u.rationale}`);
     }
   }
 
@@ -148,6 +161,8 @@ export function composeHandoffFromItems(
       prompt: "",
       basis: "heuristic",
       research: [],
+      uncovered: [],
+      excluded: [],
       notes: [...BASE_NOTES, 'Provide an outcome, e.g. ezy next "Build a SaaS dashboard".'],
     };
   }
@@ -179,10 +194,12 @@ export function composeHandoffFromItems(
     capabilities: items.capabilities ?? [],
     skills,
     checklist,
-    prompt: buildPrompt(trimmed, skills, items.projectSummary, items.research ?? []),
-    notes: [...BASE_NOTES],
+    prompt: buildPrompt(trimmed, skills, items.projectSummary, items.research ?? [], items.uncovered ?? []),
+    notes: [...new Set([...BASE_NOTES, ...(items.notes ?? [])])],
     basis: items.basis ?? "heuristic",
     research: items.research ?? [],
+    uncovered: items.uncovered ?? [],
+    excluded: items.excluded ?? [],
   };
 }
 
@@ -208,6 +225,9 @@ export async function buildHandoff(
       coversByName: new Map(plan.decisions.map((d) => [d.name.toLowerCase(), d.covers])),
       basis: plan.basis,
       research: plan.research,
+      uncovered: plan.uncovered,
+      excluded: plan.excluded,
+      notes: plan.notes,
     },
     { cwd },
   );

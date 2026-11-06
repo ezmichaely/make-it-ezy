@@ -159,6 +159,9 @@ export async function planOutcome(
   if (brief && brief.outcome.trim().toLowerCase() !== trimmed.toLowerCase()) {
     notes.push("Brief outcome differs from CLI outcome; using CLI outcome.");
   }
+  if (selection.recommendedStretched) {
+    notes.push("Recommended exceeds 4 to cover all required requirements.");
+  }
   if (options.localOnly) {
     notes.push("Local-only mode: skills.sh was not queried.");
   }
