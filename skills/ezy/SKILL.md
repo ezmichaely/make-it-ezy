@@ -12,6 +12,8 @@ description: >
 
 You are running **Make It Ezy** inside this session. The CLI finds skills; **you** implement the outcome. Ending the turn after only showing CLI output is a failure.
 
+**Scope:** Ezy is built for **coding tasks in a repo** today. For non-code outcomes, still run the flow, but expect *Uncovered* requirements and handle them directly.
+
 ## Resolve the CLI
 
 Prefer, in order:

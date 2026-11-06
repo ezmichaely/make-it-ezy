@@ -5,12 +5,16 @@ Do not collapse everything into “agent.”
 | Concept | Meaning | Product status |
 |---|---|---|
 | Specialist | Logical domain role | Schema later; Agency Agents = STUDY |
-| Capability | Task that must be done | `ezy plan` / `ezy next` (heuristic labels today; Phase 5 adds project-aware requirements) |
+| Capability | Task that must be done | `ezy plan` / `ezy next` — requirements from the agent brief (Phase 6), heuristic fallback otherwise |
 | Skill | Reusable `SKILL.md` knowledge/scripts | Discovery + gated install; Agent Skills format |
 | Tool | Software that acts (CLI, MCP, FFmpeg) | Optional INTEGRATE |
 | Workflow | Ordered process | Superpowers/BMAD/gstack = STUDY/OPTIONAL |
 | Runtime | Claude Code / Codex / Cursor / … | Adapter #0 files; adapter #1 `skills/ezy` |
 | Model provider | Anthropic / OpenAI / Ollama / … | User-owned; never Make It Ezy-mandated |
+
+## Domains
+
+The model is domain-neutral; the product today covers **coding tasks** only. Domains are added one at a time — see [`../ROADMAP.md` → Scope](../ROADMAP.md).
 
 ## Minimum useful composition
 
