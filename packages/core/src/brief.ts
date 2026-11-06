@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import type { PlanProjectSummary } from "./plan-types.js";
 import type {
   Brief,
   BriefRequirement,
@@ -197,4 +198,60 @@ export function loadBrief(path: string): BriefResult {
     return { ok: false, errors: [`${path}: invalid JSON: ${message}`] };
   }
   return parseBrief(raw);
+}
+
+const SCHEMA_EXAMPLE = `{
+  "version": 1,
+  "outcome": "<the user's outcome, one sentence>",
+  "taskType": "feature",            // feature | bugfix | refactor | greenfield | research | ui-change | other
+  "requirements": [
+    {
+      "id": "payments",             // short kebab-case id
+      "label": "Stripe payments",   // what capability is needed
+      "priority": "required",       // required | optional
+      "why": "Users must pay by card",
+      "searchTerms": ["stripe", "payments"]   // used to search for skills
+    }
+  ],
+  "exclusions": [
+    { "label": "Subscriptions", "why": "Out of scope for this change" }
+  ],
+  "research": [
+    {
+      "kind": "web",                // technical | repository | web | decision | empirical | scientific | project | verification
+      "finding": "Stripe Checkout is hosted",
+      "source": "https://stripe.com/docs"   // or null
+    }
+  ]
+}`;
+
+/** Instructions printed by `ezy brief`: project summary, agent steps, annotated schema. */
+export function formatBriefInstructions(outcome: string, project: PlanProjectSummary): string {
+  const skills = project.localSkills;
+  const shown = skills.slice(0, 8).join(", ");
+  const more = skills.length > 8 ? ", ..." : "";
+  const lines = [
+    `Agent brief for: ${outcome}`,
+    "",
+    "Project",
+    `- Root: ${project.projectRoot ?? "(not detected)"}`,
+    `- Name: ${project.packageName ?? "(unknown)"}`,
+    `- Language: ${project.language ?? "(unknown)"}`,
+    `- Frameworks: ${project.frameworks.length ? project.frameworks.join(", ") : "(none detected)"}`,
+    `- Local skills: ${skills.length}${skills.length ? ` (${shown}${more})` : ""}`,
+    "",
+    "Instructions for the agent",
+    "1. Classify the research type(s) this outcome needs (technical, repository, web, decision, empirical, scientific, project, verification).",
+    "2. Research only what the decision needs; do not survey the whole topic.",
+    "3. Prefer primary sources (official docs, source code, specs) and record each in research[].source.",
+    "4. List exclusions with reasons: capabilities you considered and decided not to need.",
+    "5. Write the result to .ezy/brief.json using the schema below.",
+    `6. Then run: ezy next "${outcome}" --brief .ezy/brief.json`,
+    "",
+    "Schema (annotated example)",
+    SCHEMA_EXAMPLE,
+    "",
+    `Next: ezy next "${outcome}" --brief .ezy/brief.json`,
+  ];
+  return lines.join("\n");
 }

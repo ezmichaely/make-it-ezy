@@ -2,7 +2,7 @@ import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { loadBrief, parseBrief, sanitizeText } from "./brief.js";
+import { formatBriefInstructions, loadBrief, parseBrief, sanitizeText } from "./brief.js";
 
 function validBrief(): Record<string, unknown> {
   return {
@@ -160,5 +160,23 @@ describe("loadBrief", () => {
     writeFileSync(p, "{bad json");
     const r = loadBrief(p);
     expect(!r.ok && r.errors[0]).toContain("invalid JSON");
+  });
+});
+
+describe("formatBriefInstructions", () => {
+  it("includes instructions, schema and next command", () => {
+    const out = formatBriefInstructions("add stripe", {
+      projectRoot: "/p",
+      packageName: "p",
+      language: "TypeScript",
+      frameworks: [],
+      localSkills: Array.from({ length: 10 }, (_, i) => `skill-${i}`),
+    });
+    expect(out).toContain(".ezy/brief.json");
+    expect(out).toContain("searchTerms");
+    expect(out).toContain("primary sources");
+    expect(out).toContain('ezy next "add stripe" --brief .ezy/brief.json');
+    expect(out).toContain("skill-7");
+    expect(out).not.toContain("skill-8");
   });
 });

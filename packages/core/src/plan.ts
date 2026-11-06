@@ -38,6 +38,14 @@ function summarizeProject(
   };
 }
 
+/** Project summary for the given cwd — same logic planOutcome uses. */
+export function buildProjectSummary(cwd: string): PlanProjectSummary {
+  const analysis = analyzeProject({ cwd });
+  const projectRoot = analysis.projectRoot ?? cwd;
+  const localSkills = loadLocalSkills(projectRoot, "").map((h) => h.name);
+  return summarizeProject(analysis, localSkills);
+}
+
 function emptyReport(notes: string[]): PlanReport {
   return {
     outcome: "",

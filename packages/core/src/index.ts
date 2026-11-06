@@ -26,7 +26,7 @@ export { recommendSkills } from "./recommend.js";
 export type { RecommendItem, RecommendReport } from "./recommend-types.js";
 export { extractCapabilities } from "./capabilities.js";
 export { extractRequirements } from "./requirements.js";
-export { planOutcome, preferRecommendItem } from "./plan.js";
+export { buildProjectSummary, planOutcome, preferRecommendItem } from "./plan.js";
 export type {
   CapabilityDecision,
   PlanProjectSummary,
@@ -65,7 +65,7 @@ export type {
   DoctorReport,
   ProjectAnalysis,
 } from "./types.js";
-export { loadBrief, parseBrief, sanitizeText } from "./brief.js";
+export { formatBriefInstructions, loadBrief, parseBrief, sanitizeText } from "./brief.js";
 export type {
   Brief,
   BriefRequirement,
