@@ -1,3 +1,4 @@
+import type { Exclusion, ResearchFinding } from "./brief-types.js";
 import type { RecommendItem } from "./recommend-types.js";
 
 export type Requirement = {
@@ -13,6 +14,7 @@ export type CapabilityDecision = {
   source: string;
   decision: "use" | "install" | "optional" | "skip";
   reason: string;
+  covers: string[];
 };
 
 export type PlanProjectSummary = {
@@ -34,6 +36,11 @@ export type PlanReport = {
   optional: RecommendItem[];
   notNeeded: string[];
   notes: string[];
+  basis: "brief" | "heuristic";
+  taskType: string | null;
+  research: ResearchFinding[];
+  uncovered: Requirement[];
+  excluded: Exclusion[];
 };
 
 export const EMPTY_PLAN_PROJECT: PlanProjectSummary = {
