@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/license/ezmichaely/make-it-ezy?style=flat-square&color=111111" alt="MIT license">
-  <img src="https://img.shields.io/badge/status-phase%205-111111?style=flat-square" alt="Phase 5">
+  <img src="https://img.shields.io/badge/status-phase%206-111111?style=flat-square" alt="Phase 6">
   <img src="https://img.shields.io/badge/node-%3E%3D20-111111?style=flat-square" alt="Node 20+">
 </p>
 
