@@ -43,9 +43,10 @@ Sequence: `docs/ROADMAP.md`
 
 | Phase | Work |
 |---|---|
-| 6 | Project Brain (lightweight persistent knowledge) |
-| 7 | Outcome verification |
-| 8 | Web UI |
+| 6 | Agent Brief + Decision Quality (done) |
+| 7 | Project Brain (lightweight persistent knowledge) |
+| 8 | Outcome verification |
+| 9 | Web UI |
 | — | Soft-C, deep skill verify, trusted-auto, Codex marketplace plugin |
 
 ## Source of truth

@@ -34,7 +34,7 @@ Avoid: building a new swarm framework.
 
 Layer A tools are **not** mandatory runtime dependencies of the product.
 
-## Current implementation (Phase 5 shipped; Phase 6 next)
+## Current implementation (Phase 6 shipped; Phase 7 next)
 
 ```text
 apps/cli            doctor | analyze | search | inspect | recommend | plan | next | install
@@ -64,7 +64,7 @@ No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/
 | Outcome verification | Phase 8 |
 | Deep verify / trusted-auto | Later |
 | Soft-C / Codex marketplace plugin | Later |
-| Web UI | Phase 8 |
+| Web UI | Phase 9 |
 
 See `docs/ROADMAP.md` for the locked sequence.
 
