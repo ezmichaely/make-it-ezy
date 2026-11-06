@@ -21,7 +21,7 @@ pnpm check:ci       # build → lint → typecheck → test → audit (same as A
 pnpm check          # build → lint → typecheck → test
 ```
 
-Before push/PR, agents should follow `.cursor/skills/ci-before-push/SKILL.md`.
+Before push/PR, agents should follow `.agents/skills/ci-before-push/SKILL.md` (also visible via `.claude/skills` and `.cursor/skills`, which link to `.agents/skills`).
 
 ## PR workflow
 
