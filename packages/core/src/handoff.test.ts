@@ -250,4 +250,33 @@ describe("buildHandoff", () => {
     expect(report.skills[0]?.covers).toEqual([]);
     expect(report.prompt).not.toContain("Why these skills");
   });
+
+  it("does not duplicate the installs suffix in skill reasons", () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-inst-"));
+    const report = composeHandoffFromItems(
+      "x",
+      {
+        recommended: [
+          {
+            hit: {
+              id: "remote:a/b/ponytail",
+              path: null,
+              name: "ponytail",
+              source: "a/b",
+              sourceKind: "skills.sh",
+              description: "",
+              url: null,
+              score: 9,
+              installs: 1234,
+              installedLocally: false,
+            },
+            reason: "covers payments (Stripe): name matches \"stripe\" · 1,234 installs",
+          },
+        ],
+        optional: [],
+      },
+      { cwd: root },
+    );
+    expect(report.skills[0]?.reason.match(/installs/g)).toHaveLength(1);
+  });
 });

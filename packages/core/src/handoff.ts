@@ -115,12 +115,10 @@ function mapItems(
 ): HandoffSkill[] {
   return dedupeItems(items).map((item) => {
     const installed = isSkillInstalledLocally(item.hit.name, cwd);
-    const installs =
-      item.hit.installs != null ? ` · ${item.hit.installs.toLocaleString()} installs` : "";
     return {
       name: item.hit.name,
       source: item.hit.source || "(unknown)",
-      reason: `${item.reason}${installs}`,
+      reason: item.reason,
       installed,
       path: skillPath(projectRoot, item.hit.name),
       bucket,
