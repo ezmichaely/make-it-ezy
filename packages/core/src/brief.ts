@@ -227,6 +227,7 @@ const SCHEMA_EXAMPLE = `{
 
 /** Instructions printed by `ezy brief`: project summary, agent steps, annotated schema. */
 export function formatBriefInstructions(outcome: string, project: PlanProjectSummary): string {
+  const quoted = outcome.replace(/[\\"$`]/g, "\\$&");
   const skills = project.localSkills;
   const shown = skills.slice(0, 8).join(", ");
   const more = skills.length > 8 ? ", ..." : "";
@@ -246,12 +247,12 @@ export function formatBriefInstructions(outcome: string, project: PlanProjectSum
     "3. Prefer primary sources (official docs, source code, specs) and record each in research[].source.",
     "4. List exclusions with reasons: capabilities you considered and decided not to need.",
     "5. Write the result to .ezy/brief.json using the schema below.",
-    `6. Then run: ezy next "${outcome}" --brief .ezy/brief.json`,
+    `6. Then run: ezy next "${quoted}" --brief .ezy/brief.json`,
     "",
     "Schema (annotated example)",
     SCHEMA_EXAMPLE,
     "",
-    `Next: ezy next "${outcome}" --brief .ezy/brief.json`,
+    `Next: ezy next "${quoted}" --brief .ezy/brief.json`,
   ];
   return lines.join("\n");
 }

@@ -66,23 +66,36 @@ Flow: ANALYZE → REQUIREMENTS → DISCOVER → FILTER → PLAN → INSTALL → 
 Skill execution / outcome run is not in this slice.
 `;
 
-function extractBriefPath(args: string[]): { path?: string; rest: string[] } {
+function extractBriefPath(args: string[]): { path?: string; missing: boolean; rest: string[] } {
   let path: string | undefined;
+  let missing = false;
   const rest: string[] = [];
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === undefined) continue;
     if (a === "--brief") {
-      path = args[++i];
+      const next = args[i + 1];
+      if (next === undefined || next.startsWith("--")) {
+        missing = true;
+      } else {
+        path = next;
+        i++;
+      }
       continue;
     }
     if (a.startsWith("--brief=")) {
-      path = a.slice("--brief=".length);
+      const v = a.slice("--brief=".length);
+      if (v) path = v;
+      else missing = true;
       continue;
     }
     rest.push(a);
   }
-  return { ...(path !== undefined ? { path } : {}), rest };
+  return { ...(path !== undefined ? { path } : {}), missing, rest };
+}
+
+function reportMissingBriefPath(): void {
+  process.stderr.write("Invalid brief:\n- --brief requires a path\n");
 }
 
 /** Load a brief relative to cwd; prints errors and returns null on failure (exit 2). */
@@ -97,6 +110,7 @@ function loadBriefOrFail(path: string): { brief: Brief; notes: string[] } | null
 
 type InstallArgs = {
   brief?: Brief;
+  briefNotes?: string[];
   yes: boolean;
   source?: string;
   plan?: string;
@@ -175,7 +189,7 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
   if (!parsed.plan && !parsed.query) {
     process.stderr.write(
       'Usage: ezy install <skill> [--yes] [--source owner/repo]\n' +
-        '   or: ezy install --plan "<outcome>" [--yes]\n' +
+        '   or: ezy install --plan "<outcome>" [--brief <path>] [--yes]\n' +
         '   or: ezy install --query "<topic>" [--yes]\n',
     );
     return { skillName: "", code: 1 };
@@ -240,6 +254,7 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
 async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
   if (parsed.plan) {
     const handoff = await buildHandoff(parsed.plan, parsed.brief ? { brief: parsed.brief } : {});
+    handoff.notes.push(...(parsed.briefNotes ?? []));
     process.stdout.write("\n" + formatHandoff(handoff) + "\n");
     return;
   }
@@ -254,12 +269,17 @@ async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
 }
 
 async function handleInstall(argv: string[]): Promise<number> {
-  const { path: briefPath, rest } = extractBriefPath(argv);
+  const { path: briefPath, missing, rest } = extractBriefPath(argv);
+  if (missing) {
+    reportMissingBriefPath();
+    return 2;
+  }
   const parsed = parseInstallArgs(rest);
   if (briefPath !== undefined) {
     const loaded = loadBriefOrFail(briefPath);
     if (!loaded) return 2;
     parsed.brief = loaded.brief;
+    parsed.briefNotes = loaded.notes;
   }
   const target = await resolveInstallTarget(parsed);
   if (target.code !== 0 || !target.skillName) {
@@ -399,7 +419,11 @@ async function main(argv: string[]): Promise<number> {
   }
 
   if (command === "plan" || command === "next") {
-    const { path: briefPath, rest } = extractBriefPath(args.slice(1));
+    const { path: briefPath, missing, rest } = extractBriefPath(args.slice(1));
+    if (missing) {
+      reportMissingBriefPath();
+      return 2;
+    }
     const flags = new Set(rest.filter((a) => a.startsWith("--")));
     const outcome = rest.filter((a) => !a.startsWith("--")).join(" ").trim();
     if (!outcome) {

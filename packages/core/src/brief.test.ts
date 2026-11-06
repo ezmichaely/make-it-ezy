@@ -180,3 +180,16 @@ describe("formatBriefInstructions", () => {
     expect(out).not.toContain("skill-8");
   });
 });
+
+describe("formatBriefInstructions escaping", () => {
+  it("escapes shell metacharacters in the next command", () => {
+    const out = formatBriefInstructions('say "hi" $HOME `x`', {
+      projectRoot: null,
+      packageName: null,
+      language: null,
+      frameworks: [],
+      localSkills: [],
+    });
+    expect(out).toContain('ezy next "say \\"hi\\" \\$HOME \\`x\\`" --brief .ezy/brief.json');
+  });
+});
