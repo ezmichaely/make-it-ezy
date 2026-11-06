@@ -6,6 +6,8 @@ Aligned to `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` after 2026-11-05 re-anal
 
 A **local-first capability discovery, decision, and orchestration layer**.
 
+**Scope today:** coding tasks in a repo (JS/TS first). The decision core — brief, scoring, selection, explanation — is domain-neutral; project inspection and the fallback lexicon are the domain-specific extension points. See [`../ROADMAP.md` → Scope](../ROADMAP.md).
+
 Flow:
 
 ```text

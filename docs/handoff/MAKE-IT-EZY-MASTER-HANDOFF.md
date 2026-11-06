@@ -6,20 +6,25 @@
 >
 > **Important development principle:** We should use the existing AI skill ecosystem to build Make It Ezy rather than reinventing that ecosystem.
 
-## Phase map update (2026-11-05) — read this first
+## Scope decision (2026-11-06) — read this first
 
-Shipped CLI through Phase 5 (project-aware `plan` / `next`, `install`, `skills/ezy`). The **live sequence** is now:
+**General by design, specific by launch.** The vision below (any outcome, any domain) stands. The product **today targets coding tasks in a repo** (JS/TS first, Python next); other domains — video, research, documents, engineering — are added later, one at a time. Ezy **decides** what's needed; the agent runtime **does** the work. Examples in this file from other domains describe the vision, not current scope. Canonical: [`../ROADMAP.md` → Scope](../ROADMAP.md).
+
+## Phase map update (2026-11-06)
+
+Shipped CLI through Phase 6 (agent brief + decision quality, project-aware `plan` / `next`, `install`, `skills/ezy`). The **live sequence** is now:
 
 | Phase | Name | Status |
 |---|---|---|
 | 0–4 | Research → CLI → Discovery → Plan → Install/adapters | **done** |
-| **5** | **Project Capability Planner** (project-aware `plan`) | **done** |
-| 6 | Project Brain (lightweight persistent knowledge; was “Memory”) | later |
-| 7 | Outcome verification (was numbered Phase 5 below) | later |
-| 8 | Web UI (was numbered Phase 7 below) | later |
+| 5 | Project Capability Planner (project-aware `plan`) | **done** |
+| **6** | **Agent Brief + Decision Quality** (`ezy brief`, `--brief`) | **done** |
+| 7 | Project Brain (lightweight persistent knowledge; was “Memory”) | later |
+| 8 | Outcome verification (was numbered Phase 5 below) | later |
+| 9 | Web UI (was numbered Phase 7 below) | later |
 
 Canonical tracker: [`../ROADMAP.md`](../ROADMAP.md).  
-Phase 5 design: [`../superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`](../superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md).
+Phase 6 design: [`../superpowers/specs/2026-11-06-phase6-agent-brief-design.md`](../superpowers/specs/2026-11-06-phase6-agent-brief-design.md).
 
 Older section headings in this file that still say “Phase 5 — Verification” / “Phase 6 — Memory” / “Phase 7 — Web UI” are **historical wording**; use the table above.
 
