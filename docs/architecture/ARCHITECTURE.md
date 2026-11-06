@@ -34,7 +34,7 @@ Avoid: building a new swarm framework.
 
 Layer A tools are **not** mandatory runtime dependencies of the product.
 
-## Current implementation (Phase 4 shipped; Phase 5 next)
+## Current implementation (Phase 5 shipped; Phase 6 next)
 
 ```text
 apps/cli            doctor | analyze | search | inspect | recommend | plan | next | install
@@ -45,7 +45,7 @@ docs/               research, architecture, specs, plans, handoff
 .agents/skills/     Layer A installs (gitignored; skills-lock.json tracked)
 ```
 
-Gap to close in Phase 5: `analyze` is not yet wired into `plan` / `next`.
+`analyze` is wired into `plan` / `next` (Phase 5): requirements come from the goal plus the detected project.
 
 No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/Claude) and deep verify are not shipped.
 
