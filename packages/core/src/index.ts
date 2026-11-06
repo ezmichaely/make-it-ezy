@@ -65,3 +65,13 @@ export type {
   DoctorReport,
   ProjectAnalysis,
 } from "./types.js";
+export { loadBrief, parseBrief, sanitizeText } from "./brief.js";
+export type {
+  Brief,
+  BriefRequirement,
+  BriefResult,
+  BriefTaskType,
+  Exclusion,
+  ResearchFinding,
+  ResearchKind,
+} from "./brief-types.js";
