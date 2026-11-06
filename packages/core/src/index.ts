@@ -44,7 +44,14 @@ export type { InspectOptions } from "./inspect-skill.js";
 export { loadLocalSkills, loadSkillsLock } from "./load-local-skills.js";
 export { searchSkillsSh } from "./search-remote.js";
 export { parseSkillFrontmatter } from "./parse-skill-frontmatter.js";
-export { scoreSkillText, tokenizeQuery } from "./score-skill.js";
+export {
+  STOPWORDS,
+  nameTokens,
+  requirementRelevance,
+  scoreSkillText,
+  significantTokens,
+  tokenizeQuery,
+} from "./score-skill.js";
 export type { SearchReport, SkillHit, SkillSourceKind } from "./search-types.js";
 export type {
   InspectFinding,
