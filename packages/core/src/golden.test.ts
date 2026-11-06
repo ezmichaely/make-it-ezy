@@ -1,8 +1,8 @@
-import { cpSync, mkdtempSync, readdirSync, readFileSync } from "node:fs";
+import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
 import { loadBrief } from "./brief.js";
 import { planOutcome } from "./plan.js";
 import type { PlanReport } from "./plan-types.js";
@@ -13,6 +13,7 @@ type Expectation = {
   mustInclude: string[];
   mustExclude: string[];
   uncovered: string[];
+  excluded?: string[];
   heuristic: { mustExclude: string[] };
 };
 
@@ -26,10 +27,26 @@ function picks(plan: PlanReport): string[] {
   return [...plan.recommended, ...plan.optional].map((i) => i.hit.name);
 }
 
+const tempDirs: string[] = [];
+afterAll(() => {
+  for (const d of tempDirs) rmSync(d, { recursive: true, force: true });
+});
+
 function copyProject(name: string): string {
   const cwd = mkdtempSync(join(tmpdir(), `ezy-golden-${name}-`));
+  tempDirs.push(cwd);
   cpSync(join(goldenDir, name, "project"), cwd, { recursive: true });
   return cwd;
+}
+
+function expectCoverage(plan: PlanReport): void {
+  for (const item of [...plan.recommended, ...plan.optional]) {
+    const d = plan.decisions.find((x) => x.name === item.hit.name);
+    expect(d?.covers.length ?? 0, `${item.hit.name} has empty coverage`).toBeGreaterThan(0);
+  }
+  for (const d of plan.decisions) {
+    expect(d.covers.length, `${d.name} has empty coverage`).toBeGreaterThan(0);
+  }
 }
 
 describe.each(cases)("golden: %s", (name) => {
@@ -54,13 +71,10 @@ describe.each(cases)("golden: %s", (name) => {
     for (const skill of expected.mustInclude) expect(names).toContain(skill);
     for (const skill of expected.mustExclude) expect(names).not.toContain(skill);
     expect(plan.uncovered.map((r) => r.id).sort()).toEqual([...expected.uncovered].sort());
-    for (const d of plan.decisions) {
-      if (d.decision === "skip") continue;
-      expect(d.covers.length, `${d.name} has empty coverage`).toBeGreaterThan(0);
-    }
-    for (const item of [...plan.recommended, ...plan.optional]) {
-      const d = plan.decisions.find((x) => x.name === item.hit.name);
-      expect(d?.covers.length ?? 0, `${item.hit.name} has empty coverage`).toBeGreaterThan(0);
+    expectCoverage(plan);
+    for (const skill of expected.excluded ?? []) {
+      const entry = plan.excluded.find((e) => e.label === skill);
+      expect(entry?.why, `${skill} should be removed by an exclusion`).toMatch(/^matches exclusion:/);
     }
   });
 
@@ -70,6 +84,10 @@ describe.each(cases)("golden: %s", (name) => {
       localOnly: true,
     });
     const seen = [...picks(plan), ...plan.requirements.map((r) => r.label)];
-    for (const item of expected.heuristic.mustExclude) expect(seen).not.toContain(item);
+    for (const item of expected.heuristic.mustExclude) {
+      expect(seen).not.toContain(item);
+      expect(seen.map((x) => x.toLowerCase()).some((x) => x.includes(item.toLowerCase())), item).toBe(false);
+    }
+    expectCoverage(plan);
   });
 });

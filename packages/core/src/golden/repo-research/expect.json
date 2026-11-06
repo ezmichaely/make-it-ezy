@@ -19,7 +19,8 @@
   ],
   "heuristic": {
     "mustExclude": [
-      "build-game-changelog"
+      "build-game-changelog",
+      "plan-ui-change"
     ]
   }
 }

@@ -17,5 +17,11 @@
       "build-game-changelog",
       "docker-deploy"
     ]
+  },
+  "excluded": [
+    "graphify"
+  ],
+  "why": {
+    "graphify": "description matches react+components (score 4), so only the Graphify exclusion keeps it out"
   }
 }

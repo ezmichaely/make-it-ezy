@@ -1,6 +1,6 @@
 ---
 name: docker-deploy
-description: Containerize and deploy with Docker
+description: Deploy nextjs router apps with Docker
 ---
 
 # docker-deploy

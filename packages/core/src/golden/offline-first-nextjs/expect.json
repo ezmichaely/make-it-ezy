@@ -20,7 +20,14 @@
   "uncovered": [],
   "heuristic": {
     "mustExclude": [
-      "build-game-changelog"
+      "build-game-changelog",
+      "plan-ui-change"
     ]
+  },
+  "excluded": [
+    "docker-deploy"
+  ],
+  "why": {
+    "docker-deploy": "description matches nextjs+router (score 4), so only the Docker exclusion keeps it out"
   }
 }

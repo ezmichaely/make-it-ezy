@@ -1,6 +1,6 @@
 ---
 name: graphify
-description: Turn a codebase into a knowledge graph
+description: Turn React components into a knowledge graph
 ---
 
 # graphify
