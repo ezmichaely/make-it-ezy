@@ -106,9 +106,20 @@ describe("parseBrief", () => {
     expect(r.ok && r.notes).toContain('ignored unknown field "extra"');
   });
 
+  it("sanitizes unknown field names in notes", () => {
+    const b = validBrief();
+    b["\u202Eev\u001bil" + "x".repeat(60)] = 1;
+    const r = parseBrief(b);
+    const note = r.ok ? (r.notes[0] ?? "") : "";
+    expect(note).toContain("ignored unknown field");
+    expect(note).not.toContain("\u202E");
+    expect(note).not.toContain("\u001b");
+    expect(note).toContain("\u2026");
+  });
+
   it("sanitizes strings", () => {
     const b = validBrief();
-    b.research = [{ kind: "web", finding: "‮evil​", source: null }];
+    b.research = [{ kind: "web", finding: "\u202Eevil\u200B", source: null }];
     const r = parseBrief(b);
     expect(r.ok && r.brief.research[0]?.finding).toBe("evil");
   });
@@ -135,7 +146,7 @@ describe("loadBrief", () => {
 
   it("loads a BOM + CRLF file", () => {
     const p = join(dir, "ok.json");
-    writeFileSync(p, "﻿" + JSON.stringify(validBrief(), null, 2).replace(/\n/g, "\r\n"));
+    writeFileSync(p, "\uFEFF" + JSON.stringify(validBrief(), null, 2).replace(/\n/g, "\r\n"));
     expect(loadBrief(p).ok).toBe(true);
   });
 

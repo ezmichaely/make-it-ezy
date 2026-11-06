@@ -141,13 +141,18 @@ function compact<T>(items: (T | null)[]): T[] {
   return items.filter((x): x is T => x !== null);
 }
 
+function shortKey(key: string): string {
+  const k = sanitizeText(key);
+  return k.length > 40 ? `${k.slice(0, 40)}\u2026` : k;
+}
+
 export function parseBrief(raw: unknown): BriefResult {
   if (!isRecord(raw)) return { ok: false, errors: ["$: must be an object"] };
   const errors: string[] = [];
   const notes: string[] = [];
 
   for (const key of Object.keys(raw)) {
-    if (!KNOWN_KEYS.has(key)) notes.push(`ignored unknown field "${key}"`);
+    if (!KNOWN_KEYS.has(key)) notes.push(`ignored unknown field "${shortKey(key)}"`);
   }
   if (raw.version !== 1) errors.push("version: must be 1");
   const outcome = readString(raw.outcome, "outcome", errors);
