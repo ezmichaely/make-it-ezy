@@ -72,7 +72,7 @@ function rank(a: Candidate, b: Candidate): number {
     local(b) - local(a) ||
     b.relevance - a.relevance ||
     (b.hit.installs ?? 0) - (a.hit.installs ?? 0) ||
-    a.hit.name.localeCompare(b.hit.name)
+    (a.hit.name < b.hit.name ? -1 : a.hit.name > b.hit.name ? 1 : 0)
   );
 }
 
@@ -129,16 +129,26 @@ export function selectCapabilities(
   const recommended = greedy(pool, requiredIds, RECOMMENDED_MAX);
   const coveredByRec = new Set(recommended.flatMap((c) => c.covers));
 
+  const stillRequired = new Set([...requiredIds].filter((id) => !coveredByRec.has(id)));
+  const rest = pool.filter((c) => !recommended.includes(c));
+  const optionalLimit = TOTAL_CAP - recommended.length;
+  const optional = greedy(rest, stillRequired, optionalLimit);
+  const coveredByOpt = new Set(optional.flatMap((c) => c.covers));
   const optionalIds = new Set(
-    requirements.filter((r) => r.priority === "optional" && !coveredByRec.has(r.id)).map((r) => r.id),
+    requirements
+      .filter((r) => r.priority === "optional" && !coveredByRec.has(r.id) && !coveredByOpt.has(r.id))
+      .map((r) => r.id),
   );
-  const optional = greedy(
-    pool.filter((c) => !recommended.includes(c)),
-    optionalIds,
-    TOTAL_CAP - recommended.length,
+  optional.push(
+    ...greedy(
+      rest.filter((c) => !optional.includes(c)),
+      optionalIds,
+      optionalLimit - optional.length,
+    ),
   );
 
-  const uncovered = requirements.filter((r) => r.priority === "required" && !coveredByRec.has(r.id));
+  const covered = new Set([...coveredByRec, ...optional.flatMap((c) => c.covers)]);
+  const uncovered = requirements.filter((r) => r.priority === "required" && !covered.has(r.id));
   return { recommended, optional, excluded, uncovered, filteredCount };
 }
 

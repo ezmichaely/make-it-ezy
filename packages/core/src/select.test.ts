@@ -100,7 +100,23 @@ describe("selectCapabilities", () => {
     const cands = scoreCandidates(names.map((n) => hit(`${n}-skill`)), reqs);
     const sel = selectCapabilities(cands, reqs, []);
     expect(sel.recommended).toHaveLength(4);
-    expect(sel.uncovered).toHaveLength(2);
+    expect(sel.optional).toHaveLength(2);
+    expect(sel.uncovered).toEqual([]);
+  });
+
+  it("reports only requirements with no candidate as uncovered", () => {
+    const reqs = [req("pay", ["stripe"]), req("none", ["zzzqqq"])];
+    const sel = selectCapabilities(scoreCandidates([hit("stripe-x")], reqs), reqs, []);
+    expect(sel.uncovered.map((r) => r.id)).toEqual(["none"]);
+  });
+
+  it("does not report a required requirement covered via an optional pick", () => {
+    const names = ["alpha", "bravo", "charlie", "delta", "echo"];
+    const reqs = names.map((n) => req(n, [n]));
+    const sel = selectCapabilities(scoreCandidates(names.map((n) => hit(`${n}-skill`)), reqs), reqs, []);
+    expect(sel.recommended).toHaveLength(4);
+    expect(sel.optional).toHaveLength(1);
+    expect(sel.uncovered).toEqual([]);
   });
 
   it("selects optional requirements separately", () => {
