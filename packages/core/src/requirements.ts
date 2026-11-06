@@ -14,8 +14,19 @@ function hasFrontendStack(analysis: ProjectAnalysis): boolean {
   return analysis.frameworks.some((f) => FRONTEND_IDS.has(f.id));
 }
 
+const SMALL_UI_TOKENS = ["button", "style", "css", "copy", "typo", "label", "layout", "color", "ui"];
+
+const DOMAIN_LABELS = new Set([
+  "payments",
+  "webhooks",
+  "database / state",
+  "authentication",
+  "security review",
+  "offline / PWA",
+]);
+
 function isSmallUiChange(tokens: string[]): boolean {
-  const small = ["button", "style", "css", "copy", "typo", "label", "layout", "color", "ui"];
+  const small = SMALL_UI_TOKENS;
   const heavy = ["refactor", "architect", "rebuild", "migrate", "rewrite", "monorepo"];
   const hasSmall = small.some((t) => tokens.includes(t));
   const hasHeavy = heavy.some((t) => tokens.includes(t));
@@ -56,7 +67,6 @@ export function extractRequirements(
   const matches = extractCapabilityMatches(trimmed);
   let labels = matches.map((m) => m.label);
   const matchedByLabel = new Map(matches.map((m) => [m.label, m.matched]));
-  const fromLexicon = matches.some((m) => m.matched.length > 0);
   const frontend = hasFrontendStack(analysis);
   const smallUi = isSmallUiChange(tokens);
   const stackLabels = analysis.frameworks
@@ -64,14 +74,10 @@ export function extractRequirements(
     .map((f) => f.label);
 
   // Small UI outcomes often miss the frontend lexicon ("add a button") — normalize.
-  if (smallUi) {
-    const known = new Set(["frontend", "UI/UX", "testing"]);
-    const onlyFallback = !fromLexicon || labels.every((l) => !known.has(l) && !matchedByLabel.get(l)?.length);
-    if (onlyFallback) {
-      labels = ["UI change"];
-    } else if (!labels.includes("frontend") && !labels.includes("UI/UX")) {
-      labels = ["UI change", ...labels.filter((l) => l !== "testing")];
-    }
+  // Only the explicit domain labels survive next to "UI change"; the rest collapse.
+  if (smallUi && !labels.includes("frontend") && !labels.includes("UI/UX")) {
+    labels = ["UI change", ...labels.filter((l) => DOMAIN_LABELS.has(l))];
+    matchedByLabel.set("UI change", tokens.filter((t) => SMALL_UI_TOKENS.includes(t)));
   }
 
   const requirements: Requirement[] = [];

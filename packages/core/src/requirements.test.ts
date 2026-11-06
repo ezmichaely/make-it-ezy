@@ -114,6 +114,27 @@ describe("extractRequirements", () => {
       label: "Graphify",
       why: "full codebase graph is overkill for a small UI change",
     });
-    expect(skipHints.length).toBe(exclusions.length);
+    expect(skipHints).toContain("Graphify \u2014 full codebase graph is overkill for a small UI change");
+  });
+
+  it("collapses non-domain labels for small UI changes", () => {
+    const { requirements } = extractRequirements("change the button label in the codebase", nextAnalysis);
+    expect(requirements.map((r) => r.label)).toEqual(["UI change"]);
+  });
+
+  it("keeps domain labels next to UI change", () => {
+    const { requirements } = extractRequirements("add a Stripe checkout button", nextAnalysis);
+    expect(requirements.map((r) => r.label).sort()).toEqual(["UI change", "payments"]);
+  });
+
+  it("does not label a bare 'add a settings page' as UI change", () => {
+    const { requirements } = extractRequirements("add a settings page", nextAnalysis);
+    expect(requirements.map((r) => r.label)).not.toContain("UI change");
+  });
+
+  it("UI change searchTerms include the UI token", () => {
+    const { requirements } = extractRequirements("add a button to the header", nextAnalysis);
+    const ui = requirements.find((r) => r.label === "UI change");
+    expect(ui?.searchTerms).toContain("button");
   });
 });

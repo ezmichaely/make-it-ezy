@@ -33,7 +33,7 @@ const LEXICON: LexiconEntry[] = [
     capabilities: ["payments"],
   },
   {
-    match: ["webhook", "webhooks", "callback", "callbacks", "event", "events"],
+    match: ["webhook", "webhooks", "callback", "callbacks"],
     capabilities: ["webhooks"],
   },
   {
@@ -49,7 +49,7 @@ const LEXICON: LexiconEntry[] = [
     capabilities: ["security review"],
   },
   {
-    match: ["offline", "pwa", "service-worker", "indexeddb", "sync"],
+    match: ["offline", "pwa", "service-worker", "worker", "indexeddb", "sync"],
     capabilities: ["offline / PWA"],
   },
   {
