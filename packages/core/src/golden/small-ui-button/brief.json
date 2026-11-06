@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "outcome": "tweak the primary button component",
+  "taskType": "ui-change",
+  "requirements": [
+    {
+      "id": "ui-component",
+      "label": "Button component change",
+      "priority": "required",
+      "why": "Needed for Button component change.",
+      "searchTerms": [
+        "react",
+        "components",
+        "button"
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "label": "Graphify",
+      "why": "A small change does not need a knowledge graph."
+    }
+  ],
+  "research": []
+}

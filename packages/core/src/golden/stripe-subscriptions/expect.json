@@ -1,0 +1,28 @@
+{
+  "outcome": "add Stripe subscriptions to this Next.js app",
+  "requiredIds": [
+    "payments",
+    "webhooks",
+    "data-state",
+    "security"
+  ],
+  "mustInclude": [
+    "stripe-integration",
+    "webhook-handler",
+    "prisma-schema",
+    "security-review"
+  ],
+  "mustExclude": [
+    "build-game-changelog",
+    "plan-ui-change",
+    "docker-deploy"
+  ],
+  "uncovered": [],
+  "heuristic": {
+    "mustExclude": [
+      "build-game-changelog",
+      "plan-ui-change",
+      "UI change"
+    ]
+  }
+}

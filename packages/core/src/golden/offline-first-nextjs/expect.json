@@ -1,0 +1,26 @@
+{
+  "outcome": "build an offline-first Next.js app",
+  "requiredIds": [
+    "nextjs",
+    "offline",
+    "local-persistence",
+    "sync"
+  ],
+  "mustInclude": [
+    "nextjs-app-router",
+    "pwa-offline",
+    "indexeddb-dexie",
+    "sync-conflicts"
+  ],
+  "mustExclude": [
+    "build-game-changelog",
+    "plan-ui-change",
+    "docker-deploy"
+  ],
+  "uncovered": [],
+  "heuristic": {
+    "mustExclude": [
+      "build-game-changelog"
+    ]
+  }
+}

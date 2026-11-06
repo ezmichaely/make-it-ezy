@@ -1,0 +1,6 @@
+{
+  "name": "button-fixture",
+  "dependencies": {
+    "react": "19.0.0"
+  }
+}

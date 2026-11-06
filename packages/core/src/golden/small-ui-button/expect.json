@@ -1,0 +1,21 @@
+{
+  "outcome": "tweak the primary button component",
+  "requiredIds": [
+    "ui-component"
+  ],
+  "mustInclude": [
+    "react-components"
+  ],
+  "mustExclude": [
+    "graphify",
+    "docker-deploy",
+    "build-game-changelog"
+  ],
+  "uncovered": [],
+  "heuristic": {
+    "mustExclude": [
+      "build-game-changelog",
+      "docker-deploy"
+    ]
+  }
+}

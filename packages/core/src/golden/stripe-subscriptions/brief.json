@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "outcome": "add Stripe subscriptions to this Next.js app",
+  "taskType": "feature",
+  "requirements": [
+    {
+      "id": "payments",
+      "label": "Stripe payments and subscriptions",
+      "priority": "required",
+      "why": "Needed for Stripe payments and subscriptions.",
+      "searchTerms": [
+        "stripe",
+        "payments",
+        "subscriptions"
+      ]
+    },
+    {
+      "id": "webhooks",
+      "label": "Webhook handling",
+      "priority": "required",
+      "why": "Needed for Webhook handling.",
+      "searchTerms": [
+        "webhook",
+        "webhooks"
+      ]
+    },
+    {
+      "id": "data-state",
+      "label": "Subscription data and state",
+      "priority": "required",
+      "why": "Needed for Subscription data and state.",
+      "searchTerms": [
+        "prisma",
+        "schema",
+        "database"
+      ]
+    },
+    {
+      "id": "security",
+      "label": "Payment security",
+      "priority": "required",
+      "why": "Needed for Payment security.",
+      "searchTerms": [
+        "security",
+        "vulnerabilities"
+      ]
+    },
+    {
+      "id": "testing",
+      "label": "Automated tests",
+      "priority": "optional",
+      "why": "Needed for Automated tests.",
+      "searchTerms": [
+        "vitest",
+        "tests"
+      ]
+    }
+  ],
+  "exclusions": [],
+  "research": []
+}

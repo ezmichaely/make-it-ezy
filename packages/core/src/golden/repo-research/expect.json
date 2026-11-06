@@ -1,0 +1,25 @@
+{
+  "outcome": "understand how auth works in this repo",
+  "requiredIds": [
+    "codebase-map",
+    "auth-flow",
+    "auth-hardening"
+  ],
+  "mustInclude": [
+    "codebase-research",
+    "auth-flow-tracing"
+  ],
+  "mustExclude": [
+    "build-game-changelog",
+    "plan-ui-change",
+    "docker-deploy"
+  ],
+  "uncovered": [
+    "auth-hardening"
+  ],
+  "heuristic": {
+    "mustExclude": [
+      "build-game-changelog"
+    ]
+  }
+}
