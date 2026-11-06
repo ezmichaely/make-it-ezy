@@ -130,11 +130,13 @@ Ezy is meant to run *through* your agent (Claude Code, Cursor, Codex): the agent
 
 ```bash
 cd /path/to/your-app
-mkdir -p .agents/skills
-ln -s "$MAKE_IT_EZY_ROOT/skills/ezy" .agents/skills/ezy     # Cursor / Codex
-mkdir -p .claude/skills
+mkdir -p .agents/skills .claude/skills .cursor/skills
+ln -s "$MAKE_IT_EZY_ROOT/skills/ezy" .agents/skills/ezy     # Codex (and the shared copy)
 ln -s ../../.agents/skills/ezy .claude/skills/ezy           # Claude Code
+ln -s ../../.agents/skills/ezy .cursor/skills/ezy           # Cursor
 ```
+
+Keep only the lines for the agents you use (the `.agents` one is always needed).
 
 (Use `cp -R` instead of `ln -s` if you don't want it to follow updates.)
 
