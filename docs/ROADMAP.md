@@ -32,16 +32,27 @@
 - Filter to minimum useful skill set with exclusion reasons
 - No LLM, no Soft-C, no mandatory Graphify
 
-## Phase 6 — Project Brain (**later**)
+## Phase 6 — Agent Brief + Decision Quality (**done**)
+
+> Spec: `docs/superpowers/specs/2026-11-06-phase6-agent-brief-design.md`  
+> Plan: `docs/superpowers/plans/2026-11-06-phase6-agent-brief.md`
+
+- `ezy brief` → host agent researches the outcome and writes `.ezy/brief.json`
+- `plan` / `next` / `install --plan` accept `--brief`; invalid briefs exit 2
+- Requirement-covering minimum set with explanations; heuristic fallback without a brief
+
+## Phase 7 — Project Brain (**later**)
+
+> Spec (deferred): `docs/superpowers/specs/2026-11-06-phase6-project-brain-design.md`
 
 - Lightweight persistent project knowledge (not a repo dump)
 - Avoid repeated rediscovery across agent sessions
 
-## Phase 7 — Verification (**later**)
+## Phase 8 — Verification (**later**)
 
 - Check that the outcome was actually achieved after handoff/execution
 
-## Phase 8 — Web UI (**later**)
+## Phase 9 — Web UI (**later**)
 
 - Same core as CLI
 

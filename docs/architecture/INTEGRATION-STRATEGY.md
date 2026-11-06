@@ -15,14 +15,15 @@ Not a replacement for pnpm/npm.
 |---|---|---|
 | 1 | Local filesystem + PATH doctor checks | **done** |
 | 2 | skills.sh + local `.agents/skills` discovery | **done** (search / inspect / recommend) |
-| 3 | Ranking + explainable minimum set (`plan`) | **done** (heuristic, outcome-only) |
+| 3 | Ranking + explainable minimum set (`plan`) | **done** (brief-driven (agent research) with heuristic fallback) |
 | 4a | Gated install → Cursor `.agents/skills` | **done** (adapter #0) |
 | 4b | Handoff `ezy next` | **done** |
 | 4c | Agent Skill `skills/ezy` (Claude / Cursor / Codex) | **done** (adapter #1) |
 | 5 | Project-aware capability planner (`analyze` → `plan`) | **done** |
-| 6 | Project Brain (lightweight local knowledge) | later |
-| 7 | Outcome verification | later |
-| 8 | Web UI (same core) | later |
+| 6 | Agent brief + decision quality (`ezy brief`) | **done** |
+| 7 | Project Brain (lightweight local knowledge) | later |
+| 8 | Outcome verification | later |
+| 9 | Web UI (same core) | later |
 | Later | Deep skill verify, soft-C spawn, Codex marketplace plugin | TODO |
 | Optional | Taste, OpenSEO, REA, Graphify, browser tools | only when task needs them |
 

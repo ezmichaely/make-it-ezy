@@ -54,13 +54,14 @@ No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/
 | Box | Status |
 |---|---|
 | Discovery (search / inspect / recommend) | Shipped |
-| Decision engine (`ezy plan`) | Shipped (heuristic, outcome-only) |
+| Decision engine (`ezy plan`) | Shipped (brief-driven (agent research) with heuristic fallback) |
 | Gated install + Cursor `.agents/skills` | Shipped (adapter #0) |
 | Handoff (`ezy next`) | Shipped |
 | Agent Skill (`skills/ezy`) | Shipped (adapter #1) |
 | Project Capability Planner (project-aware `plan`) | **Phase 5 — shipped** |
-| Project Brain (lightweight persistent knowledge) | Phase 6 |
-| Outcome verification | Phase 7 |
+| Agent Brief + decision quality (`ezy brief`) | **Phase 6 — shipped** |
+| Project Brain (lightweight persistent knowledge) | Phase 7 |
+| Outcome verification | Phase 8 |
 | Deep verify / trusted-auto | Later |
 | Soft-C / Codex marketplace plugin | Later |
 | Web UI | Phase 8 |

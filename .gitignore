@@ -10,3 +10,4 @@ graphify-out/
 .pnpm-store/
 # Agent skills (.agents/skills, .claude/skills) are committed; skills-lock.json pins their sources.
 .claude/settings.local.json
+.ezy/

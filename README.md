@@ -110,6 +110,8 @@ export MAKE_IT_EZY_ROOT=/absolute/path/to/make-it-ezy
 ```
 
 ```bash
+pnpm ezy brief "Build me a beautiful SaaS dashboard"   # agent researches, writes .ezy/brief.json
+pnpm ezy next "Build me a beautiful SaaS dashboard" --brief .ezy/brief.json
 pnpm ezy plan "Build me a beautiful SaaS dashboard" --local-only
 pnpm ezy next "Build me a beautiful SaaS dashboard" --local-only
 pnpm ezy install --plan "Build me a beautiful SaaS dashboard"   # ↑/↓ pick on TTY
@@ -129,13 +131,13 @@ Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 
 ## Status
 
-**Phase 5 shipped** — project-aware `plan` / `next` (plus install + `/ezy`).
+**Phase 6 shipped** — agent brief + decision quality (`ezy brief`, `--brief`), on top of project-aware `plan` / `next` (plus install + `/ezy`).
 
 | Next | Later |
 |---|---|
-| Phase 6 — Project Brain | Soft-C, deep verify, trusted-auto |
-| Phase 7 — Outcome verification | Codex marketplace plugin |
-| Phase 8 — Web UI | Giant catalog / marketplace |
+| Phase 7 — Project Brain | Soft-C, deep verify, trusted-auto |
+| Phase 8 — Outcome verification | Codex marketplace plugin |
+| Phase 9 — Web UI | Giant catalog / marketplace |
 
 Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)
 
