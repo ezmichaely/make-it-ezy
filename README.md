@@ -100,39 +100,95 @@ A **capability** can be a skill, tool, MCP, agent, model, workflow, service, API
 
 **Principle:** minimum sufficient capabilities + minimum sufficient context.
 
-## Quick start
+## Install
+
+> Not on npm yet — install from source for now. Needs **Node.js 20+** and **pnpm 9+**.
 
 ```bash
+git clone https://github.com/ezmichaely/make-it-ezy.git
+cd make-it-ezy
 pnpm install
 pnpm build
-pnpm test
 ```
 
-Node.js 20+ · pnpm 9+ (10.x recommended).
+Make the `ezy` command available everywhere (add both lines to `~/.zshrc` or `~/.bashrc`):
 
 ```bash
-export MAKE_IT_EZY_ROOT=/absolute/path/to/make-it-ezy
+export MAKE_IT_EZY_ROOT="/absolute/path/to/make-it-ezy"
+alias ezy='node "$MAKE_IT_EZY_ROOT/apps/cli/dist/index.js"'
 ```
+
+Check it: `ezy --help`.
+
+> Always run `ezy` **from inside the project you want to change** — it reads that folder. (`pnpm ezy …` inside the make-it-ezy repo only plans for Make It Ezy itself.)
+
+## Use it with your coding agent (recommended)
+
+Ezy is meant to run *through* your agent (Claude Code, Cursor, Codex): the agent researches the task, Ezy picks the skills, the agent builds.
+
+**1. Add the `/ezy` skill to your project** (once per project):
 
 ```bash
-pnpm ezy brief "Build me a beautiful SaaS dashboard"   # agent researches, writes .ezy/brief.json
-pnpm ezy next "Build me a beautiful SaaS dashboard" --brief .ezy/brief.json
-pnpm ezy plan "Build me a beautiful SaaS dashboard" --local-only
-pnpm ezy next "Build me a beautiful SaaS dashboard" --local-only
-pnpm ezy install --plan "Build me a beautiful SaaS dashboard"   # ↑/↓ pick on TTY
-pnpm ezy inspect taste
+cd /path/to/your-app
+mkdir -p .agents/skills
+ln -s "$MAKE_IT_EZY_ROOT/skills/ezy" .agents/skills/ezy     # Cursor / Codex
+mkdir -p .claude/skills
+ln -s ../../.agents/skills/ezy .claude/skills/ezy           # Claude Code
 ```
 
-## Agent Skill (`/ezy`)
+(Use `cp -R` instead of `ln -s` if you don't want it to follow updates.)
 
-Product adapter: [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md) — run the CLI, gated-install, then **keep building** in the host agent (Claude Code / Cursor / Codex).
+The agent finds the CLI through `MAKE_IT_EZY_ROOT` (agents usually don't load shell aliases), so keep that `export` in your shell profile.
+
+**2. Ask your agent:**
+
+```text
+/ezy add Stripe subscriptions to this app
+```
+
+The agent then:
+
+1. runs `ezy brief "…"` and researches what the task needs,
+2. writes `.ezy/brief.json` (requirements, exclusions, sources),
+3. runs `ezy next "…" --brief .ezy/brief.json` and shows you the plan,
+4. asks before installing any skill,
+5. builds the change using those skills.
+
+Requirements no skill covers are listed as **Uncovered** — the agent handles them directly.
+
+## Use the CLI directly
+
+From inside your project:
 
 ```bash
-mkdir -p /path/to/your-app/.agents/skills
-cp -R /path/to/make-it-ezy/skills/ezy /path/to/your-app/.agents/skills/ezy
+ezy plan "add Stripe subscriptions"                  # quick plan (keyword fallback)
+ezy brief "add Stripe subscriptions"                 # instructions for writing a researched brief
+ezy plan "add Stripe subscriptions" --brief .ezy/brief.json
+ezy next "add Stripe subscriptions" --brief .ezy/brief.json   # checklist + prompt to paste into your agent
+ezy install --plan "add Stripe subscriptions"        # pick skills to install (asks first)
 ```
 
-Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
+| Command | What it does |
+|---|---|
+| `ezy brief "<goal>"` | Prints your project summary + how to write `.ezy/brief.json`. Writes nothing. |
+| `ezy plan "<goal>"` | Requirements → minimum skill set, with a reason for each pick, exclusions and uncovered items. |
+| `ezy next "<goal>"` | Same plan as a checklist plus a ready-to-paste agent prompt. |
+| `ezy install <skill>` / `--plan "<goal>"` | Installs skills into `.agents/skills` — always asks first (or pass `--yes`). |
+| `ezy search` · `ezy inspect` · `ezy recommend` | Browse and inspect skills. |
+| `ezy analyze` · `ezy doctor` | Show what Ezy detects about your project / environment. |
+
+Useful flags: `--brief <path>` (use a researched brief), `--local-only` (no network; only skills already in `.agents/skills`), `--yes` (skip install confirmation).
+
+Without `--brief`, plans use a keyword fallback and say so (`Basis: heuristic fallback`). A brief gives much better picks. An invalid brief stops with a list of errors (exit code 2).
+
+## Develop Make It Ezy
+
+```bash
+pnpm build && pnpm test   # quick loop
+pnpm check:ci             # full gate before any push
+```
+
+See [`CLAUDE.md`](./CLAUDE.md) and [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## Status
 
