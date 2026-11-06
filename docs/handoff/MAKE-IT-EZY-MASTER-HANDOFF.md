@@ -8,7 +8,7 @@
 
 ## Phase map update (2026-11-05) — read this first
 
-Shipped CLI through Phase 4 (`install` / `next` / `skills/ezy`). The **live sequence** is now:
+Shipped CLI through Phase 5 (project-aware `plan` / `next`, `install`, `skills/ezy`). The **live sequence** is now:
 
 | Phase | Name | Status |
 |---|---|---|
