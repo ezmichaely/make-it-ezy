@@ -74,9 +74,6 @@ export async function planOutcome(
   const brief = options.brief;
   const baseNotes = [
     "Discovery only — nothing was installed or executed.",
-    brief
-      ? "Basis: agent brief."
-      : "Basis: heuristic fallback — run ezy brief for a researched plan.",
     "Installation uses suggest-then-go (ezy install).",
   ];
 
