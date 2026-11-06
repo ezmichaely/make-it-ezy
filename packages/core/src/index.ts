@@ -75,3 +75,11 @@ export type {
   ResearchFinding,
   ResearchKind,
 } from "./brief-types.js";
+export {
+  coverageReason,
+  matchesExclusion,
+  preferHit,
+  scoreCandidates,
+  selectCapabilities,
+} from "./select.js";
+export type { Candidate, Selection } from "./select.js";

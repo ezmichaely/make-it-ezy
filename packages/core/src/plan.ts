@@ -3,6 +3,7 @@ import { loadLocalSkills } from "./load-local-skills.js";
 import { recommendSkills } from "./recommend.js";
 import { extractRequirements } from "./requirements.js";
 import type { RecommendItem } from "./recommend-types.js";
+import { preferHit } from "./select.js";
 import type { SearchOptions } from "./search.js";
 import {
   EMPTY_PLAN_PROJECT,
@@ -17,19 +18,7 @@ const TOTAL_CAP = 8;
 
 /** Prefer local / higher score / more installs — same skill name from many sources collapses to one. */
 export function preferRecommendItem(a: RecommendItem, b: RecommendItem): RecommendItem {
-  if (a.hit.installedLocally !== b.hit.installedLocally) {
-    return a.hit.installedLocally ? a : b;
-  }
-  if (a.hit.sourceKind !== b.hit.sourceKind) {
-    return a.hit.sourceKind === "local" ? a : b;
-  }
-  if (a.hit.score !== b.hit.score) {
-    return a.hit.score > b.hit.score ? a : b;
-  }
-  if ((a.hit.installs ?? 0) !== (b.hit.installs ?? 0)) {
-    return (a.hit.installs ?? 0) > (b.hit.installs ?? 0) ? a : b;
-  }
-  return a;
+  return preferHit(a.hit, b.hit) === a.hit ? a : b;
 }
 
 function mergeItems(items: RecommendItem[]): RecommendItem[] {

@@ -5,6 +5,7 @@ export type Requirement = {
   label: string;
   rationale: string;
   priority: "required" | "optional";
+  searchTerms?: string[];
 };
 
 export type CapabilityDecision = {
