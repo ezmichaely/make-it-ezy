@@ -199,6 +199,92 @@ describe("ezy CLI", () => {
     expect(result.stdout).toContain("Package manager");
   });
 
+  it("lists ezy brief in help", () => {
+    const result = runEzy(["--help"]);
+    expect(result.stdout).toContain("ezy brief");
+  });
+
+  it("brief prints instructions and schema", () => {
+    const result = runEzy(["brief", "add stripe"], fixtureWithSkill());
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("searchTerms");
+    expect(result.stdout).toContain(".ezy/brief.json");
+  });
+
+  it("plan with missing brief exits 2", () => {
+    const result = runEzy(["plan", "x", "--brief", "missing.json"], fixtureWithSkill());
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain("Invalid brief:");
+    expect(result.stderr).toContain("cannot read file");
+    expect(result.stdout).not.toContain("Recommended");
+  });
+
+  it("plan and next use a relative --brief", () => {
+    const cwd = fixtureWithSkill();
+    writeFileSync(
+      join(cwd, "brief.json"),
+      JSON.stringify({
+        version: 1,
+        outcome: "add stripe",
+        taskType: "feature",
+        requirements: [
+          { id: "pay", label: "Payments", priority: "required", why: "charge cards", searchTerms: ["ponytail"] },
+        ],
+        exclusions: [],
+        research: [],
+      }),
+    );
+    const plan = runEzy(["plan", "add stripe", "--brief", "./brief.json", "--local-only"], cwd);
+    expect(plan.status).toBe(0);
+    expect(plan.stdout).toContain("Basis: agent brief");
+    const next = runEzy(["next", "add stripe", "--brief=./brief.json", "--local-only"], cwd);
+    expect(next.status).toBe(0);
+    expect(next.stdout).toContain("Why these skills");
+  });
+
+  it("install --plan with invalid brief exits 2", () => {
+    const result = runEzy(["install", "--plan", "x", "--brief", "missing.json", "--yes"], fixtureWithSkill());
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain("cannot read file");
+    expect(result.stdout).not.toContain("Install");
+  });
+
+  it("--brief without a value exits 2", () => {
+    const result = runEzy(["plan", "x", "--brief"], fixtureWithSkill());
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain("--brief requires a path");
+    expect(result.stdout).not.toContain("Recommended");
+  });
+
+  it("--brief followed by a flag exits 2", () => {
+    const result = runEzy(["plan", "x", "--brief", "--local-only"], fixtureWithSkill());
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain("--brief requires a path");
+    const inst = runEzy(["install", "--plan", "x", "--brief"], fixtureWithSkill());
+    expect(inst.status).toBe(2);
+  });
+
+  it("shows brief notes for unknown fields", () => {
+    const cwd = fixtureWithSkill();
+    writeFileSync(
+      join(cwd, "brief.json"),
+      JSON.stringify({
+        version: 1,
+        outcome: "add stripe",
+        taskType: "feature",
+        requirements: [
+          { id: "pay", label: "Payments", priority: "required", why: "charge", searchTerms: ["ponytail"] },
+        ],
+        exclusions: [],
+        research: [],
+        bogusField: 1,
+      }),
+    );
+    const plan = runEzy(["plan", "add stripe", "--brief", "brief.json", "--local-only"], cwd);
+    expect(plan.status).toBe(0);
+    expect(plan.stdout).toContain("ignored unknown field");
+  });
+
   it("rejects unknown commands", () => {
     const result = runEzy(["swarm"]);
     expect(result.status).toBe(1);

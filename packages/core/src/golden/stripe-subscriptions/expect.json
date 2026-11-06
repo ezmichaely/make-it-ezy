@@ -1,0 +1,37 @@
+{
+  "outcome": "add Stripe subscriptions to this Next.js app",
+  "requiredIds": [
+    "payments",
+    "webhooks",
+    "data-state",
+    "security"
+  ],
+  "mustInclude": [
+    "stripe-integration",
+    "webhook-handler",
+    "prisma-schema",
+    "security-review"
+  ],
+  "mustExclude": [
+    "build-game-changelog",
+    "plan-ui-change",
+    "docker-deploy",
+    "stripes-theme",
+    "webhookify"
+  ],
+  "uncovered": [],
+  "heuristic": {
+    "mustExclude": [
+      "build-game-changelog",
+      "plan-ui-change",
+      "UI change"
+    ]
+  },
+  "why": {
+    "stripes-theme": "name token 'stripes' is not the term 'stripe'; a substring matcher would pick it",
+    "webhookify": "name token 'webhookify' is not the term 'webhook'; a substring matcher would pick it",
+    "build-game-changelog": "unrelated decoy; also must stay out of the heuristic path",
+    "plan-ui-change": "must not be pulled in by a UI-change misclassification",
+    "docker-deploy": "unrelated decoy"
+  }
+}

@@ -3,7 +3,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { planOutcome, preferRecommendItem } from "./plan.js";
-import * as recommendMod from "./recommend.js";
+import * as searchMod from "./search.js";
+import type { Brief } from "./brief-types.js";
 import type { RecommendItem } from "./recommend-types.js";
 import type { SkillHit } from "./search-types.js";
 
@@ -119,14 +120,16 @@ describe("planOutcome", () => {
   });
 
   it("collapses same skill name from different sources to one pick", async () => {
-    vi.spyOn(recommendMod, "recommendSkills").mockImplementation(async (query) => ({
+    vi.spyOn(searchMod, "searchSkills").mockImplementation(async (query) => ({
       query,
-      recommended: [
-        item({ name: "onboarding", source: "alice/skills", score: 7, installs: 100 }),
-        item({ name: "onboarding", source: "bob/skills", score: 9, installs: 9_000 }),
+      hits: [
+        hit({ name: "onboarding", source: "alice/skills", score: 7, installs: 100, description: "onboarding flow" }),
+        hit({ name: "onboarding", source: "bob/skills", score: 9, installs: 9_000, description: "onboarding flow" }),
+        hit({ name: "onboarding", source: "carol/skills", score: 6, installs: 1, description: "onboarding flow" }),
       ],
-      optional: [item({ name: "onboarding", source: "carol/skills", score: 6, installs: 1 })],
-      notNeeded: [],
+      localCount: 0,
+      remoteCount: 3,
+      remoteError: null,
       notes: [],
     }));
 
@@ -134,5 +137,118 @@ describe("planOutcome", () => {
     const all = [...report.recommended, ...report.optional];
     expect(all.filter((i) => i.hit.name === "onboarding")).toHaveLength(1);
     expect(all[0]?.hit.source).toBe("bob/skills");
+  });
+});
+
+function stripeFixture(): string {
+  const root = fixtureProject();
+  for (const [name, description] of [
+    ["stripe-billing", "Stripe payments checkout billing subscriptions"],
+    ["build-game-changelog", "Stripe game changelog generator"],
+  ] as const) {
+    const dir = join(root, ".agents", "skills", name);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "SKILL.md"), `---\nname: ${name}\ndescription: ${description}\n---\n`);
+  }
+  return root;
+}
+
+function stripeBrief(extra: Partial<Brief> = {}): Brief {
+  return {
+    version: 1,
+    outcome: "Add Stripe payments",
+    taskType: "feature",
+    requirements: [
+      {
+        id: "R1",
+        label: "Stripe payments",
+        priority: "required",
+        why: "Charge customers",
+        searchTerms: ["stripe", "payments", "checkout"],
+      },
+    ],
+    exclusions: [{ label: "game changelog", why: "unrelated" }],
+    research: [{ kind: "technical", finding: "Use Checkout", source: null }],
+    ...extra,
+  };
+}
+
+describe("planOutcome with a brief", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("plans from the brief with coverage on every decision", async () => {
+    const root = stripeFixture();
+    const report = await planOutcome("Add Stripe payments", {
+      cwd: root,
+      localOnly: true,
+      brief: stripeBrief(),
+    });
+    expect(report.basis).toBe("brief");
+    expect(report.taskType).toBe("feature");
+    expect(report.research).toHaveLength(1);
+    expect(report.decisions.length).toBeGreaterThan(0);
+    for (const d of report.decisions) expect(d.covers.length).toBeGreaterThan(0);
+    const names = [...report.recommended, ...report.optional].map((i) => i.hit.name);
+    expect(names).toContain("stripe-billing");
+    expect(names).not.toContain("build-game-changelog");
+    expect(report.notes).toContain("Basis: agent brief.");
+  });
+
+  it("falls back to heuristics without a brief", async () => {
+    const report = await planOutcome("Build me a beautiful SaaS dashboard", {
+      cwd: fixtureProject(),
+      localOnly: true,
+    });
+    expect(report.basis).toBe("heuristic");
+    expect(report.taskType).toBeNull();
+    expect(report.research).toEqual([]);
+    expect(report.notes.some((n) => n.includes("heuristic fallback"))).toBe(true);
+  });
+
+  it("keeps the CLI outcome when the brief outcome differs", async () => {
+    const report = await planOutcome("Add Stripe payments", {
+      cwd: stripeFixture(),
+      localOnly: true,
+      brief: stripeBrief({ outcome: "something else" }),
+    });
+    expect(report.outcome).toBe("Add Stripe payments");
+    expect(report.notes).toContain("Brief outcome differs from CLI outcome; using CLI outcome.");
+  });
+
+  it("surfaces remote-unavailable notes and still returns local picks", async () => {
+    const report = await planOutcome("Add Stripe payments", {
+      cwd: stripeFixture(),
+      localOnly: false,
+      brief: stripeBrief(),
+      fetchImpl: async () => {
+        throw new Error("offline");
+      },
+    });
+    expect(report.notes.some((n) => n.includes("unavailable"))).toBe(true);
+    expect(report.recommended.some((i) => i.hit.name === "stripe-billing")).toBe(true);
+  });
+
+  it("reports uncovered required requirements", async () => {
+    const brief = stripeBrief({
+      requirements: [
+        ...stripeBrief().requirements,
+        {
+          id: "R2",
+          label: "Quantum teleporter",
+          priority: "required",
+          why: "x",
+          searchTerms: ["quantum", "teleporter"],
+        },
+      ],
+    });
+    const report = await planOutcome("Add Stripe payments", {
+      cwd: stripeFixture(),
+      localOnly: true,
+      brief,
+    });
+    expect(report.uncovered.map((r) => r.id)).toEqual(["R2"]);
+    expect(report.notNeeded.some((n) => n.startsWith("game changelog — unrelated"))).toBe(true);
   });
 });

@@ -6,6 +6,7 @@ import { buildHandoff, composeHandoffFromItems } from "./handoff.js";
 import { formatHandoff } from "./format.js";
 import * as planMod from "./plan.js";
 import type { PlanReport } from "./plan-types.js";
+import type { Brief } from "./brief-types.js";
 
 function fixtureWithLocalSkill(): string {
   const root = mkdtempSync(join(tmpdir(), "ezy-handoff-"));
@@ -88,6 +89,7 @@ describe("buildHandoff", () => {
           source: "example/skills",
           decision: "install",
           reason: "strong match",
+          covers: ["discovery"],
         },
       ],
       recommended: [
@@ -110,6 +112,11 @@ describe("buildHandoff", () => {
       optional: [],
       notNeeded: [],
       notes: [],
+      basis: "heuristic",
+      taskType: null,
+      research: [],
+      uncovered: [],
+      excluded: [],
     };
     vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
 
@@ -177,5 +184,163 @@ describe("buildHandoff", () => {
     expect(text).toContain("Checklist");
     expect(text).toContain("Prompt");
     expect(text).toContain("```");
+  });
+
+  it("carries brief coverage and research into the handoff", async () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-brief-"));
+    writeFileSync(join(root, "package.json"), JSON.stringify({ name: "b" }));
+    const dir = join(root, ".agents", "skills", "stripe-billing");
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(
+      join(dir, "SKILL.md"),
+      "---\nname: stripe-billing\ndescription: Stripe payments checkout billing subscriptions\n---\n",
+    );
+    const brief: Brief = {
+      version: 1,
+      outcome: "Add Stripe payments",
+      taskType: "feature",
+      requirements: [
+        {
+          id: "R1",
+          label: "Stripe payments",
+          priority: "required",
+          why: "Charge customers",
+          searchTerms: ["stripe", "payments", "checkout"],
+        },
+      ],
+      exclusions: [],
+      research: [{ kind: "technical", finding: "Use Stripe Checkout sessions", source: null }],
+    };
+    const report = await buildHandoff("Add Stripe payments", { cwd: root, localOnly: true, brief });
+    expect(report.basis).toBe("brief");
+    expect(report.research).toHaveLength(1);
+    expect(report.skills[0]?.covers.length).toBeGreaterThan(0);
+    expect(report.prompt).toContain("Why these skills");
+    expect(report.prompt).toContain("Use Stripe Checkout sessions");
+  });
+
+  it("composeHandoffFromItems defaults to heuristic with no coverage section", () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-q-"));
+    const report = composeHandoffFromItems(
+      "x",
+      {
+        recommended: [
+          {
+            hit: {
+              id: "remote:a/b/ponytail",
+              path: null,
+              name: "ponytail",
+              source: "a/b",
+              sourceKind: "skills.sh",
+              description: "",
+              url: null,
+              score: 9,
+              installs: null,
+              installedLocally: false,
+            },
+            reason: "topic match",
+          },
+        ],
+        optional: [],
+      },
+      { cwd: root },
+    );
+    expect(report.basis).toBe("heuristic");
+    expect(report.research).toEqual([]);
+    expect(report.skills[0]?.covers).toEqual([]);
+    expect(report.prompt).not.toContain("Why these skills");
+  });
+
+  it("does not duplicate the installs suffix in skill reasons", () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-inst-"));
+    const report = composeHandoffFromItems(
+      "x",
+      {
+        recommended: [
+          {
+            hit: {
+              id: "remote:a/b/ponytail",
+              path: null,
+              name: "ponytail",
+              source: "a/b",
+              sourceKind: "skills.sh",
+              description: "",
+              url: null,
+              score: 9,
+              installs: 1234,
+              installedLocally: false,
+            },
+            reason: "covers payments (Stripe): name matches \"stripe\" · 1,234 installs",
+          },
+        ],
+        optional: [],
+      },
+      { cwd: root },
+    );
+    expect(report.skills[0]?.reason.match(/installs/g)).toHaveLength(1);
+  });
+
+  it("carries basis, uncovered, excluded and plan notes into the handoff", async () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-carry-"));
+    writeFileSync(join(root, "package.json"), JSON.stringify({ name: "carry" }));
+    const fakePlan: PlanReport = {
+      outcome: "Add Stripe payments",
+      capabilities: ["Stripe payments", "webhooks"],
+      requirements: [],
+      project: { projectRoot: root, packageName: "carry", language: null, frameworks: [], localSkills: [] },
+      decisions: [],
+      recommended: [],
+      optional: [],
+      notNeeded: [],
+      notes: ["Recommended exceeds 4 to cover all required requirements.", "Plan note"],
+      basis: "brief",
+      taskType: "feature",
+      research: [],
+      uncovered: [{ id: "hooks", label: "webhooks", rationale: "Receive events", priority: "required" }],
+      excluded: [{ label: "Subscriptions", why: "Out of scope" }],
+    };
+    vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
+    const report = await buildHandoff("Add Stripe payments", { cwd: root, localOnly: true });
+    expect(report.uncovered.map((u) => u.id)).toEqual(["hooks"]);
+    expect(report.excluded).toEqual([{ label: "Subscriptions", why: "Out of scope" }]);
+    expect(report.notes).toContain("Plan note");
+    expect(report.notes.filter((n) => n === "Plan note")).toHaveLength(1);
+    expect(report.prompt).toContain("Uncovered (handle directly): webhooks — Receive events");
+    const text = formatHandoff(report);
+    expect(text).toContain("Basis: agent brief");
+    expect(text).toContain("Excluded\n- Subscriptions — Out of scope");
+    expect(text).toContain("Uncovered\n- webhooks — no matching skill; agent handles directly");
+  });
+
+  it("prints the heuristic basis and defaults uncovered/excluded on the query path", () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-qp-"));
+    const report = composeHandoffFromItems("x", { recommended: [], optional: [] }, { cwd: root });
+    expect(report.uncovered).toEqual([]);
+    expect(report.excluded).toEqual([]);
+    const text = formatHandoff(report);
+    expect(text).toContain("Basis: heuristic fallback — run ezy brief for a researched plan");
+    expect(text).not.toContain("Excluded");
+    expect(text).not.toContain("Uncovered");
+  });
+
+  it("lists install lines for every missing recommended skill (6 required picks)", () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-six-"));
+    const recommended = ["a", "b", "c", "d", "e", "f"].map((n) => ({
+      hit: {
+        id: `remote:o/r/${n}-skill`,
+        path: null,
+        name: `${n}-skill`,
+        source: "o/r",
+        sourceKind: "skills.sh" as const,
+        description: "",
+        url: null,
+        score: 9,
+        installs: null,
+        installedLocally: false,
+      },
+      reason: "r",
+    }));
+    const report = composeHandoffFromItems("x", { recommended, optional: [] }, { cwd: root });
+    expect(report.checklist.filter((c) => c.startsWith("ezy install "))).toHaveLength(6);
   });
 });

@@ -1,3 +1,4 @@
+import type { Exclusion, ResearchFinding } from "./brief-types.js";
 import type { RecommendItem } from "./recommend-types.js";
 
 export type Requirement = {
@@ -5,6 +6,7 @@ export type Requirement = {
   label: string;
   rationale: string;
   priority: "required" | "optional";
+  searchTerms?: string[];
 };
 
 export type CapabilityDecision = {
@@ -12,6 +14,7 @@ export type CapabilityDecision = {
   source: string;
   decision: "use" | "install" | "optional" | "skip";
   reason: string;
+  covers: string[];
 };
 
 export type PlanProjectSummary = {
@@ -33,6 +36,13 @@ export type PlanReport = {
   optional: RecommendItem[];
   notNeeded: string[];
   notes: string[];
+  basis: "brief" | "heuristic";
+  taskType: string | null;
+  research: ResearchFinding[];
+  uncovered: Requirement[];
+  excluded: Exclusion[];
+  /** Path of the brief file the plan was built from (set by the CLI; used for the Next hint). */
+  briefPath?: string;
 };
 
 export const EMPTY_PLAN_PROJECT: PlanProjectSummary = {

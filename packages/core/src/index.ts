@@ -26,7 +26,7 @@ export { recommendSkills } from "./recommend.js";
 export type { RecommendItem, RecommendReport } from "./recommend-types.js";
 export { extractCapabilities } from "./capabilities.js";
 export { extractRequirements } from "./requirements.js";
-export { planOutcome, preferRecommendItem } from "./plan.js";
+export { buildProjectSummary, planOutcome, preferRecommendItem } from "./plan.js";
 export type {
   CapabilityDecision,
   PlanProjectSummary,
@@ -44,7 +44,14 @@ export type { InspectOptions } from "./inspect-skill.js";
 export { loadLocalSkills, loadSkillsLock } from "./load-local-skills.js";
 export { searchSkillsSh } from "./search-remote.js";
 export { parseSkillFrontmatter } from "./parse-skill-frontmatter.js";
-export { scoreSkillText, tokenizeQuery } from "./score-skill.js";
+export {
+  STOPWORDS,
+  nameTokens,
+  requirementRelevance,
+  scoreSkillText,
+  significantTokens,
+  tokenizeQuery,
+} from "./score-skill.js";
 export type { SearchReport, SkillHit, SkillSourceKind } from "./search-types.js";
 export type {
   InspectFinding,
@@ -58,3 +65,21 @@ export type {
   DoctorReport,
   ProjectAnalysis,
 } from "./types.js";
+export { formatBriefInstructions, loadBrief, parseBrief, sanitizeText } from "./brief.js";
+export type {
+  Brief,
+  BriefRequirement,
+  BriefResult,
+  BriefTaskType,
+  Exclusion,
+  ResearchFinding,
+  ResearchKind,
+} from "./brief-types.js";
+export {
+  coverageReason,
+  matchesExclusion,
+  preferHit,
+  scoreCandidates,
+  selectCapabilities,
+} from "./select.js";
+export type { Candidate, Selection } from "./select.js";

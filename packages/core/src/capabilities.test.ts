@@ -30,4 +30,23 @@ describe("extractCapabilities", () => {
   it("returns empty for blank outcome", () => {
     expect(extractCapabilities("   ")).toEqual([]);
   });
+
+  it.each([
+    ["add stripe", "payments"],
+    ["handle webhook", "webhooks"],
+    ["use prisma", "database / state"],
+    ["set up nextauth", "authentication"],
+    ["security audit", "security review"],
+    ["work offline", "offline / PWA"],
+  ])("maps %s to %s", (outcome, label) => {
+    expect(extractCapabilities(outcome)).toContain(label);
+  });
+
+  it("does not map event handlers to webhooks", () => {
+    expect(extractCapabilities("click event handler")).not.toContain("webhooks");
+  });
+
+  it("maps 'service worker' to offline / PWA", () => {
+    expect(extractCapabilities("add a service worker")).toContain("offline / PWA");
+  });
 });

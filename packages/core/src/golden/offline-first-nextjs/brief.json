@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "outcome": "build an offline-first Next.js app",
+  "taskType": "greenfield",
+  "requirements": [
+    {
+      "id": "nextjs",
+      "label": "Next.js app router",
+      "priority": "required",
+      "why": "Needed for Next.js app router.",
+      "searchTerms": [
+        "nextjs",
+        "router"
+      ]
+    },
+    {
+      "id": "offline",
+      "label": "Offline support",
+      "priority": "required",
+      "why": "Needed for Offline support.",
+      "searchTerms": [
+        "offline",
+        "service"
+      ]
+    },
+    {
+      "id": "local-persistence",
+      "label": "Local persistence",
+      "priority": "required",
+      "why": "Needed for Local persistence.",
+      "searchTerms": [
+        "indexeddb",
+        "dexie",
+        "persistence"
+      ]
+    },
+    {
+      "id": "sync",
+      "label": "Sync and conflict resolution",
+      "priority": "required",
+      "why": "Needed for Sync and conflict resolution.",
+      "searchTerms": [
+        "sync",
+        "conflicts"
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "label": "Docker",
+      "why": "Not deploying with containers."
+    }
+  ],
+  "research": []
+}

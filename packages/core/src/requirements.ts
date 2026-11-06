@@ -1,5 +1,6 @@
-import { extractCapabilities } from "./capabilities.js";
-import { tokenizeQuery } from "./score-skill.js";
+import { extractCapabilityMatches } from "./capabilities.js";
+import { significantTokens, tokenizeQuery } from "./score-skill.js";
+import type { Exclusion } from "./brief-types.js";
 import type { Requirement } from "./plan-types.js";
 import type { ProjectAnalysis } from "./types.js";
 
@@ -13,10 +14,22 @@ function hasFrontendStack(analysis: ProjectAnalysis): boolean {
   return analysis.frameworks.some((f) => FRONTEND_IDS.has(f.id));
 }
 
+const SMALL_UI_TOKENS = ["button", "style", "css", "copy", "typo", "label", "layout", "color", "ui"];
+
+const FRONTEND_KEEP = new Set(["frontend", "UI/UX", "testing"]);
+
+const DOMAIN_LABELS = new Set([
+  "payments",
+  "webhooks",
+  "database / state",
+  "authentication",
+  "security review",
+  "offline / PWA",
+]);
+
 function isSmallUiChange(tokens: string[]): boolean {
-  const small = ["add", "button", "tweak", "fix", "style", "css", "copy", "typo", "rename", "label"];
   const heavy = ["refactor", "architect", "rebuild", "migrate", "rewrite", "monorepo"];
-  const hasSmall = small.some((t) => tokens.includes(t));
+  const hasSmall = SMALL_UI_TOKENS.some((t) => tokens.includes(t));
   const hasHeavy = heavy.some((t) => tokens.includes(t));
   return hasSmall && !hasHeavy;
 }
@@ -35,6 +48,7 @@ function baseSkipHints(joinedCaps: string): string[] {
 export type RequirementsResult = {
   requirements: Requirement[];
   skipHints: string[];
+  exclusions: Exclusion[];
 };
 
 /**
@@ -47,11 +61,13 @@ export function extractRequirements(
 ): RequirementsResult {
   const trimmed = outcome.trim();
   if (!trimmed) {
-    return { requirements: [], skipHints: [] };
+    return { requirements: [], skipHints: [], exclusions: [] };
   }
 
   const tokens = tokenizeQuery(trimmed);
-  let labels = extractCapabilities(trimmed);
+  const matches = extractCapabilityMatches(trimmed);
+  let labels = matches.map((m) => m.label);
+  const matchedByLabel = new Map(matches.map((m) => [m.label, m.matched]));
   const frontend = hasFrontendStack(analysis);
   const smallUi = isSmallUiChange(tokens);
   const stackLabels = analysis.frameworks
@@ -59,13 +75,13 @@ export function extractRequirements(
     .map((f) => f.label);
 
   // Small UI outcomes often miss the frontend lexicon ("add a button") — normalize.
+  // Only the explicit domain labels survive next to "UI change"; the rest collapse.
   if (smallUi) {
-    const known = new Set(["frontend", "UI/UX", "testing"]);
-    const onlyFallback = labels.every((l) => !known.has(l));
-    if (onlyFallback) {
-      labels = ["UI change"];
-    } else if (!labels.includes("frontend") && !labels.includes("UI/UX")) {
-      labels = ["UI change", ...labels.filter((l) => l !== "testing")];
+    if (labels.includes("frontend") || labels.includes("UI/UX")) {
+      labels = labels.filter((l) => FRONTEND_KEEP.has(l) || DOMAIN_LABELS.has(l));
+    } else {
+      labels = ["UI change", ...labels.filter((l) => DOMAIN_LABELS.has(l))];
+      matchedByLabel.set("UI change", tokens.filter((t) => SMALL_UI_TOKENS.includes(t)));
     }
   }
 
@@ -85,18 +101,20 @@ export function extractRequirements(
       rationale = "Greenfield / no project markers — capability needed from scratch.";
     }
 
+    const terms = [...new Set([...significantTokens(label), ...(matchedByLabel.get(label) ?? [])])];
     requirements.push({
       id: slug(label) || label,
       label,
       rationale,
       priority,
+      searchTerms: terms.length ? terms : [label.toLowerCase()],
     });
   }
 
   const skipHints = baseSkipHints(labels.join(" ").toLowerCase());
 
   if (smallUi) {
-    skipHints.push("Graphify / full codebase graph — overkill for a small UI change");
+    skipHints.push("Graphify — full codebase graph is overkill for a small UI change");
     if (stackLabels.length) {
       skipHints.push(
         `new frontend framework — project already has ${stackLabels.join(", ")}`,
@@ -117,5 +135,10 @@ export function extractRequirements(
     return true;
   });
 
-  return { requirements, skipHints: unique };
+  const exclusions: Exclusion[] = unique.map((h) => {
+    const at = h.indexOf(" — ");
+    return at < 0 ? { label: h, why: "" } : { label: h.slice(0, at), why: h.slice(at + 3) };
+  });
+
+  return { requirements, skipHints: unique, exclusions };
 }

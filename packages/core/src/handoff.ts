@@ -1,18 +1,28 @@
 import { join } from "node:path";
 import { findProjectRoot } from "./find-project-root.js";
 import { isSkillInstalledLocally } from "./install.js";
+import type { Brief, Exclusion, ResearchFinding } from "./brief-types.js";
 import { planOutcome, preferRecommendItem } from "./plan.js";
+import type { Requirement } from "./plan-types.js";
 import type { RecommendItem } from "./recommend-types.js";
 import type { SearchOptions } from "./search.js";
 import type { HandoffReport, HandoffSkill } from "./handoff-types.js";
 
-export type BuildHandoffOptions = SearchOptions & { cwd?: string };
+export type BuildHandoffOptions = SearchOptions & { cwd?: string; brief?: Brief };
 
 export type HandoffItemInput = {
   capabilities?: string[];
   projectSummary?: string | null;
   recommended: RecommendItem[];
   optional: RecommendItem[];
+  /** Covered requirement labels per skill name (lowercased key). */
+  coversByName?: Map<string, string[]>;
+  basis?: "brief" | "heuristic";
+  research?: ResearchFinding[];
+  uncovered?: Requirement[];
+  excluded?: Exclusion[];
+  /** Extra notes (e.g. plan notes) merged into handoff notes, deduped. */
+  notes?: string[];
 };
 
 function summarizeForPrompt(project: {
@@ -38,6 +48,8 @@ function buildPrompt(
   outcome: string,
   skills: HandoffSkill[],
   projectSummary?: string | null,
+  research: ResearchFinding[] = [],
+  uncovered: Requirement[] = [],
 ): string {
   const recommended = skills.filter((s) => s.bucket === "recommended");
   const optional = skills.filter((s) => s.bucket === "optional");
@@ -45,6 +57,12 @@ function buildPrompt(
   const lines = [`Outcome: ${outcome}`];
   if (projectSummary) {
     lines.push("", `Project: ${projectSummary}`);
+  }
+  if (research.length) {
+    lines.push("", "Research:");
+    for (const r of research) {
+      lines.push(`- ${r.kind} · ${r.finding}${r.source ? ` (${r.source})` : ""}`);
+    }
   }
   lines.push("", "Use these skills (read each SKILL.md):");
 
@@ -70,6 +88,22 @@ function buildPrompt(
     }
   }
 
+  const withCovers = skills.filter((s) => s.covers.length);
+  if (withCovers.length) {
+    lines.push("");
+    lines.push("Why these skills:");
+    for (const s of withCovers) {
+      lines.push(`- ${s.name} → ${s.covers.join(", ")}`);
+    }
+  }
+
+  if (uncovered.length) {
+    lines.push("");
+    for (const u of uncovered) {
+      lines.push(`Uncovered (handle directly): ${u.label} — ${u.rationale}`);
+    }
+  }
+
   lines.push("");
   lines.push("Follow each skill's SKILL.md. Prefer verified/low-risk; do not invent skills.");
   return lines.join("\n");
@@ -90,18 +124,18 @@ function mapItems(
   bucket: "recommended" | "optional",
   cwd: string,
   projectRoot: string,
+  coversByName: Map<string, string[]>,
 ): HandoffSkill[] {
   return dedupeItems(items).map((item) => {
     const installed = isSkillInstalledLocally(item.hit.name, cwd);
-    const installs =
-      item.hit.installs != null ? ` · ${item.hit.installs.toLocaleString()} installs` : "";
     return {
       name: item.hit.name,
       source: item.hit.source || "(unknown)",
-      reason: `${item.reason}${installs}`,
+      reason: item.reason,
       installed,
       path: skillPath(projectRoot, item.hit.name),
       bucket,
+      covers: coversByName.get(item.hit.name.toLowerCase()) ?? [],
     };
   });
 }
@@ -125,6 +159,10 @@ export function composeHandoffFromItems(
       skills: [],
       checklist: [],
       prompt: "",
+      basis: "heuristic",
+      research: [],
+      uncovered: [],
+      excluded: [],
       notes: [...BASE_NOTES, 'Provide an outcome, e.g. ezy next "Build a SaaS dashboard".'],
     };
   }
@@ -135,9 +173,10 @@ export function composeHandoffFromItems(
   const optionalOnly = items.optional.filter(
     (o) => !items.recommended.some((r) => r.hit.name.toLowerCase() === o.hit.name.toLowerCase()),
   );
+  const coversByName = items.coversByName ?? new Map<string, string[]>();
   const skills = [
-    ...mapItems(items.recommended, "recommended", cwd, projectRoot),
-    ...mapItems(optionalOnly, "optional", cwd, projectRoot),
+    ...mapItems(items.recommended, "recommended", cwd, projectRoot, coversByName),
+    ...mapItems(optionalOnly, "optional", cwd, projectRoot, coversByName),
   ];
 
   const checklist: string[] = [];
@@ -155,8 +194,12 @@ export function composeHandoffFromItems(
     capabilities: items.capabilities ?? [],
     skills,
     checklist,
-    prompt: buildPrompt(trimmed, skills, items.projectSummary),
-    notes: [...BASE_NOTES],
+    prompt: buildPrompt(trimmed, skills, items.projectSummary, items.research ?? [], items.uncovered ?? []),
+    notes: [...new Set([...BASE_NOTES, ...(items.notes ?? [])])],
+    basis: items.basis ?? "heuristic",
+    research: items.research ?? [],
+    uncovered: items.uncovered ?? [],
+    excluded: items.excluded ?? [],
   };
 }
 
@@ -179,6 +222,12 @@ export async function buildHandoff(
       projectSummary: summarizeForPrompt(plan.project),
       recommended: plan.recommended,
       optional: plan.optional,
+      coversByName: new Map(plan.decisions.map((d) => [d.name.toLowerCase(), d.covers])),
+      basis: plan.basis,
+      research: plan.research,
+      uncovered: plan.uncovered,
+      excluded: plan.excluded,
+      notes: plan.notes,
     },
     { cwd },
   );

@@ -1,6 +1,11 @@
 #!/usr/bin/env node
+import { resolve } from "node:path";
 import {
   analyzeProject,
+  buildProjectSummary,
+  formatBriefInstructions,
+  loadBrief,
+  type Brief,
   buildHandoff,
   buildInstallPreview,
   composeHandoffFromItems,
@@ -22,7 +27,7 @@ import {
 } from "@make-it-ezy/core";
 import { confirmYesNo, selectWithArrows, type SelectChoice } from "./select.js";
 
-const HELP = `Make It Ezy — local-first AI capability discovery (Phase 5 planner)
+const HELP = `Make It Ezy — local-first AI capability discovery (Phase 6 agent brief + planner)
 
 Usage:
   ezy --help
@@ -31,10 +36,11 @@ Usage:
   ezy search <query> [--local-only]
   ezy inspect <skill> [--local-only]
   ezy recommend <query> [--local-only]
-  ezy plan "<outcome>" [--local-only]
-  ezy next "<outcome>" [--local-only]
+  ezy brief "<outcome>"
+  ezy plan "<outcome>" [--brief <path>] [--local-only]
+  ezy next "<outcome>" [--brief <path>] [--local-only]
   ezy install <skill> [--yes] [--source owner/repo]
-  ezy install --plan "<outcome>" [--yes]
+  ezy install --plan "<outcome>" [--brief <path>] [--yes]
   ezy install --query "<topic>" [--yes]
 
 Commands:
@@ -43,6 +49,7 @@ Commands:
   search      Discover skills (local + skills.sh). Never installs.
   inspect     Inspect a local skill (provenance, files, risk notes)
   recommend   Shortlist Recommended / Optional / Not needed. Never installs.
+  brief       Print instructions for the agent to research and write .ezy/brief.json
   plan        Outcome + project → requirements + minimum skill set. Never installs/runs.
   next        Paste-ready checklist + agent prompt (does not install/run).
   install     Suggest-then-go install into .agents/skills (arrow-pick on TTY).
@@ -51,6 +58,7 @@ Flags:
   --local-only   Skip skills.sh network lookups (search/inspect/recommend/plan/next)
   --yes, -y      Approve install without interactive confirm
   --source       Explicit skills source (owner/repo)
+  --brief        Use an agent-written brief (JSON) instead of heuristics
   --plan         Build candidate list from ezy plan
   --query        Build candidate list from ezy recommend
 
@@ -58,7 +66,51 @@ Flow: ANALYZE → REQUIREMENTS → DISCOVER → FILTER → PLAN → INSTALL → 
 Skill execution / outcome run is not in this slice.
 `;
 
+function extractBriefPath(args: string[]): { path?: string; missing: boolean; rest: string[] } {
+  let path: string | undefined;
+  let missing = false;
+  const rest: string[] = [];
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
+    if (a === undefined) continue;
+    if (a === "--brief") {
+      const next = args[i + 1];
+      if (next === undefined || next.startsWith("--")) {
+        missing = true;
+      } else {
+        path = next;
+        i++;
+      }
+      continue;
+    }
+    if (a.startsWith("--brief=")) {
+      const v = a.slice("--brief=".length);
+      if (v) path = v;
+      else missing = true;
+      continue;
+    }
+    rest.push(a);
+  }
+  return { ...(path !== undefined ? { path } : {}), missing, rest };
+}
+
+function reportMissingBriefPath(): void {
+  process.stderr.write("Invalid brief:\n- --brief requires a path\n");
+}
+
+/** Load a brief relative to cwd; prints errors and returns null on failure (exit 2). */
+function loadBriefOrFail(path: string): { brief: Brief; notes: string[] } | null {
+  const result = loadBrief(resolve(process.cwd(), path));
+  if (!result.ok) {
+    process.stderr.write("Invalid brief:\n" + result.errors.map((e) => `- ${e}`).join("\n") + "\n");
+    return null;
+  }
+  return { brief: result.brief, notes: result.notes };
+}
+
 type InstallArgs = {
+  brief?: Brief;
+  briefNotes?: string[];
   yes: boolean;
   source?: string;
   plan?: string;
@@ -137,7 +189,7 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
   if (!parsed.plan && !parsed.query) {
     process.stderr.write(
       'Usage: ezy install <skill> [--yes] [--source owner/repo]\n' +
-        '   or: ezy install --plan "<outcome>" [--yes]\n' +
+        '   or: ezy install --plan "<outcome>" [--brief <path>] [--yes]\n' +
         '   or: ezy install --query "<topic>" [--yes]\n',
     );
     return { skillName: "", code: 1 };
@@ -147,7 +199,7 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
   const sourceByName = new Map<string, string>();
 
   if (parsed.plan) {
-    const report = await planOutcome(parsed.plan);
+    const report = await planOutcome(parsed.plan, parsed.brief ? { brief: parsed.brief } : {});
     for (const item of [...report.recommended, ...report.optional]) {
       const label = `${item.hit.name} (${item.hit.sourceKind}) — ${item.reason}`;
       if (!choices.some((c) => c.value === item.hit.name)) {
@@ -201,7 +253,8 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
 
 async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
   if (parsed.plan) {
-    const handoff = await buildHandoff(parsed.plan);
+    const handoff = await buildHandoff(parsed.plan, parsed.brief ? { brief: parsed.brief } : {});
+    handoff.notes.push(...(parsed.briefNotes ?? []));
     process.stdout.write("\n" + formatHandoff(handoff) + "\n");
     return;
   }
@@ -215,8 +268,19 @@ async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
   }
 }
 
-async function handleInstall(args: string[]): Promise<number> {
-  const parsed = parseInstallArgs(args);
+async function handleInstall(argv: string[]): Promise<number> {
+  const { path: briefPath, missing, rest } = extractBriefPath(argv);
+  if (missing) {
+    reportMissingBriefPath();
+    return 2;
+  }
+  const parsed = parseInstallArgs(rest);
+  if (briefPath !== undefined) {
+    const loaded = loadBriefOrFail(briefPath);
+    if (!loaded) return 2;
+    parsed.brief = loaded.brief;
+    parsed.briefNotes = loaded.notes;
+  }
   const target = await resolveInstallTarget(parsed);
   if (target.code !== 0 || !target.skillName) {
     return target.code || 1;
@@ -344,33 +408,47 @@ async function main(argv: string[]): Promise<number> {
     return 0;
   }
 
-  if (command === "plan") {
-    const flags = new Set(args.slice(1).filter((a) => a.startsWith("--")));
-    const outcomeParts = args.slice(1).filter((a) => !a.startsWith("--"));
-    const outcome = outcomeParts.join(" ").trim();
+  if (command === "brief") {
+    const outcome = args.slice(1).filter((a) => !a.startsWith("--")).join(" ").trim();
     if (!outcome) {
-      process.stderr.write('Usage: ezy plan "<outcome>" [--local-only]\n');
+      process.stderr.write('Usage: ezy brief "<outcome>"\n');
       return 1;
     }
-    const report = await planOutcome(outcome, {
-      localOnly: flags.has("--local-only"),
-    });
-    process.stdout.write(formatPlan(report) + "\n");
+    process.stdout.write(formatBriefInstructions(outcome, buildProjectSummary(process.cwd())) + "\n");
     return 0;
   }
 
-  if (command === "next") {
-    const flags = new Set(args.slice(1).filter((a) => a.startsWith("--")));
-    const outcomeParts = args.slice(1).filter((a) => !a.startsWith("--"));
-    const outcome = outcomeParts.join(" ").trim();
+  if (command === "plan" || command === "next") {
+    const { path: briefPath, missing, rest } = extractBriefPath(args.slice(1));
+    if (missing) {
+      reportMissingBriefPath();
+      return 2;
+    }
+    const flags = new Set(rest.filter((a) => a.startsWith("--")));
+    const outcome = rest.filter((a) => !a.startsWith("--")).join(" ").trim();
     if (!outcome) {
-      process.stderr.write('Usage: ezy next "<outcome>" [--local-only]\n');
+      process.stderr.write(`Usage: ezy ${command} "<outcome>" [--brief <path>] [--local-only]\n`);
       return 1;
     }
-    const report = await buildHandoff(outcome, {
-      localOnly: flags.has("--local-only"),
-    });
-    process.stdout.write(formatHandoff(report) + "\n");
+    let brief: Brief | undefined;
+    let briefNotes: string[] = [];
+    if (briefPath !== undefined) {
+      const loaded = loadBriefOrFail(briefPath);
+      if (!loaded) return 2;
+      brief = loaded.brief;
+      briefNotes = loaded.notes;
+    }
+    const opts = { localOnly: flags.has("--local-only"), ...(brief ? { brief } : {}) };
+    if (command === "plan") {
+      const report = await planOutcome(outcome, opts);
+      if (briefPath !== undefined) report.briefPath = briefPath;
+      report.notes.push(...briefNotes);
+      process.stdout.write(formatPlan(report) + "\n");
+    } else {
+      const report = await buildHandoff(outcome, opts);
+      report.notes.push(...briefNotes);
+      process.stdout.write(formatHandoff(report) + "\n");
+    }
     return 0;
   }
 

@@ -1,3 +1,6 @@
+import type { Exclusion, ResearchFinding } from "./brief-types.js";
+import type { Requirement } from "./plan-types.js";
+
 export type HandoffSkill = {
   name: string;
   source: string;
@@ -5,6 +8,7 @@ export type HandoffSkill = {
   installed: boolean;
   path: string | null;
   bucket: "recommended" | "optional";
+  covers: string[];
 };
 
 export type HandoffReport = {
@@ -14,4 +18,8 @@ export type HandoffReport = {
   checklist: string[];
   prompt: string;
   notes: string[];
+  basis: "brief" | "heuristic";
+  research: ResearchFinding[];
+  uncovered: Requirement[];
+  excluded: Exclusion[];
 };

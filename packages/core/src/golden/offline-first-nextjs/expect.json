@@ -1,0 +1,33 @@
+{
+  "outcome": "build an offline-first Next.js app",
+  "requiredIds": [
+    "nextjs",
+    "offline",
+    "local-persistence",
+    "sync"
+  ],
+  "mustInclude": [
+    "nextjs-app-router",
+    "pwa-offline",
+    "indexeddb-dexie",
+    "sync-conflicts"
+  ],
+  "mustExclude": [
+    "build-game-changelog",
+    "plan-ui-change",
+    "docker-deploy"
+  ],
+  "uncovered": [],
+  "heuristic": {
+    "mustExclude": [
+      "build-game-changelog",
+      "plan-ui-change"
+    ]
+  },
+  "excluded": [
+    "docker-deploy"
+  ],
+  "why": {
+    "docker-deploy": "description matches nextjs+router (score 4), so only the Docker exclusion keeps it out"
+  }
+}

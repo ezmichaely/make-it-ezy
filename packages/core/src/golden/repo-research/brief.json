@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "outcome": "understand how auth works in this repo",
+  "taskType": "research",
+  "requirements": [
+    {
+      "id": "codebase-map",
+      "label": "Codebase map",
+      "priority": "required",
+      "why": "Needed for Codebase map.",
+      "searchTerms": [
+        "codebase",
+        "research"
+      ]
+    },
+    {
+      "id": "auth-flow",
+      "label": "Authentication flow",
+      "priority": "required",
+      "why": "Needed for Authentication flow.",
+      "searchTerms": [
+        "auth",
+        "flow",
+        "tracing"
+      ]
+    },
+    {
+      "id": "auth-hardening",
+      "label": "SAML and SCIM hardening",
+      "priority": "required",
+      "why": "Needed for SAML and SCIM hardening.",
+      "searchTerms": [
+        "saml",
+        "scim"
+      ]
+    }
+  ],
+  "exclusions": [],
+  "research": []
+}
