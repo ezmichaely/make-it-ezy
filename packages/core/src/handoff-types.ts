@@ -1,3 +1,5 @@
+import type { ResearchFinding } from "./brief-types.js";
+
 export type HandoffSkill = {
   name: string;
   source: string;
@@ -5,6 +7,7 @@ export type HandoffSkill = {
   installed: boolean;
   path: string | null;
   bucket: "recommended" | "optional";
+  covers: string[];
 };
 
 export type HandoffReport = {
@@ -14,4 +17,6 @@ export type HandoffReport = {
   checklist: string[];
   prompt: string;
   notes: string[];
+  basis: "brief" | "heuristic";
+  research: ResearchFinding[];
 };

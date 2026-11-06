@@ -234,6 +234,10 @@ export function formatRecommend(report: RecommendReport): string {
 export function formatPlan(report: PlanReport): string {
   const lines = ["Make It Ezy — plan", "", `Outcome: ${report.outcome || "(empty)"}`, ""];
 
+  lines.push(
+    `Basis: ${report.basis === "brief" ? "agent brief" : "heuristic fallback — run ezy brief for a researched plan"}`,
+  );
+  lines.push("");
   lines.push("Project");
   if (!report.project.projectRoot) {
     lines.push("(no project markers)");
@@ -249,7 +253,9 @@ export function formatPlan(report: PlanReport): string {
       lines.push(`Frameworks: ${report.project.frameworks.join(", ")}`);
     }
     if (report.project.localSkills.length) {
-      lines.push(`Local skills: ${report.project.localSkills.slice(0, 8).join(", ")}`);
+      const names = report.project.localSkills;
+      const more = names.length > 8 ? ", …" : "";
+      lines.push(`Local skills: ${names.length} (${names.slice(0, 8).join(", ")}${more})`);
     }
   }
 
@@ -267,6 +273,14 @@ export function formatPlan(report: PlanReport): string {
     for (const req of report.requirements) {
       const mark = req.priority === "optional" ? "optional" : "required";
       lines.push(`- [${mark}] ${req.label} — ${req.rationale}`);
+    }
+  }
+
+  if (report.research.length) {
+    lines.push("");
+    lines.push("Research");
+    for (const r of report.research) {
+      lines.push(`- ${r.kind} · ${r.finding}${r.source ? ` (${r.source})` : ""}`);
     }
   }
 
@@ -288,6 +302,22 @@ export function formatPlan(report: PlanReport): string {
   } else {
     for (const item of report.optional) {
       lines.push(`- ${item.hit.name} — ${item.reason}`);
+    }
+  }
+
+  if (report.excluded.length) {
+    lines.push("");
+    lines.push("Excluded");
+    for (const e of report.excluded) {
+      lines.push(`- ${e.label} — ${e.why}`);
+    }
+  }
+
+  if (report.uncovered.length) {
+    lines.push("");
+    lines.push("Uncovered");
+    for (const u of report.uncovered) {
+      lines.push(`- ${u.label} — no matching skill; agent handles directly`);
     }
   }
 
