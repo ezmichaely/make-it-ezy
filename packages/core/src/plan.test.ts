@@ -193,7 +193,8 @@ describe("planOutcome with a brief", () => {
     const names = [...report.recommended, ...report.optional].map((i) => i.hit.name);
     expect(names).toContain("stripe-billing");
     expect(names).not.toContain("build-game-changelog");
-    expect(report.notes).toContain("Basis: agent brief.");
+    expect(report.basis).toBe("brief");
+    expect(report.notes.some((n) => n.startsWith("Basis:"))).toBe(false);
   });
 
   it("falls back to heuristics without a brief", async () => {
@@ -204,7 +205,7 @@ describe("planOutcome with a brief", () => {
     expect(report.basis).toBe("heuristic");
     expect(report.taskType).toBeNull();
     expect(report.research).toEqual([]);
-    expect(report.notes.some((n) => n.includes("heuristic fallback"))).toBe(true);
+    expect(report.notes.some((n) => n.startsWith("Basis:"))).toBe(false);
   });
 
   it("keeps the CLI outcome when the brief outcome differs", async () => {

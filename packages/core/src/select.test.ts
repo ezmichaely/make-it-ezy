@@ -154,6 +154,12 @@ describe("matchesExclusion", () => {
   it("is false for labels without significant tokens", () => {
     expect(matchesExclusion(hit("docker"), { label: "the", why: "" })).toBe(false);
   });
+
+  it("matches on the skill name, not words in its description", () => {
+    const styles = hit("button-styles", { description: "Button styling patterns for any frontend framework" });
+    expect(matchesExclusion(styles, { label: "new frontend framework", why: "" })).toBe(false);
+    expect(matchesExclusion(hit("docker-deploy"), { label: "Docker", why: "" })).toBe(true);
+  });
 });
 
 describe("coverageReason", () => {

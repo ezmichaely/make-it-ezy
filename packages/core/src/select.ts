@@ -64,7 +64,7 @@ export function scoreCandidates(hits: SkillHit[], requirements: Requirement[]): 
 export function matchesExclusion(hit: SkillHit, exclusion: Exclusion): boolean {
   const wanted = significantTokens(exclusion.label);
   if (wanted.length === 0) return false;
-  const have = new Set([...nameTokens(hit.name), ...significantTokens(hit.description)]);
+  const have = new Set(nameTokens(hit.name));
   return wanted.every((t) => have.has(t));
 }
 
