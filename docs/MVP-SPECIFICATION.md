@@ -1,5 +1,7 @@
 # MVP Specification
 
+> **Scope:** coding tasks in your repo (JS/TS first, Python next). Other domains are later — see [`ROADMAP.md` → Scope](./ROADMAP.md).
+
 ## Phases 1–3 (done)
 
 `doctor` / `analyze` / `search` / `inspect` / `recommend` / `plan` — discover & plan only.  
@@ -38,6 +40,17 @@ pnpm ezy next "Add a small button to the settings page" --local-only
 Spec: `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`  
 Plan: `docs/superpowers/plans/2026-11-05-phase5-project-capability-planner.md`  
 Sequence: `docs/ROADMAP.md`
+
+## Phase 6 — Agent Brief + Decision Quality (done)
+
+```bash
+pnpm ezy brief "Add Stripe subscriptions"                     # instructions for the agent
+pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
+```
+
+- Host agent researches the outcome and writes `.ezy/brief.json` (requirements + search terms, exclusions, research)
+- Ezy validates it as untrusted data (invalid → exit 2), picks a requirement-covering minimum skill set, explains picks / exclusions / uncovered
+- Without a brief: heuristic fallback, labelled as such
 
 ## Later (not this MVP slice)
 

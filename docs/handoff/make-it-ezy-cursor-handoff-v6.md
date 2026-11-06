@@ -6,6 +6,10 @@
 > **Previous handoff:** v5\
 > **Status:** Architecture/research baseline --- do not treat this
 > document as a command to implement every referenced project.
+>
+> **Scope note (2026-11-06):** the product currently targets **coding
+> tasks in a repo**; the general, any-domain flow below is the vision.
+> See `docs/ROADMAP.md` → Scope.
 
 ------------------------------------------------------------------------
 

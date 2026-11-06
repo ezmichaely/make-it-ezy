@@ -5,7 +5,8 @@
 <h1 align="center">Make It Ezy</h1>
 
 <p align="center">
-  <em>Tell Ezy what you want. It figures out what you need.</em>
+  <em>Tell Ezy what you want. It figures out what you need.</em><br>
+  <sub>Starting with coding tasks in your repo.</sub>
 </p>
 
 <p align="center">
@@ -35,6 +36,10 @@ It is **not** another coding agent, skill manager, MCP manager, marketplace, or 
                 ▼
               WORK
 ```
+
+## Scope
+
+**General by design, specific by launch.** The vision is any goal in any domain. **Today, Ezy targets coding tasks in your repo** (JS/TS first, Python next); other domains — video, research, documents — come later, one at a time. Ezy decides what's needed; your agent (Claude Code, Cursor, Codex) does the work. Details: [`docs/ROADMAP.md#scope`](./docs/ROADMAP.md).
 
 ## What Ezy does
 

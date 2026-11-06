@@ -1,5 +1,27 @@
 # Roadmap
 
+## Scope (decided 2026-11-06) — canonical
+
+**General by design, specific by launch.**
+
+| | |
+|---|---|
+| **Vision** | Any goal, any domain: *"Tell Ezy what you want. It figures out what you need."* Ezy **decides** what's needed; the agent runtime (Claude Code / Cursor / Codex) **does** the work. |
+| **Today** | **Coding tasks in your repo.** JS/TS projects first, Python next. Skills from local `.agents/skills` and skills.sh. |
+| **Later** | Other domains (video, research, documents, engineering, …), added **one at a time** — not "everything at once". |
+
+Why: every domain needs its own project inspection, skill sources, golden cases and (Phase 8) verification. One domain at a time keeps each phase small and testable. The brief path (Phase 6) is already domain-neutral, so adding a domain does **not** require a redesign.
+
+### Adding a domain (checklist)
+
+1. **Golden cases first** — 2–4 realistic outcomes under `packages/core/src/golden/<domain>-<case>/` with must-include / must-exclude expectations. They show where Ezy breaks before any code changes.
+2. **Project inspection** — detection for that domain's project markers (today: `packages/core/src/detect-*.ts`).
+3. **Fallback lexicon** — entries in `packages/core/src/capabilities.ts` (the brief path needs none).
+4. **Skill sources** — confirm candidate skills exist (local or skills.sh); otherwise requirements show as *Uncovered*, which is honest but not useful.
+5. **Docs** — move the domain from *Later* to *Today* in this section and the README.
+
+**Folder structure:** unchanged today. When the **second** domain lands, group domain-specific inspection + lexicon under `packages/core/src/domains/<domain>/`; the brief, scoring, selection and output modules stay shared. Do not restructure before then.
+
 ## Phase 0 — Research (**done**)
 
 ## Phase 1 — Minimal CLI (**done**)
