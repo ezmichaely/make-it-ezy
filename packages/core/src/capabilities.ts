@@ -29,6 +29,30 @@ const LEXICON: LexiconEntry[] = [
     capabilities: ["research", "synthesis / report"],
   },
   {
+    match: ["stripe", "payment", "payments", "billing", "subscription", "subscriptions", "checkout", "invoice"],
+    capabilities: ["payments"],
+  },
+  {
+    match: ["webhook", "webhooks", "callback", "callbacks", "event", "events"],
+    capabilities: ["webhooks"],
+  },
+  {
+    match: ["database", "db", "prisma", "postgres", "sql", "migration", "schema"],
+    capabilities: ["database / state"],
+  },
+  {
+    match: ["auth", "login", "oauth", "session", "nextauth"],
+    capabilities: ["authentication"],
+  },
+  {
+    match: ["security", "permission", "authorization", "secret"],
+    capabilities: ["security review"],
+  },
+  {
+    match: ["offline", "pwa", "service-worker", "indexeddb", "sync"],
+    capabilities: ["offline / PWA"],
+  },
+  {
     match: ["code", "refactor", "debug", "review", "codebase", "repo"],
     capabilities: ["code understanding", "implementation", "verification / testing"],
   },
@@ -36,22 +60,29 @@ const LEXICON: LexiconEntry[] = [
 
 const MAX_CAPABILITIES = 5;
 
+export type CapabilityMatch = {
+  label: string;
+  /** Outcome tokens that activated the lexicon entry; empty for token fallbacks. */
+  matched: string[];
+};
+
 /**
- * Map a freeform outcome to 2–5 capability labels.
- * Falls back to token-derived labels when the lexicon misses.
+ * Map a freeform outcome to 2–5 capabilities, keeping the outcome tokens that
+ * activated each lexicon entry. Falls back to token-derived labels on a miss.
  */
-export function extractCapabilities(outcome: string): string[] {
+export function extractCapabilityMatches(outcome: string): CapabilityMatch[] {
   const tokens = tokenizeQuery(outcome);
   if (!tokens.length) {
     return [];
   }
 
   const tokenSet = new Set(tokens);
-  const found: string[] = [];
+  const found: CapabilityMatch[] = [];
   const seen = new Set<string>();
 
   for (const entry of LEXICON) {
-    if (!entry.match.some((m) => tokenSet.has(m))) {
+    const matched = entry.match.filter((m) => tokenSet.has(m));
+    if (!matched.length) {
       continue;
     }
     for (const cap of entry.capabilities) {
@@ -60,7 +91,7 @@ export function extractCapabilities(outcome: string): string[] {
         continue;
       }
       seen.add(key);
-      found.push(cap);
+      found.push({ label: cap, matched });
       if (found.length >= MAX_CAPABILITIES) {
         return found;
       }
@@ -74,5 +105,10 @@ export function extractCapabilities(outcome: string): string[] {
   // Fallback: use distinctive tokens as pseudo-capabilities (skip tiny glue).
   const skip = new Set(["the", "a", "an", "me", "my", "for", "with", "and", "or", "to", "of", "in", "on"]);
   const fallback = tokens.filter((t) => !skip.has(t) && t.length > 2).slice(0, 3);
-  return fallback.length ? fallback : tokens.slice(0, 2);
+  return (fallback.length ? fallback : tokens.slice(0, 2)).map((label) => ({ label, matched: [] }));
+}
+
+/** Map a freeform outcome to 2–5 capability labels. */
+export function extractCapabilities(outcome: string): string[] {
+  return extractCapabilityMatches(outcome).map((m) => m.label);
 }

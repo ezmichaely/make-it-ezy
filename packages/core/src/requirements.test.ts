@@ -81,4 +81,39 @@ describe("extractRequirements", () => {
     expect(requirements).toEqual([]);
     expect(skipHints).toEqual([]);
   });
+
+  const nextAnalysis = analysis({
+    frameworks: [
+      { id: "next", label: "Next.js", value: "14", confidence: "high", evidence: "package.json" },
+    ],
+  });
+
+  it("does not call Stripe subscriptions a UI change", () => {
+    const { requirements } = extractRequirements(
+      "add Stripe subscriptions to this Next.js app",
+      nextAnalysis,
+    );
+    const labels = requirements.map((r) => r.label);
+    expect(labels).not.toContain("UI change");
+    expect(labels).toContain("payments");
+    const pay = requirements.find((r) => r.label === "payments");
+    expect(pay?.searchTerms).toEqual(expect.arrayContaining(["payments", "stripe", "subscriptions"]));
+  });
+
+  it("every requirement has non-empty searchTerms", () => {
+    for (const o of ["add a button to the header", "xyzzy plugh", "Build me a website", "stripe webhook"]) {
+      const { requirements } = extractRequirements(o, nextAnalysis);
+      expect(requirements.length).toBeGreaterThan(0);
+      for (const r of requirements) expect(r.searchTerms?.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("derives a Graphify exclusion for small UI changes", () => {
+    const { exclusions, skipHints } = extractRequirements("add a button to the header", nextAnalysis);
+    expect(exclusions).toContainEqual({
+      label: "Graphify",
+      why: "full codebase graph is overkill for a small UI change",
+    });
+    expect(skipHints.length).toBe(exclusions.length);
+  });
 });
