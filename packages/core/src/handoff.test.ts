@@ -88,6 +88,7 @@ describe("buildHandoff", () => {
           source: "example/skills",
           decision: "install",
           reason: "strong match",
+          covers: ["discovery"],
         },
       ],
       recommended: [
@@ -110,6 +111,11 @@ describe("buildHandoff", () => {
       optional: [],
       notNeeded: [],
       notes: [],
+      basis: "heuristic",
+      taskType: null,
+      research: [],
+      uncovered: [],
+      excluded: [],
     };
     vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
 
