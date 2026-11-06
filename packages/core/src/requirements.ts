@@ -16,6 +16,8 @@ function hasFrontendStack(analysis: ProjectAnalysis): boolean {
 
 const SMALL_UI_TOKENS = ["button", "style", "css", "copy", "typo", "label", "layout", "color", "ui"];
 
+const FRONTEND_KEEP = new Set(["frontend", "UI/UX", "testing"]);
+
 const DOMAIN_LABELS = new Set([
   "payments",
   "webhooks",
@@ -26,9 +28,8 @@ const DOMAIN_LABELS = new Set([
 ]);
 
 function isSmallUiChange(tokens: string[]): boolean {
-  const small = SMALL_UI_TOKENS;
   const heavy = ["refactor", "architect", "rebuild", "migrate", "rewrite", "monorepo"];
-  const hasSmall = small.some((t) => tokens.includes(t));
+  const hasSmall = SMALL_UI_TOKENS.some((t) => tokens.includes(t));
   const hasHeavy = heavy.some((t) => tokens.includes(t));
   return hasSmall && !hasHeavy;
 }
@@ -75,9 +76,13 @@ export function extractRequirements(
 
   // Small UI outcomes often miss the frontend lexicon ("add a button") — normalize.
   // Only the explicit domain labels survive next to "UI change"; the rest collapse.
-  if (smallUi && !labels.includes("frontend") && !labels.includes("UI/UX")) {
-    labels = ["UI change", ...labels.filter((l) => DOMAIN_LABELS.has(l))];
-    matchedByLabel.set("UI change", tokens.filter((t) => SMALL_UI_TOKENS.includes(t)));
+  if (smallUi) {
+    if (labels.includes("frontend") || labels.includes("UI/UX")) {
+      labels = labels.filter((l) => FRONTEND_KEEP.has(l) || DOMAIN_LABELS.has(l));
+    } else {
+      labels = ["UI change", ...labels.filter((l) => DOMAIN_LABELS.has(l))];
+      matchedByLabel.set("UI change", tokens.filter((t) => SMALL_UI_TOKENS.includes(t)));
+    }
   }
 
   const requirements: Requirement[] = [];

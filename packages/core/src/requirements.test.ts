@@ -137,4 +137,14 @@ describe("extractRequirements", () => {
     const ui = requirements.find((r) => r.label === "UI change");
     expect(ui?.searchTerms).toContain("button");
   });
+
+  it("drops non-frontend labels on small UI changes in a dashboard repo", () => {
+    const labels = extractRequirements("fix the button style on the dashboard repo", nextAnalysis)
+      .requirements.map((r) => r.label);
+    expect(labels.length).toBeGreaterThan(0);
+    for (const l of labels) expect(["frontend", "UI/UX", "testing"]).toContain(l);
+    for (const bad of ["code understanding", "implementation", "verification / testing"]) {
+      expect(labels).not.toContain(bad);
+    }
+  });
 });
