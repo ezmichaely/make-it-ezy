@@ -42,4 +42,4 @@ CodeQL is GitHub-only; skip locally.
 - Push “to see if CI passes”
 - Reorder or skip steps to save time
 - Treat local lint alone as enough when `dist/` already exists from an old build — always use `pnpm check:ci`
-- Rely on gitignored `.agents/skills` for tests — CI is a clean checkout; use temp fixtures
+- Rely on vendored `.agents/skills` for tests — they change on every skills update; use temp fixtures
