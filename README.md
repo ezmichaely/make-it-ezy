@@ -144,7 +144,7 @@ Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 | Phase 8 — Outcome verification | Codex marketplace plugin |
 | Phase 9 — Web UI | Giant catalog / marketplace |
 
-Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)
+Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md)
 
 ## License
 

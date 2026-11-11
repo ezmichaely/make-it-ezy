@@ -1,10 +1,10 @@
 # Architecture
 
-Aligned to `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` after 2026-11-05 re-analysis.
+Aligned to `docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md` (canonical product intent). Phase status: `docs/ROADMAP.md`.
 
 ## What Make It Ezy is
 
-A **local-first capability discovery, decision, and orchestration layer**.
+A **local-first capability-intelligence and routing layer** — discover, evaluate, compose a minimum trusted set, hand off. Not a coding agent, marketplace, or multi-agent framework.
 
 **Scope today:** coding tasks in a repo (JS/TS first). The decision core — brief, scoring, selection, explanation — is domain-neutral; project inspection and the fallback lexicon are the domain-specific extension points. See [`../ROADMAP.md` → Scope](../ROADMAP.md).
 

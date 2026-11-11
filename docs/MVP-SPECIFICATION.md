@@ -65,6 +65,6 @@ pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
 ## Source of truth
 
 - Phase sequence: `docs/ROADMAP.md`
-- Product intent: `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` (see phase-map note at top)
+- Product intent: `docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`
 - Phase 4 designs: `docs/superpowers/specs/2026-11-05-phase4-*-design.md`
 - Phase 5 design: `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`

@@ -48,7 +48,7 @@
 - Modify: `docs/ROADMAP.md`
 - Modify: `docs/architecture/ARCHITECTURE.md` (Phase 5 row)
 - Modify: `docs/architecture/CAPABILITY-MODEL.md` (planner status line)
-- Optional note: `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` (Phase 5/6/7 pointer only — do not rewrite the whole handoff)
+- Optional note: `docs/handoff/MAKE-IT-EZY-HANDOFF-v3.md` (Phase 5/6/7 pointer only — do not rewrite the whole handoff)
 
 **Interfaces:**
 - Produces: agreed phase names for humans/agents

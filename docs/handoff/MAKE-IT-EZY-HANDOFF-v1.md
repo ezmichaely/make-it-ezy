@@ -1,8 +1,10 @@
 # Make It Ezy — Product Vision, Research Inventory & Engineering Handoff
 
+> **SUPERSEDED.** Use [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md). Historical snapshot only.
+
 **Repository:** `make-it-ezy`  
 **Project type:** Open-source, local-first AI capability discovery and orchestration layer  
-**Status:** Research and architecture definition; implementation scope must be validated before substantial coding  
+**Status:** Historical — superseded by the canonical handoff  
 **Primary audience:** Codex, Cursor, Claude Code, and future contributors
 
 ---

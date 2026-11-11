@@ -1,6 +1,6 @@
 # Research Inventory
 
-Re-analysis against `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` + live GitHub checks (2026-11-05).
+Re-analysis against earlier handoffs (v3 / master) + live GitHub checks (2026-11-05). Product intent now: `docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`.
 
 **Not approved product dependencies.** Decisions are provisional for Make It Ezy core vs optional task tooling.
 

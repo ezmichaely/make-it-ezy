@@ -1,5 +1,7 @@
 # Roadmap
 
+Locked phase sequence and shipped status. Product definition / trust rules: [`handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md).
+
 ## Scope (decided 2026-11-06) — canonical
 
 **General by design, specific by launch.**

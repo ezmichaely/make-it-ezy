@@ -1,5 +1,7 @@
 # MAKE IT EZY — CODEx / Cursor HANDOFF
 
+> **SUPERSEDED.** Use [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md). Historical snapshot only.
+
 ## 0. Executive direction
 
 Make It Ezy is an open-source developer tool intended to make the AI ecosystem easier to use.

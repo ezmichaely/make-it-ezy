@@ -1,6 +1,8 @@
 # MAKE IT EZY — Master Project Handoff
 
-> **Purpose:** This document is the source-of-truth handoff for building **Make It Ezy**, an open-source system intended to make the AI ecosystem easier to use.
+> **SUPERSEDED.** Use [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md). Historical snapshot only.
+>
+> **Purpose:** This document was a source-of-truth handoff for building **Make It Ezy**, an open-source system intended to make the AI ecosystem easier to use.
 >
 > **Core idea:** The user describes an outcome. Make It Ezy figures out the useful process, capabilities, skills, tools, workflows, and runtime needed to accomplish it.
 >

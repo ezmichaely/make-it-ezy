@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "purpose": "Staging list only — NOT Ezy's trusted runtime seed. Mentions mined from docs/convo/ (+ cross-checked against docs/research where a concrete URL already existed). Evaluate each yourself; promote good ones into a future trusted-skills seed.",
+  "statusValues": ["unverified", "verify_url", "good", "reject", "study_only"],
+  "generated": "2026-11-08",
+  "sources": [
+    "docs/convo/",
+    "docs/research/REFERENCE-DIRECTORY.md",
+    "docs/research/PROJECT-COMPARISON.md"
+  ],
+  "skills": [
+    {
+      "id": "find-skills",
+      "name": "find-skills",
+      "github": "https://github.com/vercel-labs/skills/tree/main/skills/find-skills",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "vercel-skills-cli",
+      "name": "Vercel Skills CLI",
+      "github": "https://github.com/vercel-labs/skills",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "awesome-agent-skills",
+      "name": "Awesome Agent Skills",
+      "github": "https://github.com/VoltAgent/awesome-agent-skills",
+      "kind": "catalog",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "anthropic-skills",
+      "name": "Anthropic Skills",
+      "github": "https://github.com/anthropics/skills",
+      "kind": "catalog",
+      "status": "unverified",
+      "notes": "NO_LICENSE on repo — caution for redistribution",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "matt-pocock-skills",
+      "name": "Matt Pocock Skills",
+      "github": "https://github.com/mattpocock/skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "prompt-master",
+      "name": "Prompt Master",
+      "github": "https://github.com/nidhinjs/prompt-master",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["3 - Multi_Agent_Group_Chat_Setup.md"]
+    },
+    {
+      "id": "ponytail",
+      "name": "Ponytail",
+      "github": "https://github.com/DietrichGebert/ponytail",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "2 - Compare_Agents_Skills_Tools.md"]
+    },
+    {
+      "id": "caveman",
+      "name": "Caveman",
+      "github": "https://github.com/JuliusBrussee/caveman",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "impeccable",
+      "name": "Impeccable",
+      "github": "https://github.com/pbakaus/impeccable",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "taste",
+      "name": "Taste",
+      "github": "https://github.com/Leonxlnx/taste-skill",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "name": "UI UX Pro Max",
+      "github": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "humanizer",
+      "name": "Humanizer",
+      "github": null,
+      "kind": "skill",
+      "status": "verify_url",
+      "notes": "Mentioned often; no stable owner/repo resolved in convo — find exact skills.sh / GitHub identity before evaluating",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "Recommend_Kindox_Or_Finance_Tracker.md"]
+    },
+    {
+      "id": "ppt-master",
+      "name": "PPT Master",
+      "github": null,
+      "kind": "skill",
+      "status": "verify_url",
+      "notes": "Convo only had search URLs — resolve exact repo",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "hyperframes",
+      "name": "HyperFrames",
+      "github": "https://github.com/heygen-com/hyperframes",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "graphify",
+      "name": "Graphify",
+      "github": "https://github.com/Graphify-Labs/graphify",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "Graphify_Plugin_Strategy.md"]
+    },
+    {
+      "id": "understand-anything",
+      "name": "Understand Anything",
+      "github": "https://github.com/Egonex-AI/Understand-Anything",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "rea",
+      "name": "REA (Reverse Engineer Anything)",
+      "github": "https://github.com/morluto/rea",
+      "kind": "tool",
+      "status": "unverified",
+      "notes": "High-sensitivity domain",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "claude-mem",
+      "name": "Claude-Mem",
+      "github": "https://github.com/thedotmack/claude-mem",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "last30days",
+      "name": "Last30Days",
+      "github": null,
+      "kind": "skill",
+      "status": "verify_url",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "career-ops",
+      "name": "Career Ops",
+      "github": null,
+      "kind": "skill",
+      "status": "verify_url",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "github": "https://github.com/obra/superpowers",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "notes": "Build methodology — candidate for STUDY/OPTIONAL, not hard runtime dep",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "2 - Compare_Agents_Skills_Tools.md"]
+    },
+    {
+      "id": "gsd",
+      "name": "GSD (Get Shit Done)",
+      "github": "https://github.com/gsd-build/get-shit-done",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "notes": "REFERENCE-DIRECTORY marked ARCHIVED as of 2026-11-05",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "bmad-method",
+      "name": "BMAD Method",
+      "github": "https://github.com/bmad-code-org/BMAD-METHOD",
+      "kind": "methodology",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "gstack",
+      "name": "gstack",
+      "github": "https://github.com/garrytan/gstack",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "karpathy-skills",
+      "name": "Karpathy Skills",
+      "github": null,
+      "kind": "philosophy",
+      "status": "verify_url",
+      "notes": "Often philosophy, not a single installable skill pack — confirm if a concrete repo exists",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "Recommend_Kindox_Or_Finance_Tracker.md"]
+    },
+    {
+      "id": "headroom",
+      "name": "Headroom",
+      "github": null,
+      "kind": "skill",
+      "status": "verify_url",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "marketing-skills",
+      "name": "Marketing Skills",
+      "github": null,
+      "kind": "skill-pack",
+      "status": "verify_url",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "diagram-design",
+      "name": "Diagram Design",
+      "github": "https://github.com/cathrynlavery/diagram-design",
+      "kind": "skill",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "scientific-agent-skills",
+      "name": "Scientific Agent Skills",
+      "github": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "anthropic-cybersecurity-skills",
+      "name": "Anthropic Cybersecurity Skills",
+      "github": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "notes": "Community project — not official Anthropic",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "agent-reach",
+      "name": "Agent Reach",
+      "github": "https://github.com/Panniantong/Agent-Reach",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "agent-browser",
+      "name": "Agent Browser",
+      "github": "https://github.com/vercel-labs/agent-browser",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "browser-use",
+      "name": "Browser Use",
+      "github": "https://github.com/browser-use/browser-use",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "strix",
+      "name": "Strix",
+      "github": "https://github.com/AiSecurityServices/strix",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "openviking",
+      "name": "OpenViking",
+      "github": "https://github.com/volcengine/OpenViking",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "agent-memory",
+      "name": "Agent Memory",
+      "github": "https://github.com/rohitg00/agentmemory",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "voicestudio",
+      "name": "VoiceStudio",
+      "github": "https://github.com/debpalash/voicestudio",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "openhiggsfield",
+      "name": "OpenHiggsfield",
+      "github": "https://github.com/thehiggsfieldai/OpenHiggsfield",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "cap",
+      "name": "Cap",
+      "github": "https://github.com/CapSoftware/Cap",
+      "kind": "app",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "openseo",
+      "name": "OpenSEO",
+      "github": "https://github.com/every-app/open-seo",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "agency-agents",
+      "name": "Agency Agents",
+      "github": "https://github.com/msitarzewski/agency-agents",
+      "kind": "catalog",
+      "status": "unverified",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md", "4 - Await_GitHub_Repo.md"]
+    },
+    {
+      "id": "agent-master-skills",
+      "name": "Agent Master Skills",
+      "github": "https://github.com/LeoYeAI/agent-master-skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "mentionedIn": ["4 - Await_GitHub_Repo.md"]
+    },
+    {
+      "id": "auto-empirical-research-skills",
+      "name": "Auto-Empirical Research Skills",
+      "github": "https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "mentionedIn": ["4 - Await_GitHub_Repo.md"]
+    },
+    {
+      "id": "500-ai-agents-projects",
+      "name": "500 AI Agents Projects",
+      "github": "https://github.com/ashishpatel26/500-AI-Agents-Projects",
+      "kind": "catalog",
+      "status": "study_only",
+      "notes": "Discovery index — do not install wholesale",
+      "mentionedIn": ["4 - Await_GitHub_Repo.md", "5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "awesome-harness-engineering",
+      "name": "Awesome Harness Engineering",
+      "github": "https://github.com/ai-boost/awesome-harness-engineering",
+      "kind": "catalog",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "ruflo",
+      "name": "Ruflo",
+      "github": "https://github.com/ruvnet/ruflo",
+      "kind": "runtime",
+      "status": "study_only",
+      "mentionedIn": ["4 - Await_GitHub_Repo.md"]
+    },
+    {
+      "id": "paperclip",
+      "name": "Paperclip AI",
+      "github": "https://github.com/paperclipai/paperclip",
+      "kind": "runtime",
+      "status": "study_only",
+      "notes": "Org/control plane — not an Ezy skill; architecture reference",
+      "mentionedIn": ["Paper_Clip_Concept.md"]
+    },
+    {
+      "id": "ecc",
+      "name": "ECC",
+      "github": "https://github.com/affaan-m/ECC",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "notes": "STUDY HIGH — do not install wholesale",
+      "mentionedIn": ["5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "claude-code-setup",
+      "name": "Claude Code Setup",
+      "github": "https://github.com/anthropics/claude-plugins-official",
+      "kind": "plugin",
+      "status": "unverified",
+      "notes": "Plugin path inside claude-plugins-official — closest competitor to Ezy planner; verify exact plugin folder",
+      "mentionedIn": ["5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "claude-security",
+      "name": "Claude Security",
+      "github": "https://github.com/anthropics/claude-plugins-official",
+      "kind": "plugin",
+      "status": "unverified",
+      "notes": "Plugin inside claude-plugins-official — verify exact path",
+      "mentionedIn": ["5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "integralist-agent-skills",
+      "name": "Integralist Agent Skills",
+      "github": "https://github.com/Integralist/agent-skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "mentionedIn": ["5 - Review_Repo_Resources.md", "3 - Multi_Agent_Group_Chat_Setup.md"]
+    },
+    {
+      "id": "practicalswan-agent-skills",
+      "name": "PracticalSwan Agent Skills",
+      "github": "https://github.com/PracticalSwan/agent-skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "mentionedIn": ["5 - Review_Repo_Resources.md", "3 - Multi_Agent_Group_Chat_Setup.md"]
+    },
+    {
+      "id": "kalaris-research-agent-skills",
+      "name": "Kalaris Research Agent Skills",
+      "github": "https://github.com/KalarisLabs/research-agent-skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "notes": "Large scientific catalog — selective install only",
+      "mentionedIn": ["5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "omniroute",
+      "name": "OmniRoute",
+      "github": "https://github.com/cheaper-inference/OmniRoute",
+      "kind": "infrastructure",
+      "status": "study_only",
+      "notes": "Router/aggregator — not a skill; optional later",
+      "mentionedIn": ["5 - Review_Repo_Resources.md", "4 - Await_GitHub_Repo.md"]
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "github": "https://github.com/NousResearch/hermes-agent",
+      "kind": "runtime",
+      "status": "study_only",
+      "mentionedIn": ["5 - Review_Repo_Resources.md"]
+    },
+    {
+      "id": "hyperresearch",
+      "name": "Hyperresearch",
+      "github": "https://github.com/jordan-gibbs/hyperresearch",
+      "kind": "tool",
+      "status": "unverified",
+      "mentionedIn": ["Claude_context_issues.md"]
+    },
+    {
+      "id": "flick",
+      "name": "Flick (Creatorberry)",
+      "github": null,
+      "kind": "skill",
+      "status": "verify_url",
+      "notes": "Discussed as Creatorberry flick skill — exact GitHub owner/repo not pinned in convo",
+      "mentionedIn": ["Claude_context_issues.md"]
+    },
+    {
+      "id": "langgraph",
+      "name": "LangGraph",
+      "github": "https://github.com/langchain-ai/langgraph",
+      "kind": "framework",
+      "status": "study_only",
+      "notes": "STUDY/IGNORE for Ezy core",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI",
+      "github": "https://github.com/crewAIInc/crewAI",
+      "kind": "framework",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "autogen",
+      "name": "AutoGen",
+      "github": "https://github.com/microsoft/autogen",
+      "kind": "framework",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "agno",
+      "name": "Agno",
+      "github": "https://github.com/agno-agi/agno",
+      "kind": "framework",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "llamaindex",
+      "name": "LlamaIndex",
+      "github": "https://github.com/run-llama/llama_index",
+      "kind": "framework",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "github": "https://github.com/anthropics/claude-code",
+      "kind": "runtime",
+      "status": "study_only",
+      "notes": "Host agent runtime — not a skill Ezy recommends into a project",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "codex",
+      "name": "Codex",
+      "github": "https://github.com/openai/codex",
+      "kind": "runtime",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "appflowy",
+      "name": "AppFlowy",
+      "github": "https://github.com/AppFlowy-IO/AppFlowy",
+      "kind": "app",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "openproject",
+      "name": "OpenProject",
+      "github": "https://github.com/opf/openproject",
+      "kind": "app",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "chatwoot",
+      "name": "Chatwoot",
+      "github": "https://github.com/chatwoot/chatwoot",
+      "kind": "app",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "cal-com",
+      "name": "Cal.com",
+      "github": "https://github.com/calcom/cal.com",
+      "kind": "app",
+      "status": "study_only",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "motion-sites",
+      "name": "Motion Sites",
+      "github": null,
+      "kind": "unknown",
+      "status": "verify_url",
+      "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
+    },
+    {
+      "id": "openwhisper",
+      "name": "OpenWhisper",
+      "github": null,
+      "kind": "unknown",
+      "status": "verify_url",
+      "mentionedIn": ["docs/research/REFERENCE-DIRECTORY.md (unresolved)"]
+    }
+  ]
+}
