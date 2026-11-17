@@ -64,7 +64,7 @@ make-it-ezy/
 ├── AGENTS.md              ← shared guide (Codex, Cursor); Claude via CLAUDE.md
 ├── CLAUDE.md              ← bridge lang to AGENTS.md
 ├── apps/cli/              ← `pnpm ezy …` — thin shell, formatting, TTY picker
-├── packages/core/         ← brain: analyze, search, plan, select, brief, install, handoff
+├── packages/core/         ← analyze, search, plan, select, brief, brain, install, handoff
 │   └── src/golden/        ← fake mini-projects + expected plans (regression tests)
 ├── skills/ezy/            ← Agent Skill #1 — “run Ezy, then keep coding”
 ├── .agents/skills/        ← vendored skills para sa dev sa Make It Ezy (gitignored content, lockfile tracked)
@@ -81,6 +81,7 @@ make-it-ezy/
 | `search`, `load-local-skills`, `search-remote` | Candidates gikan local `.agents/skills` ug skills.sh |
 | `score-skill`, `select` | Score + greedy minimum set; required coverage picks **local skills before remote** (audit #3 fixed 2026-11-17) |
 | `brief` | Parse/validate `.ezy/brief.json`, sanitize untrusted strings |
+| `brain` | `.ezy/brain.json` machine slice + optional `agent` slice (merge on plan) |
 | `plan`, `format` | Orchestrate planning output |
 | `install` | Gated spawn `npx skills add` |
 | `handoff` | Checklist + paste-ready agent prompt para `ezy next` |
@@ -116,24 +117,24 @@ Domain-neutral na ang brief/plan/select pipeline; ang JS/TS-specific part mostly
 
 ---
 
-## Na-ship na (Phase 0–6) vs wala pa
+## Na-ship na (Phase 0–7) vs wala pa
 
 **Na-ship:**
 
 - Discovery: `search`, `inspect`, `recommend`
 - Project-aware `plan` / `next` (Phase 5)
 - `ezy brief` + `--brief` (Phase 6)
+- **Phase 7:** `ezy brain` / `brain refresh` / `brain enrich`; `.ezy/brain.json` on plan/next
 - Gated `install` → `.agents/skills`
 - `skills/ezy` adapter
 
 **Wala pa / later:**
 
-- **Phase 7 — Project Brain** (persistent lightweight project knowledge)
 - **Phase 8 — Verification** (did the outcome actually happen?)
 - Deep skill verification, trusted-auto, Soft-C spawn, Web UI (Phase 9)
 - Full “trust score” pipeline nga naa sa product handoff vision — **partial** lang today (heuristics + brief + risk notes sa inspect)
 
-**Maintenance tranche (done 2026-11-17):** audit findings **1–4** fixed — sanitize skill metadata sa loaders, monorepo root detection, local-before-remote selection, YAML chomping. Open items **5–10** sa [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Sunod:** Phase 7 Project Brain.
+**Maintenance (optional):** audit findings **5–10** sa [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Sunod roadmap:** Phase 8 Verification.
 
 ---
 
@@ -154,7 +155,7 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 |-----------------|-----------|
 | Unsa buhaton sa agent karon? | [`AGENTS.md`](../../AGENTS.md) |
 | Unsa gyud ang product / trust rules? | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md) |
-| Phase 0–6 done na ba? Unsay sunod? | [`docs/ROADMAP.md`](../ROADMAP.md) |
+| Phase 0–7 done na ba? Unsay sunod? | [`docs/ROADMAP.md`](../ROADMAP.md) |
 | Exact CLI contract | [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) |
 | Short technical architecture | [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
 
@@ -168,4 +169,4 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 
 ---
 
-*Last aligned: 2026-11-17 — Phase 6 shipped; audit findings 1–4 fixed on `main` / PR #16.*
+*Last aligned: 2026-11-17 — Phase 7 Project Brain shipped; Phase 8 next.*

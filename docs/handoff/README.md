@@ -20,9 +20,9 @@ Older snapshots (historical only — do not reconstruct the product from these):
 | [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) | **Product definition / trust / architecture intent** |
 | [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** (wins on phase numbering) |
 | [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **2026-11-07 audit** — findings **1–4 fixed**; **5–10** optional follow-up |
-| [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 6) |
+| [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 7) |
 | [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) | Current layout |
-| [`../superpowers/specs/`](../superpowers/specs/) | Slice designs (Phases 4–6 done) |
+| [`../superpowers/specs/`](../superpowers/specs/) | Slice designs (Phases 4–7 done) |
 | [`../../skills/ezy/SKILL.md`](../../skills/ezy/SKILL.md) | Agent Skill adapter #1 |
 
 ## Scope (2026-11-06)
@@ -31,6 +31,6 @@ General by design, specific by launch: **coding tasks in your repo today**, othe
 
 ## Phase map (see ROADMAP)
 
-Phases 0–6 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 7 — Project Brain** is the next roadmap phase, followed by Phase 8 verification and Phase 9 Web UI. Findings **5–10** are optional maintenance, not blockers for Phase 7.
+Phases 0–7 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 8 — Verification** is the next roadmap phase, then Phase 9 Web UI. Findings **5–10** are optional maintenance.
 
-The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules deep verify after Project Brain. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.
+The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules outcome verification before Web UI. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.

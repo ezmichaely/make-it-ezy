@@ -30,7 +30,7 @@ Trust and user control are core requirements: discovery does not equal recommend
 
 ## Current path — 2026-11-17
 
-- Phases 0–6 are shipped. Audit findings **1–4** are fixed (see [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md)).
+- Phases 0–7 are shipped. Audit findings **1–4** are fixed (see [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md)).
 - **Phase 7 — Project Brain** is shipped (hybrid B: machine slice in CLI, optional `agent` slice via `ezy brain enrich`).
 - **Phase 8 — Verification** is the next roadmap phase.
 - Audit findings **5–10** are optional maintenance; tackle only with explicit approval.
@@ -53,6 +53,7 @@ If these conflict, use the topic-specific source above and update the conflictin
 
 ## How to work in this repository
 
+- **Phase shipped:** follow [`CONTRIBUTING.md`](CONTRIBUTING.md) → *Shipping a roadmap phase (doc sync)* in the same PR as the code (ROADMAP, MVP, HOW-IT-WORKS, ARCHITECTURE, README, handoff table, `skills/ezy`, plan/spec status).
 - Make the smallest complete change. Read relevant code, callers, and existing tests before editing.
 - For bug fixes, establish the behavior first and add focused regression coverage. Do not claim tests pass unless they were run.
 - For behavior or architecture changes, follow [`CONTRIBUTING.md`](CONTRIBUTING.md) and any explicit design-approval gate. State the rough cost before proposing a heavy workflow; the user values low-cost, focused work.

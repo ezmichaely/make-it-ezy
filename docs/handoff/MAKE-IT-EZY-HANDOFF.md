@@ -17,8 +17,8 @@ Early sections describe **product intent and target lifecycle**. They are easy t
 
 | Layer | Meaning | Examples |
 |--------|---------|----------|
-| **Shipped** | In the CLI / `skills/ezy` today (Phases **0–6**; audit **1–4**) | `doctor`, `analyze`, `search`, `inspect`, `recommend`, `brief`, `plan`, `next`, gated `install`; project-aware requirements; brief JSON or heuristic fallback; local + skills.sh discovery; handoff prompt; **no LLM inside Ezy** |
-| **Next** | Agreed roadmap work, not shipped yet | **Phase 7** — Project Brain (design before code); then Phase **8** verification, Phase **9** Web UI; optional audit findings **5–10** if approved |
+| **Shipped** | In the CLI / `skills/ezy` today (Phases **0–7**; audit **1–4**) | `doctor`, `analyze`, `search`, `inspect`, `recommend`, `brief`, `brain`, `plan`, `next`, gated `install`; project-aware requirements; brief JSON or heuristic fallback; `.ezy/brain.json` (machine on plan/next + optional agent slice); local + skills.sh discovery; handoff prompt; **no LLM inside Ezy** |
+| **Next** | Agreed roadmap work, not shipped yet | **Phase 8** — outcome verification; Phase **9** Web UI; optional audit findings **5–10** if approved |
 | **Future** | Vision / research; not the current implementation queue | Soft-C (spawn agents), deep skill verify, trusted-auto installs, Codex marketplace plugin, full in-product trust scoring, token-economy scoring in Ezy, multi-domain expansion beyond the coding launch slice |
 
 **How to read §1–3:** vision and problem framing (conceptually correct). **How to read diagrams** (e.g. evaluate security/trust as Ezy steps): target responsibility split — much of that work is **host agent + installed skills** today, not reimplemented in TypeScript.

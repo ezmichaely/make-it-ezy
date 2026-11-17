@@ -4,7 +4,7 @@
 **Purpose:** Give the next developer/agent a reliable, detailed continuation point after reviewing the conversation exports and current repository state.  
 **Status:** Analysis and handoff only; no product code changed and no tests were run.
 
-> **Current sequence updated 2026-11-17:** this historical analysis is not the agent entry point. Follow [`../../AGENTS.md`](../../AGENTS.md) and [`../ROADMAP.md`](../ROADMAP.md). Audit findings **1–4 are fixed** (PR #16); **Phase 7 — Project Brain** is next (design before code). Body text below may still describe the pre-fix maintenance tranche.
+> **Current sequence updated 2026-11-17:** this historical analysis is not the agent entry point. Follow [`../../AGENTS.md`](../../AGENTS.md) and [`../ROADMAP.md`](../ROADMAP.md). Audit findings **1–4 are fixed**; **Phase 7 — Project Brain** is shipped; **Phase 8 — Verification** is next. Body text below is frozen history and may be stale.
 
 ## Read this first
 

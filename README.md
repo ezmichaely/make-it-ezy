@@ -11,7 +11,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/license/ezmichaely/make-it-ezy?style=flat-square&color=111111" alt="MIT license">
-  <img src="https://img.shields.io/badge/status-phase%206%20shipped-111111?style=flat-square" alt="Phase 6 shipped">
+  <img src="https://img.shields.io/badge/status-phase%207%20shipped-111111?style=flat-square" alt="Phase 7 shipped">
   <img src="https://img.shields.io/badge/node-%3E%3D20-111111?style=flat-square" alt="Node 20+">
 </p>
 
@@ -138,13 +138,12 @@ Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 
 ## Status
 
-**Phase 6 shipped** — agent brief + decision quality (`ezy brief`, `--brief`), on top of project-aware `plan` / `next` (plus install + `/ezy`).
+**Phases 0–7 shipped** — project-aware `plan` / `next`, agent brief (`ezy brief`, `--brief`), Project Brain (`.ezy/brain.json`, `ezy brain`), gated install + `/ezy`.
 
 | Optional maintenance | Roadmap sequence | Deferred |
 |---|---|---|
-| Audit findings **5–10** only if approved. [Details](./docs/audits/2026-11-07-codebase-gaps.md) (1–4 fixed on PR #16) | **Phase 7 — Project Brain** (design before code) | Soft-C, deep verify, trusted-auto |
-|  | Phase 8 — Outcome verification | Codex marketplace plugin |
-|  | Phase 9 — Web UI | Giant catalog / marketplace |
+| Audit findings **5–10** only if approved. [Details](./docs/audits/2026-11-07-codebase-gaps.md) (1–4 fixed) | **Phase 8 — Outcome verification** | Soft-C, deep verify, trusted-auto |
+|  | Phase 9 — Web UI | Codex marketplace plugin, giant catalog |
 
 Shared agent guide: [`AGENTS.md`](./AGENTS.md) · Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md)
 

@@ -23,6 +23,30 @@ pnpm dev:ezy analyze
 
 Prefer thin, tested slices with a short design under `docs/superpowers/specs/` when behavior changes.
 
+## Shipping a roadmap phase (doc sync)
+
+When a phase moves from **in progress** to **shipped**, update **code + tests + adapter + docs in the same PR** (do not mark the phase done in only one file). Use this checklist; [`docs/ROADMAP.md`](./docs/ROADMAP.md) owns phase status.
+
+| Must update | What to change |
+|---|---|
+| [`docs/ROADMAP.md`](./docs/ROADMAP.md) | Phase section → **done**; “current work” → next phase |
+| [`docs/MVP-SPECIFICATION.md`](./docs/MVP-SPECIFICATION.md) | New CLI behavior section; remove from “Later” if listed |
+| [`docs/HOW-IT-WORKS.md`](./docs/HOW-IT-WORKS.md) | Workflow step if user-facing; **Shipped → next** paragraph |
+| [`docs/architecture/ARCHITECTURE.md`](./docs/architecture/ARCHITECTURE.md) | “Current implementation” + shipped table + command/module list |
+| [`ARCHITECTURE-EXPLAINED.md`](./docs/architecture/ARCHITECTURE-EXPLAINED.md) | Same alignment (if maintained) |
+| [`README.md`](./README.md) | Status / badge / quick-start if commands changed |
+| [`AGENTS.md`](./AGENTS.md) | **Current path** + `skills/ezy` dogfood notes if CLI changed |
+| [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md) | Host procedure for new commands (adapter #1) |
+| [`docs/handoff/README.md`](./docs/handoff/README.md) | Phase map + MVP pointer (“through phase N”) |
+| [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md) | **Shipped → next → future** table only (not full handoff rewrite) |
+| [`docs/superpowers/plans/…`](./docs/superpowers/plans/) | Check off implementation tasks for that phase |
+| [`docs/superpowers/specs/…`](./docs/superpowers/specs/) | Set spec **Status** to shipped when behavior matches |
+| [`docs/audits/2026-11-07-codebase-gaps.md`](./docs/audits/2026-11-07-codebase-gaps.md) | “Status as of …” line if it names next phase |
+
+Optional: golden cases, [`CAPABILITY-MODEL.md`](./docs/architecture/CAPABILITY-MODEL.md), audit doc only when the phase touches that topic. **Do not** rewrite historical handoff snapshots or `docs/convo/` unless explicitly asked.
+
+Run `pnpm check:ci` before push (see [`.agents/skills/ci-before-push/SKILL.md`](./.agents/skills/ci-before-push/SKILL.md)).
+
 ## Principles
 
 1. Simplify before adding complexity.

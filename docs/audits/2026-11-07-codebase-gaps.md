@@ -6,7 +6,7 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 2. Quality audit (`/ponytail-audit` of `packages/core/src` and `apps/cli/src`)
 3. Convo themes (from `docs/convo/`) vs code
 
-**Status as of 2026-11-17 (evening):** findings **1–4 are fixed** on branch `fix/audit-findings-1-4` with regression tests. `pnpm check:ci` reports **174 tests** green (not the original audit’s 171). Findings **5–10** remain open. Phase 7 — Project Brain — is the next roadmap phase.
+**Status as of 2026-11-17 (evening):** findings **1–4 are fixed** (merged). `pnpm check:ci` reports **180 tests** green (not the original audit’s 171). Findings **5–10** remain open. **Phase 7 — Project Brain** is shipped; **Phase 8 — Verification** is next on the roadmap.
 
 **Historical baseline (pre-fix):** the reproductions and 171-test result in sections below describe the tree **before** the maintenance tranche. Finding 3’s Stripe golden with network on was not re-run live after the fix; coverage is unit-tested in `select.test.ts`.
 
@@ -92,7 +92,7 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 | Theme | In the code? |
 |---|---|
 | **A. Token and cost awareness:** context and setup cost in scoring, a cost hint per skill, a rule for when to recommend Graphify | Nothing |
-| **B. Project Brain:** incremental updates, task-scoped slices, a ~1–3 KB budget, inspectable, no secrets | Nothing (Phase 7) |
+| **B. Project Brain:** incremental updates, task-scoped slices, a ~1–3 KB budget, inspectable, no secrets | **Shipped** (Phase 7 — `.ezy/brain.json`, hybrid B) |
 | **C. Intake:** "don't ask what you can discover", assumptions and unknowns in the brief | Briefs work; the heuristic fallback is poor (finding 7); no assumptions field |
 | **D. Trust:** content-hash pinning, no competing frameworks, security only when it matters | Risk notes in `inspect`; no hashing or competing-framework rule; security is added only via a brief (the heuristic Stripe plan has none) |
 | **E. Verification:** SUCCESS / PARTIAL / FAILED / NEEDS HUMAN REVIEW, plus a final report | Nothing (Phase 8) |
@@ -103,4 +103,4 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 - **`docs/convo/` is archived research only** (personal chat exports). It is tracked for history but must not drive product decisions—use [`AGENTS.md`](../../AGENTS.md), [`../ROADMAP.md`](../ROADMAP.md), and [`../handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md).
 - **Don't import numbers from the convos.** Skill counts, model prices, "OmniRoute 7B free tokens", install counts and Graphify Pro pricing are all wrong or unsourced.
 - **Closest competitor:** Anthropic's official `claude-code-setup` plugin (`anthropics/claude-plugins-official/plugins/claude-code-setup`). It is prompt-only, Claude Code only, set up once per project, and recommends hooks, MCP servers, subagents and skills. Ezy differs by working per task, researching first, explaining exclusions, working across hosts, and gating installs. `docs/research/REFERENCE-DIRECTORY.md:78` still marks it UNRESOLVED.
-- **Suggested order:** ~~fix 1–4~~ **done** → design **Phase 7 — Project Brain**. Themes A and B (token/context cost and persistent project knowledge) can inform that design; “token economy” is a design lens, not a phase rename or a change to the roadmap.
+- **Suggested order:** ~~fix 1–4~~ **done** → ~~Phase 7 Project Brain~~ **shipped** → **Phase 8 — Verification**. Themes A and B informed the Brain design; “token economy” remains a design lens, not a phase rename.

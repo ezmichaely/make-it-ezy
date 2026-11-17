@@ -40,13 +40,13 @@ This is the intended product flow. The shipped CLI covers only the slices listed
 
 Layer A tools are **not** mandatory runtime dependencies of the product.
 
-## Current implementation (Phase 6 shipped; Phase 7 is next roadmap phase)
+## Current implementation (Phases 0–7 shipped; Phase 8 is next)
 
-Audit findings **1–4** are resolved; optional **5–10** remain in [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Phase 7 — Project Brain** is the next roadmap phase (design before implementation). See [`../ROADMAP.md`](../ROADMAP.md).
+Audit findings **1–4** are resolved; optional **5–10** remain in [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Phase 8 — Verification** is the next roadmap phase. See [`../ROADMAP.md`](../ROADMAP.md).
 
 ```text
-apps/cli            doctor | analyze | search | inspect | recommend | brief | plan | next | install
-packages/core       detection, search, plan, install, handoff
+apps/cli            doctor | analyze | search | inspect | recommend | brief | brain | plan | next | install
+packages/core       detection, search, plan, brief, brain, install, handoff
 skills/ezy          Agent Skill adapter #1 (Claude /ezy, Cursor/Codex skills)
 catalog/            reserved (empty)
 docs/               research, architecture, specs, plans, handoff
@@ -68,8 +68,8 @@ No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/
 | Agent Skill (`skills/ezy`) | Shipped (adapter #1) |
 | Project Capability Planner (project-aware `plan`) | **Phase 5 — shipped** |
 | Agent Brief + decision quality (`ezy brief`) | **Phase 6 — shipped** |
-| Project Brain (lightweight persistent knowledge) | Phase 7 — next roadmap phase |
-| Outcome verification | Phase 8 |
+| Project Brain (`.ezy/brain.json`, `ezy brain` / enrich) | **Phase 7 — shipped** |
+| Outcome verification | Phase 8 — next |
 | Deep verify / trusted-auto | Later |
 | Soft-C / Codex marketplace plugin | Later |
 | Web UI | Phase 9 |

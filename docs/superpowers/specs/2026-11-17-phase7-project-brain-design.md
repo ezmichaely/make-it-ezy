@@ -1,6 +1,6 @@
 # Phase 7 — Project Brain design
 
-**Status:** approved for implementation (2026-11-17)  
+**Status:** shipped (2026-11-17; hybrid B on `feat/phase7-project-brain` / merge to `main`)  
 **Supersedes:** [`2026-11-06-phase6-project-brain-design.md`](./2026-11-06-phase6-project-brain-design.md)  
 **Approach:** **B — hybrid** (CLI machine slice + agent skill slice; mirrors `brief` pattern)
 

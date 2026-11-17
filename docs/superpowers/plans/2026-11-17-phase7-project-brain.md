@@ -22,9 +22,9 @@
 
 **Files:** `brain-types.ts`, `brain.ts`, `brain.test.ts`, export from `index.ts`
 
-- [ ] Types: `BrainFile`, `BrainAgentSlice`, limits (mirror brief caps).
-- [ ] `computeFingerprint`, `brainPath`, `buildBrainProject`, `buildLastPlanDigest`.
-- [ ] Tests: fingerprint + digest.
+- [x] Types: `BrainFile`, `BrainAgentSlice`, limits (mirror brief caps).
+- [x] `computeFingerprint`, `brainPath`, `buildBrainProject`, `buildLastPlanDigest`.
+- [x] Tests: fingerprint + digest.
 
 ---
 
@@ -32,10 +32,10 @@
 
 **Files:** `brain.ts`, `brain.test.ts`
 
-- [ ] `loadBrain` / `saveBrain` with 8 KB cap.
-- [ ] `mergeMachineSlice(existing, machine)` — preserve valid `agent`.
-- [ ] `formatBrainHuman` — show machine + agent sections separately.
-- [ ] Tests: round-trip; merge keeps `agent` when CLI updates `project`.
+- [x] `loadBrain` / `saveBrain` with 8 KB cap.
+- [x] `mergeMachineSlice(existing, machine)` — preserve valid `agent`.
+- [x] `formatBrainHuman` — show machine + agent sections separately.
+- [x] Tests: round-trip; merge keeps `agent` when CLI updates `project`.
 
 ---
 
@@ -43,9 +43,9 @@
 
 **Files:** `brain.ts`, `brain.test.ts`; reuse `sanitizeText` from `brief.ts` where possible
 
-- [ ] `parseAgentSlice(unknown): { ok; agent } | { ok: false; errors[] }` with JSON paths in errors.
-- [ ] `formatBrainEnrichInstructions(projectSummary?)` — schema, trust rules, Graphify optional paragraph (“if installed, query before large refactors”).
-- [ ] Tests: valid/invalid agent payloads; oversize lists rejected.
+- [x] `parseAgentSlice(unknown): { ok; agent } | { ok: false; errors[] }` with JSON paths in errors.
+- [x] `formatBrainEnrichInstructions(projectSummary?)` — schema, trust rules, Graphify optional paragraph (“if installed, query before large refactors”).
+- [x] Tests: valid/invalid agent payloads; oversize lists rejected.
 
 ---
 
@@ -53,8 +53,8 @@
 
 **Files:** `plan.ts`, `plan.test.ts`
 
-- [ ] `persistBrainAfterPlan(cwd, report)` using merge-save.
-- [ ] Integration test: brain file after plan; `agent` preserved across second plan.
+- [x] `persistBrainAfterPlan(cwd, report)` using merge-save.
+- [ ] Integration test: brain file after plan; `agent` preserved across second plan (`plan.test.ts`; merge covered in `brain.test.ts`).
 
 ---
 
@@ -62,10 +62,10 @@
 
 **Files:** `apps/cli/src/index.ts`, `cli.test.ts`
 
-- [ ] `ezy brain` — display or “no brain yet”.
-- [ ] `ezy brain refresh` — machine only + merge.
-- [ ] `ezy brain enrich` — print enrich instructions (like `brief`); include project summary when root found.
-- [ ] Help text updated.
+- [x] `ezy brain` — display or “no brain yet”.
+- [x] `ezy brain refresh` — machine only + merge.
+- [x] `ezy brain enrich` — print enrich instructions (like `brief`); include project summary when root found.
+- [x] Help text updated.
 
 ---
 
@@ -73,19 +73,19 @@
 
 **Files:** `skills/ezy/SKILL.md`
 
-- [ ] After handoff (or when re-entering project): `ezy brain` — if missing machine slice, run `plan` or `brain refresh` first.
-- [ ] Optional: `ezy brain enrich` → edit `.ezy/brain.json` `agent` only → cite sources; no secrets.
-- [ ] Graphify: use **only** if installed under `.agents/skills/graphify` and task is cross-cutting; do not require for small edits; align with plan exclusions.
-- [ ] Do not stop after brain commands; continue implementation.
+- [x] After handoff (or when re-entering project): `ezy brain` — if missing machine slice, run `plan` or `brain refresh` first.
+- [x] Optional: `ezy brain enrich` → edit `.ezy/brain.json` `agent` only → cite sources; no secrets.
+- [x] Graphify: use **only** if installed under `.agents/skills/graphify` and task is cross-cutting; do not require for small edits; align with plan exclusions.
+- [x] Do not stop after brain commands; continue implementation.
 
 ---
 
 ### Task 7: Docs
 
-**Files:** `MVP-SPECIFICATION.md`, `ARCHITECTURE.md`, `HOW-IT-WORKS.md`, `ROADMAP.md` when shipped
+**Files:** see [`CONTRIBUTING.md`](../../../CONTRIBUTING.md) → *Shipping a roadmap phase (doc sync)*
 
-- [ ] Document hybrid model and commands.
-- [ ] `pnpm check:ci`.
+- [x] Document hybrid model and commands (ROADMAP, MVP, HOW-IT-WORKS, ARCHITECTURE, README, handoff table, audit status).
+- [x] `pnpm check:ci`.
 
 ---
 
