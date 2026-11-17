@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { sanitizeText } from "./brief.js";
 import { parseSkillFrontmatter } from "./parse-skill-frontmatter.js";
 import type { SkillHit } from "./search-types.js";
 import { scoreSkillText, tokenizeQuery } from "./score-skill.js";
@@ -53,10 +54,10 @@ export function loadLocalSkills(projectRoot: string, query: string): SkillHit[] 
     }
 
     const fm = parseSkillFrontmatter(raw);
-    const name = fm.name ?? entry.name;
-    const description = fm.description ?? "";
+    const name = sanitizeText(fm.name ?? entry.name);
+    const description = sanitizeText(fm.description ?? "");
     const lockMeta = lock.skills?.[entry.name] ?? lock.skills?.[name];
-    const source = lockMeta?.source ?? "local";
+    const source = sanitizeText(lockMeta?.source ?? "local");
     const score = scoreSkillText(tokens, name, description);
     if (tokens.length > 0 && score <= 0) {
       continue;

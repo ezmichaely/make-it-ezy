@@ -42,7 +42,7 @@ Layer A tools are **not** mandatory runtime dependencies of the product.
 
 ## Current implementation (Phase 6 shipped; Phase 7 is next roadmap phase)
 
-The immediate proposed maintenance work before Phase 7 is audit findings 1–4 in [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). Revalidate and obtain approval before changing product code. See [`../ROADMAP.md`](../ROADMAP.md) for the shared current path.
+Audit findings **1–4** are resolved; optional **5–10** remain in [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Phase 7 — Project Brain** is the next roadmap phase (design before implementation). See [`../ROADMAP.md`](../ROADMAP.md).
 
 ```text
 apps/cli            doctor | analyze | search | inspect | recommend | brief | plan | next | install
@@ -68,7 +68,7 @@ No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/
 | Agent Skill (`skills/ezy`) | Shipped (adapter #1) |
 | Project Capability Planner (project-aware `plan`) | **Phase 5 — shipped** |
 | Agent Brief + decision quality (`ezy brief`) | **Phase 6 — shipped** |
-| Project Brain (lightweight persistent knowledge) | Phase 7 — next roadmap phase after audit findings 1–4 |
+| Project Brain (lightweight persistent knowledge) | Phase 7 — next roadmap phase |
 | Outcome verification | Phase 8 |
 | Deep verify / trusted-auto | Later |
 | Soft-C / Codex marketplace plugin | Later |

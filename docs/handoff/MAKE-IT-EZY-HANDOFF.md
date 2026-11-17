@@ -7,7 +7,21 @@
 
 > **Important:** This is the **only current** product handoff file (`MAKE-IT-EZY-HANDOFF.md`). It is more authoritative than raw historical conversations and older `MAKE-IT-EZY-HANDOFF-v*.md` snapshots. When they conflict, the latest explicit project decisions in this file, [`AGENTS.md`](../../AGENTS.md), and [`docs/ROADMAP.md`](../ROADMAP.md) win.
 >
-> **Precedence with other repo docs:** shared agent workflow/current work → root **`AGENTS.md`**. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → **`docs/ROADMAP.md`** (its phase numbers win over older numbering). Current CLI behavior → **`docs/MVP-SPECIFICATION.md`**. The immediate maintenance proposal is tracked in **`docs/audits/2026-11-07-codebase-gaps.md`** and does not change phase numbering.
+> **Precedence with other repo docs:** shared agent workflow/current work → root **`AGENTS.md`**. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → **`docs/ROADMAP.md`** (its phase numbers win over older numbering). Current CLI behavior → **`docs/MVP-SPECIFICATION.md`**. Audit **1–4** (fixed 2026-11-17) and open **5–10** → **`docs/audits/2026-11-07-codebase-gaps.md`** (does not change phase numbering).
+>
+> **Start here if this file feels too big:** [`docs/HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) — one page on who does what (Ezy = decide and hand off; host agent = run ecosystem skills and code). Diagrams below are product intent; intake, deep research, and heavy security are normally **skills the agent runs**, not code inside the CLI.
+
+### Shipped → next → future (read this before §1)
+
+Early sections describe **product intent and target lifecycle**. They are easy to read as if everything below is already in the binary. Use this table for **what exists today**; details live in [`MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) and [`ROADMAP.md`](../ROADMAP.md).
+
+| Layer | Meaning | Examples |
+|--------|---------|----------|
+| **Shipped** | In the CLI / `skills/ezy` today (Phases **0–6**; audit **1–4**) | `doctor`, `analyze`, `search`, `inspect`, `recommend`, `brief`, `plan`, `next`, gated `install`; project-aware requirements; brief JSON or heuristic fallback; local + skills.sh discovery; handoff prompt; **no LLM inside Ezy** |
+| **Next** | Agreed roadmap work, not shipped yet | **Phase 7** — Project Brain (design before code); then Phase **8** verification, Phase **9** Web UI; optional audit findings **5–10** if approved |
+| **Future** | Vision / research; not the current implementation queue | Soft-C (spawn agents), deep skill verify, trusted-auto installs, Codex marketplace plugin, full in-product trust scoring, token-economy scoring in Ezy, multi-domain expansion beyond the coding launch slice |
+
+**How to read §1–3:** vision and problem framing (conceptually correct). **How to read diagrams** (e.g. evaluate security/trust as Ezy steps): target responsibility split — much of that work is **host agent + installed skills** today, not reimplemented in TypeScript.
 
 ---
 
@@ -71,6 +85,8 @@ MAKE IT EZY
 The key product value is **not merely discovering skills**.
 
 The key product value is making a trustworthy decision about **which capabilities should be used for this specific job**.
+
+*This diagram is the **target** routing story. For what each box does **today**, see **Shipped → next → future** above and [`HOW-IT-WORKS.md`](../HOW-IT-WORKS.md).*
 
 ---
 
@@ -2444,7 +2460,7 @@ Trustworthy skill intelligence was a major architectural focus at that time. Cur
 
 # 72. Historical Build Priorities (superseded)
 
-An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus the proposed maintenance tranche in `docs/audits/2026-11-07-codebase-gaps.md`.
+An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus open audit items in `docs/audits/2026-11-07-codebase-gaps.md` (findings 1–4 resolved).
 
 ---
 

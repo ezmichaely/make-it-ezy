@@ -79,7 +79,7 @@ make-it-ezy/
 | `detect-*`, `find-project-root`, `analyze` | Project inspection — unsa nga stack, asa ang root |
 | `capabilities`, `requirements` | Gikan sa outcome (+ brief kung naa) → list sa capability IDs |
 | `search`, `load-local-skills`, `search-remote` | Candidates gikan local `.agents/skills` ug skills.sh |
-| `score-skill`, `select` | Score + greedy minimum set; prefer local on ties (known gaps sa audit) |
+| `score-skill`, `select` | Score + greedy minimum set; required coverage picks **local skills before remote** (audit #3 fixed 2026-11-17) |
 | `brief` | Parse/validate `.ezy/brief.json`, sanitize untrusted strings |
 | `plan`, `format` | Orchestrate planning output |
 | `install` | Gated spawn `npx skills add` |
@@ -133,7 +133,7 @@ Domain-neutral na ang brief/plan/select pipeline; ang JS/TS-specific part mostly
 - Deep skill verification, trusted-auto, Soft-C spawn, Web UI (Phase 9)
 - Full “trust score” pipeline nga naa sa product handoff vision — **partial** lang today (heuristics + brief + risk notes sa inspect)
 
-**Proposed maintenance before Phase 7:** audit findings 1–4 (`docs/audits/2026-11-07-codebase-gaps.md`) — sanitize terminal output, monorepo root, local-before-remote selection, YAML `|-` sa skill descriptions.
+**Maintenance tranche (done 2026-11-17):** audit findings **1–4** fixed — sanitize skill metadata sa loaders, monorepo root detection, local-before-remote selection, YAML chomping. Open items **5–10** sa [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Sunod:** Phase 7 Project Brain.
 
 ---
 
@@ -168,4 +168,4 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 
 ---
 
-*Last aligned: 2026-11-17 with Phase 6 shipped on branch `chore/conversation-analysis-handoff`.*
+*Last aligned: 2026-11-17 — Phase 6 shipped; audit findings 1–4 fixed on `main` / PR #16.*

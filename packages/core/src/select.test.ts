@@ -60,6 +60,20 @@ describe("selectCapabilities", () => {
     expect(sel.recommended.map((c) => c.hit.name)).toEqual(["stripe-webhook"]);
   });
 
+  it("covers required requirements from local skills before remote", () => {
+    const reqs = [req("pay", ["stripe"]), req("hooks", ["webhook"])];
+    const cands = scoreCandidates(
+      [
+        hit("stripe-webhooks", { installs: 599 }),
+        hit("stripe-integration", { sourceKind: "local", installedLocally: true }),
+        hit("webhook-handler", { sourceKind: "local", installedLocally: true }),
+      ],
+      reqs,
+    );
+    const sel = selectCapabilities(cands, reqs, []);
+    expect(sel.recommended.map((c) => c.hit.name).sort()).toEqual(["stripe-integration", "webhook-handler"]);
+  });
+
   it("breaks coverage ties toward local over popular remote", () => {
     const reqs = [req("pay", ["stripe"])];
     const cands = scoreCandidates(

@@ -78,15 +78,14 @@ function rank(a: Candidate, b: Candidate): number {
   );
 }
 
-function greedy(pool: Candidate[], ids: Set<string>, limit: number): Candidate[] {
+function greedy(pool: Candidate[], uncoveredIds: Set<string>, limit: number): Candidate[] {
   const picked: Candidate[] = [];
-  const remaining = new Set(ids);
   const rest = [...pool];
-  while (picked.length < limit && remaining.size > 0) {
+  while (picked.length < limit && uncoveredIds.size > 0) {
     let best: Candidate | undefined;
     let bestGain = 0;
     for (const c of rest) {
-      const gain = c.covers.filter((id) => remaining.has(id)).length;
+      const gain = c.covers.filter((id) => uncoveredIds.has(id)).length;
       if (gain === 0) continue;
       if (gain > bestGain || (gain === bestGain && best !== undefined && rank(c, best) < 0)) {
         best = c;
@@ -96,7 +95,7 @@ function greedy(pool: Candidate[], ids: Set<string>, limit: number): Candidate[]
     if (!best) break;
     picked.push(best);
     rest.splice(rest.indexOf(best), 1);
-    for (const id of best.covers) remaining.delete(id);
+    for (const id of best.covers) uncoveredIds.delete(id);
   }
   return picked;
 }
@@ -128,8 +127,20 @@ export function selectCapabilities(
   }
 
   const requiredIds = new Set(requirements.filter((r) => r.priority === "required").map((r) => r.id));
+  const isLocal = (c: Candidate): boolean =>
+    c.hit.installedLocally || c.hit.sourceKind === "local";
+  const localPool = pool.filter(isLocal);
+  const remotePool = pool.filter((c) => !isLocal(c));
+  const remainingRequired = new Set(requiredIds);
   // R5b: required-covering picks all go to recommended; the soft cap of 4 stretches up to the total cap.
-  const recommended = greedy(pool, requiredIds, TOTAL_CAP);
+  const fromLocal = greedy(localPool, remainingRequired, TOTAL_CAP);
+  const pickedLocal = new Set(fromLocal);
+  const fromRemote = greedy(
+    remotePool.filter((c) => !pickedLocal.has(c)),
+    remainingRequired,
+    TOTAL_CAP - fromLocal.length,
+  );
+  const recommended = [...fromLocal, ...fromRemote];
   const coveredByRec = new Set(recommended.flatMap((c) => c.covers));
 
   const optionalIds = new Set(

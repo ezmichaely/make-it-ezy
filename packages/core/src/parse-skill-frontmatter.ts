@@ -33,7 +33,7 @@ export function parseSkillFrontmatter(raw: string): SkillFrontmatter {
     const descMatch = /^description:\s*(.*)$/.exec(line);
     if (descMatch) {
       const rest = (descMatch[1] ?? "").trim();
-      if (rest === ">" || rest === "|") {
+      if (/^[>|][-+]?$/.test(rest)) {
         const collected: string[] = [];
         for (let j = i + 1; j < lines.length; j++) {
           const next = lines[j] ?? "";

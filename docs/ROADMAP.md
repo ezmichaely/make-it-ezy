@@ -4,7 +4,7 @@ Locked phase sequence and shipped status. Product definition / trust rules: [`ha
 
 ## Current work (2026-11-17)
 
-Phases 0–6 are shipped. Before starting Phase 7, the proposed immediate work is to revalidate and resolve findings 1–4 in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md). That audit requires a short design and user approval before product-code changes. Its old test results are historical and must not be reported as current. Once this bounded maintenance tranche is complete, Phase 7 — Project Brain — is the next roadmap phase.
+Phases 0–6 are shipped. Audit findings **1–4** in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md) are **resolved** (sanitized skill output, monorepo root detection, local-first selection, YAML chomping). **Phase 7 — Project Brain** is the next roadmap phase; resolve open design questions before implementation. Audit findings **5–10** are optional follow-up maintenance, not blockers for Phase 7.
 
 Shared instructions for Codex, Cursor, and Claude Code: [`../AGENTS.md`](../AGENTS.md). The roadmap remains authoritative for phase order; the audit does not renumber or replace phases.
 
