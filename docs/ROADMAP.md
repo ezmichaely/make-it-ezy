@@ -4,7 +4,7 @@ Locked phase sequence and shipped status. Product definition / trust rules: [`ha
 
 ## Current work (2026-11-17)
 
-Phases 0–6 are shipped. Audit findings **1–4** in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md) are **resolved** (sanitized skill output, monorepo root detection, local-first selection, YAML chomping). **Phase 7 — Project Brain** is the next roadmap phase; resolve open design questions before implementation. Audit findings **5–10** are optional follow-up maintenance, not blockers for Phase 7.
+Phases 0–7 are shipped. Audit findings **1–4** in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md) are **resolved** (sanitized skill output, monorepo root detection, local-first selection, YAML chomping). **Phase 8 — Verification** is the next roadmap phase. Audit findings **5–10** are optional follow-up maintenance.
 
 Shared instructions for Codex, Cursor, and Claude Code: [`../AGENTS.md`](../AGENTS.md). The roadmap remains authoritative for phase order; the audit does not renumber or replace phases.
 
@@ -71,12 +71,13 @@ Why: every domain needs its own project inspection, skill sources, golden cases 
 - `plan` / `next` / `install --plan` accept `--brief`; invalid briefs exit 2
 - Requirement-covering minimum set with explanations; heuristic fallback without a brief
 
-## Phase 7 — Project Brain (**later**)
+## Phase 7 — Project Brain (**done**)
 
-> Spec (deferred): `docs/superpowers/specs/2026-11-06-phase6-project-brain-design.md`
+> Spec: [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](./superpowers/specs/2026-11-17-phase7-project-brain-design.md)  
+> Plan: [`docs/superpowers/plans/2026-11-17-phase7-project-brain.md`](./superpowers/plans/2026-11-17-phase7-project-brain.md)
 
-- Lightweight persistent project knowledge (not a repo dump)
-- Avoid repeated rediscovery across agent sessions
+- `ezy brain` / `brain refresh` / `brain enrich`; `.ezy/brain.json` machine slice on plan/next
+- Optional host-maintained `agent` slice (decisions, conventions, rejected skills)
 
 ## Phase 8 — Verification (**later**)
 

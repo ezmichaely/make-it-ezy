@@ -1,6 +1,6 @@
 # Phase 6 — Project Brain design
 
-**Status:** deferred to Phase 7 — Phase 6 is now Agent Brief + Decision Quality (`2026-11-06-phase6-agent-brief-design.md`)  
+**Status:** superseded — use [`2026-11-17-phase7-project-brain-design.md`](./2026-11-17-phase7-project-brain-design.md) (Phase 6 shipped as Agent Brief; this file kept for history).  
 **Date:** 2026-11-06  
 **Approach:** A — silent cache (`.ezy/brain.json`) refreshed by `plan` / `next`
 

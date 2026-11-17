@@ -1,4 +1,5 @@
 import { analyzeProject } from "./analyze.js";
+import { persistBrainAfterPlan } from "./brain.js";
 import { loadLocalSkills } from "./load-local-skills.js";
 import type { Brief, Exclusion } from "./brief-types.js";
 import { extractRequirements } from "./requirements.js";
@@ -177,7 +178,7 @@ export async function planOutcome(
     );
   }
 
-  return {
+  const report: PlanReport = {
     outcome: trimmed,
     capabilities: [
       ...requirements.filter((r) => r.priority === "required").map((r) => r.label),
@@ -196,4 +197,8 @@ export async function planOutcome(
     uncovered: selection.uncovered,
     excluded: selection.excluded,
   };
+  const brain = persistBrainAfterPlan(cwd, report);
+  if (brain.warning) notes.push(brain.warning);
+  else if (brain.note) notes.push(brain.note);
+  return report;
 }

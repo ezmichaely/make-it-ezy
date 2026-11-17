@@ -9,7 +9,10 @@ import {
   buildHandoff,
   buildInstallPreview,
   composeHandoffFromItems,
+  findProjectRoot,
   formatAnalysis,
+  formatBrainEnrichInstructions,
+  formatBrainHuman,
   formatDoctor,
   formatHandoff,
   formatInspect,
@@ -19,7 +22,9 @@ import {
   formatRecommend,
   formatSearch,
   inspectSkill,
+  loadBrainFile,
   planOutcome,
+  refreshBrainProject,
   recommendSkills,
   runDoctor,
   runInstall,
@@ -27,7 +32,7 @@ import {
 } from "@make-it-ezy/core";
 import { confirmYesNo, selectWithArrows, type SelectChoice } from "./select.js";
 
-const HELP = `Make It Ezy — local-first AI capability discovery (Phase 6 agent brief + planner)
+const HELP = `Make It Ezy — local-first AI capability discovery (Phase 6 brief + Phase 7 project brain)
 
 Usage:
   ezy --help
@@ -37,6 +42,9 @@ Usage:
   ezy inspect <skill> [--local-only]
   ezy recommend <query> [--local-only]
   ezy brief "<outcome>"
+  ezy brain
+  ezy brain refresh
+  ezy brain enrich
   ezy plan "<outcome>" [--brief <path>] [--local-only]
   ezy next "<outcome>" [--brief <path>] [--local-only]
   ezy install <skill> [--yes] [--source owner/repo]
@@ -50,6 +58,9 @@ Commands:
   inspect     Inspect a local skill (provenance, files, risk notes)
   recommend   Shortlist Recommended / Optional / Not needed. Never installs.
   brief       Print instructions for the agent to research and write .ezy/brief.json
+  brain       Show .ezy/brain.json (machine slice + optional agent slice)
+  brain refresh  Rewrite machine slice from analyze (preserves valid agent slice)
+  brain enrich   Print instructions for the agent to maintain brain agent slice
   plan        Outcome + project → requirements + minimum skill set. Never installs/runs.
   next        Paste-ready checklist + agent prompt (does not install/run).
   install     Suggest-then-go install into .agents/skills (arrow-pick on TTY).
@@ -415,6 +426,40 @@ async function main(argv: string[]): Promise<number> {
       return 1;
     }
     process.stdout.write(formatBriefInstructions(outcome, buildProjectSummary(process.cwd())) + "\n");
+    return 0;
+  }
+
+  if (command === "brain") {
+    const sub = args[1];
+    const cwd = process.cwd();
+    if (sub === "refresh") {
+      const r = refreshBrainProject(cwd);
+      if (!r.ok) {
+        process.stderr.write(`brain refresh failed: ${r.reason}\n`);
+        return 1;
+      }
+      process.stdout.write(formatBrainHuman(r.brain) + "\n");
+      return 0;
+    }
+    if (sub === "enrich") {
+      process.stdout.write(formatBrainEnrichInstructions(buildProjectSummary(cwd)) + "\n");
+      return 0;
+    }
+    if (sub !== undefined && sub !== "") {
+      process.stderr.write("Usage: ezy brain | ezy brain refresh | ezy brain enrich\n");
+      return 1;
+    }
+    const root = findProjectRoot(cwd);
+    if (!root) {
+      process.stderr.write("No project root found.\n");
+      return 1;
+    }
+    const loaded = loadBrainFile(root);
+    if (!loaded.ok) {
+      process.stderr.write(`No brain file (${loaded.reason}). Run: ezy brain refresh\n`);
+      return 1;
+    }
+    process.stdout.write(formatBrainHuman(loaded.brain) + "\n");
     return 0;
   }
 

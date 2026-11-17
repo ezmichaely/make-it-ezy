@@ -2,7 +2,7 @@
 
 Read this before the long handoff. It states who does what in one workflow.
 
-**Shipped / next / future:** [`ROADMAP.md`](./ROADMAP.md) and [`MVP-SPECIFICATION.md`](./MVP-SPECIFICATION.md) own **shipped** CLI behavior. **Next:** Phase 7 Project Brain (design first), then verification and Web UI. **Future:** trust automation, Soft-C, and other items called out as deferred in the roadmap. The long [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md) mixes intent with that timeline — it opens with a **Shipped → next → future** table; treat everything after that as product direction unless the MVP spec says otherwise.
+**Shipped / next / future:** [`ROADMAP.md`](./ROADMAP.md) and [`MVP-SPECIFICATION.md`](./MVP-SPECIFICATION.md) own **shipped** CLI behavior. **Next:** Phase 8 verification, then Web UI. Phase 7 Project Brain is shipped (`.ezy/brain.json`). **Future:** trust automation, Soft-C, and other items called out as deferred in the roadmap. The long [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md) mixes intent with that timeline — it opens with a **Shipped → next → future** table; treat everything after that as product direction unless the MVP spec says otherwise.
 
 ## One sentence
 
@@ -25,6 +25,7 @@ Read this before the long handoff. It states who does what in one workflow.
 3. ezy next "…" [--brief .ezy/brief.json]  →  plan + skills + checklist + paste-ready prompt
 4. You approve any ezy install … commands (gated).
 5. The agent reads recommended SKILL.md files, runs any extra skills the situation needs, implements in the repo.
+6. Optional: `ezy brain enrich`  →  agent maintains `agent` slice in `.ezy/brain.json` for the next session.
 ```
 
 Agent adapter: [`skills/ezy/SKILL.md`](../skills/ezy/SKILL.md) — the host must not stop after step 3.

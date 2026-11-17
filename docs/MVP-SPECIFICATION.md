@@ -52,11 +52,24 @@ pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
 - Ezy validates it as untrusted data (invalid → exit 2), picks a requirement-covering minimum skill set, explains picks / exclusions / uncovered
 - Without a brief: heuristic fallback, labelled as such
 
+## Phase 7 — Project Brain (done)
+
+```bash
+pnpm ezy brain
+pnpm ezy brain refresh
+pnpm ezy brain enrich
+```
+
+- `.ezy/brain.json` — machine slice (analyze + last plan) written by Ezy on `plan` / `next`; optional `agent` slice maintained by the host after `brain enrich`
+- Does not drive planning in v1 (brief still owns requirements for `--brief`)
+
+Spec: [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](./superpowers/specs/2026-11-17-phase7-project-brain-design.md)  
+Plan: [`docs/superpowers/plans/2026-11-17-phase7-project-brain.md`](./superpowers/plans/2026-11-17-phase7-project-brain.md)
+
 ## Later (not this MVP slice)
 
 | Phase | Work |
 |---|---|
-| 7 | Project Brain (lightweight persistent knowledge) |
 | 8 | Outcome verification |
 | 9 | Web UI |
 | — | Soft-C, deep skill verify, trusted-auto, Codex marketplace plugin |

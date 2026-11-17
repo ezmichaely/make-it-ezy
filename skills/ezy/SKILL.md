@@ -45,6 +45,12 @@ Always run commands with **cwd = the project the user wants changed** (not the M
    - Prefer verified/low-risk behavior; do not invent skill names
 8. **Anti-stop:** After steps 2–6, continue into step 7 in the same effort. Never report “CLI only printed a handoff” as done.
 
+## Project brain (Phase 7, optional)
+
+- **Machine slice:** `ezy plan` / `ezy next` refresh `.ezy/brain.json` (project summary + last plan digest). Read with `ezy brain`.
+- **Agent slice:** after meaningful work, run `ezy brain enrich`, update only the `agent` block (decisions, conventions, rejected skills; optional `graphify` hint). Run `ezy brain` to verify.
+- Brain does **not** replace `brief.json` for planning; it is project-scoped memory across sessions.
+
 ## Empty / new folders
 
 Proceed even if there is no `package.json`. Skills install into cwd `.agents/skills/`. Optionally note that adding a minimal `package.json` helps project detection — do not block on it.

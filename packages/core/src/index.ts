@@ -65,6 +65,27 @@ export type {
   DoctorReport,
   ProjectAnalysis,
 } from "./types.js";
+export {
+  brainPath,
+  buildLastPlanDigest,
+  computeFingerprint,
+  formatBrainEnrichInstructions,
+  formatBrainHuman,
+  isBrainStale,
+  loadBrainFile,
+  mergeBrainMachine,
+  parseAgentSlice,
+  persistBrainAfterPlan,
+  refreshBrainProject,
+  saveBrainFile,
+} from "./brain.js";
+export type {
+  AgentSliceResult,
+  BrainAgentSlice,
+  BrainFile,
+  BrainLastPlan,
+  BrainProject,
+} from "./brain-types.js";
 export { formatBriefInstructions, loadBrief, parseBrief, sanitizeText } from "./brief.js";
 export type {
   Brief,

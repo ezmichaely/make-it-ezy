@@ -202,6 +202,7 @@ describe("ezy CLI", () => {
   it("lists ezy brief in help", () => {
     const result = runEzy(["--help"]);
     expect(result.stdout).toContain("ezy brief");
+    expect(result.stdout).toContain("ezy brain");
   });
 
   it("brief prints instructions and schema", () => {

@@ -31,7 +31,8 @@ Trust and user control are core requirements: discovery does not equal recommend
 ## Current path — 2026-11-17
 
 - Phases 0–6 are shipped. Audit findings **1–4** are fixed (see [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md)).
-- **Phase 7 — Project Brain** is the next roadmap phase. Its design is deferred; do not start implementation from the old Phase 7 spec without resolving the open questions in the conversation-analysis handoff.
+- **Phase 7 — Project Brain** is shipped (hybrid B: machine slice in CLI, optional `agent` slice via `ezy brain enrich`).
+- **Phase 8 — Verification** is the next roadmap phase.
 - Audit findings **5–10** are optional maintenance; tackle only with explicit approval.
 
 The roadmap owns phase ordering. Update it when the agreed order changes.
@@ -63,6 +64,61 @@ If these conflict, use the topic-specific source above and update the conflictin
 - Follow [`CONTRIBUTING.md`](CONTRIBUTING.md): feature work branches from `main`; do not push feature work straight to `main`. Do not commit, push, publish, open a PR, or message third parties unless the user asks.
 - Before pushing or updating a PR, follow [`docs/CI.md`](docs/CI.md) and run `pnpm check:ci`.
 - Follow applicable `SKILL.md` and nested `AGENTS.md` instructions for the files being changed; more specific instructions can add constraints but must not redefine the product goal or roadmap.
+
+## Building Make It Ezy (always on for agents)
+
+This section is for **contributors and host agents coding in this repository** (`packages/`, `apps/`, product `docs/`). It is **not** what the Ezy CLI ships to end users. Vendored skills live under [`.agents/skills/`](.agents/skills/) (pinned in [`skills-lock.json`](skills-lock.json)). **Do not** wire Superpowers, Ponytail, or Graphify into the Ezy CLI as runtime dependencies.
+
+At the start of substantive work here, treat these as **always on** (read the skill, then follow it):
+
+| Layer | Skill | Role while building this repo |
+|---|---|---|
+| **Process** | [Superpowers](https://github.com/obra/superpowers) — start with [`using-superpowers`](.agents/skills/using-superpowers/SKILL.md) | How to design, plan, debug, and verify changes |
+| **Implementation** | [Ponytail](https://github.com/DietrichGebert/ponytail) — [`ponytail`](.agents/skills/ponytail/SKILL.md) (default **full** unless the user sets lite/ultra/off) | Smallest complete diff; callers, tests, and fixtures included |
+| **Navigation** | [Graphify](https://github.com/Graphify-Labs/graphify) — [`graphify/skill.md`](.agents/skills/graphify/skill.md) or [`graphify/skill-agents.md`](.agents/skills/graphify/skill-agents.md) for generic agent hosts | Architecture, cross-package refactors, “where does this live?” before large edits |
+| **Product adapter** | Make It Ezy — [`skills/ezy/SKILL.md`](skills/ezy/SKILL.md) (source of truth; not in `skills-lock.json`) | Dogfood `brief` → `next` when changing planner/handoff/CLI; keep the adapter in sync with shipped commands |
+
+### Superpowers (process)
+
+1. If another vendored skill might apply, read it before acting.
+2. **New behavior or phases (e.g. Phase 7):** [brainstorming](.agents/skills/brainstorming/SKILL.md) → design in `docs/superpowers/specs/` → user approval → [writing-plans](.agents/skills/writing-plans/SKILL.md) → [test-driven-development](.agents/skills/test-driven-development/SKILL.md) or [subagent-driven-development](.agents/skills/subagent-driven-development/SKILL.md).
+3. **Bugs:** [systematic-debugging](.agents/skills/systematic-debugging/SKILL.md) before fixing product code.
+4. Before claiming done: [verification-before-completion](.agents/skills/verification-before-completion/SKILL.md).
+
+### Ponytail (implementation)
+
+Follow [`ponytail/SKILL.md`](.agents/skills/ponytail/SKILL.md) on every code change in this repo. Use [`ponytail-audit`](.agents/skills/ponytail-audit/SKILL.md) when auditing `packages/` or `apps/` for bloat. Cursor users may also enable a Ponytail session hook; **AGENTS.md still applies** for Codex and Claude Code.
+
+### Graphify (navigation)
+
+Follow [`graphify/skill.md`](.agents/skills/graphify/skill.md) when the task needs repo-wide structure (planner, handoff, adapters, golden cases). For a single file or obvious local fix, grep/read callers is enough. If `graphify-out/` exists in the repo, prefer Graphify query/path tools over blind search. Building a graph is optional unless the user asks; do not block small tasks on a full `/graphify` run.
+
+### Ezy agent skill (adapter #1)
+
+[`skills/ezy/SKILL.md`](skills/ezy/SKILL.md) is what **end users’** agents load (`/ezy`, “make it ezy”). While **building this repo**, use it to validate behavior you touch:
+
+1. From repo root (or set `MAKE_IT_EZY_ROOT`): `pnpm build` if needed, then `pnpm ezy brief "…"` / `pnpm ezy next "…" [--brief .ezy/brief.json]` for the scenario you changed.
+2. When CLI flags or handoff shape change, **edit `skills/ezy/SKILL.md` in the same PR** (see [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md)).
+
+Optional for Cursor `/ezy` discovery in **this** checkout only (duplicate of source — refresh after editing `skills/ezy`):
+
+```bash
+cp -R skills/ezy .agents/skills/ezy
+```
+
+`ci-before-push` lives under `.agents/skills/`; `ezy` stays at `skills/ezy/` unless you run the copy above.
+
+### Agent Skills ecosystem (catalog only)
+
+Vendored skills are installed with the Skills CLI (`npx skills add …`) and recorded in [`skills-lock.json`](skills-lock.json). Before adding or upgrading a vendored skill, read [`.agents/skills/find-skills/SKILL.md`](.agents/skills/find-skills/SKILL.md). That is **catalog maintenance**, not the Superpowers/Ponytail/Graphify builder stack above.
+
+Handoff rule ([`MAKE-IT-EZY-HANDOFF.md` §57](docs/handoff/MAKE-IT-EZY-HANDOFF.md)): skills that help **build Ezy** ≠ skills Ezy **recommends** to downstream repos.
+
+### Other repo-owned skills
+
+- [`ci-before-push`](.agents/skills/ci-before-push/SKILL.md) before any push or PR update (`pnpm check:ci`).
+
+Phase 7 **Project Brain (hybrid B):** thin CLI machine slice in `.ezy/brain.json` + agent slice via `ezy brain enrich` and [`skills/ezy/SKILL.md`](skills/ezy/SKILL.md) (optional Graphify through the skill only). Ship core + adapter together.
 
 ## Useful commands
 
