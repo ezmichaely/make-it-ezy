@@ -106,7 +106,7 @@ A **capability** can be a skill, tool, MCP, agent, model, workflow, service, API
 
 ```bash
 pnpm install
-pnpm skills:install   # contributor only — builder skills from skills-lock.json
+pnpm skills:install   # contributor only — link builder skills (global home; see BUILDER-SKILLS.md)
 pnpm build
 pnpm test
 ```

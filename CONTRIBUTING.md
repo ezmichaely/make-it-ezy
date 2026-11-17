@@ -8,7 +8,7 @@ Read root [`AGENTS.md`](./AGENTS.md) first (Claude Code: [`CLAUDE.md`](./CLAUDE.
 
 ```bash
 pnpm install
-pnpm skills:install   # restore .agents/skills from skills-lock.json (not in git)
+pnpm skills:install   # link .agents/skills to global builder home (see BUILDER-SKILLS.md)
 pnpm check            # lint + typecheck + test + build (same gates as CI)
 pnpm test:watch
 pnpm dev:ezy analyze

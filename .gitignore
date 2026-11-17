@@ -8,7 +8,9 @@ coverage/
 !.env.example
 graphify-out/
 .pnpm-store/
-# Vendored builder skills: install from skills-lock.json (see docs/BUILDER-SKILLS.md).
+# Builder skills: global home + pnpm skills:install symlinks (see docs/BUILDER-SKILLS.md).
 .agents/skills/
+.cursor/skills
+.claude/skills
 .claude/settings.local.json
 .ezy/

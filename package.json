@@ -18,7 +18,9 @@
     "check:ci": "pnpm check && pnpm audit --prod --audit-level=high",
     "ezy": "node apps/cli/dist/index.js",
     "dev:ezy": "pnpm --filter @make-it-ezy/cli exec tsx src/index.ts",
-    "skills:install": "npx skills install && node scripts/link-owned-skills.mjs"
+    "skills:global": "node scripts/bootstrap-global-skills.mjs",
+    "skills:install": "node scripts/bootstrap-global-skills.mjs && node scripts/link-builder-skills.mjs",
+    "skills:clean": "node scripts/clean-builder-skill-links.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
