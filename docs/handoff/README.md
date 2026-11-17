@@ -19,7 +19,7 @@ Older snapshots (historical only — do not reconstruct the product from these):
 | [`../HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) | **One-page workflow** (Ezy vs host agent; read before the long handoff) |
 | [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) | **Product definition / trust / architecture intent** |
 | [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** (wins on phase numbering) |
-| [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **Immediate pre-Phase-7 maintenance proposal** (revalidate; approval required before code changes) |
+| [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **2026-11-07 audit** — findings **1–4 fixed**; **5–10** optional follow-up |
 | [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 6) |
 | [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) | Current layout |
 | [`../superpowers/specs/`](../superpowers/specs/) | Slice designs (Phases 4–6 done) |
@@ -31,6 +31,6 @@ General by design, specific by launch: **coding tasks in your repo today**, othe
 
 ## Phase map (see ROADMAP)
 
-Phases 0–6 are done. The audit findings 1–4 are the proposed immediate maintenance work before Phase 7; revalidate them and get approval before implementation. **Phase 7 — Project Brain — is the next roadmap phase after that tranche**, followed by Phase 8 verification and Phase 9 Web UI.
+Phases 0–6 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 7 — Project Brain** is the next roadmap phase, followed by Phase 8 verification and Phase 9 Web UI. Findings **5–10** are optional maintenance, not blockers for Phase 7.
 
 The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules deep verify after Project Brain. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.
