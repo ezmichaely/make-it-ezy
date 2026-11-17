@@ -2,6 +2,8 @@
 
 Aligned to [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md) (product intent). Phase status: [`docs/ROADMAP.md`](../ROADMAP.md).
 
+**Human-friendly explainer (Taglish):** [`ARCHITECTURE-EXPLAINED.md`](./ARCHITECTURE-EXPLAINED.md).
+
 ## What Make It Ezy is
 
 A **local-first capability-intelligence and routing layer** — discover, evaluate, compose a minimum trusted set, hand off. Not a coding agent, marketplace, or multi-agent framework.
