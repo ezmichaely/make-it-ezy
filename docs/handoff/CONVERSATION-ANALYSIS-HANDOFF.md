@@ -4,7 +4,7 @@
 **Purpose:** Give the next developer/agent a reliable, detailed continuation point after reviewing the conversation exports and current repository state.  
 **Status:** Analysis and handoff only; no product code changed and no tests were run.
 
-> **Current sequence updated 2026-11-17:** this historical analysis is not the agent entry point. Follow [`../../AGENTS.md`](../../AGENTS.md) and [`../ROADMAP.md`](../ROADMAP.md). The audit's four findings are immediate proposed maintenance before Phase 7; confirm them and obtain the requested design approval before code changes.
+> **Current sequence updated 2026-11-17:** this historical analysis is not the agent entry point. Follow [`../../AGENTS.md`](../../AGENTS.md) and [`../ROADMAP.md`](../ROADMAP.md). Audit findings **1–4 are fixed** (PR #16); **Phase 7 — Project Brain** is next (design before code). Body text below may still describe the pre-fix maintenance tranche.
 
 ## Read this first
 
@@ -12,7 +12,7 @@ This handoff summarizes historical conversation material. For the shared start p
 
 1. [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) — product definition, trust rules, architecture intent, and unresolved product decisions.
 2. [`../ROADMAP.md`](../ROADMAP.md) — authoritative phase ordering and shipped status.
-3. [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) — immediate maintenance proposal; revalidate and get approval before implementation.
+3. [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) — audit status (1–4 fixed; 5–10 optional).
 4. [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) — current CLI behavior and scope.
 5. [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) — repository architecture.
 

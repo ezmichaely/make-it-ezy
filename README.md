@@ -140,9 +140,9 @@ Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 
 **Phase 6 shipped** — agent brief + decision quality (`ezy brief`, `--brief`), on top of project-aware `plan` / `next` (plus install + `/ezy`).
 
-| Immediate maintenance | Roadmap sequence | Deferred |
+| Optional maintenance | Roadmap sequence | Deferred |
 |---|---|---|
-| Revalidate findings 1–4; user approval is required before product-code changes. [Details](./docs/audits/2026-11-07-codebase-gaps.md) | Phase 7 — Project Brain (after maintenance) | Soft-C, deep verify, trusted-auto |
+| Audit findings **5–10** only if approved. [Details](./docs/audits/2026-11-07-codebase-gaps.md) (1–4 fixed on PR #16) | **Phase 7 — Project Brain** (design before code) | Soft-C, deep verify, trusted-auto |
 |  | Phase 8 — Outcome verification | Codex marketplace plugin |
 |  | Phase 9 — Web UI | Giant catalog / marketplace |
 

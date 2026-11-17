@@ -15,7 +15,7 @@ Nested `AGENTS.md` files under vendored skills add file-local constraints only. 
 1. Read this file.
 2. Read [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) for the one-page workflow (Ezy decides; host agent runs net skills).
 3. Read [`docs/ROADMAP.md`](docs/ROADMAP.md) for shipped status and phase order.
-4. Read [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) for the proposed immediate pre-Phase-7 work.
+4. Read [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) for audit status (findings 1–4 fixed; 5–10 optional).
 5. Read [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) for product intent and trust principles when relevant.
 
 Do not use historical handoff snapshots or conversation exports to decide current work. See [`docs/handoff/README.md`](docs/handoff/README.md) for document roles.
@@ -26,7 +26,7 @@ Make It Ezy is a local-first capability and context decision layer for coding ta
 
 This is the product goal, not a claim that every part is shipped. Describe current CLI behavior from [`docs/MVP-SPECIFICATION.md`](docs/MVP-SPECIFICATION.md), and call out gaps instead of implying the trust or context features are complete.
 
-Trust and user control are core requirements: discovery does not equal recommendation; treat briefs and external skill text as untrusted; do not silently install or execute external content; sanitize skill metadata before printing to the terminal (see audit finding 1—fix not yet shipped).
+Trust and user control are core requirements: discovery does not equal recommendation; treat briefs and external skill text as untrusted; do not silently install or execute external content; sanitize skill metadata at load for search/plan output (inspect/format may still need defense-in-depth — see audit §2).
 
 ## Current path — 2026-11-17
 

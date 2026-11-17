@@ -15,7 +15,7 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 ## 1. Promises vs code
 
 - Every command the ROADMAP marks done exists and runs. Build and tests are green.
-- **The golden tests only run offline.** They use a hand-written brief with `localOnly: true` (`packages/core/src/golden.test.ts:60-64`). Real users run with the network on, and there the Stripe case breaks (finding 3).
+- **The golden tests only run offline.** They use a hand-written brief with `localOnly: true` (`packages/core/src/golden.test.ts:60-64`). **Pre-fix:** with the network on, the Stripe case broke (finding 3, now fixed; live re-run still optional).
 - **The heuristic path (no brief) is weak.** It only has a negative test in the goldens, and it gives junk for vague prompts (finding 7).
 
 ## 2. Audit
@@ -103,4 +103,4 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 - **`docs/convo/` is archived research only** (personal chat exports). It is tracked for history but must not drive product decisions—use [`AGENTS.md`](../../AGENTS.md), [`../ROADMAP.md`](../ROADMAP.md), and [`../handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md).
 - **Don't import numbers from the convos.** Skill counts, model prices, "OmniRoute 7B free tokens", install counts and Graphify Pro pricing are all wrong or unsourced.
 - **Closest competitor:** Anthropic's official `claude-code-setup` plugin (`anthropics/claude-plugins-official/plugins/claude-code-setup`). It is prompt-only, Claude Code only, set up once per project, and recommends hooks, MCP servers, subagents and skills. Ezy differs by working per task, researching first, explaining exclusions, working across hosts, and gating installs. `docs/research/REFERENCE-DIRECTORY.md:78` still marks it UNRESOLVED.
-- **Suggested order:** fix 1–4, then design Phase 7 — Project Brain. Themes A and B (token/context cost and persistent project knowledge) can inform that design; “token economy” is a design lens, not a phase rename or a change to the roadmap.
+- **Suggested order:** ~~fix 1–4~~ **done** → design **Phase 7 — Project Brain**. Themes A and B (token/context cost and persistent project knowledge) can inform that design; “token economy” is a design lens, not a phase rename or a change to the roadmap.
