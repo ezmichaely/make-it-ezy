@@ -13,9 +13,10 @@ Nested `AGENTS.md` files under vendored skills add file-local constraints only. 
 ## Start here
 
 1. Read this file.
-2. Read [`docs/ROADMAP.md`](docs/ROADMAP.md) for shipped status and phase order.
-3. Read [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) for the proposed immediate pre-Phase-7 work.
-4. Read [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) for product intent and trust principles when relevant.
+2. Read [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) for the one-page workflow (Ezy decides; host agent runs net skills).
+3. Read [`docs/ROADMAP.md`](docs/ROADMAP.md) for shipped status and phase order.
+4. Read [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) for the proposed immediate pre-Phase-7 work.
+5. Read [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) for product intent and trust principles when relevant.
 
 Do not use historical handoff snapshots or conversation exports to decide current work. See [`docs/handoff/README.md`](docs/handoff/README.md) for document roles.
 
@@ -29,18 +30,18 @@ Trust and user control are core requirements: discovery does not equal recommend
 
 ## Current path — 2026-11-17
 
-- Phases 0–6 are shipped.
-- The immediate proposed work is to revalidate and address audit findings 1–4: sanitize displayed skill text, find the monorepo root from subfolders, prefer local skills before remote candidates, and parse YAML block descriptions with chomping markers.
-- The audit is based on the same product-code tree as this checkout, but its reproduction and test results are dated. Reconfirm the findings before implementation. Product-code changes for findings 1–4 need a short design and explicit user approval.
-- After that bounded tranche, Phase 7 — Project Brain — is the next roadmap phase. Its design is deferred; do not start implementation from the old Phase 7 spec without resolving the open questions in the conversation-analysis handoff.
+- Phases 0–6 are shipped. Audit findings **1–4** are fixed (see [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md)).
+- **Phase 7 — Project Brain** is the next roadmap phase. Its design is deferred; do not start implementation from the old Phase 7 spec without resolving the open questions in the conversation-analysis handoff.
+- Audit findings **5–10** are optional maintenance; tackle only with explicit approval.
 
-This distinction is deliberate: **the audit fixes are the immediate maintenance proposal; Phase 7 is the next roadmap phase.** The roadmap owns phase ordering. Update it when the agreed order changes.
+The roadmap owns phase ordering. Update it when the agreed order changes.
 
 ## Source of truth by topic
 
 | Topic | Source |
 |---|---|
 | Shared agent workflow and current handoff | This file |
+| One-page workflow (Ezy vs host agent) | [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) |
 | Product intent, boundaries, and trust principles | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) |
 | Shipped status and phase sequence | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Proposed immediate code fixes | [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) |

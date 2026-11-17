@@ -6,11 +6,9 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 2. Quality audit (`/ponytail-audit` of `packages/core/src` and `apps/cli/src`)
 3. Convo themes (from `docs/convo/`) vs code
 
-Nothing has been fixed yet.
+**Status as of 2026-11-17 (evening):** findings **1–4 are fixed** on branch `fix/audit-findings-1-4` with regression tests. `pnpm check:ci` reports **174 tests** green (not the original audit’s 171). Findings **5–10** remain open. Phase 7 — Project Brain — is the next roadmap phase.
 
-**Status as of 2026-11-17:** the product-code tree is unchanged from the audit baseline, so findings 1–4 remain the proposed immediate maintenance tranche. The reproductions and 171-test result below are from the original audit, not fresh checks. Revalidate against the current checkout, present a short design, and get user approval before writing product code. The shared sequence is in [`../../AGENTS.md`](../../AGENTS.md) and [`../ROADMAP.md`](../ROADMAP.md).
-
-**Resume here:** revalidate findings 1–4, then present the bounded design for approval. After that tranche, Phase 7 — Project Brain — is the next roadmap phase. Keep implementation limited to findings 1–4 unless the user approves broader scope.
+**Historical baseline (pre-fix):** the reproductions and 171-test result in sections below describe the tree **before** the maintenance tranche. Finding 3’s Stripe golden with network on was not re-run live after the fix; coverage is unit-tested in `select.test.ts`.
 
 ---
 
@@ -26,24 +24,24 @@ Nothing has been fixed yet.
 
 **Assumed load:** one developer running it on their own machine. Scale isn't a concern; correctness and safety on untrusted skill text are.
 
-### Must fix
+### Must fix (1–4 shipped 2026-11-17)
 
-1. **Skill text can take over the terminal** (`packages/core/src/load-local-skills.ts:56-57`, `packages/core/src/search-remote.ts:56-57`)
+1. **Skill text can take over the terminal** — **fixed:** `sanitizeText` in `load-local-skills.ts` and `search-remote.ts`. (`packages/core/src/load-local-skills.ts:56-57`, `packages/core/src/search-remote.ts:56-57`)
    - **Problem:** escape codes in a skill's name, description or source are printed raw. Reproduced: a test skill changed the window title and the text colour. This breaks the shared agent rule in root [`AGENTS.md`](../../AGENTS.md) (sanitize untrusted skill text on output).
    - **Fix:** apply the existing `sanitizeText` (`packages/core/src/brief.ts:51`) to name, description and source in both loaders.
    - **If skipped:** a malicious skill controls what you see while you decide whether to trust it.
 
-2. **Running from a monorepo subfolder finds no local skills** (`packages/core/src/find-project-root.ts:10-24`)
+2. **Running from a monorepo subfolder finds no local skills** — **fixed:** `find-project-root.ts` prefers `.agents/skills` or `pnpm-workspace.yaml` while walking up. (`packages/core/src/find-project-root.ts:10-24`)
    - **Problem:** the root search stops at the first `package.json`. Reproduced: running `ezy plan` from `packages/core` gives root = `packages/core` and 0 local skills. `install` would also put skills in the wrong folder.
    - **Fix:** while walking up, prefer the nearest folder that has `.agents/skills` or `pnpm-workspace.yaml`. Fall back to today's logic otherwise.
    - **If skipped:** in any monorepo, Ezy ignores installed skills and recommends fresh downloads.
 
-3. **A remote skill beats installed local skills** (`packages/core/src/select.ts:85-95`)
+3. **A remote skill beats installed local skills** — **fixed:** required coverage is greedy-selected from local pool before remote (`select.ts`). (`packages/core/src/select.ts:85-95`)
    - **Problem:** the greedy picker counts coverage first; "prefer local" only breaks ties. Reproduced: with the network on, the Stripe golden drops the required local `stripe-integration` and `webhook-handler` for one remote `stripe-webhooks` (599 installs, unreviewed).
    - **Fix:** run the picker over local skills first, then remote skills for what's still uncovered. Add a golden run with a fake skills.sh `fetchImpl`.
    - **If skipped:** Ezy pushes unvetted installs when vetted local skills already cover the need.
 
-4. **YAML `|-` / `>-` descriptions are read as the literal text "|-"** (`packages/core/src/parse-skill-frontmatter.ts:36`)
+4. **YAML `|-` / `>-` descriptions are read as the literal text "|-"** — **fixed:** chomping markers in `parse-skill-frontmatter.ts`. (`packages/core/src/parse-skill-frontmatter.ts:36`)
    - **Problem:** only `>` and `|` are handled. Reproduced: the `claude-api` skill shows the description "|-".
    - **Fix:** `/^[>|][-+]?$/.test(rest)`. One line.
    - **If skipped:** skills written in this style are partly invisible to search.

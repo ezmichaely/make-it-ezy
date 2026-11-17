@@ -1,3 +1,4 @@
+import { sanitizeText } from "./brief.js";
 import type { SkillHit } from "./search-types.js";
 import { scoreSkillText, tokenizeQuery } from "./score-skill.js";
 
@@ -53,8 +54,8 @@ export async function searchSkillsSh(
     const hits: SkillHit[] = [];
 
     for (const item of data.skills ?? []) {
-      const name = item.name ?? item.skillId ?? "unknown";
-      const source = item.source ?? "unknown";
+      const name = sanitizeText(item.name ?? item.skillId ?? "unknown");
+      const source = sanitizeText(item.source ?? "unknown");
       const installs = typeof item.installs === "number" ? item.installs : null;
       const description = `${name} from ${source}`;
       const base = scoreSkillText(tokens, name, description);

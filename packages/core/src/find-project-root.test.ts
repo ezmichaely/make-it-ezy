@@ -27,4 +27,13 @@ describe("findProjectRoot", () => {
     const root = tempDir();
     expect(findProjectRoot(root)).toBeNull();
   });
+
+  it("prefers monorepo root over a nested package.json", () => {
+    const root = tempDir();
+    writeFileSync(join(root, "pnpm-workspace.yaml"), "packages:\n  - packages/*\n");
+    const nested = join(root, "packages", "core");
+    mkdirSync(nested, { recursive: true });
+    writeFileSync(join(nested, "package.json"), "{}");
+    expect(findProjectRoot(nested)).toBe(root);
+  });
 });

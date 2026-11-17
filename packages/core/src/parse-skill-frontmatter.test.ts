@@ -30,6 +30,16 @@ description: >
     expect(result.description).toContain("mode for agents");
   });
 
+  it("parses literal block description with chomping markers", () => {
+    const raw = `---
+name: claude-api
+description: |-
+  Call the Claude API
+---
+`;
+    expect(parseSkillFrontmatter(raw).description).toBe("Call the Claude API");
+  });
+
   it("returns nulls without frontmatter", () => {
     expect(parseSkillFrontmatter("# Just markdown")).toEqual({
       name: null,
