@@ -8,10 +8,13 @@ Read root [`AGENTS.md`](./AGENTS.md) first (Claude Code: [`CLAUDE.md`](./CLAUDE.
 
 ```bash
 pnpm install
-pnpm check          # lint + typecheck + test + build (same gates as CI)
+pnpm skills:install   # restore .agents/skills from skills-lock.json (not in git)
+pnpm check            # lint + typecheck + test + build (same gates as CI)
 pnpm test:watch
 pnpm dev:ezy analyze
 ```
+
+Vendored builder skills: see [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md). Source of truth is [`skills-lock.json`](./skills-lock.json); repo-owned skills live under [`skills/`](./skills/).
 
 ## Pull requests
 

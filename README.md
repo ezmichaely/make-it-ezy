@@ -106,11 +106,12 @@ A **capability** can be a skill, tool, MCP, agent, model, workflow, service, API
 
 ```bash
 pnpm install
+pnpm skills:install   # contributor only — builder skills from skills-lock.json
 pnpm build
 pnpm test
 ```
 
-Node.js 20+ · pnpm 9+ (10.x recommended).
+Node.js 20+ · pnpm 9+ (10.x recommended). Builder skills: [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md).
 
 ```bash
 export MAKE_IT_EZY_ROOT=/absolute/path/to/make-it-ezy

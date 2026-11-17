@@ -8,6 +8,7 @@ coverage/
 !.env.example
 graphify-out/
 .pnpm-store/
-# Agent skills (.agents/skills, .claude/skills) are committed; skills-lock.json pins their sources.
+# Vendored builder skills: install from skills-lock.json (see docs/BUILDER-SKILLS.md).
+.agents/skills/
 .claude/settings.local.json
 .ezy/

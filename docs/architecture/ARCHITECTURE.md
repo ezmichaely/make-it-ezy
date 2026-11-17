@@ -50,7 +50,7 @@ packages/core       detection, search, plan, brief, brain, install, handoff
 skills/ezy          Agent Skill adapter #1 (Claude /ezy, Cursor/Codex skills)
 catalog/            reserved (empty)
 docs/               research, architecture, specs, plans, handoff
-.agents/skills/     Layer A installs (gitignored; skills-lock.json tracked)
+skills/ + skills-lock.json   Layer A pins; `.agents/skills/` installed locally (see BUILDER-SKILLS.md)
 ```
 
 `analyze` is wired into `plan` / `next` (Phase 5): requirements come from the goal plus the detected project.

@@ -67,7 +67,7 @@ make-it-ezy/
 ├── packages/core/         ← analyze, search, plan, select, brief, brain, install, handoff
 │   └── src/golden/        ← fake mini-projects + expected plans (regression tests)
 ├── skills/ezy/            ← Agent Skill #1 — “run Ezy, then keep coding”
-├── .agents/skills/        ← vendored skills para sa dev sa Make It Ezy (gitignored content, lockfile tracked)
+├── skills/ + skills-lock.json  ← pins; `pnpm skills:install` → `.agents/skills/` (gitignored)
 ├── catalog/               ← reserved (empty for now)
 └── docs/                  ← handoff, roadmap, specs, architecture (imong reading list)
 ```

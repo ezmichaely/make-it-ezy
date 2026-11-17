@@ -22,6 +22,7 @@ Older snapshots (historical only — do not reconstruct the product from these):
 | [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **2026-11-07 audit** — findings **1–4 fixed**; **5–10** optional follow-up |
 | [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 7) |
 | [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) | Current layout |
+| [`../BUILDER-SKILLS.md`](../BUILDER-SKILLS.md) | Vendored builder skills (lockfile; not in git) |
 | [`../superpowers/specs/`](../superpowers/specs/) | Slice designs (Phases 4–7 done) |
 | [`../../skills/ezy/SKILL.md`](../../skills/ezy/SKILL.md) | Agent Skill adapter #1 |
 
