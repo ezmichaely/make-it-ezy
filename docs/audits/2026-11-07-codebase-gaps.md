@@ -102,7 +102,7 @@ Nothing has been fixed yet.
 
 ## Related decisions from this session
 
-- **`docs/convo/` is archived research only** (personal chat exports). It is tracked for history but must not drive product decisions—use [`AGENTS.md`](../../AGENTS.md), [`../ROADMAP.md`](../ROADMAP.md), and [`../handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`](../handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md).
+- **`docs/convo/` is archived research only** (personal chat exports). It is tracked for history but must not drive product decisions—use [`AGENTS.md`](../../AGENTS.md), [`../ROADMAP.md`](../ROADMAP.md), and [`../handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md).
 - **Don't import numbers from the convos.** Skill counts, model prices, "OmniRoute 7B free tokens", install counts and Graphify Pro pricing are all wrong or unsourced.
 - **Closest competitor:** Anthropic's official `claude-code-setup` plugin (`anthropics/claude-plugins-official/plugins/claude-code-setup`). It is prompt-only, Claude Code only, set up once per project, and recommends hooks, MCP servers, subagents and skills. Ezy differs by working per task, researching first, explaining exclusions, working across hosts, and gating installs. `docs/research/REFERENCE-DIRECTORY.md:78` still marks it UNRESOLVED.
 - **Suggested order:** fix 1–4, then design Phase 7 — Project Brain. Themes A and B (token/context cost and persistent project knowledge) can inform that design; “token economy” is a design lens, not a phase rename or a change to the roadmap.

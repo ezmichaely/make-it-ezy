@@ -1,6 +1,6 @@
 # MAKE IT EZY — Master Project Handoff
 
-> **SUPERSEDED.** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only.
+> **SUPERSEDED.** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only.
 >
 > **Purpose:** This document was a source-of-truth handoff for building **Make It Ezy**, an open-source system intended to make the AI ecosystem easier to use.
 >

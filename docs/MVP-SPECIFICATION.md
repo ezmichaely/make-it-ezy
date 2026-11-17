@@ -65,6 +65,6 @@ pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
 
 - Shared agent guide / current work path: `AGENTS.md`
 - Phase sequence: `docs/ROADMAP.md`
-- Product intent: `docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`
+- Product intent: `docs/handoff/MAKE-IT-EZY-HANDOFF.md`
 - Phase 4 designs: `docs/superpowers/specs/2026-11-05-phase4-*-design.md`
 - Phase 5 design: `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`

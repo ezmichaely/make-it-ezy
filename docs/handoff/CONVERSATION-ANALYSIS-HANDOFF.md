@@ -10,7 +10,7 @@
 
 This handoff summarizes historical conversation material. For the shared start point and current sequencing, follow [`../../AGENTS.md`](../../AGENTS.md). Topic-specific sources of truth are:
 
-1. [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md) — product definition, trust rules, architecture intent, and unresolved product decisions.
+1. [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) — product definition, trust rules, architecture intent, and unresolved product decisions.
 2. [`../ROADMAP.md`](../ROADMAP.md) — authoritative phase ordering and shipped status.
 3. [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) — immediate maintenance proposal; revalidate and get approval before implementation.
 4. [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) — current CLI behavior and scope.

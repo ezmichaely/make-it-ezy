@@ -1,6 +1,6 @@
 # MAKE IT EZY — CODEx / Cursor HANDOFF
 
-> **SUPERSEDED.** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only—do not plan work from this file.
+> **SUPERSEDED.** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only—do not plan work from this file.
 
 ## 0. Executive direction
 

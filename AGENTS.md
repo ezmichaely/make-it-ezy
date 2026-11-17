@@ -15,7 +15,7 @@ Nested `AGENTS.md` files under vendored skills add file-local constraints only. 
 1. Read this file.
 2. Read [`docs/ROADMAP.md`](docs/ROADMAP.md) for shipped status and phase order.
 3. Read [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) for the proposed immediate pre-Phase-7 work.
-4. Read [`docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md) for product intent and trust principles when relevant.
+4. Read [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) for product intent and trust principles when relevant.
 
 Do not use historical handoff snapshots or conversation exports to decide current work. See [`docs/handoff/README.md`](docs/handoff/README.md) for document roles.
 
@@ -41,7 +41,7 @@ This distinction is deliberate: **the audit fixes are the immediate maintenance 
 | Topic | Source |
 |---|---|
 | Shared agent workflow and current handoff | This file |
-| Product intent, boundaries, and trust principles | [`docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md) |
+| Product intent, boundaries, and trust principles | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) |
 | Shipped status and phase sequence | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Proposed immediate code fixes | [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) |
 | Current CLI behavior | [`docs/MVP-SPECIFICATION.md`](docs/MVP-SPECIFICATION.md) and the implementation |

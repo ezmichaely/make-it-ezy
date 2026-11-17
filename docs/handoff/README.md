@@ -2,14 +2,13 @@
 
 For the shared agent entry point and current work sequence, start at [`../../AGENTS.md`](../../AGENTS.md). Claude Code reaches the same guide through the root `CLAUDE.md` bridge.
 
-Canonical product intent and trust principles:
+**Current product handoff:**
 
-[`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md) (2026-11-08). Read this for product intent after the shared agent guide; use the roadmap for current status.
+[`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) (2026-11-08). Read this for product intent after the shared agent guide; use the roadmap for shipped status.
 
 Older snapshots (historical only — do not reconstruct the product from these):
 
-- `MAKE-IT-EZY-HANDOFF-MASTER.md` (v6, superseded)
-- `MAKE-IT-EZY-HANDOFF-v3.md`, `MAKE-IT-EZY-HANDOFF-V2.md`, `MAKE-IT-EZY-HANDOFF-v1.md`
+- `MAKE-IT-EZY-HANDOFF-v6.md`, `MAKE-IT-EZY-HANDOFF-v3.md`, `MAKE-IT-EZY-HANDOFF-V2.md`, `MAKE-IT-EZY-HANDOFF-v1.md`
 - `make-it-ezy convo.txt`
 
 ## Precedence
@@ -17,7 +16,7 @@ Older snapshots (historical only — do not reconstruct the product from these):
 | Doc | Role |
 |---|---|
 | [`../../AGENTS.md`](../../AGENTS.md) | **Shared agent entry point / current work path** |
-| [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md) | **Product definition / trust / architecture intent** |
+| [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) | **Product definition / trust / architecture intent** |
 | [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** (wins on phase numbering) |
 | [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **Immediate pre-Phase-7 maintenance proposal** (revalidate; approval required before code changes) |
 | [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 6) |
@@ -33,4 +32,4 @@ General by design, specific by launch: **coding tasks in your repo today**, othe
 
 Phases 0–6 are done. The audit findings 1–4 are the proposed immediate maintenance work before Phase 7; revalidate them and get approval before implementation. **Phase 7 — Project Brain — is the next roadmap phase after that tranche**, followed by Phase 8 verification and Phase 9 Web UI.
 
-Canonical §48 elevates trust/evaluation as product-critical; ROADMAP still schedules deep verify after Project Brain. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.
+The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules deep verify after Project Brain. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.

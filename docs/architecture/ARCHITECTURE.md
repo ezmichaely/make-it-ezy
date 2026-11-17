@@ -1,6 +1,6 @@
 # Architecture
 
-Aligned to `docs/handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md` (canonical product intent). Phase status: `docs/ROADMAP.md`.
+Aligned to [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md) (product intent). Phase status: [`docs/ROADMAP.md`](../ROADMAP.md).
 
 ## What Make It Ezy is
 

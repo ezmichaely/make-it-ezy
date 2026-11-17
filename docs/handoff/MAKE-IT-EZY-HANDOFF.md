@@ -1,11 +1,11 @@
-# Make It Ezy — Canonical Project Handoff
+# Make It Ezy — Product Handoff
 
 **Purpose:** This document consolidates the Make It Ezy project decisions, direction, architecture, research conclusions, constraints, roadmap, and unresolved questions that have emerged across the project conversations.
 
-**Status:** Working canonical specification / handoff  
+**Status:** Current product handoff (not a phase/status tracker—use [`docs/ROADMAP.md`](../ROADMAP.md) for that)  
 **Date:** 2026-11-08
 
-> **Important:** This document is the canonical interpretation of the project conversations available to the assistant. It is intentionally more authoritative than raw historical conversations. Historical conversations may contain experiments, reversals, abandoned ideas, and earlier terminology. When they conflict with this document, the latest explicit project decisions win.
+> **Important:** This is the **only current** product handoff file (`MAKE-IT-EZY-HANDOFF.md`). It is more authoritative than raw historical conversations and older `MAKE-IT-EZY-HANDOFF-v*.md` snapshots. When they conflict, the latest explicit project decisions in this file, [`AGENTS.md`](../../AGENTS.md), and [`docs/ROADMAP.md`](../ROADMAP.md) win.
 >
 > **Precedence with other repo docs:** shared agent workflow/current work → root **`AGENTS.md`**. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → **`docs/ROADMAP.md`** (its phase numbers win over older numbering). Current CLI behavior → **`docs/MVP-SPECIFICATION.md`**. The immediate maintenance proposal is tracked in **`docs/audits/2026-11-07-codebase-gaps.md`** and does not change phase numbering.
 
