@@ -1,29 +1,35 @@
 # Handoff
 
-Canonical product intent:
+For the shared agent entry point and current work sequence, start at [`../../AGENTS.md`](../../AGENTS.md). Claude Code reaches the same guide through the root `CLAUDE.md` bridge.
 
-[`MAKE-IT-EZY-MASTER-HANDOFF.md`](./MAKE-IT-EZY-MASTER-HANDOFF.md)
+**Current product handoff:**
 
-Older snapshots (historical): `MAKE-IT-EZY-HANDOFF.md`, `MAKE-IT-EZY-HANDOFF-V2.md`, `make-it-ezy convo.txt`.
+[`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) (2026-11-08). Read this for product intent after the shared agent guide; use the roadmap for shipped status.
 
-## Where to look for *current* shipped behavior
+Older snapshots (historical only — do not reconstruct the product from these):
+
+- `MAKE-IT-EZY-HANDOFF-v6.md`, `MAKE-IT-EZY-HANDOFF-v3.md`, `MAKE-IT-EZY-HANDOFF-V2.md`, `MAKE-IT-EZY-HANDOFF-v1.md`
+- `make-it-ezy convo.txt`
+
+## Precedence
 
 | Doc | Role |
 |---|---|
-| [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** |
+| [`../../AGENTS.md`](../../AGENTS.md) | **Shared agent entry point / current work path** |
+| [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) | **Product definition / trust / architecture intent** |
+| [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** (wins on phase numbering) |
+| [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **Immediate pre-Phase-7 maintenance proposal** (revalidate; approval required before code changes) |
 | [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 6) |
 | [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) | Current layout |
 | [`../superpowers/specs/`](../superpowers/specs/) | Slice designs (Phases 4–6 done) |
-| [`../superpowers/plans/2026-11-06-phase6-agent-brief.md`](../superpowers/plans/2026-11-06-phase6-agent-brief.md) | Phase 6 implementation sequence |
-| [`make-it-ezy-cursor-handoff-v6.md`](./make-it-ezy-cursor-handoff-v6.md) | Research / reference baseline (v6) |
 | [`../../skills/ezy/SKILL.md`](../../skills/ezy/SKILL.md) | Agent Skill adapter #1 |
 
 ## Scope (2026-11-06)
 
 General by design, specific by launch: **coding tasks in your repo today**, other domains later, one at a time. See [`../ROADMAP.md` → Scope](../ROADMAP.md).
 
-## Phase map (2026-11-06)
+## Phase map (see ROADMAP)
 
-Phases 0–6 done → **7 Project Brain (next)** → 8 Verification → 9 Web UI.
+Phases 0–6 are done. The audit findings 1–4 are the proposed immediate maintenance work before Phase 7; revalidate them and get approval before implementation. **Phase 7 — Project Brain — is the next roadmap phase after that tranche**, followed by Phase 8 verification and Phase 9 Web UI.
 
-If the master handoff’s older section numbers disagree, **`docs/ROADMAP.md` wins**.
+The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules deep verify after Project Brain. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.

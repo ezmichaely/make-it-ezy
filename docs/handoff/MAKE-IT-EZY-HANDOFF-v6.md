@@ -1,10 +1,12 @@
 # Make It Ezy --- Cursor Handoff v6
 
+> **SUPERSEDED (2026-11-08).** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only.
+>
 > **Version:** v6\
 > **Purpose:** Engineering handoff for Cursor/Codex/Claude Code\
 > **Updated:** 2026-11-06\
 > **Previous handoff:** v5\
-> **Status:** Architecture/research baseline --- do not treat this
+> **Status:** Superseded architecture/research baseline --- do not treat this
 > document as a command to implement every referenced project.
 >
 > **Scope note (2026-11-06):** the product currently targets **coding

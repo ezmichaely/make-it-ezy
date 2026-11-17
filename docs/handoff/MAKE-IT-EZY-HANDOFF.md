@@ -1,1057 +1,2800 @@
-# Make It Ezy — Product Vision, Research Inventory & Engineering Handoff
+# Make It Ezy — Product Handoff
 
-**Repository:** `make-it-ezy`  
-**Project type:** Open-source, local-first AI capability discovery and orchestration layer  
-**Status:** Research and architecture definition; implementation scope must be validated before substantial coding  
-**Primary audience:** Codex, Cursor, Claude Code, and future contributors
+**Purpose:** This document consolidates the Make It Ezy project decisions, direction, architecture, research conclusions, constraints, roadmap, and unresolved questions that have emerged across the project conversations.
 
----
+**Status:** Current product handoff (not a phase/status tracker—use [`docs/ROADMAP.md`](../ROADMAP.md) for that)  
+**Date:** 2026-11-08
 
-## 0. Instructions to Codex / Cursor
-
-You are joining this project as a senior software architect and research engineer.
-
-**Do not immediately build the entire vision.** First inspect the existing repository, verify the references in this document, and produce a concrete MVP proposal.
-
-Your first deliverable is a research and architecture package—not a large implementation.
-
-For every external project:
-
-- Verify the official repository and documentation.
-- Inspect its current README, license, release/activity history, dependencies, installation process, and security model.
-- Identify what it actually provides, not just what its marketing says.
-- Check compatibility with Claude Code, Codex, Cursor, and local runtimes where relevant.
-- Identify overlaps, conflicts, maintenance burden, and hidden costs.
-- Cross-check important claims with independent or primary sources.
-- Mark anything that cannot be verified as **unverified**.
-- Do not invent URLs, capabilities, versions, or compatibility.
-- Do not install, execute, or copy external code without explicit approval.
-
-Classify every candidate as one of:
-
-- **BUILD** — implement ourselves because no suitable reusable option exists.
-- **REUSE** — use an existing implementation directly.
-- **INTEGRATE** — connect through a documented adapter/interface.
-- **STUDY** — borrow ideas or patterns without depending on the project.
-- **OPTIONAL** — useful for selected users/tasks, not core.
-- **IGNORE** — unsuitable, redundant, unsafe, or out of scope.
-
-Explain each decision and its evidence.
+> **Important:** This is the **only current** product handoff file (`MAKE-IT-EZY-HANDOFF.md`). It is more authoritative than raw historical conversations and older `MAKE-IT-EZY-HANDOFF-v*.md` snapshots. When they conflict, the latest explicit project decisions in this file, [`AGENTS.md`](../../AGENTS.md), and [`docs/ROADMAP.md`](../ROADMAP.md) win.
+>
+> **Precedence with other repo docs:** shared agent workflow/current work → root **`AGENTS.md`**. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → **`docs/ROADMAP.md`** (its phase numbers win over older numbering). Current CLI behavior → **`docs/MVP-SPECIFICATION.md`**. The immediate maintenance proposal is tracked in **`docs/audits/2026-11-07-codebase-gaps.md`** and does not change phase numbering.
 
 ---
 
-# 1. Product vision
+# 1. Executive Definition
 
-Make It Ezy is not another LLM, chatbot, prompt collection, or giant agent framework.
+## What is Make It Ezy?
 
-It is an intelligent layer that helps users discover, select, assemble, and coordinate AI capabilities to accomplish a task.
+**Make It Ezy is a trusted capability-intelligence and routing layer between a user and AI execution agents.**
 
-The user describes the outcome:
+The user describes the outcome they want.
 
-- “Build a Next.js application.”
-- “Research and write a YouTube script.”
-- “I need a video-editing workflow.”
-- “Help me understand this unfamiliar codebase.”
-- “Find a structural-engineering calculation workflow.”
-- “Create a presentation.”
-- “Automate this browser task.”
+Ezy determines:
 
-Make It Ezy figures out what kind of specialist is needed, which capabilities are required, what skills and tools are available, which workflow is appropriate, and how the result should be checked.
+- what the task actually requires
+- what capabilities are needed
+- which skills/tools/agents/workflows are relevant
+- which candidates are trustworthy enough to use
+- which candidates are high quality
+- which candidates are compatible
+- which candidates overlap or conflict
+- what minimum useful skill set should be used
+- how those selected capabilities should be handed to the downstream execution agent
 
-> **The user describes the outcome. Make It Ezy figures out the process.**
+The downstream execution agent may be:
 
-## Core principles
-
-1. Free and open source at the core.
-2. Local-first and cloud-optional.
-3. Model-agnostic and framework-agnostic.
-4. Discover before building.
-5. Reuse before reinventing.
-6. Recommend the minimum useful capabilities.
-7. Make recommendations explainable.
-8. Require approval for installation and sensitive actions.
-9. Verify outputs; do not blindly trust agents.
-10. Simplify before adding complexity.
-11. Keep external projects replaceable.
-12. Do not imply that free software means free model inference or free third-party data.
-
----
-
-# 2. What Make It Ezy is—and is not
-
-Make It Ezy should own the coordination logic:
-
-- Task understanding and classification.
-- Project/environment analysis.
-- Specialist and capability taxonomy.
-- Skill/tool discovery and metadata registry.
-- Candidate evaluation and ranking.
-- Workflow planning.
-- Risk classification and permission decisions.
-- Adapters to supported runtimes and tools.
-- Verification strategy and result reporting.
-
-It should generally **reuse** existing systems for:
-
-- Model inference.
-- Agent execution.
-- Browser automation.
-- Codebase indexing.
-- Specialized domain tools.
-- Video/audio processing.
-- External research/data providers.
-- Mature workflow engines when genuinely needed.
-
-It should not initially become:
-
-- A new foundation model.
-- A paid API proxy.
-- A clone of every agent framework.
-- A collection of hundreds of bundled agents.
-- A full ChatGPT competitor.
-- A mandatory cloud service.
-- An automatic installer that trusts every GitHub repository.
-
-The key product distinction is that Make It Ezy is a **capability decision and orchestration layer**, not a repository that merely accumulates skills.
-
----
-
-# 3. Terminology: keep the concepts separate
-
-Do not use “agent,” “skill,” “tool,” and “workflow” interchangeably.
-
-| Concept | Meaning | Example |
-|---|---|---|
-| **Specialist** | Logical domain role | Video editor, structural engineer, researcher |
-| **Capability** | A task the system can perform | Captioning, load calculation, code review |
-| **Skill** | Reusable instructions, methods, and domain knowledge | UI design skill, TDD workflow |
-| **Tool** | Software/API that performs an action | FFmpeg, browser, GitHub, CAD tool |
-| **Workflow** | Ordered or conditional steps | Research → draft → fact-check → edit |
-| **Agent runtime** | Environment that executes agent instructions and tool calls | Claude Code, Codex, Cursor, an agent framework |
-| **Model provider** | Source of model inference | Anthropic, OpenAI, Google, Ollama |
-
-A specialist is a logical role. It does not necessarily need its own model, process, or autonomous agent. Prefer one capable agent with the right instructions and tools unless multiple agents demonstrably improve the outcome.
-
----
-
-# 4. Conceptual architecture
-
-```text
-                         USER REQUEST
-                              |
-                              v
-                  PROJECT / ENVIRONMENT ANALYZER
-                              |
-                              v
-                       TASK CLASSIFIER
-                              |
-                              v
-                      SPECIALIST SELECTOR
-                              |
-                              v
-                      CAPABILITY PLANNER
-                              |
-                +-------------+-------------+
-                |             |             |
-                v             v             v
-           SKILL REGISTRY  TOOL REGISTRY  WORKFLOW CATALOG
-                |             |             |
-                +-------------+-------------+
-                              |
-                              v
-                       DECISION ENGINE
-                              |
-                              v
-                       RISK / PERMISSIONS
-                              |
-                              v
-                       EXECUTION ADAPTER
-                              |
-              +---------------+---------------+
-              |               |               |
-          Claude Code        Codex           Cursor
-              |               |               |
-              +---------------+---------------+
-                              |
-                              v
-                         VERIFICATION
-                              |
-                              v
-                         FINAL RESULT
-```
-
-This is a conceptual architecture, not a mandate to create a package for every box. Derive the actual architecture from the MVP and platform constraints.
-
-## Critical design rule
-
-The decision engine should choose the smallest viable combination of:
-
-- Specialist definition.
-- Skills.
-- Tools.
-- Workflow steps.
-- Runtime/provider.
-
-It should explain why it selected each item and identify alternatives or missing requirements.
-
----
-
-# 5. Research inventory and reference directory
-
-The following are references gathered from videos, screenshots, discussions, and direct repository links supplied by the project owner. They are **research candidates, not approved dependencies**.
-
-Repository identities and descriptions below are initial identification notes. Re-verify live details, licenses, maintenance, and compatibility before implementation.
-
-## 5.1 Skill discovery and catalogs
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| Vercel Skills CLI | https://github.com/vercel-labs/skills | Discover/install compatible agent skills |
-| `find-skills` | https://github.com/vercel-labs/skills/tree/main/skills/find-skills | Skill discovery workflow |
-| skills.sh | https://skills.sh/ | Agent Skills directory |
-| skills.sh API docs | https://skills.sh/docs/api | Investigate catalog/search metadata API |
-| Awesome Agent Skills (VoltAgent) | https://github.com/VoltAgent/awesome-agent-skills | Curated skills catalog |
-| Anthropic Skills | https://github.com/anthropics/skills | Official skill examples |
-| Agent Skills specification | https://agentskills.io/ | Skill format/interoperability reference |
-
-**Questions to answer:**
-
-- Can Make It Ezy query skills.sh without scraping pages?
-- What fields and identifiers does its API provide?
-- Are hashes, source commits, and update signals available?
-- How do catalog entries map to actual Git repositories and skill paths?
-- How should the system normalize different skill formats?
-- How can the system detect duplicates across catalogs?
-- What are the terms, rate limits, and availability guarantees?
-
-Do not assume a catalog's popularity count measures quality or safety.
-
-## 5.2 Agent collections and specialist catalogs
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| 500 AI Agents Projects | https://github.com/ashishpatel26/500-AI-Agents-Projects | Examples of agents across domains/frameworks |
-| Agency Agents | https://github.com/msitarzewski/agency-agents | Role-based specialist definitions and workflows |
-| Awesome Harness Engineering | https://github.com/ai-boost/awesome-harness-engineering | Agent harness engineering patterns |
-| Scientific Agent Skills | https://github.com/K-Dense-AI/scientific-agent-skills | Scientific research skills |
-| Diagram Design | https://github.com/cathrynlavery/diagram-design | Diagram-generation skill |
-| Anthropic Cybersecurity Skills | https://github.com/mukul975/Anthropic-Cybersecurity-Skills | Community cybersecurity skill collection |
-
-**Research questions:**
-
-- Which entries are actual executable agents versus prompt/role definitions?
-- What schema do specialist definitions use?
-- Can they be represented in a neutral Make It Ezy specialist schema?
-- How much overlap exists between catalogs?
-- Are there engineering, creative, science, legal, and other domain specialists?
-- What safeguards are needed for high-risk domains?
-
-Do not equate an agent persona with a verified professional capability.
-
-## 5.3 Orchestration and development workflows
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| Ruflo | https://github.com/ruvnet/ruflo | Agent orchestration/swarm system; verify current architecture |
-| Superpowers | https://github.com/obra/superpowers | Structured software-development skills/workflows |
-| LangGraph | https://github.com/langchain-ai/langgraph | Stateful agent workflows |
-| CrewAI | https://github.com/crewAIInc/crewAI | Role-based multi-agent framework |
-| AutoGen | https://github.com/microsoft/autogen | Multi-agent collaboration framework |
-| Agno | https://github.com/agno-agi/agno | Agent framework |
-| LlamaIndex | https://github.com/run-llama/llama_index | Data/document retrieval and agent workflows |
-| GSD | https://github.com/gsd-build/get-shit-done | Spec-driven AI development workflow |
-| BMAD Method | https://github.com/bmad-code-org/BMAD-METHOD | AI-assisted agile development methodology |
-| gstack | https://github.com/garrytan/gstack | Coding-agent workflow/tooling |
-
-Do not make all frameworks dependencies. Compare them and select an execution strategy only when the use case requires it.
-
-## 5.4 Codebase understanding and memory
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| Graphify | https://github.com/Graphify-Labs/graphify | Codebase knowledge graph |
-| Understand Anything | https://github.com/Egonex-AI/Understand-Anything | Codebase visualization/understanding |
-| Claude-Mem | https://github.com/thedotmack/claude-mem | Persistent Claude Code memory |
-| OpenViking | https://github.com/volcengine/OpenViking | Agent context/database infrastructure |
-| Agent Memory | https://github.com/rohitg00/agentmemory | Persistent agent memory reference |
-
-Compare these systems rather than combining them all. Evaluate whether plain files, SQLite, search indexes, graph structures, or vector retrieval solve the actual requirements.
-
-## 5.5 Browser automation and research
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| Browser Use | https://github.com/browser-use/browser-use | Browser automation for agents |
-| Agent Browser | https://github.com/vercel-labs/agent-browser | Browser automation for coding agents |
-| Agent Reach | https://github.com/Panniantong/Agent-Reach | External research/platform access; verify supported sources |
-
-Browser access is a tool capability, not a skill by itself. Consider authentication, user consent, data handling, and website terms.
-
-## 5.6 Security and simplification
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| Strix | https://github.com/AiSecurityServices/strix | AI-assisted security testing |
-| Ponytail | https://github.com/DietrichGebert/ponytail | Simplification-oriented coding skill; verify exact scope |
-| Impeccable | https://github.com/pbakaus/impeccable | UI/design improvement skill |
-
-Strix should only be used for authorized security testing. Ponytail's simplification principle should be considered across the project, not necessarily as a mandatory runtime dependency.
-
-## 5.7 UI/UX and creative tooling
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| UI UX Pro Max | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill | UI/UX design skill |
-| 21st.dev | https://21st.dev/ | UI component ecosystem |
-| Taste Skill | https://github.com/Leonxlnx/taste-skill | Frontend design direction and browser-based visual review |
-| Taste Skill website | https://tasteskill.dev/ | Project information |
-| TasteCode | https://tastecode.dev/ | Related desktop product; evaluate separately |
-| HyperFrames | https://github.com/heygen-com/hyperframes | HTML-to-video workflow |
-| VoiceStudio | https://github.com/debpalash/voicestudio | Voice/audio workflow candidate; verify project status |
-| OpenHiggsfield | https://github.com/thehiggsfieldai/OpenHiggsfield | Open-source video/story studio candidate; verify status |
-| Cap | https://github.com/CapSoftware/Cap | Screen recording/editing |
-
-Do not confuse a creative application with an agent skill. A creative app may be an external tool or integration rather than something Make It Ezy should install.
-
-## 5.8 SEO, reverse engineering, and other specialist tools
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| OpenSEO | https://github.com/every-app/open-seo | SEO platform, MCP server, and agent skills |
-| OpenSEO website | https://openseo.so/ | Product/docs |
-| REA — Reverse Engineer Anything | https://github.com/morluto/rea | Reverse-engineering MCP and workflows |
-| REA website | https://rea.tools/ | Product/docs |
-| REA npm package | https://www.npmjs.com/package/rea-agents | Distribution |
-| OpenSEO DataForSEO dependency | https://dataforseo.com/ | External SEO data provider |
-
-Important cost notes:
-
-- OpenSEO can be self-hosted, but actual SEO data requires a DataForSEO API key and usage may cost money.
-- REA is a specialized reverse-engineering capability; some native analysis paths rely on separate tools such as Hopper, Ghidra, IDA, or Kuna.
-- Do not include either in the core dependency set without a user task that needs it.
-
-## 5.9 Other application references from earlier videos
-
-These are examples of standalone applications or possible integrations, not necessarily agent frameworks.
-
-| Project | Official reference | Initial role |
-|---|---|---|
-| AppFlowy | https://github.com/AppFlowy-IO/AppFlowy | Productivity/workspace application |
-| OpenProject | https://github.com/opf/openproject | Project management |
-| Chatwoot | https://github.com/chatwoot/chatwoot | Customer communication/support |
-| Cal.com | https://github.com/calcom/cal.com | Scheduling |
-| OpenWhisper | https://openwhisper.io/ | Transcription reference; verify exact repository/product |
-| Motion Sites | https://github.com/search?q=Motion+Sites&type=repositories | Exact source from video still needs confirmation |
-| Agency Agents | https://github.com/msitarzewski/agency-agents | Specialist collection (also listed above) |
-| Claude Code Setup | https://github.com/search?q=Claude+Code+Setup&type=repositories | Exact project/source from video needs confirmation |
-
----
-
-# 6. Additional skills named in earlier videos
-
-These names were extracted from video frames and discussion. Some identities still need exact source verification.
-
-| Name | Reference | Initial category / note |
-|---|---|---|
-| Caveman | https://github.com/search?q=Caveman+AI+skill&type=repositories | Token/context efficiency; verify exact project |
-| Headroom | https://github.com/search?q=Headroom+AI+skill&type=repositories | Token/context efficiency; verify exact project |
-| Ponytail | https://github.com/DietrichGebert/ponytail | Simplification |
-| Impeccable | https://github.com/pbakaus/impeccable | UI/UX |
-| Taste | https://github.com/Leonxlnx/taste-skill | Exact project supplied by owner |
-| UI UX Pro Max | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill | UI/UX |
-| Humanizer | https://github.com/search?q=Humanizer+AI+skill&type=repositories | Writing; verify exact project |
-| PPT Master | https://github.com/search?q=PPT+Master+Claude+skill&type=repositories | Presentation; verify exact project |
-| HyperFrames | https://github.com/heygen-com/hyperframes | Video |
-| Graphify | https://github.com/Graphify-Labs/graphify | Codebase understanding |
-| Understand Anything | https://github.com/Egonex-AI/Understand-Anything | Codebase understanding |
-| REA | https://github.com/morluto/rea | Reverse engineering; exact project supplied by owner |
-| Claude-Mem | https://github.com/thedotmack/claude-mem | Memory |
-| Last30Days | https://github.com/search?q=Last30Days+AI+skill&type=repositories | Research; verify exact project |
-| Marketing Skills | https://github.com/search?q=Marketing+Skills+AI+agent&type=repositories | Marketing; verify exact project |
-| Superpowers | https://github.com/obra/superpowers | Development workflow |
-| GSD | https://github.com/gsd-build/get-shit-done | Development workflow |
-| BMAD Method | https://github.com/bmad-code-org/BMAD-METHOD | Development workflow |
-| gstack | https://github.com/garrytan/gstack | Development workflow |
-| Anthropic Skills | https://github.com/anthropics/skills | Agent skills |
-| Matt Pocock Skills | https://github.com/mattpocock/skills | Engineering skills; verify current repository |
-| Karpathy Skills | https://github.com/search?q=Karpathy+skills&type=repositories | Exact collection needs verification |
-| Agency Agents | https://github.com/msitarzewski/agency-agents | Specialist catalog; exact project supplied by owner |
-
-**Do not silently replace a search link with a guessed repository.** Find the exact source or leave it marked unverified.
-
----
-
-# 7. Exact seven-repository video reference
-
-The video reference was identified through this accompanying article:
-
-https://www.claudecodeclub.ai/free-resources/7-github-repos-ai-agents
-
-The seven repository references listed there are:
-
-1. Browser Use — https://github.com/browser-use/browser-use
-2. Agent Memory — https://github.com/rohitg00/agentmemory
-3. Scientific Agent Skills — https://github.com/K-Dense-AI/scientific-agent-skills
-4. Diagram Design — https://github.com/cathrynlavery/diagram-design
-5. Anthropic Cybersecurity Skills — https://github.com/mukul975/Anthropic-Cybersecurity-Skills
-6. Awesome Harness Engineering — https://github.com/ai-boost/awesome-harness-engineering
-7. OpenViking — https://github.com/volcengine/OpenViking
-
-Treat the article as an identification aid. Verify every item against its original repository.
-
----
-
-# 8. Four owner-supplied repositories: verified initial notes
-
-The project owner supplied these exact links. Their repository READMEs and LICENSE files were inspected during the conversation. The initial license check found MIT for all four. Recheck the current license and any third-party assets before redistribution.
-
-## 8.1 OpenSEO
-
-- Repository: https://github.com/every-app/open-seo
-- Website: https://openseo.so/
-- License file: https://github.com/every-app/open-seo/blob/main/LICENSE
-- Initial license: MIT
-- Category: SEO platform, MCP server, agent skills.
-
-README describes:
-- Keyword research.
-- Rank tracking.
-- Competitor insights.
-- Backlinks.
-- Site audits.
-- AI visibility.
-- MCP access for agents.
-- Self-hosting with Docker or Cloudflare.
-
-Cost caveat: SEO data requires a DataForSEO API key. Self-hosting does not make the external data free.
-
-Initial classification: **INTEGRATE / OPTIONAL**.
-
-## 8.2 REA — Reverse Engineer Anything
-
-- Repository: https://github.com/morluto/rea
-- Website: https://rea.tools/
-- Guides: https://rea.tools/guides/
-- npm: https://www.npmjs.com/package/rea-agents
-- License file: https://github.com/morluto/rea/blob/main/LICENSE
-- Initial license: MIT
-- Category: reverse engineering, MCP, binary/application/runtime analysis.
-
-README describes:
-- Native binary inspection.
-- JavaScript and Electron analysis.
-- .NET assembly analysis.
-- Website investigation.
-- Evidence-oriented reports.
-- MCP and CLI workflows.
-
-Requirements noted in README: Node.js 22+ (specific supported patch versions are documented). Some native analysis workflows need separate tools such as Hopper, Ghidra, IDA, or Kuna.
-
-Initial classification: **INTEGRATE / OPTIONAL**.
-
-Potential specialist: Reverse Engineering Engineer.
-
-## 8.3 Taste Skill
-
-- Repository: https://github.com/Leonxlnx/taste-skill
-- Website: https://tasteskill.dev/
-- Related desktop product: https://tastecode.dev/
-- License file: https://github.com/Leonxlnx/taste-skill/blob/main/LICENSE
-- Initial license: MIT
-- Category: frontend/UI design skill and visual QA.
-
-README describes:
-- Art direction.
-- Design workflows based on curated site research.
-- Real visual references and credited images.
-- Browser-based inspection.
-- Responsive checks.
-- Screenshot review and iterative refinement.
-- Dashboard and application UI workflows.
-
-Requirements noted in README: Node.js 22+ and Chrome, Edge, or Chromium. The documented skill says it does not require an API key, but network access is used to find images.
-
-Important cost caveat: README describes a build taking roughly 30–45 minutes and a few hundred thousand tokens. The skill is free to obtain, but execution can consume significant paid-model tokens.
-
-Installation references:
-- Skills CLI: https://github.com/vercel-labs/skills
-- Repository install instructions: https://github.com/Leonxlnx/taste-skill
-
-Initial classification: **INTEGRATE / OPTIONAL**, high-priority candidate for UI/UX tasks.
-
-## 8.4 Agency Agents
-
-- Repository: https://github.com/msitarzewski/agency-agents
-- Desktop app: https://agencyagents.app/
-- Desktop releases: https://github.com/msitarzewski/agency-agents-app/releases/latest
-- License file: https://github.com/msitarzewski/agency-agents/blob/main/LICENSE
-- Initial license: MIT
-- Category: specialist/agent definition catalog.
-
-README describes:
-- Engineering, design, marketing, product and other specialist roles.
-- Role-specific instructions, processes, and deliverables.
-- Multi-platform conversion and installation scripts.
-- Selective installation by tool, division, or agent.
-- A separate desktop app for browsing/installing the roster.
-
-Initial classification: **STUDY / INTEGRATE**, high-priority candidate for specialist catalog research.
-
-Important: An agent persona is not proof of domain competence. Evaluate the quality of its instructions, evidence, tools, and safeguards.
-
----
-
-# 9. Skill registry and update strategy
-
-Do not copy every external skill into Make It Ezy.
-
-Maintain a registry that points to external sources and records provenance.
-
-Illustrative metadata:
-
-```json
-{
-  "name": "example-skill",
-  "source": "github",
-  "repository": "owner/repository",
-  "path": "skills/example",
-  "version": null,
-  "commit": "pinned-commit",
-  "contentHash": "verified-hash",
-  "license": "MIT",
-  "compatibleAgents": ["claude-code", "codex", "cursor"],
-  "capabilities": ["research", "analysis"]
-}
-```
-
-This is a proposed schema, not a real skill record.
-
-## Three tiers
-
-1. **Built-in:** maintained by Make It Ezy.
-2. **Registered external:** tracked from known repositories/catalogs.
-3. **Dynamically discovered:** found from supported catalogs and GitHub sources.
-
-## Update lifecycle
-
-1. Detect that an external source changed.
-2. Compare commit, release/version, or content hash.
-3. Inspect changed files and metadata.
-4. Identify compatibility, dependency, license, or security changes.
-5. Explain the impact to the user.
-6. Offer an update.
-7. Apply only after approval.
-
-Do not assume every project uses semantic versioning. Support commit pinning and hashes.
-
-External changes must never silently modify Make It Ezy core logic.
-
-Keep these actions separate:
-
-- Discover.
-- Inspect.
-- Recommend.
-- Approve.
-- Install.
-- Update.
-- Execute.
-
-## External content is untrusted
-
-- Inspect installation scripts.
-- Inspect dependencies and transitive dependencies.
-- Check for shell commands, network access, file access, and credential handling.
-- Pin versions/commits where practical.
-- Require approval before installation or execution.
-- Do not grant broad permissions by default.
-- Preserve attribution and license notices.
-- Never run a skill simply because it appears in a catalog.
-
----
-
-# 10. Decision engine and example workflows
-
-## Example A: YouTube video about sustainable farming
-
-User request:
-
-> “Create a YouTube video about sustainable farming.”
-
-Potential specialist roles:
-- Researcher.
-- Scriptwriter.
-- Video editor.
-
-Potential capabilities:
-- Topic research.
-- Source evaluation.
-- Scriptwriting.
-- Fact-checking.
-- Storyboarding.
-- Asset sourcing.
-- Video/audio editing.
-- Caption generation.
-- Rendering.
-
-Possible workflow:
-
-```text
-Research
-  -> Source verification
-  -> Script draft
-  -> Fact-check
-  -> Storyboard
-  -> Gather/create assets
-  -> Edit
-  -> Captions/audio
-  -> Render
-  -> Review
-```
-
-Potential tools include browser research, FFmpeg, and user-selected video software. Do not assume one AI tool performs every stage.
-
-## Example B: Structural engineering calculation
-
-User request:
-
-> “Help me calculate a reinforced concrete beam.”
-
-Potential specialist:
-- Structural engineering assistant.
-
-Capabilities:
-- Input collection.
-- Load analysis.
-- Calculation.
-- Applicable-code lookup.
-- Independent verification.
-- Report generation.
-
-Risk: **HIGH**.
-
-Requirements:
-- Establish jurisdiction and applicable standards.
-- Collect complete dimensions, material properties, support conditions, and loading.
-- Clearly state assumptions and missing inputs.
-- Use validated deterministic calculation methods/software where possible.
-- Independently verify results.
-- Require qualified professional review before construction.
-
-Never represent an AI agent or skill as a licensed engineer or approved design.
-
-## Decision principles
-
-- One agent is preferable to a swarm when it can do the job.
-- Use deterministic tools for calculations when appropriate.
-- Do not use a model where a simple script is more reliable.
-- Do not install a skill when an existing tool already provides the capability.
-- Explain why each selected capability is needed.
-- Identify unavailable capabilities and uncertainty honestly.
-
----
-
-# 11. Risk and permission model
-
-Every task should receive a risk assessment.
-
-| Level | Example tasks | Default approach |
-|---|---|---|
-| Low | Formatting, basic writing, ordinary summarization | Minimal friction |
-| Medium | Code edits, browser automation, database/file changes | Scoped permissions and verification |
-| High | Security testing, financial/legal/medical decisions, structural/electrical engineering | Strong safeguards, explicit approval, independent review |
-
-Risk should determine:
-- Which tools are allowed.
-- Which actions require approval.
-- What verification is mandatory.
-- Whether human review is necessary.
-- Whether execution must be sandboxed or read-only.
-
-Do not use a specialist label as a substitute for credentials, validated methods, or professional review.
-
----
-
-# 12. Local-first memory and storage
-
-Separate these concerns:
-
-1. Session memory — current task state.
-2. Project memory — project-specific facts and decisions.
-3. Workflow memory — reusable procedures.
-4. Skill registry cache — external metadata and source state.
-5. Agent history — optional task history/artifacts.
-
-Start simply:
-- SQLite for structured local data.
-- JSON/YAML for human-readable configuration.
-- Filesystem for skills and task artifacts.
-- Git for version tracking.
-
-Only add vector or graph databases when a demonstrated retrieval requirement justifies them.
-
-Memory should be:
-- Project-isolated.
-- Inspectable.
-- Exportable.
-- Removable.
-- Protected from storing credentials/secrets.
-
-Do not build an elaborate memory platform before the core workflow works.
-
----
-
-# 13. Models, providers, and cost philosophy
-
-Make It Ezy must not require its own paid model API.
-
-Potential execution/provider options:
-- Claude Code using supported authentication.
-- Codex using supported authentication.
-- Cursor using supported integration mechanisms.
-- Ollama and local models.
-- User-provided API keys.
-- Other compatible providers.
-
-Important distinctions:
-- Make It Ezy being free does not make model inference free.
-- Existing subscriptions and usage limits still apply.
-- Do not bypass provider authentication or billing.
-- External data services can charge independently.
-- Some skills may consume large amounts of model tokens.
-- Some tools may require paid APIs even when their source code is open source.
-
-Core product goal:
-- No mandatory hosted backend.
-- No mandatory paid model API.
-- No mandatory cloud account.
-- No telemetry requirement.
-- Local execution where supported.
-
-Optional costs should be transparent and disclosed before use.
-
----
-
-# 14. Future local workstation
-
-The software should scale from an ordinary laptop to a dedicated local AI workstation without requiring an architectural rewrite.
-
-Possible future target—not an MVP requirement:
-
-| Component | Future target |
-|---|---|
-| CPU | 12–16+ cores |
-| RAM | 64–128 GB |
-| GPU | 16–24+ GB VRAM |
-| Storage | 2–4 TB NVMe |
-
-Potential local runtimes:
-- Ollama: https://github.com/ollama/ollama
-- llama.cpp: https://github.com/ggml-org/llama.cpp
-- LM Studio: https://lmstudio.ai/
-
-Keep the model runtime replaceable. Support local and remote endpoints where practical.
-
-Do not require this hardware to build or use the initial Make It Ezy core.
-
----
-
-# 15. Integration targets
-
-Initial target environments:
-- Claude Code: https://github.com/anthropics/claude-code
-- Codex: https://github.com/openai/codex
-- Cursor: https://cursor.com/
-
-Potential future integrations:
-- Ollama.
-- MCP servers.
-- Browser automation.
-- Specialized domain tools.
-- Other agent runtimes.
-
-Use adapters and documented interfaces. Do not scatter platform-specific assumptions throughout the core.
-
-For each adapter, document:
-- Supported capabilities.
-- Skill format support.
-- Execution mechanism.
-- Tool interface.
-- Authentication requirements.
-- Permission model.
-- Known limitations.
-- Tested platform/version.
-
-Do not claim full compatibility until it has been tested.
-
-A web interface is a future option, not an MVP requirement. The CLI/core should be useful independently.
-
----
-
-# 16. Proposed repository structure
-
-This is a proposal only. Do not create empty packages just to match this tree.
-
-```text
-make-it-ezy/
-├── apps/
-│   ├── cli/
-│   └── web/                     # Future, not MVP
-├── packages/
-│   ├── core/
-│   ├── decision-engine/
-│   ├── project-analyzer/
-│   ├── task-classifier/
-│   ├── specialist-registry/
-│   ├── skill-registry/
-│   ├── tool-registry/
-│   ├── workflow-engine/
-│   ├── memory/
-│   ├── provider-adapters/
-│   ├── execution-adapters/
-│   ├── verification/
-│   └── security/
-├── integrations/
-│   ├── claude-code/
-│   ├── codex/
-│   ├── cursor/
-│   └── ollama/
-├── catalog/
-│   ├── built-in-skills/
-│   ├── specialists/
-│   └── workflows/
-├── docs/
-│   ├── research/
-│   ├── architecture/
-│   ├── integrations/
-│   └── security/
-├── tests/
-├── README.md
-├── LICENSE
-└── CONTRIBUTING.md
-```
-
-Choose actual package boundaries after defining the first end-to-end use case.
-
----
-
-# 17. CLI experience
-
-Possible commands:
-
-```bash
-ezy init
-ezy analyze
-ezy doctor
-ezy discover
-ezy plan
-ezy run
-ezy skills list
-ezy skills search
-ezy skills inspect
-ezy skills update
-ezy providers list
-ezy memory inspect
-```
-
-Example interaction:
-
-```text
-$ ezy
-
-What would you like to accomplish?
-
-> Build a dashboard for my business.
-
-Make It Ezy detects:
-- Web application
-- Frontend development
-- Data visualization
-
-Recommended capabilities:
-- Project understanding
-- UI/UX
-- Implementation
-- Testing
-
-Available runtimes:
+- Cursor
 - Claude Code
 - Codex
-- Local model
+- another compatible coding/agent runtime
 
-Proposed workflow:
-Understand -> Plan -> Build -> Test -> Review
+The downstream agent actually performs the work.
 
-[Review plan] [Approve] [Cancel]
+### Core mental model
+
+```text
+USER
+  │
+  │ "Build X"
+  ▼
+MAKE IT EZY
+  │
+  ├── Understand the task
+  ├── Analyze project/environment
+  ├── Extract capabilities
+  ├── Discover candidate capabilities
+  ├── Evaluate quality
+  ├── Evaluate security
+  ├── Evaluate provenance/trust
+  ├── Check compatibility
+  ├── Check overlap/conflicts
+  ├── Select the minimum useful trusted set
+  └── Prepare handoff
+          │
+          ▼
+   CURSOR / CLAUDE / CODEX
+          │
+          ▼
+      ACTUAL WORK
 ```
 
-The user should not need to understand the entire AI ecosystem to use the system.
+The key product value is **not merely discovering skills**.
+
+The key product value is making a trustworthy decision about **which capabilities should be used for this specific job**.
 
 ---
 
-# 18. Roadmap
+# 2. The Problem Ezy Solves
 
-## Phase 0 — Research and architecture
+The core problem repeatedly identified in the conversations is:
 
-Deliver:
-- Verified reference directory.
-- Research inventory.
-- License and dependency comparison.
-- Capability taxonomy.
-- Specialist schema.
-- Skill/tool/workflow schema.
-- Architecture diagram.
-- Integration feasibility.
-- Security model.
-- MVP specification.
+> A developer may know what they want to build, but not know which AI skills, agents, tools, workflows, or capabilities are actually needed to build it correctly.
 
-No substantial implementation until the proposed MVP is reviewed.
+Modern AI coding environments expose huge numbers of:
 
-## Phase 1 — Minimal local core
+- skills
+- agent definitions
+- workflows
+- MCP/tool integrations
+- frameworks
+- repositories
+- coding methodologies
+- research tools
+- specialized domain capabilities
 
-Build only:
-- CLI.
-- Project/environment detection.
-- Task classification.
-- Small specialist registry.
-- Basic capability selection.
-- Configuration.
-- Explainable plan output.
+The problem is therefore not simply lack of access.
 
-Do not add swarms, a hosted service, or a complex memory system.
+It is **capability selection**.
 
-## Phase 2 — Skill discovery
+The user should not need to become an expert in:
 
-Investigate and integrate:
-- skills.sh.
-- Vercel Skills CLI.
-- Awesome Agent Skills.
-- GitHub repositories.
+- agent skill ecosystems
+- skill repositories
+- agent frameworks
+- security characteristics of individual skills
+- compatibility between skills
+- overlapping workflows
+- context requirements
+- installation requirements
+- downstream agent formats
 
-Implement:
-- Search.
-- Metadata retrieval.
-- Source/commit tracking.
-- Compatibility checks.
-- License metadata.
-- Content hashes.
-- Duplicate detection.
-- Recommendations.
-- User-approved installation.
-
-## Phase 3 — Decision engine
-
-Implement:
-- Task-to-specialist mapping.
-- Capability selection.
-- Workflow selection.
-- Risk classification.
-- Minimal-set selection.
-- Explainable recommendations.
-
-## Phase 4 — Execution adapters
-
-Start with one adapter that can be tested end-to-end. Then expand to Claude Code, Codex, Cursor, and local runtimes based on feasibility.
-
-## Phase 5 — Memory and verification
-
-Add only what actual use cases need:
-- Project memory.
-- Workflow memory.
-- Task history.
-- Test execution.
-- Review procedures.
-- Security checks.
-
-## Phase 6 — Optional web interface
-
-Only after the local core is stable. Reuse the same core engine. Do not require Make It Ezy to pay for users' model inference.
+Ezy is intended to make that decision layer easier.
 
 ---
 
-# 19. Engineering rules
+# 3. The Core Product Statement
 
-## Avoid AI bureaucracy
+The accepted core framing is:
 
-- Do not create an agent for every task.
-- Do not use a swarm when one agent is enough.
-- Do not install every skill.
-- Do not introduce a database without a demonstrated need.
-- Do not make every integration mandatory.
-- Do not create abstractions solely for hypothetical future requirements.
+> **Make It Ezy = the middleman between you and the capabilities that can get the job done.**
 
-## Ponytail / simplification principle
+An earlier narrower framing focused heavily on coding skills.
 
-Before adding complexity, ask:
+The broader long-term direction is:
 
-1. Can the existing implementation do this?
-2. Can an existing tool solve it?
-3. Can the workflow be simpler?
-4. Can a dependency be removed?
-5. Can fewer agents produce the same or better result?
+> Ezy evolves from a skill middleman into a capability middleman.
 
-Simplify without sacrificing correctness or safety.
+Capabilities can include:
 
-## Security and quality
+- skills
+- tools
+- agents
+- services
+- workflows
+- runtimes
+- research capabilities
+- potentially human steps where appropriate
 
-- Treat external repositories as untrusted.
-- Inspect licenses, dependencies, scripts, and permissions.
-- Pin dependencies where appropriate.
-- Require approval for installation and sensitive actions.
-- Use least privilege.
-- Keep secrets outside ordinary memory.
-- Test integrations.
-- Document unsupported behavior.
-- Measure whether multi-agent execution improves outcomes.
-- Measure token cost, latency, and reliability.
-- Prefer reliable results over impressive demos.
+However, the initial implementation should remain focused enough to avoid becoming an over-engineered general agent platform.
 
 ---
 
-# 20. First assignment: exact deliverables
+# 4. What Ezy Is NOT
 
-Before substantial coding, inspect the current repository and produce:
+These boundaries are important because they prevent the project from turning into something else.
 
-1. `docs/research/REFERENCE-DIRECTORY.md`
-2. `docs/research/RESEARCH-INVENTORY.md`
-3. `docs/research/PROJECT-COMPARISON.md`
-4. `docs/architecture/ARCHITECTURE.md`
-5. `docs/architecture/CAPABILITY-MODEL.md`
-6. `docs/architecture/INTEGRATION-STRATEGY.md`
-7. `docs/architecture/SECURITY-MODEL.md`
-8. `docs/ROADMAP.md`
-9. `docs/MVP-SPECIFICATION.md`
+Ezy is **not primarily**:
 
-The comparison should include:
-- Official URL.
-- What it actually does.
-- Category.
-- License.
-- Maintenance/activity.
-- Installation and dependencies.
-- Supported platforms.
-- API/service costs.
-- Security concerns.
-- Overlap with other candidates.
-- BUILD / REUSE / INTEGRATE / STUDY / OPTIONAL / IGNORE decision.
-- Evidence and confidence.
+- a coding agent
+- Claude Code
+- Codex
+- Cursor
+- an autonomous software engineer
+- a generic multi-agent framework
+- a Ruflo replacement
+- a skill marketplace
+- a package manager
+- an MCP manager
+- a prompt library
+- a giant skill dump
+- merely a token/context manager
 
-Then present:
-- The smallest useful MVP.
-- What it explicitly excludes.
-- Required dependencies.
-- One end-to-end example.
-- How it runs locally.
-- How it connects to one coding-agent runtime.
-- How discovery, approval, installation, and verification work.
+Ezy may interact with these systems, but it should remain the **decision/composition/routing layer**.
 
-**Wait for project-owner review before implementing the broader architecture.**
+The downstream execution system is responsible for doing the actual work.
 
 ---
 
-# Final product principle
+# 5. The Most Important Trust Principle
 
-Make It Ezy should make the AI ecosystem easier to use, not make the ecosystem more complicated.
+A major correction made during the project is:
 
-The intelligence is in choosing the right capabilities—not accumulating the most capabilities.
+> **Ezy must not blindly hand discovered skills to an execution agent.**
 
-Build something small, useful, modular, free at its core, safe, and dependable first.
+If Ezy simply does:
+
+```text
+discover skill
+    ↓
+send skill to Claude/Codex/Cursor
+```
+
+then Ezy has failed at its most important responsibility.
+
+It may save some discovery/token-management work, but the resulting implementation could still be poor or unsafe.
+
+Therefore:
+
+> **Trust and verification are core product functionality, not optional metadata.**
+
+A large skill registry is useful and necessary, but the registry is an evidence base — not a trusted recommendation list.
+
+---
+
+# 6. Registry vs Trusted Pool vs Recommendation
+
+These concepts must remain separate.
+
+## Skill Registry
+
+Contains discovered/evaluated knowledge about skills and related capabilities.
+
+The registry can contain:
+
+- unknown skills
+- candidates
+- inspected skills
+- rejected skills
+- verified skills
+- trusted skills
+- study-only resources
+- catalogs
+- frameworks
+- tools
+- runtimes
+
+The registry is allowed to be large.
+
+## Trusted Skill Pool
+
+The subset that has passed Ezy's trust/security/quality requirements sufficiently to be eligible for recommendation.
+
+## Recommendation Engine
+
+Selects the best subset for the user's specific task.
+
+It should consider:
+
+- task fit
+- trust
+- security
+- quality
+- compatibility
+- dependencies
+- conflicts
+- redundancy
+- context cost
+- project compatibility
+
+## Agent Handoff
+
+Only the selected/recommended skill set and relevant instructions should be passed downstream.
+
+Do **not** dump the entire registry into the agent's context.
+
+---
+
+# 7. Discovery Does NOT Equal Recommendation
+
+This became one of the strongest project principles.
+
+A repository can be useful for discovering another skill without making that skill trusted.
+
+For example:
+
+```text
+README
+   │
+   └── links to Skill X
+             │
+             ▼
+       Candidate discovery
+             │
+             ▼
+       Resolve repository
+             │
+             ▼
+       Inspect actual skill
+             │
+       ┌─────┴─────┐
+       ▼           ▼
+    security     quality
+       │           │
+       └─────┬─────┘
+             ▼
+       compatibility
+             │
+             ▼
+       task-specific fit
+             │
+             ▼
+       recommendation
+```
+
+README links are **discovery edges**, not trust endorsements.
+
+---
+
+# 8. Trust Levels
+
+A useful working trust model discussed in the project is:
+
+### T0 — Unknown
+
+Discovered but not meaningfully evaluated.
+
+- May exist in registry.
+- Must not be recommended.
+
+### T1 — Inspected
+
+Repository/skill structure has been inspected.
+
+- Basic provenance and structure known.
+- Still insufficient for recommendation.
+
+### T2 — Verified
+
+Quality, security, compatibility, and provenance checks have passed to an acceptable level.
+
+- Eligible for recommendation.
+
+### T3 — Trusted
+
+Stronger evidence exists:
+
+- strong provenance
+- good maintenance history
+- repeated evaluation
+- consistent behavior
+- good documentation
+- strong security characteristics
+- good compatibility evidence
+
+Preferred for recommendations.
+
+### T4 — Ezy Core
+
+Capabilities maintained or directly controlled by the Ezy project.
+
+Highest confidence category.
+
+---
+
+# 9. Hard Security Gate
+
+Trust should not be reduced to a single popularity score.
+
+A skill can have:
+
+- huge GitHub popularity
+- many stars
+- active development
+- excellent documentation
+
+and still contain unsafe instructions or behavior.
+
+Likewise, a small project may contain an excellent skill.
+
+Therefore Ezy should use multiple dimensions.
+
+Potential evaluation areas:
+
+## Provenance
+
+- repository identity
+- author/organization
+- ownership
+- repository history
+- source location
+- release/version history
+- license
+
+## Security
+
+Inspect for:
+
+- shell scripts
+- install scripts
+- hooks
+- executable files
+- network access
+- filesystem access
+- credential access
+- destructive commands
+- unexpected downloads
+- environment manipulation
+- suspicious dependencies
+- prompt injection
+- instructions attempting to override Ezy's policy
+- excessive permissions
+- hidden or obfuscated behavior
+
+## Quality
+
+Inspect:
+
+- documentation
+- clarity
+- scope
+- tests
+- examples
+- maintenance
+- correctness evidence
+- consistency
+- issue history
+- compatibility
+- whether the skill is focused or bloated
+
+## Compatibility
+
+Determine:
+
+- supported agent formats
+- expected directory structure
+- SKILL.md compatibility
+- required tools
+- dependencies
+- project requirements
+- runtime requirements
+
+## Task Fit
+
+Determine whether the skill actually helps with the requested task.
+
+---
+
+# 10. Security Must Be More Than a Score
+
+A critical design principle:
+
+> **Some security findings should be hard blockers.**
+
+Do not simply calculate:
+
+```text
+quality = 98
+security = 55
+task fit = 100
+```
+
+and average them into a recommendation.
+
+Instead:
+
+```text
+critical security issue
+        ↓
+       FAIL
+        ↓
+cannot recommend
+```
+
+Even an extremely capable skill should not be recommended when it crosses a critical security boundary.
+
+Ezy must be able to abstain.
+
+---
+
+# 11. Ezy Must Be Able to Say "No"
+
+A mature Ezy should be able to report:
+
+> "I found candidates that fit the task, but I do not have enough evidence to trust them."
+
+This is preferable to making a confident but unsafe recommendation.
+
+Potential recommendation states:
+
+- recommended
+- recommended with caveat
+- insufficient evidence
+- study only
+- rejected
+- incompatible
+- security blocked
+
+---
+
+# 12. Research Before Skill Selection
+
+Another explicit project constraint:
+
+> **Research should precede skill selection/use.**
+
+Ezy should not automatically adopt a skill because it appears in a catalog.
+
+Research should identify:
+
+- candidate sources
+- relevant repositories
+- available skills
+- methodology
+- security characteristics
+- quality evidence
+- compatibility
+- alternatives
+
+The research process should produce evidence that feeds the recommendation engine.
+
+---
+
+# 13. Research Sources Already Identified
+
+The project conversations investigated or identified many sources.
+
+Important examples include:
+
+## Official / high-confidence sources
+
+### Vercel Labs Skills
+
+Relevant for:
+
+- skill discovery
+- skill installation ecosystem
+- skill metadata
+
+Conclusion:
+
+**Useful discovery source, not automatic trust.**
+
+### Anthropic Skills
+
+Official Anthropic skills ecosystem.
+
+Conclusion:
+
+High-value source and important reference for compatibility and skill conventions.
+
+Still, individual skills should be evaluated for Ezy's use case.
+
+### Claude Code documentation/setup/security material
+
+Important because Claude Code provides a reference point for:
+
+- project inspection
+- capability recommendations
+- security practices
+- skill usage
+
+Conclusion:
+
+Study/reference source with high relevance.
+
+---
+
+# 14. Superpowers
+
+`obra/superpowers` was identified as an important methodology project.
+
+Important distinction:
+
+**Agent Skills** and **Superpowers** are not the same thing.
+
+Agent Skills:
+
+- portable skill format/concept
+- `SKILL.md`
+- capability instructions
+
+Superpowers:
+
+- opinionated development methodology
+- workflow
+- engineering process
+
+The project direction was:
+
+> Use Superpowers/agent skills as resources for building Ezy itself.
+
+But Superpowers should not become an architectural dependency merely because it is useful.
+
+---
+
+# 15. ECC
+
+`affaan-m/ECC` was studied as a large engineering skill/agent collection.
+
+The repository was reported as containing a large number of workflows/agents/skills.
+
+A key lesson from it:
+
+> Large collections should not be blindly loaded wholesale.
+
+Use the relevant subset.
+
+ECC is therefore:
+
+- valuable research
+- candidate skill source
+- useful reference for engineering workflows
+
+but not automatically "everything Ezy should recommend."
+
+---
+
+# 16. Other Skill/Agent Sources Studied
+
+The following were discussed as legitimate or useful discovery/reference sources, with different trust/recommendation implications:
+
+- `mattpocock/skills`
+- `DietrichGebert/ponytail`
+- `pbakaus/impeccable`
+- `Leonxlnx/taste-skill`
+- `nextlevelbuilder/ui-ux-pro-max-skill`
+- `vercel-labs/agent-browser`
+- `msitarzewski/agency-agents`
+- `K-Dense-AI/scientific-agent-skills`
+- `KalarisLabs/research-agent-skills`
+- `Integralist/agent-skills`
+- `PracticalSwan/agent-skills`
+- `VoltAgent/awesome-agent-skills`
+
+General conclusion:
+
+> These are discovery/research inputs and possible skill sources. Their existence or popularity does not automatically make their individual skills trusted Ezy recommendations.
+
+---
+
+# 17. Research-Specific Sources
+
+Other research/catalog resources identified include:
+
+- Auto-Empirical-Research-Skills
+- Agent Master Skills
+- 500 AI Agents Projects
+- GitHub `ai-skills`
+- Agency Agents
+- Kalaris research-agent-skills
+
+Some findings discussed:
+
+- research-oriented skill collections can provide useful evidence workflows
+- primary sources and citations matter
+- security/validation practices are valuable
+- large catalogs are useful discovery indexes
+
+But again:
+
+> Catalog membership is not trust certification.
+
+---
+
+# 18. Frameworks and Platforms Considered
+
+The project also encountered:
+
+- LangGraph
+- CrewAI
+- AutoGen
+- Agno
+- LlamaIndex
+- Ruflo
+- Paperclip
+- OpenProject
+- Chatwoot
+- Cal.com
+
+These should generally be treated as:
+
+- study/reference material
+- potential integrations
+- ecosystem research
+
+rather than things to automatically include as core dependencies.
+
+A key principle:
+
+> **Do not turn Make It Ezy into a giant framework composed of every interesting agent framework.**
+
+---
+
+# 19. Ruflo
+
+Ruflo was repeatedly used as a comparison/reference point.
+
+Ezy should not become "Ruflo #2."
+
+The distinction:
+
+### Ruflo / orchestration systems
+
+Primarily concerned with coordinating agents/workflows/execution.
+
+### Make It Ezy
+
+Primarily concerned with:
+
+- understanding the desired outcome
+- deciding what capabilities are required
+- selecting trusted capabilities
+- composing a useful skill set
+- preparing context
+- routing to the appropriate execution environment
+- eventually verifying the result
+
+Ruflo can be a downstream capability/reference, but Ezy should not copy its architecture simply because it is sophisticated.
+
+---
+
+# 20. Current Architecture
+
+The current conceptual architecture is:
+
+```text
+                USER
+                  │
+                  ▼
+        REQUEST / OUTCOME
+                  │
+                  ▼
+        TASK UNDERSTANDING
+                  │
+                  ▼
+       PROJECT / ENVIRONMENT
+            ANALYSIS
+                  │
+                  ▼
+       CAPABILITY EXTRACTION
+                  │
+                  ▼
+        SKILL DISCOVERY
+                  │
+                  ▼
+       SECURITY / QUALITY
+          EVALUATION
+                  │
+                  ▼
+       TRUST / COMPATIBILITY
+              GATE
+                  │
+                  ▼
+       RECOMMENDATION ENGINE
+                  │
+                  ▼
+        SKILL SET / PLAN
+                  │
+                  ▼
+         RUNTIME ADAPTER
+                  │
+          ┌───────┼────────┐
+          ▼       ▼        ▼
+       Cursor  Claude    Codex
+                  │
+                  ▼
+             EXECUTION
+                  │
+                  ▼
+             VERIFICATION
+```
+
+The broader lifecycle is:
+
+> **discover → evaluate → compose → execute → verify**
+
+---
+
+# 21. Existing Repository Direction
+
+The project repository is:
+
+`ezmichaely/make-it-ezy`
+
+The accepted source of truth for repository state has been the GitHub `main` branch.
+
+The project was described as a TypeScript + pnpm workspace/monorepo.
+
+Observed/previously discussed structure included:
+
+```text
+apps/
+  cli/
+
+packages/
+  core/
+
+catalog/
+
+skills/
+  ezy/
+    SKILL.md
+
+docs/
+
+skills-lock.json
+```
+
+The repo had been reported at approximately 36 commits during an earlier review.
+
+The project had reached a working early release around **0.1.2** at that point.
+
+---
+
+# 22. Technology Direction
+
+The implementation direction was deliberately changed toward:
+
+- TypeScript
+- Node.js
+- pnpm workspace/monorepo
+- CLI-first
+- core package separated from CLI
+- schema validation
+- tests
+
+Initial supporting technologies discussed:
+
+- Commander or Citty
+- Zod
+- Vitest
+- tsup/unbuild
+
+The important architectural principle is more important than any individual library:
+
+> Keep the core small, modular, testable, and independent of a particular AI provider.
+
+---
+
+# 23. Why TypeScript/Node First
+
+The project considered Python, but the direction was shifted toward TypeScript/Node because of the ecosystem around:
+
+- GitHub tooling
+- agent skills
+- CLI development
+- developer environments
+- Node-based AI tooling
+- downstream integration with coding agents
+
+This was also consistent with the desire to make Ezy a developer tool rather than initially a web application.
+
+---
+
+# 24. Initial Product Shape
+
+The original MVP was intentionally CLI-first.
+
+The first useful vertical slice was approximately:
+
+```text
+ezy analyze
+    ↓
+inspect project/request
+    ↓
+identify capabilities
+    ↓
+show recommendations
+    ↓
+ask for approval
+```
+
+The early product should not require:
+
+- a web application
+- a database
+- an AI framework
+- an agent framework
+- a multi-agent runtime
+- automatic external skill installation
+- a cloud service
+
+---
+
+# 25. Current / Previously Implemented Pipeline
+
+The repo had already moved beyond the initial conceptual MVP.
+
+The implementation was described as supporting a pipeline similar to:
+
+```text
+user outcome
+    ↓
+capability extraction
+    ↓
+skill/tool discovery
+    ↓
+recommendation
+    ↓
+plan
+    ↓
+install
+    ↓
+handoff
+    ↓
+existing coding agent
+```
+
+The CLI had concepts around:
+
+- discovery
+- search
+- inspection
+- recommendation
+- decision engine
+- plan
+- install
+- runtime adapters
+- `next`
+
+There was also an Ezy skill adapter:
+
+```text
+skills/ezy/SKILL.md
+```
+
+The conceptual message was:
+
+> The CLI finds skills; you implement the outcome.
+
+---
+
+# 26. Existing vs Not Yet Implemented
+
+Earlier repo reviews described the following as present or substantially established:
+
+- CLI
+- core package
+- catalog
+- discovery/search
+- skill inspection
+- recommendation
+- decision engine
+- plan
+- install flow
+- runtime adapters
+- Claude/Codex-related handoff
+- Ezy `SKILL.md`
+- project-aware planning
+- exclusion reasons
+- `ezy next`
+
+The following were explicitly described as not yet implemented or not mature at that point:
+
+- runtime spawning
+- full multi-agent framework
+- autonomous LLM planner
+- persistent memory
+- complete trust/security system
+- Project Brain
+- full verification system
+- Web UI
+
+These should be treated as roadmap items unless the repository has since changed.
+
+---
+
+# 27. Project-Aware Planning
+
+The planner should not only look at the user's sentence.
+
+It should understand the project/environment.
+
+For example:
+
+```text
+User request
+     +
+Project structure
+     +
+Existing dependencies
+     +
+Existing architecture
+     +
+Existing skills
+     +
+Constraints
+     ↓
+Capability requirements
+```
+
+This prevents recommendations that conflict with the existing project.
+
+Example:
+
+If a project already uses:
+
+- Next.js
+- pnpm
+- MUI
+- Storybook
+
+Ezy should not casually recommend a skill bundle that assumes a completely different stack unless there is a reason.
+
+---
+
+# 28. Exclusion Reasons Matter
+
+The project already discussed showing not only what Ezy recommends, but why other candidates were excluded.
+
+For example:
+
+```text
+Recommended:
+  Skill A
+  Skill B
+
+Excluded:
+  Skill C
+    reason: incompatible with project
+
+  Skill D
+    reason: insufficient security evidence
+
+  Skill E
+    reason: redundant with Skill A
+
+  Skill F
+    reason: poor maintenance evidence
+```
+
+This is important for trust and debuggability.
+
+The user should be able to understand Ezy's decision.
+
+---
+
+# 29. Recommendation Is a Set, Not Necessarily One Skill
+
+A central clarification from the latest discussions:
+
+> Ezy needs to recommend the **right skill set**, not merely one skill.
+
+A task may require complementary capabilities.
+
+Example:
+
+```text
+Offline-first Next.js PWA
+        │
+        ├── Next.js architecture skill
+        ├── PWA/offline architecture skill
+        ├── IndexedDB/Dexie skill
+        ├── synchronization skill
+        ├── testing skill
+        └── security skill
+```
+
+But Ezy should avoid unnecessary overlap.
+
+The goal is:
+
+> **minimum useful trusted set**
+
+not:
+
+> maximum number of skills.
+
+---
+
+# 30. Skill Bundle Selection
+
+A recommendation bundle should consider:
+
+### Task fit
+
+Does the skill directly contribute?
+
+### Trust
+
+Is there enough evidence?
+
+### Security
+
+Does it pass hard security gates?
+
+### Quality
+
+Is the skill actually good?
+
+### Compatibility
+
+Does it work with the user's agent/project?
+
+### Dependency requirements
+
+Does it require something unavailable?
+
+### Redundancy
+
+Does another skill already provide the same capability?
+
+### Conflict
+
+Could two skills prescribe incompatible approaches?
+
+### Context cost
+
+Is the skill worth the context/token cost?
+
+---
+
+# 31. Token Efficiency Is Secondary to Outcome Quality
+
+This is an important philosophical point.
+
+It is tempting to optimize Ezy around:
+
+> "Use fewer tokens."
+
+But the user explicitly identified the problem with that framing:
+
+If Ezy saves tokens but produces a bad implementation, **the product is still useless**.
+
+Therefore:
+
+```text
+Outcome quality
+      >
+Trust/security
+      >
+Task fit
+      >
+Efficiency
+```
+
+Exact scoring should be designed later.
+
+Do not optimize context size at the expense of reliable results.
+
+---
+
+# 32. Security Threat Model
+
+Ezy is effectively creating a supply chain for AI instructions.
+
+That creates risks beyond normal package management.
+
+Potential threats include:
+
+### Malicious skill
+
+A skill intentionally instructs the agent to perform harmful actions.
+
+### Prompt injection
+
+A repository's README/SKILL.md contains instructions that attempt to override Ezy's rules.
+
+### Hidden executable behavior
+
+Scripts/hooks execute commands that were not obvious from the skill description.
+
+### Dependency compromise
+
+A skill pulls a malicious dependency.
+
+### Trust laundering
+
+A trusted catalog links to an untrusted downstream repository, and Ezy assumes the downstream item is trusted.
+
+### Popularity laundering
+
+A popular repository contains a third-party skill that has never been independently evaluated.
+
+### Stale verification
+
+A skill was safe when evaluated but changed later.
+
+Therefore verification must be version-aware.
+
+---
+
+# 33. Version Awareness
+
+A skill should not simply have:
+
+```text
+trusted = true
+```
+
+It should have evidence tied to a version/commit/revision where possible.
+
+Conceptually:
+
+```text
+Skill
+ ├── repository
+ ├── version
+ ├── commit
+ ├── evaluated_at
+ ├── evaluator_version
+ └── evidence
+```
+
+If the upstream skill changes significantly, its trust state may need re-evaluation.
+
+---
+
+# 34. Registry Schema — Conceptual
+
+A registry entry should eventually contain something close to:
+
+```text
+Skill
+├── identity
+│   ├── id
+│   ├── name
+│   └── version
+│
+├── source
+│   ├── repository
+│   ├── owner
+│   ├── commit
+│   └── license
+│
+├── capabilities
+│
+├── supported_agents
+│
+├── dependencies
+│
+├── permissions
+│
+├── security
+│   ├── status
+│   ├── findings
+│   └── evidence
+│
+├── quality
+│   ├── status
+│   ├── evidence
+│   └── maintenance
+│
+├── compatibility
+│
+├── trust_level
+│
+├── recommendation_status
+│
+├── use_cases
+│
+├── conflicts
+│
+├── overlaps
+│
+├── last_verified
+│
+└── evidence
+```
+
+This is a conceptual model, not yet a final database schema.
+
+---
+
+# 35. No Database First
+
+The early project direction was intentionally:
+
+> **No database initially.**
+
+The registry can start as files/static artifacts/catalog data.
+
+A database should only be introduced when actual requirements justify it.
+
+This avoids premature infrastructure.
+
+---
+
+# 36. Local-First / Free Constraint
+
+The user explicitly wants Make It Ezy itself to be **absolutely free/open-source**.
+
+Core constraints:
+
+- no required paid cloud backend
+- no mandatory account
+- no mandatory subscription
+- no required telemetry
+- no vendor lock-in
+- local-first
+- GitHub-native where appropriate
+- users can bring their own local models/APIs
+
+External dependencies may naturally have their own:
+
+- licenses
+- API costs
+- hosting costs
+
+But Ezy itself should not require a paid service for its core operation.
+
+---
+
+# 37. AI Provider Independence
+
+Ezy should not become locked to one model provider.
+
+Possible downstream execution agents include:
+
+- Cursor
+- Claude Code
+- Codex
+
+Potential future agents should be supported through adapters.
+
+Conceptually:
+
+```text
+AgentRuntime
+├── prepare()
+├── handoff()
+├── capabilities()
+└── verify()
+```
+
+The exact API can evolve.
+
+---
+
+# 38. Runtime Adapter Principle
+
+The core should not contain provider-specific logic everywhere.
+
+Instead:
+
+```text
+packages/core
+      │
+      ▼
+Runtime Adapter Interface
+      │
+ ┌────┼─────┐
+ ▼    ▼     ▼
+Cursor Claude Codex
+```
+
+This keeps the core provider-agnostic.
+
+---
+
+# 39. Research / Discovery Architecture
+
+A future discovery subsystem can use multiple sources:
+
+```text
+GitHub repositories
+      │
+README references
+      │
+Skill catalogs
+      │
+Curated lists
+      │
+Official sources
+      │
+Direct skill repositories
+      │
+      ▼
+Discovery ingestion
+      │
+      ▼
+Normalization
+      │
+      ▼
+Evaluation
+      │
+      ▼
+Registry
+```
+
+Important:
+
+**Discovery sources are not trust sources by default.**
+
+---
+
+# 40. README Discovery Graph
+
+One especially useful idea developed in the project:
+
+> README files can be treated as a discovery graph.
+
+For example:
+
+```text
+Repository A
+   │
+   └── README links Repository B
+                         │
+                         └── README links Skill C
+                                      │
+                                      ▼
+                               candidate discovery
+```
+
+Ezy can recursively discover useful resources.
+
+But every edge increases the trust boundary.
+
+Therefore:
+
+```text
+discover
+  ≠
+trust
+```
+
+Every discovered node must pass through evaluation before becoming recommendable.
+
+---
+
+# 41. Ezy's Evaluation Pipeline
+
+A future robust pipeline should resemble:
+
+```text
+SOURCE
+  ↓
+DISCOVERY
+  ↓
+NORMALIZATION
+  ↓
+PROVENANCE CHECK
+  ↓
+SECURITY SCAN
+  ↓
+QUALITY EVALUATION
+  ↓
+COMPATIBILITY EVALUATION
+  ↓
+TRUST CLASSIFICATION
+  ↓
+REGISTRY
+  ↓
+TASK ANALYSIS
+  ↓
+CANDIDATE RETRIEVAL
+  ↓
+TASK-SPECIFIC RANKING
+  ↓
+CONFLICT/OVERLAP ANALYSIS
+  ↓
+SKILL BUNDLE
+  ↓
+AGENT HANDOFF
+  ↓
+EXECUTION
+  ↓
+VERIFICATION
+```
+
+---
+
+# 42. Verification
+
+Verification is a future major component.
+
+Ezy should eventually distinguish:
+
+### Pre-execution verification
+
+"Is this capability safe/trustworthy enough to use?"
+
+### Execution verification
+
+"Did the downstream agent actually use the intended capabilities?"
+
+### Outcome verification
+
+"Did the requested result actually happen correctly?"
+
+The last one is especially important.
+
+Ezy's future vision is not simply:
+
+```text
+recommend → handoff
+```
+
+but:
+
+```text
+recommend → execute → verify
+```
+
+---
+
+# 43. Project Brain
+
+Project Brain was identified as a later architectural capability.
+
+The purpose is to maintain project-aware understanding, potentially including:
+
+- project architecture
+- technology stack
+- conventions
+- existing tools
+- known constraints
+- previous decisions
+- current state
+- relevant capabilities
+- rejected approaches
+
+This should reduce repeated analysis.
+
+Project Brain is not the same thing as arbitrary long-term memory.
+
+It should contain useful project knowledge.
+
+---
+
+# 44. Why the User's Current Conversation Problem Exists
+
+The user recently loaded all project conversations into Cursor and Claude, but the agents did not understand the project.
+
+That is expected when raw conversation history is used as the specification.
+
+Historical conversations contain:
+
+- experiments
+- abandoned approaches
+- corrections
+- contradictions
+- jokes
+- temporary ideas
+- research notes
+- final decisions
+- old decisions
+
+An agent cannot safely infer which statements are authoritative.
+
+Therefore Ezy itself needs a canonical project specification.
+
+---
+
+# 45. Canonical Documentation Structure
+
+Recommended repository documentation structure:
+
+```text
+docs/
+  00-CONSTITUTION.md
+  01-PRODUCT.md
+  02-ARCHITECTURE.md
+  03-SKILL-INTELLIGENCE.md
+  04-RECOMMENDATION.md
+  05-SECURITY.md
+  06-HANDOFF.md
+  07-REGISTRY.md
+  08-ROADMAP.md
+  09-DECISIONS.md
+  10-RESEARCH.md
+```
+
+The most important file is:
+
+```text
+00-CONSTITUTION.md
+```
+
+This should tell every coding agent:
+
+> This is the source of truth for what Make It Ezy is.
+
+**As implemented (agents, 2026-11-17):** start at root [`AGENTS.md`](../../AGENTS.md) (Claude via [`CLAUDE.md`](../../CLAUDE.md)); product intent in this file; phase order in [`docs/ROADMAP.md`](../ROADMAP.md); CLI behavior in [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md). The numbered `00-*` tree above is aspirational, not the current layout.
+
+Historical conversation exports live under `docs/convo/` as archive material—do not treat them as the current specification.
+
+---
+
+# 46. Proposed Constitution Rules
+
+The following should be treated as architectural invariants.
+
+## Rule 1
+
+Ezy is a decision/intelligence/routing layer, not the downstream coding agent.
+
+## Rule 2
+
+Ezy must understand the requested outcome before selecting capabilities.
+
+## Rule 3
+
+Discovery does not imply trust.
+
+## Rule 4
+
+No unverified skill should be casually handed to the execution agent.
+
+## Rule 5
+
+Security failures can hard-block recommendation.
+
+## Rule 6
+
+Task fit alone is insufficient.
+
+## Rule 7
+
+Popularity alone is insufficient.
+
+## Rule 8
+
+The recommendation should be a minimum useful skill set.
+
+## Rule 9
+
+Redundant/conflicting capabilities should be filtered.
+
+## Rule 10
+
+Ezy must be able to abstain.
+
+## Rule 11
+
+The registry may be large; the execution context should be selective.
+
+## Rule 12
+
+Ezy should remain provider-agnostic through adapters.
+
+## Rule 13
+
+Core Ezy should remain free/open-source and local-first.
+
+## Rule 14
+
+Avoid unnecessary framework dependencies and over-engineering.
+
+## Rule 15
+
+Research is evidence; it is not automatically architecture.
+
+---
+
+# 47. Roadmap — Historical Direction
+
+The project roadmap evolved, but the major progression was approximately:
+
+## Phase 0 — Research
+
+Study:
+
+- agent skills
+- skill formats
+- agent frameworks
+- discovery systems
+- coding agents
+- research systems
+- security approaches
+- existing ecosystems
+
+Goal:
+
+Understand the landscape before implementing.
+
+---
+
+## Phase 1 — CLI Foundation
+
+Build:
+
+- TypeScript/Node CLI
+- pnpm workspace
+- core package
+- basic commands
+- schemas
+- tests
+
+Goal:
+
+Create a stable local developer-tool foundation.
+
+---
+
+## Phase 2 — Discovery
+
+Build:
+
+- skill discovery
+- search
+- inspection
+- catalog representation
+- source metadata
+
+Goal:
+
+Allow Ezy to find relevant capabilities.
+
+---
+
+## Phase 3 — Recommendation / Decision Engine
+
+Build:
+
+- capability extraction
+- task matching
+- recommendations
+- decision reasoning
+- plan generation
+- exclusion reasons
+
+Goal:
+
+Move from "find skills" to "choose skills."
+
+---
+
+## Phase 4 — Installation / Runtime Adapters
+
+Build:
+
+- approval/safety
+- install handling
+- dependency/version handling
+- installation verification
+- runtime adapters
+- Claude/Codex/Cursor handoff
+
+Goal:
+
+Connect Ezy's decision layer to execution environments.
+
+---
+
+## Phase 5 — Ezy Skill / Project-Aware Planning
+
+Build:
+
+- Ezy `SKILL.md`
+- project-aware analysis
+- `ezy next`
+- better contextual recommendations
+- exclusion explanations
+
+Goal:
+
+Make Ezy useful inside real agent workflows.
+
+---
+
+## Phase 6 — Project Brain
+
+Future:
+
+- persistent project understanding
+- architecture awareness
+- project decisions
+- project constraints
+- relevant capability memory
+
+Goal:
+
+Reduce repeated project analysis.
+
+---
+
+## Phase 7 — Verification
+
+Future:
+
+- skill verification
+- security evaluation
+- version-aware trust
+- execution verification
+- outcome verification
+- evidence reporting
+
+This phase is now especially important because the project has clarified that trust is core product value.
+
+---
+
+## Later — Web UI
+
+A web UI may eventually expose:
+
+- recommendations
+- trust evidence
+- skill registry
+- project state
+- plans
+- verification
+- history
+
+But Web UI should not be allowed to distract from the core intelligence layer.
+
+---
+
+# 48. Revised Priority
+
+Based on the latest clarification, the roadmap should prioritize:
+
+```text
+1. Canonical architecture
+2. Skill registry
+3. Discovery
+4. Security/quality evaluation
+5. Trust model
+6. Recommendation engine
+7. Skill-set composition
+8. Agent handoff
+9. Verification
+10. Project Brain
+11. UI
+```
+
+The exact implementation order may differ depending on what the current repository already contains.
+
+The critical point is:
+
+> **Trust/evaluation must be elevated from a "later nice-to-have" into a core path before Ezy can claim to be a trustworthy skill recommender.**
+
+---
+
+# 49. What Should NOT Be Built Too Early
+
+Avoid premature implementation of:
+
+- giant databases
+- complex multi-agent orchestration
+- autonomous swarm systems
+- custom LLM training
+- cloud infrastructure
+- mandatory hosted services
+- elaborate Web UI
+- every possible agent adapter
+- every possible framework integration
+- massive abstract plugin systems
+- complex distributed architecture
+
+The project should remain small until the actual need is demonstrated.
+
+---
+
+# 50. Anti-Overengineering Principle
+
+The user has specifically been interested in Ponytail / simplification methodology.
+
+The project should actively resist:
+
+- abstractions without current use
+- dependencies without clear value
+- generalized interfaces before requirements exist
+- duplicate functionality
+- premature infrastructure
+- "future proofing" everything
+
+The goal is not a huge architecture diagram.
+
+The goal is a system that produces better capability decisions.
+
+---
+
+# 51. How Ezy Should Think About a Task
+
+A task should be transformed roughly like:
+
+```text
+User goal
+   ↓
+Intent
+   ↓
+Constraints
+   ↓
+Project context
+   ↓
+Required capabilities
+   ↓
+Candidate capabilities
+   ↓
+Trusted candidates
+   ↓
+Compatible candidates
+   ↓
+Complementary set
+   ↓
+Execution plan
+```
+
+Example:
+
+```text
+"Build offline-first PWA"
+```
+
+should become something like:
+
+```text
+Requirements:
+- Next.js
+- PWA
+- offline persistence
+- local database
+- synchronization
+- conflict handling
+- testing
+- security
+
+Candidate capabilities:
+- Next.js architecture
+- PWA
+- Dexie/IndexedDB
+- sync architecture
+- testing
+- security
+
+Evaluation:
+- trust
+- quality
+- compatibility
+- overlap
+
+Final bundle:
+- only the useful trusted set
+```
+
+---
+
+# 52. Recommendation Explainability
+
+Ezy should eventually be able to explain:
+
+### Why selected?
+
+```text
+Selected because:
+- directly matches task capability
+- verified source
+- compatible with project
+- no conflicting dependencies
+```
+
+### Why rejected?
+
+```text
+Rejected because:
+- insufficient evidence
+- outdated
+- incompatible
+- redundant
+- security concern
+```
+
+This is critical for user trust.
+
+---
+
+# 53. The Skill Registry Is Not the Product by Itself
+
+A large catalog is not enough.
+
+If Ezy becomes:
+
+```text
+search skills
+list skills
+install skills
+```
+
+it risks becoming a package manager or marketplace.
+
+The registry exists to support:
+
+> **intelligent selection.**
+
+The product's value comes from the decision made from the registry.
+
+---
+
+# 54. But the Registry IS Necessary
+
+The opposite mistake is also important.
+
+Ezy should not avoid maintaining a substantial skill knowledge base just because the catalog isn't itself the product.
+
+A recommendation system needs evidence.
+
+Therefore:
+
+```text
+Large Registry
+      ↓
+Evaluation
+      ↓
+Trusted Pool
+      ↓
+Task-specific Recommendation
+```
+
+This is the correct balance.
+
+---
+
+# 55. Relationship to Coding Agents
+
+The intended division of labor is:
+
+## Make It Ezy
+
+Decides:
+
+- what is needed
+- what should be trusted
+- which skills should be used
+- what context should be supplied
+- which agent/runtime should receive the work
+- how the selected capabilities fit together
+
+## Cursor / Claude Code / Codex
+
+Executes:
+
+- reading code
+- writing code
+- editing files
+- running tests
+- implementing the plan
+- using the selected skills
+
+Ezy should not duplicate the entire coding-agent function.
+
+---
+
+# 56. Relationship to Claude Code
+
+A key security/design question discussed:
+
+> Is Claude Code inherently safer because it creates/controls its own skills while Ezy may discover skills from the internet?
+
+The correct design response is not to assume Ezy can automatically be as safe.
+
+Ezy needs an explicit trust pipeline.
+
+That is actually one of the reasons the verification architecture matters.
+
+Ezy can eventually provide a stronger supply-chain model:
+
+```text
+Internet
+  ↓
+Discovery
+  ↓
+Inspection
+  ↓
+Security analysis
+  ↓
+Trust classification
+  ↓
+Task-specific selection
+  ↓
+Agent
+```
+
+rather than:
+
+```text
+Internet
+  ↓
+Agent
+```
+
+---
+
+# 57. Skills Used to Build Ezy
+
+The user wants to use existing agent skills to build Ezy itself.
+
+This is allowed and useful.
+
+But the project should distinguish:
+
+### Skills used by developers/agents to build Ezy
+
+from:
+
+### Skills Ezy recommends to its end users
+
+They are related but not identical.
+
+For example, Ponytail may be useful when implementing/refactoring Ezy.
+
+That does not automatically mean Ponytail is part of every downstream Ezy recommendation.
+
+---
+
+# 58. Agent Skills as a Compatibility Target
+
+The `SKILL.md` pattern is important.
+
+The project has treated Agent Skills as a compatibility target rather than necessarily a dependency.
+
+That means Ezy should understand and eventually produce/consume portable skill definitions where useful.
+
+---
+
+# 59. Important Research Lesson
+
+The research repeatedly showed that the ecosystem contains different kinds of resources:
+
+```text
+Skill
+Skill pack
+Catalog
+Tool
+Runtime
+Framework
+Application
+Methodology
+Agent
+Workflow
+```
+
+These must not all be treated as the same thing.
+
+The registry should classify them.
+
+For example:
+
+- a methodology is not a skill
+- a framework is not a skill
+- an application is not an agent
+- a catalog is not a trusted skill
+- a tool is not necessarily an execution agent
+
+This classification is important for recommendation quality.
+
+---
+
+# 60. Staging List
+
+The project had a staging list of resources with categories/statuses such as:
+
+- skill
+- skill-pack
+- catalog
+- tool
+- runtime
+- framework
+- app
+- methodology
+
+and statuses such as:
+
+- unverified
+- verify_url
+- good
+- reject
+- study_only
+
+The list should **not** be interpreted as:
+
+> "These are all approved Ezy skills."
+
+It is better understood as:
+
+> **a discovery/evaluation staging index feeding the eventual registry.**
+
+The list should be retained as research input rather than discarded.
+
+---
+
+# 61. Example Study-Only Resources
+
+Resources such as:
+
+- OpenProject
+- Chatwoot
+- Cal.com
+
+were previously classified as study/reference rather than things Ezy should blindly install.
+
+This illustrates the broader registry rule:
+
+> A resource can be valuable to understand without being a dependency or recommendation.
+
+---
+
+# 62. Ezy's Future Evaluation Engine
+
+A future evaluator could produce something conceptually like:
+
+```text
+Skill: example-skill
+
+Provenance
+  repository: verified
+  owner: verified
+  license: MIT
+  revision: abc123
+
+Security
+  scripts: none
+  network access: none
+  filesystem access: instructions only
+  prompt injection findings: none
+  status: PASS
+
+Quality
+  documentation: strong
+  tests: present
+  maintenance: active
+  scope: focused
+  status: PASS
+
+Compatibility
+  Claude Code: yes
+  Codex: yes
+  Cursor: yes
+
+Task fit
+  92%
+
+Trust
+  T3 — Trusted
+
+Recommendation
+  ELIGIBLE
+```
+
+This is illustrative, not a finalized scoring formula.
+
+---
+
+# 63. Evidence Should Be First-Class
+
+Ezy should not merely store:
+
+```text
+trust = high
+```
+
+It should store why.
+
+For example:
+
+```text
+trust:
+  level: T3
+  evidence:
+    - repository ownership
+    - commit history
+    - license
+    - security scan
+    - skill inspection
+    - tests
+    - compatibility checks
+  verified_at: ...
+  verified_revision: ...
+```
+
+This makes trust auditable.
+
+---
+
+# 64. Security and Trust Are Different
+
+Do not collapse them.
+
+A skill can be:
+
+- secure but poor quality
+- high quality but risky
+- popular but unverified
+- trustworthy but not useful for the current task
+- excellent and secure but incompatible with the user's runtime
+
+Therefore Ezy needs separate dimensions.
+
+---
+
+# 65. Quality and Task Fit Are Different
+
+A fantastic React skill is not necessarily the correct skill for a PostgreSQL migration.
+
+A highly trusted skill can still be a bad recommendation.
+
+The recommendation engine therefore needs:
+
+```text
+Trust
++
+Security
++
+Quality
++
+Task Fit
++
+Compatibility
+```
+
+---
+
+# 66. Minimum Useful Set
+
+A central optimization target:
+
+> **Select the smallest trusted set that adequately covers the task.**
+
+Not:
+
+> select every relevant skill.
+
+This reduces:
+
+- conflicting instructions
+- redundant context
+- token usage
+- cognitive complexity
+- unpredictable downstream behavior
+
+But again:
+
+**efficiency is subordinate to outcome quality and trust.**
+
+---
+
+# 67. Potential Recommendation Model
+
+A conceptual model could be:
+
+```text
+candidate score =
+    task_fit
+  + quality
+  + compatibility
+  + trust
+  - redundancy
+  - conflict
+  - context_cost
+```
+
+But this should only be implemented after defining the actual evidence and hard gates.
+
+Do not prematurely lock the project into arbitrary numerical weights.
+
+---
+
+# 68. Handoff Requirements
+
+The downstream handoff should contain enough information for the execution agent to understand:
+
+- user's requested outcome
+- relevant project context
+- selected skills
+- why those skills were selected
+- relevant constraints
+- important security/trust information
+- execution plan
+- what not to use
+- verification expectations
+
+The downstream agent should **not** receive the entire discovery registry.
+
+---
+
+# 69. Handoff Example
+
+Conceptually:
+
+```text
+TASK
+Build an offline-first Next.js PWA.
+
+PROJECT
+Next.js / TypeScript / pnpm.
+
+RECOMMENDED CAPABILITIES
+
+1. Next.js architecture
+   Trust: T3
+   Reason: project-compatible
+
+2. Offline-first/PWA
+   Trust: T3
+   Reason: direct requirement
+
+3. IndexedDB/Dexie
+   Trust: T2
+   Reason: local persistence requirement
+
+4. Testing
+   Trust: T3
+   Reason: required for implementation verification
+
+EXCLUDED
+
+Skill X
+  reason: insufficient security evidence
+
+Skill Y
+  reason: redundant
+
+EXECUTION REQUIREMENTS
+- Follow selected skills.
+- Do not introduce unapproved skill sources.
+- Run tests.
+- Verify requested behavior.
+```
+
+The exact format is still to be designed.
+
+---
+
+# 70. Verification Loop
+
+Long-term:
+
+```text
+PLAN
+ ↓
+SELECT
+ ↓
+HANDOFF
+ ↓
+EXECUTE
+ ↓
+TEST
+ ↓
+VERIFY
+ ↓
+REPORT
+```
+
+If the result fails verification, Ezy should eventually be able to:
+
+- identify which capability failed
+- adjust the plan
+- recommend a different skill
+- ask the execution agent to revise
+- update evidence where appropriate
+
+This is future scope, not necessarily MVP.
+
+---
+
+# 71. Historical Project Status (2026-11-08 snapshot)
+
+This section records the project state when this handoff was drafted; it is not a current status report. For shipped work and phase order, use [`docs/ROADMAP.md`](../ROADMAP.md). For the current immediate work proposal, use [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) and the shared sequence in [`AGENTS.md`](../../AGENTS.md).
+
+At the point of those repository discussions, Ezy was no longer merely an idea.
+
+The repo had:
+
+- a TypeScript foundation
+- pnpm monorepo structure
+- CLI
+- core package
+- catalog
+- skill adapter
+- discovery
+- recommendation
+- planning
+- installation/handoff concepts
+- runtime adapters
+- project-aware planning
+
+But the project had **not yet fully solved its hardest problem**:
+
+> trustworthy skill intelligence.
+
+Trustworthy skill intelligence was a major architectural focus at that time. Current priorities are tracked in the roadmap and audit linked above.
+
+---
+
+# 72. Historical Build Priorities (superseded)
+
+An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus the proposed maintenance tranche in `docs/audits/2026-11-07-codebase-gaps.md`.
+
+---
+
+# 73. What Should Be Considered "Done" for the Core Product?
+
+A meaningful core Ezy milestone would be:
+
+```text
+User:
+"Build X."
+
+Ezy:
+1. understands X
+2. understands the project
+3. identifies required capabilities
+4. finds candidate skills
+5. verifies/evaluates candidates
+6. rejects unsafe/weak candidates
+7. selects a trusted skill set
+8. explains why
+9. prepares a downstream handoff
+10. sends it to Cursor/Claude/Codex
+11. receives/assists with verification
+```
+
+At that point Ezy is doing something materially different from:
+
+- a skill catalog
+- a package manager
+- a prompt library
+- a token manager
+
+---
+
+# 74. What Success Looks Like
+
+The user's experience should eventually be:
+
+```text
+"I know what I want."
+
+             ↓
+
+"Tell Ezy."
+
+             ↓
+
+"Ezy figures out what capabilities I need."
+
+             ↓
+
+"Ezy checks which ones are trustworthy."
+
+             ↓
+
+"Ezy chooses the best combination."
+
+             ↓
+
+"Ezy gives the right context to my coding agent."
+
+             ↓
+
+"Claude/Codex/Cursor builds it."
+
+             ↓
+
+"Ezy helps verify the result."
+```
+
+The user should not have to become a skill ecosystem expert.
+
+---
+
+# 75. What Would Make Ezy Useless?
+
+This is worth preserving explicitly.
+
+Ezy becomes weak if it becomes any of these:
+
+### A glorified search engine
+
+```text
+"What skill should I use?"
+"Here are 20 GitHub links."
+```
+
+### A blind installer
+
+```text
+"Found it → installed it."
+```
+
+### A token optimizer
+
+```text
+"We reduced context by 40%."
+```
+
+while the implementation quality collapses.
+
+### A giant catalog
+
+```text
+"We indexed 100,000 skills."
+```
+
+without trustworthy recommendation.
+
+### A generic agent framework
+
+```text
+"We built another swarm."
+```
+
+without solving capability selection.
+
+### A popularity ranking
+
+```text
+"Most stars = best."
+```
+
+### A security theater layer
+
+```text
+"Trust score: 87"
+```
+
+without real evidence.
+
+The product must avoid all of these.
+
+---
+
+# 76. The Core Differentiator
+
+The strongest current product hypothesis is:
+
+> **Ezy's moat is not owning skills. It is knowing which capabilities to trust, when to use them, how they fit together, and how to route them to the right execution agent.**
+
+The registry provides data.
+
+The evaluator provides trust.
+
+The recommendation engine provides intelligence.
+
+The adapters provide execution connectivity.
+
+The verification layer provides feedback.
+
+---
+
+# 77. Final Architecture
+
+The most complete current conceptual architecture is:
+
+```text
+                         USER
+                           │
+                           ▼
+                   OUTCOME / REQUEST
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │ TASK UNDERSTANDING│
+                 └──────────────────┘
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │ PROJECT ANALYSIS │
+                 └──────────────────┘
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │ CAPABILITY MODEL │
+                 └──────────────────┘
+                           │
+                           ▼
+             ┌──────────────────────────┐
+             │   DISCOVERY ECOSYSTEM    │
+             │                          │
+             │ GitHub / catalogs /      │
+             │ README references /      │
+             │ official sources / repos │
+             └──────────────────────────┘
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │  SKILL REGISTRY  │
+                 └──────────────────┘
+                           │
+                           ▼
+             ┌──────────────────────────┐
+             │ SECURITY / QUALITY /     │
+             │ PROVENANCE EVALUATION    │
+             └──────────────────────────┘
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │  TRUST BOUNDARY  │
+                 └──────────────────┘
+                           │
+                           ▼
+             ┌──────────────────────────┐
+             │ RECOMMENDATION ENGINE    │
+             │                          │
+             │ task fit                 │
+             │ trust                    │
+             │ security                 │
+             │ quality                  │
+             │ compatibility            │
+             │ overlap                  │
+             │ conflicts                │
+             │ context cost             │
+             └──────────────────────────┘
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │  TRUSTED SKILL   │
+                 │      SET         │
+                 └──────────────────┘
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │ EXECUTION PLAN   │
+                 └──────────────────┘
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │ RUNTIME ADAPTER  │
+                 └──────────────────┘
+                    │      │      │
+                    ▼      ▼      ▼
+                 Cursor Claude  Codex
+                    │      │      │
+                    └──────┼──────┘
+                           ▼
+                       EXECUTE
+                           │
+                           ▼
+                      VERIFY
+                           │
+                           ▼
+                    RESULT / FEEDBACK
+```
+
+---
+
+# 78. Canonical One-Sentence Definition
+
+> **Make It Ezy is a free, local-first, open-source capability-intelligence layer that understands a user's goal, discovers and evaluates available skills and capabilities, selects the smallest trustworthy set needed for the task, and routes that set with the right context to an execution agent such as Cursor, Claude Code, or Codex.**
+
+---
+
+# 79. Canonical Short Definition
+
+> **Ezy figures out what capabilities an AI coding agent needs, verifies which ones are trustworthy, composes the right set, and hands them off to the agent that does the work.**
+
+---
+
+# 80. Non-Negotiable Product Truth
+
+If a future implementation decision makes Ezy easier to build but causes Ezy to blindly recommend untrusted capabilities, that decision should be treated as a regression in the product's core purpose.
+
+The central question for every major architectural decision should be:
+
+> **Does this help Ezy make a better, safer, more trustworthy capability decision for the user's actual task?**
+
+If not, it should not become core architecture merely because it is technically interesting.
+
+---
+
+# 81. Open / Unresolved Decisions
+
+The conversations do not establish final answers for all of these. Do not silently invent them.
+
+Still to decide:
+
+1. Exact trust scoring model.
+2. Exact security scanner implementation.
+3. Whether evaluation uses deterministic scanners, LLM analysis, or both.
+4. Exact registry storage format.
+5. Exact recommendation algorithm.
+6. Exact handoff protocol for each runtime.
+7. How version changes invalidate trust.
+8. Exact verification loop.
+9. Project Brain storage model.
+10. Whether/when to add a database.
+11. Whether/when to add Web UI.
+12. Full adapter API.
+13. How much autonomous execution Ezy should eventually perform.
+14. Whether Ezy should ever execute skills itself or always route them to downstream agents.
+15. Exact policy for newly discovered skills with incomplete evidence.
+16. Exact licensing/attribution policy for imported skill metadata/content.
+
+These should be resolved through implementation/research, not guessed.
+
+---
+
+# 82. Instructions for Future Coding Agents
+
+When working on Make It Ezy:
+
+1. Read this document first.
+2. Treat it as the current canonical product context.
+3. Do not reconstruct the product from historical conversation dumps.
+4. Do not assume every discussed repository is a trusted dependency.
+5. Do not turn discovery resources into recommendations without evaluation.
+6. Do not remove the registry simply because the registry is not the product.
+7. Do not turn Ezy into a generic multi-agent framework.
+8. Do not turn Ezy into a simple package manager.
+9. Do not optimize token usage at the expense of outcome quality.
+10. Do not bypass security/trust gates for convenience.
+11. Prefer small, composable, testable changes.
+12. Preserve provider independence.
+13. Update the canonical documentation when a major architectural decision changes.
+14. Record significant decisions rather than allowing them to disappear into chat history.
+15. When uncertain, identify the uncertainty rather than inventing a requirement.
+
+---
+
+# 83. Final Mental Model
+
+If an agent remembers only one thing, it should remember this:
+
+```text
+             MAKE IT EZY
+
+       "What are you trying to accomplish?"
+                    │
+                    ▼
+       "What capabilities are required?"
+                    │
+                    ▼
+       "Which available capabilities
+        can I actually trust?"
+                    │
+                    ▼
+       "Which trusted capabilities
+        work best together?"
+                    │
+                    ▼
+       "Which execution agent should
+        receive them?"
+                    │
+                    ▼
+       "Did the result actually work?"
+```
+
+That is the product.
+
+Everything else — catalogs, repositories, skills, security scanners, adapters, planners, Project Brain, UI, and research — exists to make those decisions better.

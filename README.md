@@ -11,15 +11,15 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/license/ezmichaely/make-it-ezy?style=flat-square&color=111111" alt="MIT license">
-  <img src="https://img.shields.io/badge/status-phase%206-111111?style=flat-square" alt="Phase 6">
+  <img src="https://img.shields.io/badge/status-phase%206%20shipped-111111?style=flat-square" alt="Phase 6 shipped">
   <img src="https://img.shields.io/badge/node-%3E%3D20-111111?style=flat-square" alt="Node 20+">
 </p>
 
 ---
 
-**Make It Ezy** is an **AI capability orchestration layer**. Give it a goal, and it determines the capabilities, context, tools, agents, and workflow needed to accomplish it—using the **minimum necessary** to get the job done reliably.
+**Make It Ezy** is a local-first capability and context decision layer. Give it a goal, and it identifies what the project needs, selects a minimum useful set of capabilities, and prepares a handoff. The host agent (Claude Code, Cursor, Codex, or another runtime) performs the work.
 
-It is **not** another coding agent, skill manager, MCP manager, marketplace, or prompt tool. Those are things Ezy can *select and compose*. Ezy sits **above** them.
+Ezy is **not** another coding agent, skills marketplace, or multi-agent runtime. Its role is to help choose and compose what the execution agent needs.
 
 ```text
              HUMAN
@@ -138,13 +138,13 @@ Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 
 **Phase 6 shipped** — agent brief + decision quality (`ezy brief`, `--brief`), on top of project-aware `plan` / `next` (plus install + `/ezy`).
 
-| Next | Later |
-|---|---|
-| Phase 7 — Project Brain | Soft-C, deep verify, trusted-auto |
-| Phase 8 — Outcome verification | Codex marketplace plugin |
-| Phase 9 — Web UI | Giant catalog / marketplace |
+| Immediate maintenance | Roadmap sequence | Deferred |
+|---|---|---|
+| Revalidate findings 1–4; user approval is required before product-code changes. [Details](./docs/audits/2026-11-07-codebase-gaps.md) | Phase 7 — Project Brain (after maintenance) | Soft-C, deep verify, trusted-auto |
+|  | Phase 8 — Outcome verification | Codex marketplace plugin |
+|  | Phase 9 — Web UI | Giant catalog / marketplace |
 
-Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md)
+Shared agent guide: [`AGENTS.md`](./AGENTS.md) · Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md)
 
 ## License
 

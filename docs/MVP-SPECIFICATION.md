@@ -5,7 +5,7 @@
 ## Phases 1–3 (done)
 
 `doctor` / `analyze` / `search` / `inspect` / `recommend` / `plan` — discover & plan only.  
-Note: `plan` is still **outcome-only** (lexicon → skill shortlist). It does not yet use `analyze`.
+`plan` was outcome-only in Phase 3; Phase 5 made `plan` / `next` project-aware. See the Phase 5 behavior below.
 
 ## Phase 4 slice (done)
 
@@ -56,7 +56,6 @@ pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
 
 | Phase | Work |
 |---|---|
-| 6 | Agent Brief + Decision Quality (done) |
 | 7 | Project Brain (lightweight persistent knowledge) |
 | 8 | Outcome verification |
 | 9 | Web UI |
@@ -64,7 +63,8 @@ pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
 
 ## Source of truth
 
+- Shared agent guide / current work path: `AGENTS.md`
 - Phase sequence: `docs/ROADMAP.md`
-- Product intent: `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md` (see phase-map note at top)
+- Product intent: `docs/handoff/MAKE-IT-EZY-HANDOFF.md`
 - Phase 4 designs: `docs/superpowers/specs/2026-11-05-phase4-*-design.md`
 - Phase 5 design: `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`

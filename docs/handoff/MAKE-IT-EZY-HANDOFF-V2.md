@@ -1,5 +1,7 @@
 # MAKE IT EZY — CODEx / Cursor HANDOFF
 
+> **SUPERSEDED.** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only—do not plan work from this file.
+
 ## 0. Executive direction
 
 Make It Ezy is an open-source developer tool intended to make the AI ecosystem easier to use.

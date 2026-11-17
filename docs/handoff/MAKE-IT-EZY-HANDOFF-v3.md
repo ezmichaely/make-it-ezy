@@ -1,6 +1,8 @@
 # MAKE IT EZY — Master Project Handoff
 
-> **Purpose:** This document is the source-of-truth handoff for building **Make It Ezy**, an open-source system intended to make the AI ecosystem easier to use.
+> **SUPERSEDED.** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only.
+>
+> **Purpose:** This document was a source-of-truth handoff for building **Make It Ezy**, an open-source system intended to make the AI ecosystem easier to use.
 >
 > **Core idea:** The user describes an outcome. Make It Ezy figures out the useful process, capabilities, skills, tools, workflows, and runtime needed to accomplish it.
 >

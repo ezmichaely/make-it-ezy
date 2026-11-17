@@ -1,7 +1,7 @@
 # Reference Directory
 
 Verified against GitHub API on **2026-11-05** unless marked otherwise.  
-Source of truth for product intent: `docs/handoff/MAKE-IT-EZY-MASTER-HANDOFF.md`.
+Source of truth for product intent: `docs/handoff/MAKE-IT-EZY-HANDOFF.md`.
 
 License / activity fields below are live API snapshots. Re-check before integration.
 
