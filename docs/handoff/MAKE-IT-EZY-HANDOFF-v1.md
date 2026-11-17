@@ -1,6 +1,6 @@
 # Make It Ezy — Product Vision, Research Inventory & Engineering Handoff
 
-> **SUPERSEDED.** Use [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md). Historical snapshot only.
+> **SUPERSEDED.** Agents: root [`../../AGENTS.md`](../../AGENTS.md). Product intent: [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md). Status: [`../ROADMAP.md`](../ROADMAP.md). Historical snapshot only.
 
 **Repository:** `make-it-ezy`  
 **Project type:** Open-source, local-first AI capability discovery and orchestration layer  
