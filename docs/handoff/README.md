@@ -4,7 +4,7 @@ For the shared agent entry point and current work sequence, start at [`../../AGE
 
 **Current product handoff:**
 
-[`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) (2026-11-08). Read this for product intent after the shared agent guide; use the roadmap for shipped status.
+[`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) (2026-11-08). Read this for **product intent and trust** after the shared agent guide; use the roadmap and MVP spec for **shipped** behavior. The handoff opens with **shipped → next → future** so vision sections are not mistaken for today's CLI.
 
 Older snapshots (historical only — do not reconstruct the product from these):
 

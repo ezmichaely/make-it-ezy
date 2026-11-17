@@ -2,6 +2,8 @@
 
 Read this before the long handoff. It states who does what in one workflow.
 
+**Shipped / next / future:** [`ROADMAP.md`](./ROADMAP.md) and [`MVP-SPECIFICATION.md`](./MVP-SPECIFICATION.md) own **shipped** CLI behavior. **Next:** Phase 7 Project Brain (design first), then verification and Web UI. **Future:** trust automation, Soft-C, and other items called out as deferred in the roadmap. The long [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md) mixes intent with that timeline — it opens with a **Shipped → next → future** table; treat everything after that as product direction unless the MVP spec says otherwise.
+
 ## One sentence
 
 **Ezy picks and explains a small stack of capabilities for your goal; your host agent (Cursor, Claude Code, Codex) runs those skills and writes the code.**
