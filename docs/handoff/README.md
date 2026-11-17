@@ -16,6 +16,7 @@ Older snapshots (historical only — do not reconstruct the product from these):
 | Doc | Role |
 |---|---|
 | [`../../AGENTS.md`](../../AGENTS.md) | **Shared agent entry point / current work path** |
+| [`../HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) | **One-page workflow** (Ezy vs host agent; read before the long handoff) |
 | [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) | **Product definition / trust / architecture intent** |
 | [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** (wins on phase numbering) |
 | [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **Immediate pre-Phase-7 maintenance proposal** (revalidate; approval required before code changes) |

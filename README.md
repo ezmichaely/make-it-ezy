@@ -21,6 +21,8 @@
 
 Ezy is **not** another coding agent, skills marketplace, or multi-agent runtime. Its role is to help choose and compose what the execution agent needs.
 
+**How it works in practice:** Ezy discovers and filters capabilities, then hands off; your agent runs the recommended skills (from the net or local) and implements. Short walkthrough: [`docs/HOW-IT-WORKS.md`](./docs/HOW-IT-WORKS.md).
+
 ```text
              HUMAN
                 │

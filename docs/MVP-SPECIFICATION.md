@@ -63,6 +63,7 @@ pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
 
 ## Source of truth
 
+- One-page workflow (Ezy vs host agent): [`HOW-IT-WORKS.md`](./HOW-IT-WORKS.md)
 - Shared agent guide / current work path: `AGENTS.md`
 - Phase sequence: `docs/ROADMAP.md`
 - Product intent: `docs/handoff/MAKE-IT-EZY-HANDOFF.md`
