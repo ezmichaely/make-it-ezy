@@ -21,7 +21,7 @@ pnpm check:ci       # build → lint → typecheck → test → audit (same as A
 pnpm check          # build → lint → typecheck → test
 ```
 
-Before push/PR, agents should follow `.agents/skills/ci-before-push/SKILL.md` (also visible via `.claude/skills` and `.cursor/skills`, which link to `.agents/skills`).
+Before push/PR, follow root [`AGENTS.md`](../AGENTS.md) and `.agents/skills/ci-before-push/SKILL.md` (also under `.claude/skills` and `.cursor/skills`, which link to `.agents/skills`).
 
 ## PR workflow
 
@@ -38,7 +38,7 @@ On every push to `main`, [release-please](https://github.com/googleapis/release-
 - updates `CHANGELOG.md`
 - tags `vX.Y.Z` and creates a GitHub Release when that PR is merged
 
-Bootstrap: current version is **0.1.0** (see `.release-please-manifest.json`). Keep using Conventional Commit subjects (`feat:`, `fix:`, etc.).
+The current package version is recorded in `.release-please-manifest.json`. Keep using Conventional Commit subjects (`feat:`, `fix:`, etc.).
 
 ## Not included (paid / optional)
 

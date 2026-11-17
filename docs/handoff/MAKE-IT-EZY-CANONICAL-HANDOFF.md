@@ -7,7 +7,7 @@
 
 > **Important:** This document is the canonical interpretation of the project conversations available to the assistant. It is intentionally more authoritative than raw historical conversations. Historical conversations may contain experiments, reversals, abandoned ideas, and earlier terminology. When they conflict with this document, the latest explicit project decisions win.
 >
-> **Precedence with other repo docs:** product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → **`docs/ROADMAP.md`** (its phase numbers win over §47's older numbering). Current CLI behavior → **`docs/MVP-SPECIFICATION.md`**.
+> **Precedence with other repo docs:** shared agent workflow/current work → root **`AGENTS.md`**. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → **`docs/ROADMAP.md`** (its phase numbers win over older numbering). Current CLI behavior → **`docs/MVP-SPECIFICATION.md`**. The immediate maintenance proposal is tracked in **`docs/audits/2026-11-07-codebase-gaps.md`** and does not change phase numbering.
 
 ---
 
@@ -1541,7 +1541,9 @@ This should tell every coding agent:
 
 > This is the source of truth for what Make It Ezy is.
 
-Historical conversation exports should live under research/archive material rather than being treated as the current specification.
+**As implemented (agents, 2026-11-17):** start at root [`AGENTS.md`](../../AGENTS.md) (Claude via [`CLAUDE.md`](../../CLAUDE.md)); product intent in this file; phase order in [`docs/ROADMAP.md`](../ROADMAP.md); CLI behavior in [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md). The numbered `00-*` tree above is aspirational, not the current layout.
+
+Historical conversation exports live under `docs/convo/` as archive material—do not treat them as the current specification.
 
 ---
 
@@ -2411,9 +2413,11 @@ This is future scope, not necessarily MVP.
 
 ---
 
-# 71. Current Project Status
+# 71. Historical Project Status (2026-11-08 snapshot)
 
-At the point of the latest repository discussions, Ezy was no longer merely an idea.
+This section records the project state when this handoff was drafted; it is not a current status report. For shipped work and phase order, use [`docs/ROADMAP.md`](../ROADMAP.md). For the current immediate work proposal, use [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) and the shared sequence in [`AGENTS.md`](../../AGENTS.md).
+
+At the point of those repository discussions, Ezy was no longer merely an idea.
 
 The repo had:
 
@@ -2434,80 +2438,13 @@ But the project had **not yet fully solved its hardest problem**:
 
 > trustworthy skill intelligence.
 
-That is now the major architectural focus.
+Trustworthy skill intelligence was a major architectural focus at that time. Current priorities are tracked in the roadmap and audit linked above.
 
 ---
 
-# 72. What the Next Build Work Should Focus On
+# 72. Historical Build Priorities (superseded)
 
-The next work should not be random feature expansion.
-
-Priority should be:
-
-## 1. Freeze the product constitution
-
-Create the canonical definition so coding agents stop interpreting historical conversations.
-
-## 2. Freeze the domain model
-
-Define:
-
-- capability
-- skill
-- skill pack
-- tool
-- agent
-- workflow
-- runtime
-- source
-- evidence
-- trust
-- verification
-- recommendation
-
-## 3. Define registry structure
-
-Make the skill/capability registry explicit.
-
-## 4. Build evaluation pipeline
-
-Start with:
-
-- provenance
-- structure
-- license
-- scripts
-- hooks
-- permissions
-- dependencies
-- prompt-injection checks
-- maintenance
-- documentation
-- tests
-
-## 5. Build trust classification
-
-Implement T0–T4 or a refined equivalent.
-
-## 6. Upgrade recommendation engine
-
-Make trust/security hard gates before ranking.
-
-## 7. Compose skill bundles
-
-Select complementary skills rather than single skills.
-
-## 8. Improve handoff
-
-Make the downstream agent receive a clear, minimal, trustworthy bundle.
-
-## 9. Add verification
-
-Eventually verify both capability safety and outcome.
-
-## 10. Project Brain
-
-Add persistent project understanding after the above foundation is sound.
+An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus the proposed maintenance tranche in `docs/audits/2026-11-07-codebase-gaps.md`.
 
 ---
 

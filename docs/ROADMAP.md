@@ -2,6 +2,12 @@
 
 Locked phase sequence and shipped status. Product definition / trust rules: [`handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md).
 
+## Current work (2026-11-17)
+
+Phases 0–6 are shipped. Before starting Phase 7, the proposed immediate work is to revalidate and resolve findings 1–4 in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md). That audit requires a short design and user approval before product-code changes. Its old test results are historical and must not be reported as current. Once this bounded maintenance tranche is complete, Phase 7 — Project Brain — is the next roadmap phase.
+
+Shared instructions for Codex, Cursor, and Claude Code: [`../AGENTS.md`](../AGENTS.md). The roadmap remains authoritative for phase order; the audit does not renumber or replace phases.
+
 ## Scope (decided 2026-11-06) — canonical
 
 **General by design, specific by launch.**
@@ -34,7 +40,7 @@ Why: every domain needs its own project inspection, skill sources, golden cases 
 
 ## Phase 3 — Decision engine (**done**)
 
-- `ezy plan "<outcome>"` (heuristic, outcome-only — not yet project-aware)
+- `ezy plan "<outcome>"` (initial heuristic, outcome-only; superseded by the project-aware planner in Phase 5)
 
 ## Phase 4 — Install + adapters (**mostly done**)
 

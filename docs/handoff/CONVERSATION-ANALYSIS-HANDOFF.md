@@ -4,14 +4,16 @@
 **Purpose:** Give the next developer/agent a reliable, detailed continuation point after reviewing the conversation exports and current repository state.  
 **Status:** Analysis and handoff only; no product code changed and no tests were run.
 
+> **Current sequence updated 2026-11-17:** this historical analysis is not the agent entry point. Follow [`../../AGENTS.md`](../../AGENTS.md) and [`../ROADMAP.md`](../ROADMAP.md). The audit's four findings are immediate proposed maintenance before Phase 7; confirm them and obtain the requested design approval before code changes.
+
 ## Read this first
 
-This handoff summarizes historical conversation material. For current product intent and sequencing, follow the repository sources of truth in this order:
+This handoff summarizes historical conversation material. For the shared start point and current sequencing, follow [`../../AGENTS.md`](../../AGENTS.md). Topic-specific sources of truth are:
 
 1. [`MAKE-IT-EZY-CANONICAL-HANDOFF.md`](./MAKE-IT-EZY-CANONICAL-HANDOFF.md) — product definition, trust rules, architecture intent, and unresolved product decisions.
 2. [`../ROADMAP.md`](../ROADMAP.md) — authoritative phase ordering and shipped status.
-3. [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) — current CLI behavior and scope.
-4. [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) — latest concrete code audit and proposed next bounded fix.
+3. [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) — immediate maintenance proposal; revalidate and get approval before implementation.
+4. [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) — current CLI behavior and scope.
 5. [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) — repository architecture.
 
 Use [`../audits/convo-qwen3-span-notes.md`](../audits/convo-qwen3-span-notes.md) as the source-level analysis trail. Do not treat historical handoff snapshots or older conversation plans as overriding these current files.
@@ -20,15 +22,14 @@ Use [`../audits/convo-qwen3-span-notes.md`](../audits/convo-qwen3-span-notes.md)
 
 Make It Ezy is a TypeScript/Node.js, pnpm-based, CLI-first project. Its current launch scope is coding tasks in a user's repository (JS/TS first, Python later). The user supplies an outcome; Ezy inspects the project, identifies requirements and candidate capabilities, selects a minimum useful set, explains picks/exclusions/uncovered requirements, and prepares an agent handoff. The downstream host (Claude Code, Cursor, Codex, or another compatible runtime) performs the work.
 
-The roadmap marks Phases 0–6 complete. Phase 6 added the agent-authored brief and quality-aware decision flow. **Phase 7 — Project Brain — is next.** Phase 8 is outcome verification; Phase 9 is a web UI. Soft-C agent spawning, deep skill verification/trusted auto-install, a Codex marketplace plugin, and a large skill marketplace are explicitly not the next step.
+The roadmap marks Phases 0–6 complete. Phase 6 added the agent-authored brief and quality-aware decision flow. **The immediate proposed work is to revalidate audit findings 1–4 and, after the short design is approved, implement that bounded tranche. Phase 7 — Project Brain — is the next roadmap phase after it.** Phase 8 is outcome verification; Phase 9 is a web UI. Soft-C agent spawning, deep skill verification/trusted auto-install, a Codex marketplace plugin, and a large skill marketplace are not scheduled next.
 
 Repository snapshot observed during this review:
 
-- Branch: `main`.
-- HEAD: `e01dc36` (`2026-11-06`, merge of release-please PR #10); package version is `0.1.4`.
-- The working tree is not clean. It has modified project/docs files, deleted old handoff snapshots, and untracked replacement handoffs, audit material, and research data. Preserve these changes; do not reset, clean, or overwrite them as part of continuation.
-- The current working tree includes `docs/audits/2026-11-07-codebase-gaps.md`. That audit reports three probes against the CLI, records 171 tests green at the time of the probe, and says nothing had yet been fixed. Those test results are historical evidence from that audit, not a fresh verification in this session.
-- This review did not run the test suite, build, lint, CI, or live install flows.
+- This snapshot was prepared on 2026-11-11 against the then-current checkout. Its branch, commit, and working-tree observations are historical and must not be used to infer the active checkout.
+- The audit baseline is `e01dc36` / package version `0.1.4`; this branch contains no product-code changes after that baseline. That establishes the code tree is unchanged from the audit, but does not refresh its reproductions or test results.
+- The audit reported 171 tests green at that time. Treat that as historical evidence only; do not report it as current.
+- No fresh test suite, build, lint, CI, or live install check was run for this analysis.
 
 ## Product definition and operating principles
 

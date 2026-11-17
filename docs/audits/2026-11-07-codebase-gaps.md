@@ -8,7 +8,9 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 
 Nothing has been fixed yet.
 
-**Resume here:** findings 1–4 are the next bounded fix, done test-first. Before writing code, present a short design and get approval.
+**Status as of 2026-11-17:** the product-code tree is unchanged from the audit baseline, so findings 1–4 remain the proposed immediate maintenance tranche. The reproductions and 171-test result below are from the original audit, not fresh checks. Revalidate against the current checkout, present a short design, and get user approval before writing product code. The shared sequence is in [`../../AGENTS.md`](../../AGENTS.md) and [`../ROADMAP.md`](../ROADMAP.md).
+
+**Resume here:** revalidate findings 1–4, then present the bounded design for approval. After that tranche, Phase 7 — Project Brain — is the next roadmap phase. Keep implementation limited to findings 1–4 unless the user approves broader scope.
 
 ---
 
@@ -27,7 +29,7 @@ Nothing has been fixed yet.
 ### Must fix
 
 1. **Skill text can take over the terminal** (`packages/core/src/load-local-skills.ts:56-57`, `packages/core/src/search-remote.ts:56-57`)
-   - **Problem:** escape codes in a skill's name, description or source are printed raw. Reproduced: a test skill changed the window title and the text colour. This breaks the CLAUDE.md rule "sanitize terminal output".
+   - **Problem:** escape codes in a skill's name, description or source are printed raw. Reproduced: a test skill changed the window title and the text colour. This breaks the shared agent rule in root [`AGENTS.md`](../../AGENTS.md) (sanitize untrusted skill text on output).
    - **Fix:** apply the existing `sanitizeText` (`packages/core/src/brief.ts:51`) to name, description and source in both loaders.
    - **If skipped:** a malicious skill controls what you see while you decide whether to trust it.
 
@@ -100,7 +102,7 @@ Nothing has been fixed yet.
 
 ## Related decisions from this session
 
-- **The convos are mostly mined.** Keep `docs/convo/` out of git; it contains personal chat.
+- **`docs/convo/` is archived research only** (personal chat exports). It is tracked for history but must not drive product decisions—use [`AGENTS.md`](../../AGENTS.md), [`../ROADMAP.md`](../ROADMAP.md), and [`../handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md`](../handoff/MAKE-IT-EZY-CANONICAL-HANDOFF.md).
 - **Don't import numbers from the convos.** Skill counts, model prices, "OmniRoute 7B free tokens", install counts and Graphify Pro pricing are all wrong or unsourced.
 - **Closest competitor:** Anthropic's official `claude-code-setup` plugin (`anthropics/claude-plugins-official/plugins/claude-code-setup`). It is prompt-only, Claude Code only, set up once per project, and recommends hooks, MCP servers, subagents and skills. Ezy differs by working per task, researching first, explaining exclusions, working across hosts, and gating installs. `docs/research/REFERENCE-DIRECTORY.md:78` still marks it UNRESOLVED.
-- **Suggested order:** fix 1–4, then brainstorm Phase 7 as "token economy" (themes A and B).
+- **Suggested order:** fix 1–4, then design Phase 7 — Project Brain. Themes A and B (token/context cost and persistent project knowledge) can inform that design; “token economy” is a design lens, not a phase rename or a change to the roadmap.
