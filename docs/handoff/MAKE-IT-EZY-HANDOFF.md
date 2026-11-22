@@ -9,6 +9,9 @@
 >
 > **Precedence with other repo docs:** shared agent workflow/current work → root `AGENTS.md`. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → `docs/ROADMAP.md` (its phase numbers win over older numbering). Current CLI behavior → `docs/MVP-SPECIFICATION.md`. Audit **1–4** (fixed 2026-11-17) and open **5–10** → `docs/audits/2026-11-07-codebase-gaps.md` (does not change phase numbering).
 >
+>
+> **Recent decision synthesis (2026-11-22):** [`CONVERSATION-SYNTHESIS-2026-11-22.md`](./CONVERSATION-SYNTHESIS-2026-11-22.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
+
 > **Start here if this file feels too big:** [`docs/HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) — one page on who does what (Ezy = decide and hand off; host agent = run ecosystem skills and code). Diagrams below are product intent; intake, deep research, and heavy security are normally **skills the agent runs**, not code inside the CLI.
 
 ### Shipped → next → future (read this before §1)
