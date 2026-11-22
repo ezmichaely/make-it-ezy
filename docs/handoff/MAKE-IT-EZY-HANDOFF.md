@@ -18,7 +18,7 @@ Early sections describe **product intent and target lifecycle**. They are easy t
 | Layer | Meaning | Examples |
 |--------|---------|----------|
 | **Shipped** | In the CLI / `skills/ezy` today (Phases **0–7**; audit **1–4**) | `doctor`, `analyze`, `search`, `inspect`, `recommend`, `brief`, `brain`, `plan`, `next`, gated `install`; project-aware requirements; brief JSON or heuristic fallback; `.ezy/brain.json` (machine on plan/next + optional agent slice); local + skills.sh discovery; handoff prompt; **no LLM inside Ezy** |
-| **Next** | Agreed roadmap work, not shipped yet | **Phase 8** — outcome verification; Phase **9** Web UI; optional audit findings **5–10** if approved |
+| **Next** | Agreed roadmap work, not shipped yet | **Phase 8** launch and distribution; after launch: **Phase 9** outcome verification and Phase **10** Web UI; optional audit findings **5–10** if approved |
 | **Future** | Vision / research; not the current implementation queue | Soft-C (spawn agents), deep skill verify, trusted-auto installs, Codex marketplace plugin, full in-product trust scoring, token-economy scoring in Ezy, multi-domain expansion beyond the coding launch slice |
 
 **How to read §1–3:** vision and problem framing (conceptually correct). **How to read diagrams** (e.g. evaluate security/trust as Ezy steps): target responsibility split — much of that work is **host agent + installed skills** today, not reimplemented in TypeScript.
@@ -251,6 +251,10 @@ It should consider:
 - redundancy
 - context cost
 - project compatibility
+
+### Launch policy for external skills
+
+External catalogs are indexed in batches; individual skill execution tests are not required before launch. Ezy may surface a task-relevant skill with strong public reputation and maintenance signals, while showing its source, available evidence, and Ezy review state. Reputation is evidence for ranking, not a claim that the skill is safe or verified. External content stays untrusted and installs remain user-approved. Deeper tests support stronger, narrowly scoped verification labels when available.
 
 ## Agent Handoff
 

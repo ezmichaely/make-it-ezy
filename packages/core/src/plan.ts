@@ -1,5 +1,6 @@
 import { analyzeProject } from "./analyze.js";
 import { persistBrainAfterPlan } from "./brain.js";
+import { shouldUseSuperpowers, SUPERPOWERS_CONTRACTOR } from "./contractors.js";
 import { loadLocalSkills } from "./load-local-skills.js";
 import type { Brief, Exclusion } from "./brief-types.js";
 import { extractRequirements } from "./requirements.js";
@@ -63,6 +64,7 @@ function emptyReport(notes: string[]): PlanReport {
     research: [],
     uncovered: [],
     excluded: [],
+    contractors: [],
   };
 }
 
@@ -196,6 +198,9 @@ export async function planOutcome(
     research: brief?.research ?? [],
     uncovered: selection.uncovered,
     excluded: selection.excluded,
+    contractors: shouldUseSuperpowers(brief?.taskType ?? null)
+      ? [{ contractor: SUPERPOWERS_CONTRACTOR, reason: "Coding task type matches Superpowers workflow scope" }]
+      : [],
   };
   const brain = persistBrainAfterPlan(cwd, report);
   if (brain.warning) notes.push(brain.warning);

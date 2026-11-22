@@ -49,6 +49,7 @@ function report(extra: Partial<PlanReport> = {}): PlanReport {
       { id: "R2", label: "webhooks", rationale: "x", priority: "optional" },
     ],
     excluded: [{ label: "game changelog", why: "unrelated" }],
+    contractors: [],
     ...extra,
   };
 }

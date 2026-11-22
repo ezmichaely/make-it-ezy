@@ -2,6 +2,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { SUPERPOWERS_CONTRACTOR } from "./contractors.js";
 import { buildHandoff, composeHandoffFromItems } from "./handoff.js";
 import { formatHandoff } from "./format.js";
 import * as planMod from "./plan.js";
@@ -117,6 +118,7 @@ describe("buildHandoff", () => {
       research: [],
       uncovered: [],
       excluded: [],
+      contractors: [],
     };
     vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
 
@@ -298,6 +300,7 @@ describe("buildHandoff", () => {
       research: [],
       uncovered: [{ id: "hooks", label: "webhooks", rationale: "Receive events", priority: "required" }],
       excluded: [{ label: "Subscriptions", why: "Out of scope" }],
+      contractors: [],
     };
     vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
     const report = await buildHandoff("Add Stripe payments", { cwd: root, localOnly: true });
@@ -310,6 +313,39 @@ describe("buildHandoff", () => {
     expect(text).toContain("Basis: agent brief");
     expect(text).toContain("Excluded\n- Subscriptions — Out of scope");
     expect(text).toContain("Uncovered\n- webhooks — no matching skill; agent handles directly");
+    expect(report.workflow.some((s) => s.type === "custom")).toBe(true);
+  });
+
+  it("adds a contractor workflow stage when the plan recommends one", async () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-contractor-"));
+    writeFileSync(join(root, "package.json"), JSON.stringify({ name: "contractor" }));
+    const fakePlan: PlanReport = {
+      outcome: "Add a settings button",
+      capabilities: ["ui"],
+      requirements: [],
+      project: { projectRoot: root, packageName: "contractor", language: null, frameworks: [], localSkills: [] },
+      decisions: [],
+      recommended: [],
+      optional: [],
+      notNeeded: [],
+      notes: [],
+      basis: "brief",
+      taskType: "feature",
+      research: [],
+      uncovered: [],
+      excluded: [],
+      contractors: [
+        {
+          contractor: SUPERPOWERS_CONTRACTOR,
+          reason: "Coding task type matches Superpowers workflow scope",
+        },
+      ],
+    };
+    vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
+    const report = await buildHandoff("Add a settings button", { cwd: root, localOnly: true });
+    expect(report.workflow[0]).toMatchObject({ type: "contractor", contractorName: "superpowers" });
+    expect(report.prompt).toContain("Workflow (run in order)");
+    expect(formatHandoff(report)).toContain("Workflow\n1. contractor · superpowers");
   });
 
   it("prints the heuristic basis and defaults uncovered/excluded on the query path", () => {

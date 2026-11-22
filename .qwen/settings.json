@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/michael.yucor/Documents/GitHub/make-it-ezy/**)",
+      "Read(//Users/michael.yucor/.local/share/make-it-ezy-builder-skills/**)",
+      "Bash(ls *)",
+      "Bash(cd *)",
+      "Bash(pnpm *)",
+      "Bash(git *)",
+      "Bash(node *)",
+      "Bash(true)"
+    ]
+  },
+  "model": {
+    "generationConfig": {
+      "timeout": 900000,
+      "streamIdleTimeoutMs": 600000
+    }
+  },
+  "tools": {
+    "shell": {
+      "defaultTimeoutMs": 300000
+    }
+  },
+  "$version": 4
+}

@@ -130,11 +130,12 @@ Domain-neutral na ang brief/plan/select pipeline; ang JS/TS-specific part mostly
 
 **Wala pa / later:**
 
-- **Phase 8 — Verification** (did the outcome actually happen?)
-- Deep skill verification, trusted-auto, Soft-C spawn, Web UI (Phase 9)
+- **Phase 8 — Launch and Distribution** (make the CLI installable outside this repository)
+- **Phase 9 — Verification** (did the outcome actually happen?)
+- Deep skill verification, trusted-auto, Soft-C spawn, Web UI (Phase 10)
 - Full “trust score” pipeline nga naa sa product handoff vision — **partial** lang today (heuristics + brief + risk notes sa inspect)
 
-**Maintenance (optional):** audit findings **5–10** sa [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Sunod roadmap:** Phase 8 Verification.
+**Maintenance (optional):** audit findings **5–10** sa [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Current roadmap:** Phase 8 Launch and Distribution.
 
 ---
 
@@ -169,4 +170,4 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 
 ---
 
-*Last aligned: 2026-11-17 — Phase 7 Project Brain shipped; Phase 8 next.*
+*Last aligned: 2026-11-18 — Phase 7 Project Brain shipped; Phase 8 Launch and Distribution current.*

@@ -1,12 +1,25 @@
 {
   "name": "@make-it-ezy/cli",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.5",
+  "description": "Local-first AI capability discovery and planning CLI",
   "type": "module",
   "bin": {
     "ezy": "./dist/index.js"
   },
   "files": ["dist"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ezmichaely/make-it-ezy.git",
+    "directory": "apps/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": ["agent-skills", "ai", "coding-agent", "cli"],
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },

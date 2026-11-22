@@ -2,11 +2,11 @@
 
 Read this before the long handoff. It states who does what in one workflow.
 
-**Shipped / next / future:** [`ROADMAP.md`](./ROADMAP.md) and [`MVP-SPECIFICATION.md`](./MVP-SPECIFICATION.md) own **shipped** CLI behavior. **Next:** Phase 8 verification, then Web UI. Phase 7 Project Brain is shipped (`.ezy/brain.json`). **Future:** trust automation, Soft-C, and other items called out as deferred in the roadmap. The long [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md) mixes intent with that timeline — it opens with a **Shipped → next → future** table; treat everything after that as product direction unless the MVP spec says otherwise.
+**Shipped / next / future:** [`ROADMAP.md`](./ROADMAP.md) and [`MVP-SPECIFICATION.md`](./MVP-SPECIFICATION.md) own **shipped** CLI behavior. **Current:** Phase 8 launch and distribution. **After launch:** Phase 9 outcome verification, then Phase 10 Web UI. Phase 7 Project Brain is shipped (`.ezy/brain.json`). **Future:** trust automation, Soft-C, and other items called out as deferred in the roadmap. The long [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md) mixes intent with that timeline — it opens with a **Shipped → next → future** table; treat everything after that as product direction unless the MVP spec says otherwise.
 
 ## One sentence
 
-**Ezy picks and explains a small stack of capabilities for your goal; your host agent (Cursor, Claude Code, Codex) runs those skills and writes the code.**
+**Ezy picks and explains a small stack of capabilities for your goal; your host agent (Cursor, Claude Code, Codex, Qwen Code, …) runs those skills and writes the code.**
 
 ## Two roles
 
@@ -38,6 +38,12 @@ The handoff uses a lifecycle (discover, evaluate, compose, execute, verify). In 
 - **Intake, deep research, deep security, coding, verification** → **host agent** and **skills you install from the internet**, when needed — not a fixed pipeline reimplemented in TypeScript.
 
 Discovery on skills.sh is **not** automatic trust. Popularity is not safety.
+
+## Broker workflow (first slice shipped)
+
+For coding tasks with a brief, Ezy can **route** to a **contractor** skill set (today: **Superpowers** when the brief task type matches) and print an **ordered Workflow** (contractor → recommended skills → temporary instructions for uncovered requirements). The host agent runs stages in order; Ezy still does not execute skills itself.
+
+Detail: [`superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md). Adapter: [`skills/ezy/SKILL.md`](../skills/ezy/SKILL.md).
 
 ## What Ezy is not
 

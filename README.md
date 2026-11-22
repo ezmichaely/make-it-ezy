@@ -104,6 +104,24 @@ A **capability** can be a skill, tool, MCP, agent, model, workflow, service, API
 
 ## Quick start
 
+### Install Ezy
+
+After the first public npm release:
+
+```bash
+npm install --global @make-it-ezy/cli
+ezy --help
+```
+
+Then run Ezy from the project you want to work on:
+
+```bash
+cd /path/to/your-project
+ezy next "Improve onboarding"
+```
+
+### Contribute from source
+
 ```bash
 pnpm install
 pnpm skills:install   # contributor only — link builder skills (global home; see BUILDER-SKILLS.md)
@@ -139,12 +157,12 @@ Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 
 ## Status
 
-**Phases 0–7 shipped** — project-aware `plan` / `next`, agent brief (`ezy brief`, `--brief`), Project Brain (`.ezy/brain.json`, `ezy brain`), gated install + `/ezy`.
+**Phases 0–7 shipped; Phase 8 — Launch and Distribution is current** — project-aware `plan` / `next`, agent brief (`ezy brief`, `--brief`), Project Brain (`.ezy/brain.json`, `ezy brain`), gated install + `/ezy`.
 
 | Optional maintenance | Roadmap sequence | Deferred |
 |---|---|---|
-| Audit findings **5–10** only if approved. [Details](./docs/audits/2026-11-07-codebase-gaps.md) (1–4 fixed) | **Phase 8 — Outcome verification** | Soft-C, deep verify, trusted-auto |
-|  | Phase 9 — Web UI | Codex marketplace plugin, giant catalog |
+| Audit findings **5–10** only if approved. [Details](./docs/audits/2026-11-07-codebase-gaps.md) (1–4 fixed) | **Phase 8 — Launch and Distribution** | Soft-C, deep verify, trusted-auto |
+|  | Phase 9 — Outcome verification; Phase 10 — Web UI | Codex marketplace plugin, giant catalog |
 
 Shared agent guide: [`AGENTS.md`](./AGENTS.md) · Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md)
 

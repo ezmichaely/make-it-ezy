@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { searchSkills } from "./search.js";
+import { searchSkillsSh } from "./search-remote.js";
 
 function fixtureProject(): string {
   const root = mkdtempSync(join(tmpdir(), "ezy-search-"));
@@ -53,22 +54,25 @@ describe("searchSkills", () => {
 
   it("merges remote catalog hits when fetch succeeds", async () => {
     const root = fixtureProject();
-    const fetchImpl = async () =>
-      new Response(
+    let requestedUrl = "";
+    const fetchImpl = async (input: string | URL | Request) => {
+      requestedUrl = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+      return new Response(
         JSON.stringify({
           query: "frontend",
-          skills: [
+          data: [
             {
               id: "anthropics/skills/frontend-design",
               source: "anthropics/skills",
-              skillId: "frontend-design",
+              slug: "frontend-design",
               name: "frontend-design",
               installs: 1000,
+              url: "https://skills.sh/anthropics/skills/frontend-design",
             },
             {
               id: "other/repo/ui-kit",
               source: "other/repo",
-              skillId: "ui-kit",
+              slug: "ui-kit",
               name: "ui-kit",
               installs: 50,
             },
@@ -76,16 +80,37 @@ describe("searchSkills", () => {
         }),
         { status: 200, headers: { "Content-Type": "application/json" } },
       );
+    };
 
     const report = await searchSkills("frontend", {
       cwd: root,
-      fetchImpl: fetchImpl,
+      fetchImpl,
     });
+    expect(requestedUrl).toBe("https://skills.sh/api/v1/skills/search?q=frontend&limit=12");
     expect(report.remoteCount).toBe(2);
     expect(report.remoteError).toBeNull();
     const local = report.hits.find((h) => h.name === "frontend-design");
     expect(local?.installedLocally).toBe(true);
     expect(local?.installs).toBe(1000);
+  });
+
+  it("still reads legacy catalog responses", async () => {
+    const fetchImpl = async () =>
+      new Response(
+        JSON.stringify({
+          skills: [
+            {
+              skillId: "frontend-design",
+              name: "frontend-design",
+              source: "anthropics/skills",
+            },
+          ],
+        }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
+
+    const report = await searchSkillsSh("frontend", { fetchImpl });
+    expect(report.hits.map((hit) => hit.name)).toContain("frontend-design");
   });
 
   it("soft-fails when remote search errors", async () => {

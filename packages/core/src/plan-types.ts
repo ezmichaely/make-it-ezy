@@ -1,4 +1,5 @@
 import type { Exclusion, ResearchFinding } from "./brief-types.js";
+import type { ContractorRecommendation } from "./contractors.js";
 import type { RecommendItem } from "./recommend-types.js";
 
 export type Requirement = {
@@ -41,6 +42,8 @@ export type PlanReport = {
   research: ResearchFinding[];
   uncovered: Requirement[];
   excluded: Exclusion[];
+  /** Recommended contractors for this task (e.g. Superpowers for coding tasks). */
+  contractors: ContractorRecommendation[];
   /** Path of the brief file the plan was built from (set by the CLI; used for the Next hint). */
   briefPath?: string;
 };

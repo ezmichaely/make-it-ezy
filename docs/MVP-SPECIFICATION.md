@@ -66,12 +66,29 @@ pnpm ezy brain enrich
 Spec: [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](./superpowers/specs/2026-11-17-phase7-project-brain-design.md)  
 Plan: [`docs/superpowers/plans/2026-11-17-phase7-project-brain.md`](./superpowers/plans/2026-11-17-phase7-project-brain.md)
 
-## Later (not this MVP slice)
+## Broker workflow (approved — not in CLI output yet)
+
+> Design: [`superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md)  
+> Plan: [`superpowers/plans/2026-11-18-broker-workflow.md`](./superpowers/plans/2026-11-18-broker-workflow.md)
+
+**Shipped (first slice):** Coding briefs can recommend **Superpowers** as a contractor; `ezy next` prints an ordered **Workflow** section (contractor → recommended skills → custom uncovered steps) and matching prompt text. Flat skill list remains for compatibility.
+
+**Not in this slice:** broader GitHub discovery beyond existing skills.sh search; workflow does not auto-install contractors as atomic skills.
+
+## Phase 8 — Launch and Distribution (current)
+
+- Make the CLI installable and usable outside this repository.
+- Use task fit plus public reputation and maintenance evidence for skill recommendations; show the evidence and review state.
+- Keep external skill content untrusted and installs user-approved.
+- Launch does not require hand-testing every indexed skill; deeper tests can support stronger verification labels after launch.
+- Planned global install command after first publication: `npm install --global @make-it-ezy/cli`.
+
+## Post-launch (not release blockers)
 
 | Phase | Work |
 |---|---|
-| 8 | Outcome verification |
-| 9 | Web UI |
+| 9 | Outcome verification |
+| 10 | Web UI |
 | — | Soft-C, deep skill verify, trusted-auto, Codex marketplace plugin |
 
 ## Source of truth

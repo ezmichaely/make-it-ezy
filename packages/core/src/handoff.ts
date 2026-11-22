@@ -1,12 +1,13 @@
 import { join } from "node:path";
 import { findProjectRoot } from "./find-project-root.js";
+import type { ContractorRecommendation } from "./contractors.js";
 import { isSkillInstalledLocally } from "./install.js";
 import type { Brief, Exclusion, ResearchFinding } from "./brief-types.js";
 import { planOutcome, preferRecommendItem } from "./plan.js";
 import type { Requirement } from "./plan-types.js";
 import type { RecommendItem } from "./recommend-types.js";
 import type { SearchOptions } from "./search.js";
-import type { HandoffReport, HandoffSkill } from "./handoff-types.js";
+import type { HandoffReport, HandoffSkill, WorkflowStage } from "./handoff-types.js";
 
 export type BuildHandoffOptions = SearchOptions & { cwd?: string; brief?: Brief };
 
@@ -23,6 +24,7 @@ export type HandoffItemInput = {
   excluded?: Exclusion[];
   /** Extra notes (e.g. plan notes) merged into handoff notes, deduped. */
   notes?: string[];
+  contractors?: ContractorRecommendation[];
 };
 
 function summarizeForPrompt(project: {
@@ -44,12 +46,87 @@ function skillPath(projectRoot: string, name: string): string {
   return join(projectRoot, ".agents", "skills", name);
 }
 
+function buildWorkflow(
+  contractors: ContractorRecommendation[],
+  skills: HandoffSkill[],
+  uncovered: Requirement[],
+  outcome: string,
+): WorkflowStage[] {
+  const stages: WorkflowStage[] = [];
+  let order = 1;
+
+  const primary = contractors[0];
+  if (primary) {
+    stages.push({
+      type: "contractor",
+      order: order++,
+      task: outcome,
+      reason: primary.reason,
+      contractorName: primary.contractor.name,
+      contractorSource: primary.contractor.source,
+    });
+  }
+
+  for (const s of skills.filter((sk) => sk.bucket === "recommended")) {
+    const task = s.covers.length > 0 ? `Address: ${s.covers.join(", ")}` : outcome;
+    stages.push({
+      type: "skill",
+      order: order++,
+      task,
+      reason: s.reason,
+      skillName: s.name,
+      skillSource: s.source,
+      installed: s.installed,
+    });
+  }
+
+  for (const u of uncovered) {
+    stages.push({
+      type: "custom",
+      order: order++,
+      task: u.label,
+      reason: u.rationale,
+      instructions: `No catalog skill covers "${u.label}". Perform this work directly: ${u.rationale}`,
+    });
+  }
+
+  return stages;
+}
+
+function appendWorkflowToPrompt(lines: string[], workflow: WorkflowStage[]): void {
+  if (!workflow.length) return;
+
+  lines.push("", "Workflow (run in order):");
+  for (const stage of workflow) {
+    if (stage.type === "contractor") {
+      lines.push(
+        `${stage.order}. Contractor ${stage.contractorName} (${stage.contractorSource}) — ${stage.reason}`,
+      );
+      lines.push(
+        `   Route to the contractor as one unit. Load its skills under .agents/skills/ and follow its own process (e.g. brainstorming before implementation). Context: ${stage.task}`,
+      );
+    } else if (stage.type === "skill") {
+      const install = stage.installed ? "" : " (install first)";
+      lines.push(
+        `${stage.order}. Skill ${stage.skillName} (${stage.skillSource})${install} — ${stage.task}`,
+      );
+    } else {
+      lines.push(`${stage.order}. Uncovered — ${stage.task}: ${stage.instructions}`);
+    }
+  }
+  lines.push(
+    "",
+    "Carry results from each stage forward. Do not treat the contractor as a single atomic skill install.",
+  );
+}
+
 function buildPrompt(
   outcome: string,
   skills: HandoffSkill[],
   projectSummary?: string | null,
   research: ResearchFinding[] = [],
   uncovered: Requirement[] = [],
+  workflow: WorkflowStage[] = [],
 ): string {
   const recommended = skills.filter((s) => s.bucket === "recommended");
   const optional = skills.filter((s) => s.bucket === "optional");
@@ -64,6 +141,9 @@ function buildPrompt(
       lines.push(`- ${r.kind} · ${r.finding}${r.source ? ` (${r.source})` : ""}`);
     }
   }
+
+  appendWorkflowToPrompt(lines, workflow);
+
   lines.push("", "Use these skills (read each SKILL.md):");
 
   if (!recommended.length) {
@@ -152,6 +232,8 @@ export function composeHandoffFromItems(
   options: { cwd?: string } = {},
 ): HandoffReport {
   const trimmed = outcome.trim();
+  const contractors = items.contractors ?? [];
+
   if (!trimmed) {
     return {
       outcome: "",
@@ -163,6 +245,8 @@ export function composeHandoffFromItems(
       research: [],
       uncovered: [],
       excluded: [],
+      workflow: [],
+      contractors: [],
       notes: [...BASE_NOTES, 'Provide an outcome, e.g. ezy next "Build a SaaS dashboard".'],
     };
   }
@@ -179,6 +263,9 @@ export function composeHandoffFromItems(
     ...mapItems(optionalOnly, "optional", cwd, projectRoot, coversByName),
   ];
 
+  const uncovered = items.uncovered ?? [];
+  const workflow = buildWorkflow(contractors, skills, uncovered, trimmed);
+
   const checklist: string[] = [];
   const seenInstall = new Set<string>();
   for (const s of skills) {
@@ -187,6 +274,9 @@ export function composeHandoffFromItems(
       checklist.push(`ezy install ${s.name} --source ${s.source}`);
     }
   }
+  if (workflow.length) {
+    checklist.push("Follow the Workflow section in order (contractor → skills → uncovered)");
+  }
   checklist.push("Paste the prompt below into your agent");
 
   return {
@@ -194,12 +284,21 @@ export function composeHandoffFromItems(
     capabilities: items.capabilities ?? [],
     skills,
     checklist,
-    prompt: buildPrompt(trimmed, skills, items.projectSummary, items.research ?? [], items.uncovered ?? []),
+    prompt: buildPrompt(
+      trimmed,
+      skills,
+      items.projectSummary,
+      items.research ?? [],
+      uncovered,
+      workflow,
+    ),
     notes: [...new Set([...BASE_NOTES, ...(items.notes ?? [])])],
     basis: items.basis ?? "heuristic",
     research: items.research ?? [],
-    uncovered: items.uncovered ?? [],
+    uncovered,
     excluded: items.excluded ?? [],
+    workflow,
+    contractors,
   };
 }
 
@@ -228,6 +327,7 @@ export async function buildHandoff(
       uncovered: plan.uncovered,
       excluded: plan.excluded,
       notes: plan.notes,
+      contractors: plan.contractors,
     },
     { cwd },
   );

@@ -21,9 +21,10 @@ Not a replacement for pnpm/npm.
 | 4c | Agent Skill `skills/ezy` (Claude / Cursor / Codex) | **done** (adapter #1) |
 | 5 | Project-aware capability planner (`analyze` → `plan`) | **done** |
 | 6 | Agent brief + decision quality (`ezy brief`) | **done** |
-| 7 | Project Brain (lightweight local knowledge) | later |
-| 8 | Outcome verification | later |
-| 9 | Web UI (same core) | later |
+| 7 | Project Brain (lightweight local knowledge) | **done** |
+| 8 | Launch and Distribution | current |
+| 9 | Outcome verification | later |
+| 10 | Web UI (same core) | later |
 | Later | Deep skill verify, soft-C spawn, Codex marketplace plugin | TODO |
 | Optional | Taste, OpenSEO, REA, Graphify, browser tools | only when task needs them |
 

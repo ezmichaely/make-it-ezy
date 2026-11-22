@@ -40,6 +40,18 @@ On every push to `main`, [release-please](https://github.com/googleapis/release-
 
 The current package version is recorded in `.release-please-manifest.json`. Keep using Conventional Commit subjects (`feat:`, `fix:`, etc.).
 
+### npm CLI packages
+
+The packages prepared for public npm publishing are `@make-it-ezy/core` and `@make-it-ezy/cli`; publish core first, then CLI, after confirming access to the `@make-it-ezy` npm scope. From the repository root:
+
+```bash
+pnpm build
+pnpm --filter @make-it-ezy/core publish --access public
+pnpm --filter @make-it-ezy/cli publish --access public
+```
+
+The CLI package declares the core workspace dependency; pnpm rewrites it to the published semver when packing. Publishing is a maintainer release action and is not run by CI in this phase.
+
 ## Not included (paid / optional)
 
 - CodeRabbit / Copilot PR narrative review (trial or paid on some plans)
