@@ -2,11 +2,13 @@
 
 Locked phase sequence and shipped status. Product definition / trust rules: [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md).
 
-## Current work (2026-11-17)
+## Current work (2026-11-18)
 
-Phases 0–7 are shipped. Audit findings **1–4** in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md) are **resolved** (sanitized skill output, monorepo root detection, local-first selection, YAML chomping). **Phase 8 — Verification** is the next roadmap phase. Audit findings **5–10** are optional follow-up maintenance.
+Phases 0–7 are shipped. Audit findings **1–4** in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md) are **resolved** (sanitized skill output, monorepo root detection, local-first selection, YAML chomping). **Phase 8 — Launch and Distribution** is current. Phase 9 — outcome verification is post-launch work; exhaustive per-skill testing is not a launch gate. Audit findings **5–10** remain optional follow-up maintenance.
 
-Shared instructions for Codex, Cursor, and Claude Code: [`../AGENTS.md`](../AGENTS.md). The roadmap remains authoritative for phase order; the audit does not renumber or replace phases.
+Shared instructions for Codex, Cursor, Claude Code, and Qwen Code: [`../AGENTS.md`](../AGENTS.md). The roadmap remains authoritative for phase order; the audit does not renumber or replace phases.
+
+**In progress (not a new phase):** [Broker-directed workflow](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md) — contractor routing + ordered handoff stages. Task 1 in core; Tasks 2–3 (handoff output, `skills/ezy`, doc sync) remain. User-visible CLI unchanged until Task 2–3 ship.
 
 ## Scope (decided 2026-11-06) — canonical
 
@@ -18,7 +20,7 @@ Shared instructions for Codex, Cursor, and Claude Code: [`../AGENTS.md`](../AGEN
 | **Today** | **Coding tasks in your repo.** JS/TS projects first, Python next. Skills from local `.agents/skills` and skills.sh. |
 | **Later** | Other domains (video, research, documents, engineering, …), added **one at a time** — not "everything at once". |
 
-Why: every domain needs its own project inspection, skill sources, golden cases and (Phase 8) verification. One domain at a time keeps each phase small and testable. The brief path (Phase 6) is already domain-neutral, so adding a domain does **not** require a redesign.
+Why: every domain needs its own project inspection, skill sources, golden cases and (Phase 9) verification. One domain at a time keeps each phase small and testable. The brief path (Phase 6) is already domain-neutral, so adding a domain does **not** require a redesign.
 
 ### Adding a domain (checklist)
 
@@ -79,11 +81,21 @@ Why: every domain needs its own project inspection, skill sources, golden cases 
 - `ezy brain` / `brain refresh` / `brain enrich`; `.ezy/brain.json` machine slice on plan/next
 - Optional host-maintained `agent` slice (decisions, conventions, rejected skills)
 
-## Phase 8 — Verification (**later**)
+## Phase 8 — Launch and Distribution (**current**)
+
+- Make the CLI installable and usable outside this repository. The root workspace remains private; the release workflow creates GitHub releases but does not publish the CLI/core packages to npm.
+- Document and verify the first-user install path.
+- Keep external skill discovery broad and automated; do not require manual tests for every skill before launch.
+- Rank recommendations with task fit plus public reputation and maintenance evidence (for example installs, source provenance, and update activity).
+- Show the evidence and Ezy review state clearly. Reputation supports discovery; it does not certify safety or quality.
+- Keep installs user-approved. Deep per-skill verification can add stronger evidence after launch.
+
+## Phase 9 — Verification (**later**)
 
 - Check that the outcome was actually achieved after handoff/execution
+- Add deeper skill verification when it serves a concrete launch or user need; do not block launch on validating every catalog entry
 
-## Phase 9 — Web UI (**later**)
+## Phase 10 — Web UI (**later**)
 
 - Same core as CLI
 

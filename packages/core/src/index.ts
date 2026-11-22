@@ -34,6 +34,12 @@ export type {
   Requirement,
 } from "./plan-types.js";
 export {
+  shouldUseSuperpowers,
+  SUPERPOWERS_CONTRACTOR,
+  type Contractor,
+  type ContractorRecommendation,
+} from "./contractors.js";
+export {
   buildInstallPreview,
   isSkillInstalledLocally,
   runInstall,

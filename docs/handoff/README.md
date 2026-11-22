@@ -32,6 +32,6 @@ General by design, specific by launch: **coding tasks in your repo today**, othe
 
 ## Phase map (see ROADMAP)
 
-Phases 0–7 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 8 — Verification** is the next roadmap phase, then Phase 9 Web UI. Findings **5–10** are optional maintenance.
+Phases 0–7 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 8 — Launch and Distribution** is current; Phase 9 Verification and Phase 10 Web UI follow launch. Findings **5–10** are optional maintenance.
 
 The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules outcome verification before Web UI. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.

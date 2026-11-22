@@ -40,9 +40,9 @@ This is the intended product flow. The shipped CLI covers only the slices listed
 
 Layer A tools are **not** mandatory runtime dependencies of the product.
 
-## Current implementation (Phases 0–7 shipped; Phase 8 is next)
+## Current implementation (Phases 0–7 shipped; Phase 8 launch and distribution is current)
 
-Audit findings **1–4** are resolved; optional **5–10** remain in [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Phase 8 — Verification** is the next roadmap phase. See [`../ROADMAP.md`](../ROADMAP.md).
+Audit findings **1–4** are resolved; optional **5–10** remain in [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Phase 8 — Launch and Distribution** is current. See [`../ROADMAP.md`](../ROADMAP.md).
 
 ```text
 apps/cli            doctor | analyze | search | inspect | recommend | brief | brain | plan | next | install
@@ -69,10 +69,11 @@ No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/
 | Project Capability Planner (project-aware `plan`) | **Phase 5 — shipped** |
 | Agent Brief + decision quality (`ezy brief`) | **Phase 6 — shipped** |
 | Project Brain (`.ezy/brain.json`, `ezy brain` / enrich) | **Phase 7 — shipped** |
-| Outcome verification | Phase 8 — next |
+| Launch and distribution | Phase 8 — current |
+| Outcome verification | Phase 9 |
 | Deep verify / trusted-auto | Later |
 | Soft-C / Codex marketplace plugin | Later |
-| Web UI | Phase 9 |
+| Web UI | Phase 10 |
 
 See `docs/ROADMAP.md` for the locked sequence.
 

@@ -5,6 +5,7 @@ import { scoreSkillText, tokenizeQuery } from "./score-skill.js";
 type SkillsShHit = {
   id?: string;
   source?: string;
+  slug?: string;
   skillId?: string;
   name?: string;
   installs?: number;
@@ -12,6 +13,7 @@ type SkillsShHit = {
 
 type SkillsShResponse = {
   query?: string;
+  data?: SkillsShHit[];
   skills?: SkillsShHit[];
 };
 
@@ -35,7 +37,7 @@ export async function searchSkillsSh(
     return { hits: [], error: "fetch is unavailable in this runtime" };
   }
 
-  const url = `https://skills.sh/api/search?q=${encodeURIComponent(query)}`;
+  const url = `https://skills.sh/api/v1/skills/search?q=${encodeURIComponent(query)}&limit=${limit}`;
   const controller = new AbortController();
   const timer = setTimeout(() => {
     controller.abort();
@@ -53,8 +55,8 @@ export async function searchSkillsSh(
     const tokens = tokenizeQuery(query);
     const hits: SkillHit[] = [];
 
-    for (const item of data.skills ?? []) {
-      const name = sanitizeText(item.name ?? item.skillId ?? "unknown");
+    for (const item of data.data ?? data.skills ?? []) {
+      const name = sanitizeText(item.slug ?? item.name ?? item.skillId ?? "unknown");
       const source = sanitizeText(item.source ?? "unknown");
       const installs = typeof item.installs === "number" ? item.installs : null;
       const description = `${name} from ${source}`;

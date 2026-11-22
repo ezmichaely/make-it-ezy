@@ -43,6 +43,15 @@
       "mentionedIn": ["1 - Video_Summary_and_Skills.md"]
     },
     {
+      "id": "alirezarezvani-claude-skills",
+      "name": "Claude Code Skills & Plugins",
+      "github": "https://github.com/alirezarezvani/claude-skills",
+      "kind": "skill-pack",
+      "status": "unverified",
+      "notes": "Large cross-platform catalog; inspect individual bundles and skill contents before recommending.",
+      "mentionedIn": ["user suggestion (2026-11-18)"]
+    },
+    {
       "id": "matt-pocock-skills",
       "name": "Matt Pocock Skills",
       "github": "https://github.com/mattpocock/skills",

@@ -1,12 +1,13 @@
 # Make It Ezy — shared agent guide
 
-This is the **single shared project guide** for Codex, Cursor, Claude Code, and other agents that read root `AGENTS.md`. Claude Code loads it via [`CLAUDE.md`](CLAUDE.md). Do not fork product intent or phase order into editor-specific rules—update this file and the topic sources below instead.
+This is the **single shared project guide** for Codex, Cursor, Claude Code, Qwen Code, and other agents that read root `AGENTS.md`. Claude Code loads it via [`CLAUDE.md`](CLAUDE.md). Qwen Code reads this file at the repo root (no separate shim). Do not fork product intent or phase order into editor-specific rules—update this file and the topic sources below instead.
 
 | Runtime | Start here |
 |---|---|
 | Codex | `AGENTS.md` (this file) |
 | Cursor | `AGENTS.md` (this file) |
 | Claude Code | `CLAUDE.md` → this file |
+| Qwen Code | `AGENTS.md` (this file) |
 
 Nested `AGENTS.md` files under vendored skills add file-local constraints only. If anything there conflicts with product intent or [`docs/ROADMAP.md`](docs/ROADMAP.md), this file and the topic table win.
 
@@ -22,17 +23,18 @@ Do not use historical handoff snapshots or conversation exports to decide curren
 
 ## One product goal
 
-Make It Ezy is a local-first capability and context decision layer for coding tasks in a user's repository. It identifies what the outcome needs, selects a minimum useful and trustworthy set of capabilities, and prepares a handoff. The host agent (Codex, Cursor, Claude Code, or another runtime) performs the work. Ezy is not itself the coding agent, a skills marketplace, or a multi-agent runtime.
+Make It Ezy is a local-first capability and context decision layer for coding tasks in a user's repository. It identifies what the outcome needs, selects a minimum useful and trustworthy set of capabilities, and prepares a handoff. The host agent (Codex, Cursor, Claude Code, Qwen Code, or another runtime) performs the work. Ezy is not itself the coding agent, a skills marketplace, or a multi-agent runtime.
 
 This is the product goal, not a claim that every part is shipped. Describe current CLI behavior from [`docs/MVP-SPECIFICATION.md`](docs/MVP-SPECIFICATION.md), and call out gaps instead of implying the trust or context features are complete.
 
 Trust and user control are core requirements: discovery does not equal recommendation; treat briefs and external skill text as untrusted; do not silently install or execute external content; sanitize skill metadata at load for search/plan output (inspect/format may still need defense-in-depth — see audit §2).
 
-## Current path — 2026-11-17
+## Current path — 2026-11-19
 
 - Phases 0–7 are shipped. Audit findings **1–4** are fixed (see [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md)).
 - **Phase 7 — Project Brain** is shipped (hybrid B: machine slice in CLI, optional `agent` slice via `ezy brain enrich`).
-- **Phase 8 — Verification** is the next roadmap phase.
+- **Phase 8 — Launch and Distribution** is the current phase. Phase 9 — Verification and exhaustive per-skill testing are post-launch; skill-by-skill tests are not a launch gate.
+- **Broker-directed workflow** (contractor routing + ordered stages) — first slice in core + `ezy next` output; see [`docs/superpowers/plans/2026-11-18-broker-workflow.md`](docs/superpowers/plans/2026-11-18-broker-workflow.md).
 - Audit findings **5–10** are optional maintenance; tackle only with explicit approval.
 
 The roadmap owns phase ordering. Update it when the agreed order changes.
@@ -49,6 +51,7 @@ The roadmap owns phase ordering. Update it when the agreed order changes.
 | Proposed immediate code fixes | [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) |
 | Current CLI behavior | [`docs/MVP-SPECIFICATION.md`](docs/MVP-SPECIFICATION.md) and the implementation |
 | Current architecture and file layout | [`docs/architecture/ARCHITECTURE.md`](docs/architecture/ARCHITECTURE.md) |
+| Broker / staged workflow (approved, in progress) | [`docs/superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](docs/superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md) |
 
 If these conflict, use the topic-specific source above and update the conflicting document. Do not create a competing roadmap in chat or in editor-specific rules.
 
@@ -89,7 +92,17 @@ At the start of substantive work here, treat these as **always on** (read the sk
 
 ### Ponytail (implementation)
 
-Follow [`ponytail/SKILL.md`](.agents/skills/ponytail/SKILL.md) on every code change in this repo. Use [`ponytail-audit`](.agents/skills/ponytail-audit/SKILL.md) when auditing `packages/` or `apps/` for bloat. Cursor users may also enable a Ponytail session hook; **AGENTS.md still applies** for Codex and Claude Code.
+Follow [`ponytail/SKILL.md`](.agents/skills/ponytail/SKILL.md) on every code change in this repo. Use [`ponytail-audit`](.agents/skills/ponytail-audit/SKILL.md) when auditing `packages/` or `apps/` for bloat. Cursor users may also enable a Ponytail session hook; **AGENTS.md still applies** for Codex, Claude Code, and Qwen Code.
+
+### Qwen Code (host runtime)
+
+When building this repo with **Qwen Code** and a **local Ollama** model (for example `qwen3.5:27b`):
+
+- **Context:** Qwen loads repo-root `AGENTS.md` and vendored skills under `.agents/skills/` after `pnpm skills:install` (see [`docs/BUILDER-SKILLS.md`](docs/BUILDER-SKILLS.md)). Project tool permissions can live in [`.qwen/settings.json`](.qwen/settings.json).
+- **Ezy CLI is fast:** `pnpm ezy brief` / `next` / `plan` do not call an LLM. Slowness and timeouts are almost always the **host model** (large prompts: full `AGENTS.md`, Superpowers skills, long diffs). Prefer smaller tasks, `/ponytail lite`, or a smaller/faster local model for iteration; keep 27B for focused turns.
+- **Ollama timeouts:** Qwen may log `Request timeout after ~480s` when the model cannot finish a turn in time. In `~/.qwen/settings.json`, raise `model.generationConfig.timeout` and `streamIdleTimeoutMs` (and the same on the matching `modelProviders[]` entry for Ollama). This repo’s [`.qwen/settings.json`](.qwen/settings.json) sets 15m request / 10m stream-idle and `tools.shell.defaultTimeoutMs` 300000; reduce input if turns are still too heavy.
+- **Tooling pitfalls:** Local models sometimes emit invalid tool args (for example `web_fetch` without `prompt`). Retry with a narrower instruction or use shell/`Read` instead of fetch. For Skills CLI installs use `pnpm skills:install` from the repo (non-interactive) — not raw `npx skills add` without `--yes` / agent flags (Qwen sessions have hit 120s shell timeouts waiting on npm prompts).
+- **Dogfood:** Same as other hosts — `pnpm build` then `pnpm ezy brief "…"` / `pnpm ezy next "…"` from the project cwd; follow [`skills/ezy/SKILL.md`](skills/ezy/SKILL.md) through implementation, not CLI-only output.
 
 ### Graphify (navigation)
 

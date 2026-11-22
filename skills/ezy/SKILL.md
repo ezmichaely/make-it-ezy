@@ -35,14 +35,15 @@ Always run commands with **cwd = the project the user wants changed** (not the M
    `ezy next "<outcome>" --brief .ezy/brief.json`  
    (omit `--brief` if you skipped the brief). Use network unless the user asked for `--local-only`. If it exits 2, fix the brief at the reported paths and re-run.  
    Planning is **project-aware** (uses the current project + outcome + brief; prefers a minimum skill set).
-4. **Show** Project / Requirements / Skills / Checklist briefly to the user.
+4. **Show** Project / Requirements / Skills / **Workflow** (if present) / Checklist briefly to the user.
 5. **Install (gated):** If the checklist lists `ezy install …`, ask for approval, then run those install commands (include `--source` when the checklist provides it; add `--brief .ezy/brief.json` only to `ezy install --plan …` commands, if you used a brief). Do **not** pass `--yes` unless the user already approved non-interactive install.
 6. **Re-run** `ezy next "<outcome>" [--brief .ezy/brief.json]` (brief only if used) after installs if skills were missing before.
-7. **Execute the Prompt block:**  
-   - Read each listed skill’s `SKILL.md` under `.agents/skills/<name>/`  
-   - Follow those skills  
-   - Implement the outcome in this project  
-   - Prefer verified/low-risk behavior; do not invent skill names
+7. **Execute the Prompt / Workflow:**  
+   - If the handoff includes a **Workflow** section, run stages **in order** (contractor → recommended skills → custom uncovered steps).  
+   - For a **contractor** stage (e.g. Superpowers), follow that skill set’s **own** process under `.agents/skills/` — do not replace it with ad-hoc steps.  
+   - For each **skill** stage, read `SKILL.md` under `.agents/skills/<name>/` and follow it.  
+   - For **custom** stages, perform the described work directly (temporary instructions — not new catalog skills).  
+   - Implement the outcome in this project; prefer verified/low-risk behavior; do not invent skill names
 8. **Anti-stop:** After steps 2–6, continue into step 7 in the same effort. Never report “CLI only printed a handoff” as done.
 9. **Project brain (optional, after step 7 or when re-entering the repo):** Run `ezy brain`. If there is no file or machine data is stale, run `ezy plan` or `ezy brain refresh` first. After meaningful work, `ezy brain enrich` → edit only the `agent` block in `.ezy/brain.json` (decisions, conventions, rejected skills; cite `source`; no secrets). Use **Graphify** only if installed under `.agents/skills/graphify` and the task is cross-package; skip for small local edits. Brain does **not** replace `brief.json` for planning.
 

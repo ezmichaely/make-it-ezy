@@ -388,6 +388,25 @@ export function formatHandoff(report: HandoffReport): string {
     }
   }
 
+  if (report.workflow.length) {
+    lines.push("");
+    lines.push("Workflow");
+    for (const stage of report.workflow) {
+      if (stage.type === "contractor") {
+        lines.push(
+          `${stage.order}. contractor · ${stage.contractorName} · ${stage.contractorSource} — ${stage.reason}`,
+        );
+      } else if (stage.type === "skill") {
+        const status = stage.installed ? "installed" : "not installed";
+        lines.push(
+          `${stage.order}. skill · ${stage.skillName} · ${status} · ${stage.skillSource} — ${stage.task}`,
+        );
+      } else {
+        lines.push(`${stage.order}. custom · ${stage.task} — ${stage.instructions}`);
+      }
+    }
+  }
+
   lines.push("");
   lines.push("Checklist");
   if (!report.checklist.length) {
