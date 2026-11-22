@@ -6,10 +6,12 @@ For the shared agent entry point and current work sequence, start at [`../../AGE
 
 [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) (2026-11-08). Read this for **product intent and trust** after the shared agent guide; use the roadmap and MVP spec for **shipped** behavior. The handoff opens with **shipped → next → future** so vision sections are not mistaken for today's CLI.
 
-Older snapshots (historical only — do not reconstruct the product from these):
+Historical material is segregated so current handoffs stay small and unambiguous:
 
-- `MAKE-IT-EZY-HANDOFF-v6.md`, `MAKE-IT-EZY-HANDOFF-v3.md`, `MAKE-IT-EZY-HANDOFF-V2.md`, `MAKE-IT-EZY-HANDOFF-v1.md`
-- `make-it-ezy convo.txt`
+- [`archive/`](./archive/) — superseded handoff snapshots and historical handoff analysis
+- [`../convo/`](../convo/) — raw conversation exports / transcripts (research history only)
+
+Do not reconstruct the current product from archived handoffs or raw conversation exports.
 
 ## Precedence
 
