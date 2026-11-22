@@ -35,3 +35,18 @@ General by design, specific by launch: **coding tasks in your repo today**, othe
 Phases 0–7 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 8 — Launch and Distribution** is current; Phase 9 Verification and Phase 10 Web UI follow launch. Findings **5–10** are optional maintenance.
 
 The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules outcome verification before Web UI. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.
+
+
+## Handoff structure
+
+Handoffs are actionable implementation context, not the canonical product definition.
+
+Use:
+- `docs/architecture/` for **what Ezy is** and its stable system boundaries.
+- `docs/decisions/` for **why we chose a direction** and durable decisions.
+- `docs/handoff/` for **what the next coding/review agent should do**.
+
+A good handoff should point agents to the relevant architecture and decisions instead of reconstructing the whole conversation.
+
+Current implementation instruction:
+- [Missing Ezy Capabilities — Coding Agent Instruction](./CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md)
