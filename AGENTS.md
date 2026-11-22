@@ -44,7 +44,10 @@ The roadmap owns phase ordering. Update it when the agreed order changes.
 | Topic | Source |
 |---|---|
 | Builder skills install / lockfile | [`docs/BUILDER-SKILLS.md`](docs/BUILDER-SKILLS.md) |
-| Shared agent workflow and current handoff | This file |
+| Shared agent workflow | This file |
+| Architecture | [`docs/architecture/`](docs/architecture/) |
+| Durable product/architecture decisions | [`docs/decisions/`](docs/decisions/) |
+| Current implementation handoffs | [`docs/handoff/`](docs/handoff/) |
 | One-page workflow (Ezy vs host agent) | [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) |
 | Product intent, boundaries, and trust principles | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) |
 | Shipped status and phase sequence | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
@@ -54,6 +57,8 @@ The roadmap owns phase ordering. Update it when the agreed order changes.
 | Broker / staged workflow (approved, in progress) | [`docs/superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](docs/superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md) |
 
 If these conflict, use the topic-specific source above and update the conflicting document. Do not create a competing roadmap in chat or in editor-specific rules.
+
+**Agent context rule:** Do not reconstruct current product direction from raw conversation exports. Use Architecture → Decisions → Handoff → implementation. A handoff is actionable context, not a replacement for architecture or approved decisions.
 
 ## How to work in this repository
 
