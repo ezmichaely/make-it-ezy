@@ -288,3 +288,136 @@ The project is converging toward a simpler architecture:
 > **Ezy decides what kind of work should happen and what capabilities/workflow are needed. The execution ecosystem does the work.**
 
 The more Ezy can make that decision reliably — using project context, trust, evidence, and verified outcomes — the less reason it has to become another execution platform.
+
+
+## 10. Intent-to-outcome pipeline
+
+The latest discussion exposed a missing architectural layer in the previous synthesis: Ezy does not only route an already-well-specified task. A core Ezy responsibility is turning ambiguous user intent into a sufficiently understood, executable objective.
+
+The important distinction is between **Ezy-owned orchestration responsibilities** and the specialized capabilities Ezy may invoke.
+
+A representative pipeline is:
+
+```text
+User intent
+   ↓
+Understand
+   ↓
+Prompt formulation / Prompt Master
+   ↓
+Clarify uncertainty when needed / Grill Me
+   ↓
+Capability inspection / Skillspector
+   ↓
+Capability discovery / Find Skills
+   ↓
+Skill evaluation
+   ↓
+Skill specification / composition
+   ↓
+Contractor / workflow selection
+   ↓
+Execution host
+   ↓
+Outcome evaluation
+   ↓
+Deliver / iterate / escalate
+```
+
+This is a **capability pipeline, not a mandatory linear sequence**. Ezy should decide which stages are necessary for a given request.
+
+For example:
+
+- a clear request may not need Grill Me
+- a request with no capability gap may not need Find Skills
+- a task may require several selected skills, while another needs none
+- Humanizer-like capabilities should be invoked when communication quality or transformation is actually part of the task, not applied universally
+
+### Role separation
+
+The recent discussion also clarified that several similarly named capabilities solve different problems:
+
+- **Prompt Master:** formulate/structure the user's intent into a stronger task specification
+- **Grill Me:** expose ambiguity, assumptions, missing requirements, and unresolved decisions
+- **Skillspector:** inspect the available skill/capability landscape
+- **Find Skills:** discover candidate skills/capabilities for a concrete need
+- **Skill Evaluator:** judge discovered candidates for relevance, quality, trust, overlap, safety, and fit
+- **Skill Spec / composition:** formalize selected capabilities so they can be composed into the downstream workflow
+- **Humanizer:** improve user-facing communication or output when that capability is relevant
+- **Contractor:** own the domain/workflow methodology and execute through an appropriate host
+
+The exact implementations of these capabilities may change. Ezy should depend on **stable roles/interfaces**, not on hard-coding one particular external project into core.
+
+## 11. Two different evaluators
+
+Evaluation occurs at two distinct levels and should not be collapsed.
+
+### Skill evaluation
+
+This happens **after skill discovery**:
+
+```text
+Find Skills
+    ↓
+Skill Evaluator
+    ↓
+Select / reject / request alternatives
+    ↓
+Skill Spec / composition
+```
+
+The question is:
+
+> **"Is this capability a good choice for the work?"**
+
+Relevant signals can include task fit, quality, trust, safety, overlap, dependencies, and expected reliability.
+
+### Outcome evaluation
+
+This happens **after execution**:
+
+```text
+Execution
+    ↓
+Outcome Evaluator
+    ↓
+Pass → deliver
+Fail/uncertain → iterate, replan, or escalate
+```
+
+The question is:
+
+> **"Did the resulting work actually satisfy the user's intended outcome?"**
+
+This is different from a contractor's internal test or verification. Tests can pass while the implementation still fails the user's actual intent.
+
+The resulting control loop is:
+
+```text
+Execute
+  ↓
+Evaluate outcome
+  ↓
+Decide
+ ├─ Pass → Deliver
+ └─ Fail/uncertain → Replan / Fix → Execute again
+```
+
+This also connects directly to the shared-evidence architecture: **verified outcomes become evidence for future capability/workflow decisions**.
+
+## 12. Revised Ezy boundary
+
+The previous shorthand "Ezy is a broker/router" remains directionally correct but is incomplete.
+
+A more precise working definition is:
+
+> **Make It Ezy is an intent-to-outcome orchestration layer: it understands user intent, invokes the capabilities needed to clarify and formulate the work, discovers and evaluates suitable skills, composes a workflow/contractor, delegates execution, evaluates the outcome, and decides whether to deliver, iterate, or escalate.**
+
+This does **not** mean Ezy should implement every capability itself.
+
+The core should remain small. Specialized capabilities can remain external, replaceable, or provider-backed.
+
+The architectural goal is therefore:
+
+> **Ezy owns the decision protocol and lifecycle; capabilities and contractors provide specialized work; execution hosts perform the work.**
+
