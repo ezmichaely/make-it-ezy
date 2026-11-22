@@ -1,0 +1,25 @@
+# Decisions
+
+This directory contains durable product and architecture decisions.
+
+Use this area for decisions that should survive across conversations and coding agents:
+- decision statement
+- context/problem
+- options considered
+- chosen direction
+- trade-offs
+- consequences
+- explicit non-goals
+- date/status when useful
+
+A decision should be concise and durable. Do not copy whole conversations here.
+
+## Precedence
+
+When guidance conflicts:
+1. Current approved decision
+2. Current architecture
+3. Current implementation handoff
+4. Historical conversation/research
+
+If a new discussion changes an existing decision, update or supersede the decision explicitly instead of silently creating conflicting guidance.
