@@ -19,7 +19,7 @@ Nested `AGENTS.md` files under vendored skills add file-local constraints only. 
 4. Read [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) for audit status (findings 1–4 fixed; 5–10 optional).
 5. Read [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) for product intent and trust principles when relevant.
 
-Do not use historical handoff snapshots or conversation exports to decide current work. See [`docs/handoff/README.md`](docs/handoff/README.md) for document roles.
+Do not use historical handoff snapshots or conversation exports to decide current work. Historical handoffs are archived under [`docs/handoff/archive/`](docs/handoff/archive/); raw conversation exports live under [`docs/convo/`](docs/convo/). See [`docs/handoff/README.md`](docs/handoff/README.md) for document roles.
 
 ## One product goal
 
