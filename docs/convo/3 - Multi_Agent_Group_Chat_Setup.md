@@ -2,6 +2,14 @@
 
 ## You
 
+> **Current reference update (2026-11-23): 3C → 3C1Q**
+>
+> The earlier **3C** shorthand referred to **Claude + Cursor + Codex**. The current reference should be **3C1Q**: **Claude + Cursor + Codex + Qwen**.
+>
+> This is a workflow/host shorthand, not a hard product boundary. The broader model is **3C1Q or any equivalent multi-agent/coding workflow** that can participate through a compatible interface.
+>
+> The local **Ezy Model Routing** design is documented separately under `docs/ezy-routing/`. It allows compatible clients/agents to route informational work to a smaller local model and development/reasoning/repository-changing work to the primary local model (currently Qwen3.8:27B).
+>
 Hey! How can i make a group chat between you, claude, cursor and codex. And send 1 message / instructions and get your own responses in that group chat. Do i need api key?
 
 ## ChatGPT

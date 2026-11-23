@@ -12,6 +12,7 @@ export default tseslint.config(
       ".agents/**",
       ".pnpm-store/**",
       "docs/handoff/**",
+      "skill-scan/**",
     ],
   },
   eslint.configs.recommended,

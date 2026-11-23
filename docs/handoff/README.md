@@ -6,10 +6,12 @@ For the shared agent entry point and current work sequence, start at [`../../AGE
 
 [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) (2026-11-08). Read this for **product intent and trust** after the shared agent guide; use the roadmap and MVP spec for **shipped** behavior. The handoff opens with **shipped → next → future** so vision sections are not mistaken for today's CLI.
 
-Older snapshots (historical only — do not reconstruct the product from these):
+Historical material is segregated so current handoffs stay small and unambiguous:
 
-- `MAKE-IT-EZY-HANDOFF-v6.md`, `MAKE-IT-EZY-HANDOFF-v3.md`, `MAKE-IT-EZY-HANDOFF-V2.md`, `MAKE-IT-EZY-HANDOFF-v1.md`
-- `make-it-ezy convo.txt`
+- [`archive/`](./archive/) — superseded handoff snapshots and historical handoff analysis
+- [`../convo/`](../convo/) — raw conversation exports / transcripts (research history only)
+
+Do not reconstruct the current product from archived handoffs or raw conversation exports.
 
 ## Precedence
 
@@ -35,3 +37,18 @@ General by design, specific by launch: **coding tasks in your repo today**, othe
 Phases 0–7 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 8 — Launch and Distribution** is current; Phase 9 Verification and Phase 10 Web UI follow launch. Findings **5–10** are optional maintenance.
 
 The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules outcome verification before Web UI. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.
+
+
+## Handoff structure
+
+Handoffs are actionable implementation context, not the canonical product definition.
+
+Use:
+- `docs/architecture/` for **what Ezy is** and its stable system boundaries.
+- `docs/decisions/` for **why we chose a direction** and durable decisions.
+- `docs/handoff/` for **what the next coding/review agent should do**.
+
+A good handoff should point agents to the relevant architecture and decisions instead of reconstructing the whole conversation.
+
+Current implementation instruction:
+- [Missing Ezy Capabilities — Coding Agent Instruction](./CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md)

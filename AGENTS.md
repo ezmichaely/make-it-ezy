@@ -19,7 +19,7 @@ Nested `AGENTS.md` files under vendored skills add file-local constraints only. 
 4. Read [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md) for audit status (findings 1–4 fixed; 5–10 optional).
 5. Read [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) for product intent and trust principles when relevant.
 
-Do not use historical handoff snapshots or conversation exports to decide current work. See [`docs/handoff/README.md`](docs/handoff/README.md) for document roles.
+Do not use historical handoff snapshots or conversation exports to decide current work. Historical handoffs are archived under [`docs/handoff/archive/`](docs/handoff/archive/); raw conversation exports live under [`docs/convo/`](docs/convo/). See [`docs/handoff/README.md`](docs/handoff/README.md) for document roles.
 
 ## One product goal
 
@@ -44,7 +44,10 @@ The roadmap owns phase ordering. Update it when the agreed order changes.
 | Topic | Source |
 |---|---|
 | Builder skills install / lockfile | [`docs/BUILDER-SKILLS.md`](docs/BUILDER-SKILLS.md) |
-| Shared agent workflow and current handoff | This file |
+| Shared agent workflow | This file |
+| Architecture | [`docs/architecture/`](docs/architecture/) |
+| Durable product/architecture decisions | [`docs/decisions/`](docs/decisions/) |
+| Current implementation handoffs | [`docs/handoff/`](docs/handoff/) |
 | One-page workflow (Ezy vs host agent) | [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) |
 | Product intent, boundaries, and trust principles | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](docs/handoff/MAKE-IT-EZY-HANDOFF.md) |
 | Shipped status and phase sequence | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
@@ -54,6 +57,8 @@ The roadmap owns phase ordering. Update it when the agreed order changes.
 | Broker / staged workflow (approved, in progress) | [`docs/superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](docs/superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md) |
 
 If these conflict, use the topic-specific source above and update the conflicting document. Do not create a competing roadmap in chat or in editor-specific rules.
+
+**Agent context rule:** Do not reconstruct current product direction from raw conversation exports. Use Architecture → Decisions → Handoff → implementation. A handoff is actionable context, not a replacement for architecture or approved decisions.
 
 ## How to work in this repository
 

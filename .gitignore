@@ -14,3 +14,7 @@ graphify-out/
 .claude/skills
 .claude/settings.local.json
 .ezy/
+.qwen/*
+skill-scan/*
+/.qwen
+.qwen/settings.json
