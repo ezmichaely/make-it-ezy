@@ -1,6 +1,6 @@
 {
   "name": "@make-it-ezy/core",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Core capability discovery, selection, and handoff logic for Make It Ezy",
   "type": "module",
   "main": "./dist/index.js",
@@ -11,7 +11,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">=20"
@@ -24,7 +26,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": ["agent-skills", "ai", "capability-router"],
+  "keywords": [
+    "agent-skills",
+    "ai",
+    "capability-router"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json"
   }

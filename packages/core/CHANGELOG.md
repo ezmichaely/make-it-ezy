@@ -1,0 +1,49 @@
+# Changelog
+
+## [0.2.0](https://github.com/ezmichaely/make-it-ezy/compare/core-v0.1.5...core-v0.2.0) (2026-11-23)
+
+
+### Features
+
+* **brief:** validate and sanitize agent briefs ([ec56fae](https://github.com/ezmichaely/make-it-ezy/commit/ec56fae63cecda6a77b5bbc941cfb9503d41d659))
+* **cli:** ezy brief and --brief ([a622c88](https://github.com/ezmichaely/make-it-ezy/commit/a622c88b325fa8e672fab9e2f18573a6c8d22e6b))
+* **core:** add buildHandoff paste-ready next step ([83084ff](https://github.com/ezmichaely/make-it-ezy/commit/83084ff775ca6e3f307b47416a23c644d5a910f4))
+* **core:** add intent lifecycle and evidence contracts ([e37ec21](https://github.com/ezmichaely/make-it-ezy/commit/e37ec2108d8fbb02f1163f7a6de31e6f2d1c4b73))
+* **core:** add intent lifecycle and evidence contracts ([8e137de](https://github.com/ezmichaely/make-it-ezy/commit/8e137de59d9da7de6ec53b22573e11be49a8a899))
+* **core:** add intent lifecycle and evidence contracts ([31d9598](https://github.com/ezmichaely/make-it-ezy/commit/31d95983cbc85b56d732b1bcb6115dc61c8a069b))
+* **core:** export lifecycle and evidence contracts ([51e9c1d](https://github.com/ezmichaely/make-it-ezy/commit/51e9c1dfd5a3bde7778c4a0399fb5d8e7b9f1343))
+* **core:** ship Phase 7 project brain (hybrid B) ([15d1ca1](https://github.com/ezmichaely/make-it-ezy/commit/15d1ca15442bd3c9af864a85cac22365a0d30ce8))
+* **output:** explain coverage, exclusions, research ([d65df7a](https://github.com/ezmichaely/make-it-ezy/commit/d65df7afd06f1431c4452f7acb47cea926745b3f))
+* phase 6 — agent brief + decision quality ([0fd8307](https://github.com/ezmichaely/make-it-ezy/commit/0fd83075b1d4d303c1681b814f37f517a3deb362))
+* **phase-1:** add minimal ezy doctor and analyze CLI ([bae2cdb](https://github.com/ezmichaely/make-it-ezy/commit/bae2cdbc086aab9e8fba908dcac1c6f41254c8b0))
+* **phase-2:** add ezy recommend shortlist ([1a615cb](https://github.com/ezmichaely/make-it-ezy/commit/1a615cbf88be2418c56f1ea2ac5349a12caf7486))
+* **phase-2:** add ezy search and inspect discovery ([cb5785c](https://github.com/ezmichaely/make-it-ezy/commit/cb5785cabaa876a49ad6707aa2ce926665b2201d))
+* **phase-3:** add ezy plan decision engine ([fedf17d](https://github.com/ezmichaely/make-it-ezy/commit/fedf17d35e96dfdb0394caff22e4a5e7de4c673a))
+* **phase-4:** add gated ezy install with arrow picker ([d10ec7c](https://github.com/ezmichaely/make-it-ezy/commit/d10ec7c67c92e69c27ac86de7e0cec080f6317f4))
+* **plan:** brief-driven, coverage-based planning ([0f53c78](https://github.com/ezmichaely/make-it-ezy/commit/0f53c78bdc595d2cf1259d29dd42156b74f1e4ac))
+* **plan:** make capability planning project-aware ([8b2b0ac](https://github.com/ezmichaely/make-it-ezy/commit/8b2b0acc803628bc85485b7364a986fbd8abb92a))
+* **plan:** make capability planning project-aware ([038c610](https://github.com/ezmichaely/make-it-ezy/commit/038c610a279602f57d563e1f9d8dd6127c20f11f))
+* **score:** whole-token relevance with stopwords ([1bd47be](https://github.com/ezmichaely/make-it-ezy/commit/1bd47beba3e3689c8be3553bfc50c5832d4fe5db))
+* **select:** requirement-coverage selection ([98cf0a4](https://github.com/ezmichaely/make-it-ezy/commit/98cf0a4543480328d8ab5fac16903891f46d8456))
+* start Phase 8 launch and broker workflow handoff ([bd6ce7a](https://github.com/ezmichaely/make-it-ezy/commit/bd6ce7a08cac1e159c35a0e792100361f4fd2091))
+
+
+### Bug Fixes
+
+* **brief:** sanitize unknown field names, escape invisible chars in tests ([3e52378](https://github.com/ezmichaely/make-it-ezy/commit/3e52378fb22c51512d26452331b3685e304740f7))
+* **cli:** strict --brief parsing, install notes, escaped next command ([c039be9](https://github.com/ezmichaely/make-it-ezy/commit/c039be92f377ced83dd2d754e9b8d0ae3285bfe8))
+* **core:** address audit findings 1–4 ([33899ff](https://github.com/ezmichaely/make-it-ezy/commit/33899ff59501ba4c586ed7decbb666dcd4090da1))
+* **core:** address audit findings 1–4 ([255ee0e](https://github.com/ezmichaely/make-it-ezy/commit/255ee0efe9ef0db1b4c23ff6ae03cde7eb17c52c))
+* **handoff:** do not duplicate installs suffix in skill reasons ([621ed03](https://github.com/ezmichaely/make-it-ezy/commit/621ed032097949b2edbfe636e87c382b1c9cd430))
+* **handoff:** predict skill paths and keep query shortlist ([be2d840](https://github.com/ezmichaely/make-it-ezy/commit/be2d840a748a0c567b383aa106c2863d9bb4ba63))
+* **inspect:** clear CodeQL file-system race ([283944f](https://github.com/ezmichaely/make-it-ezy/commit/283944fefb864e6ec02e35e02788521260272759))
+* **inspect:** read SKILL.md once to clear TOCTOU race ([0f4288e](https://github.com/ezmichaely/make-it-ezy/commit/0f4288e200531f07b276f19e900cba6b5b523bd4))
+* **install:** keep nullable stdio guards for editor types ([1464797](https://github.com/ezmichaely/make-it-ezy/commit/1464797fda226f571f9828f7d9b7dea63a97fc2a))
+* **phase6:** final-review wave (brief sanitization, next basis/uncovered, R5b cap, plural matching) ([aaa4d53](https://github.com/ezmichaely/make-it-ezy/commit/aaa4d537488a6a4575f7e4dabb47d306cbc131a0))
+* **plan:** dedupe same skill name across sources ([f837c81](https://github.com/ezmichaely/make-it-ezy/commit/f837c8184b69267d52e6598af8a6dfdd82839136))
+* **plan:** match exclusions on skill names only; print Basis once ([38505be](https://github.com/ezmichaely/make-it-ezy/commit/38505be5beb9f488ce6cffb7338b24de5e00f446))
+* **plan:** match exclusions on skill names only; print Basis once ([6aab3c9](https://github.com/ezmichaely/make-it-ezy/commit/6aab3c9e26b5d5908e42042196685780a66f6fa7))
+* **requirements:** collapse non-domain labels on small UI; narrow webhooks tokens ([6c4a243](https://github.com/ezmichaely/make-it-ezy/commit/6c4a2436e804d2e67ffd63b3a5538e07be4205e8))
+* **requirements:** drop non-frontend labels on small UI changes in frontend repos ([3260058](https://github.com/ezmichaely/make-it-ezy/commit/3260058671f115b757767947a94b920464d262ce))
+* **requirements:** stop "add" misfire; extend lexicon ([f2c19d7](https://github.com/ezmichaely/make-it-ezy/commit/f2c19d78d73af10fe88a943406940d88f8d24a57))
+* **select:** uncovered means no candidate; cover required via optional pass ([f2c74fa](https://github.com/ezmichaely/make-it-ezy/commit/f2c74fa0b410489be3a743f5a3455b0530780126))
