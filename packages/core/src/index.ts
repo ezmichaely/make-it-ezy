@@ -110,3 +110,26 @@ export {
   selectCapabilities,
 } from "./select.js";
 export type { Candidate, Selection } from "./select.js";
+export {
+  aggregateEvidence,
+  buildIntentIntake,
+  composeSkillSpec,
+  evaluateOutcome,
+  evaluateSkillCandidate,
+  proposeImprovement,
+} from "./lifecycle.js";
+export type {
+  ClarificationQuestion,
+  EvidenceAggregate,
+  ImprovementProposal,
+  IntentIntake,
+  LifecycleDecision,
+  OutcomeEvaluation,
+  OutcomeEvaluationInput,
+  OutcomeVerification,
+  SharedEvidenceEvent,
+  SkillEvaluation,
+  SkillEvaluationInput,
+  SkillReviewState,
+  SkillSpec,
+} from "./lifecycle-types.js";
