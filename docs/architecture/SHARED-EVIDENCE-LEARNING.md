@@ -6,6 +6,17 @@ Define how Make It Ezy can learn from real usage across many independent users w
 
 This document extends the existing evidence-driven self-improvement direction. It does not make user conversations, repositories, Project Brains, or private files part of a shared knowledge pool.
 
+## Implementation status
+
+Privacy-safe lifecycle contracts are now implemented locally in:
+- `packages/core/src/lifecycle-types.ts`
+- `packages/core/src/lifecycle.ts`
+- `packages/core/src/lifecycle.test.ts`
+
+They provide structured outcome evidence, local aggregation, and reversible improvement proposals. They do **not** upload telemetry, require a hosted service, or automatically modify Ezy.
+
+A future shared-learning service remains out of scope until there is an explicit product decision and privacy/consent model.
+
 ## Core Principle
 
 **Share evidence about outcomes, not private user context.**
