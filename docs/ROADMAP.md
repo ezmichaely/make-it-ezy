@@ -81,7 +81,14 @@ Why: every domain needs its own project inspection, skill sources, golden cases 
 - `ezy brain` / `brain refresh` / `brain enrich`; `.ezy/brain.json` machine slice on plan/next
 - Optional host-maintained `agent` slice (decisions, conventions, rejected skills)
 
-## Phase 8 — Launch and Distribution (**current**)
+## Phase 8 — Launch and Distribution
+### Lifecycle contract slice
+
+The Phase 8 branch now includes small internal contracts for intent clarification/intake, explicit skill evaluation state, skill specification/composition, outcome evaluation (PASS / FAIL / UNCERTAIN), and privacy-safe evidence aggregation with reversible improvement proposals.
+
+These contracts are not a hosted telemetry system and do not auto-modify Ezy. Full execution-time outcome verification remains Phase 9.
+
+ (**current**)
 
 - Make the CLI installable and usable outside this repository. The root workspace remains private; the release workflow creates GitHub releases but does not publish the CLI/core packages to npm.
 - Document and verify the first-user install path.
