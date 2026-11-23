@@ -16,6 +16,26 @@ Do not collapse everything into “agent.”
 
 The model is domain-neutral; the product today covers **coding tasks** only. Domains are added one at a time — see [`../ROADMAP.md` → Scope](../ROADMAP.md).
 
+## Lifecycle roles
+
+Ezy's internal lifecycle is role-based rather than provider-based:
+
+- intent / planning
+- clarification
+- capability inspection
+- discovery
+- evaluation
+- specification / composition
+- domain specialist
+- contractor / workflow
+- context / knowledge
+- execution
+- outcome verification
+
+These are decision roles, not mandatory built-in agents. External providers may fill a role without becoming mandatory Ezy dependencies.
+
+The stable internal contracts now live in `packages/core/src/lifecycle-types.ts` and `packages/core/src/lifecycle.ts`. They intentionally do not replace `SKILL.md` or host-agent protocols.
+
 ## Minimum useful composition
 
 Choose the smallest set of specialist + skills + tools + workflow + runtime that can achieve the outcome. Explain inclusions and exclusions. Same-name skills from different sources collapse to one pick (best score / installs / local).
