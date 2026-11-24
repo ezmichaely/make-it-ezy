@@ -22,3 +22,31 @@ From this folder, replace `repo-name` with a folder under `../skill-repo/`:
 Tier 1 checks files without running repository scripts. Tier 2 uses the local embedding model for similarity checks and the configured local LLM for model-backed analysis. Reports go into the matching folder under `../skill-eval/`.
 
 Keep fetched repositories under `../skill-repo/`. Do not execute scripts from a repository before reviewing it. Tier 3 live agent testing is a separate setup and may require an agent runtime and sandbox.
+
+
+## Fresh checkout setup
+
+The evaluator environment is intentionally local and ignored by Git. For a fresh checkout:
+
+```sh
+python3.13 -m venv .venv
+. .venv/bin/activate
+python -m pip install --upgrade "skillevaluator[all]==1.0.1"
+./run-local.sh --help
+```
+
+SkillEvaluator supports Python 3.12–3.14. Verify the installed version with:
+
+```sh
+./.venv/bin/skillevaluator --version
+```
+
+For Tier 2 local-model runs, start Ollama and override the model when necessary:
+
+```sh
+SKILL_EVAL_LLM_MODEL=<installed-chat-model> \
+SKILL_EVAL_EMBEDDING_MODEL=nomic-embed-text \
+./run-local.sh tier2 ../skill-repo/<repo-name> -o ../skill-eval/<repo-name>/tier2
+```
+
+The evaluator is a **research tool**, not an Ezy runtime dependency. Its reports can inform capability evaluation, but Ezy must not silently execute scanned skill instructions or treat an evaluator score as a security certification.
