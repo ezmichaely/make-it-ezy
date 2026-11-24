@@ -46,14 +46,14 @@ Audit findings **1–4** are resolved; optional **5–10** remain in [`../audits
 
 ```text
 apps/cli            doctor | analyze | search | inspect | recommend | brief | brain | plan | next | install
-packages/core       detection, search, plan, brief, brain, install, handoff
+packages/core       detection, search, plan, brief, brain, install, handoff, lifecycle contracts
 skills/ezy          Agent Skill adapter #1 (Claude /ezy, Cursor/Codex skills)
 catalog/            reserved (empty)
 docs/               research, architecture, specs, plans, handoff
 skills/ + skills-lock.json   Layer A pins; `.agents/skills/` installed locally (see BUILDER-SKILLS.md)
 ```
 
-`analyze` is wired into `plan` / `next` (Phase 5): requirements come from the goal plus the detected project.
+`analyze` is wired into `plan` / `next` (Phase 5): requirements come from the goal plus the detected project. Lifecycle contracts are exported from core but remain an architectural boundary, not a runtime pipeline.
 
 No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/Claude) and deep verify are not shipped.
 
