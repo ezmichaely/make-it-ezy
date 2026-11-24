@@ -2,13 +2,13 @@
 
 Locked phase sequence and shipped status. Product definition / trust rules: [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md).
 
-## Current work (2026-11-18)
+## Current work (2026-11-24)
 
 Phases 0–7 are shipped. Audit findings **1–4** in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md) are **resolved** (sanitized skill output, monorepo root detection, local-first selection, YAML chomping). **Phase 8 — Launch and Distribution** is current. Phase 9 — outcome verification is post-launch work; exhaustive per-skill testing is not a launch gate. Audit findings **5–10** remain optional follow-up maintenance.
 
 Shared instructions for Codex, Cursor, Claude Code, and Qwen Code: [`../AGENTS.md`](../AGENTS.md). The roadmap remains authoritative for phase order; the audit does not renumber or replace phases.
 
-**In progress (not a new phase):** [Broker-directed workflow](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md) — contractor routing + ordered handoff stages. Task 1 in core; Tasks 2–3 (handoff output, `skills/ezy`, doc sync) remain. User-visible CLI unchanged until Task 2–3 ship.
+**Shipped within Phase 8 (not a new phase):** [Broker-directed workflow](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md) — contractor routing + ordered handoff stages. The core routing, `ezy next` Workflow output, `skills/ezy` adapter, and documentation sync are now present. Keep the workflow extensible without turning contractors into mandatory runtime dependencies.
 
 ## Scope (decided 2026-11-06) — canonical
 
@@ -84,7 +84,7 @@ Why: every domain needs its own project inspection, skill sources, golden cases 
 ## Phase 8 — Launch and Distribution
 ### Lifecycle contract slice
 
-The Phase 8 branch now includes small internal contracts for intent clarification/intake, explicit skill evaluation state, skill specification/composition, outcome evaluation (PASS / FAIL / UNCERTAIN), and privacy-safe evidence aggregation with reversible improvement proposals.
+The Phase 8 lifecycle contract slice includes small internal contracts for intent clarification/intake, explicit skill evaluation state, skill specification/composition, outcome evaluation (PASS / FAIL / UNCERTAIN), and privacy-safe evidence aggregation with reversible improvement proposals.
 
 These contracts are not a hosted telemetry system and do not auto-modify Ezy. Full execution-time outcome verification remains Phase 9.
 
