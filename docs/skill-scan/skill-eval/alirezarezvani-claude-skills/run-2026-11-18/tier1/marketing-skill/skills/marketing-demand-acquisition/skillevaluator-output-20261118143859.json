@@ -1,0 +1,2711 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/marketing-skill/skills/marketing-demand-acquisition",
+  "overall_passed": true,
+  "overall_status": "passed",
+  "incomplete_scans": [],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 0,
+  "total_warnings": 22,
+  "severity_counts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 5,
+    "low": 11
+  },
+  "finding_counts": {
+    "raw_occurrences": 20,
+    "distinct_occurrences": 20,
+    "unique_findings": 20,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 0,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 5,
+      "low": 11,
+      "info": 4
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 5,
+      "low": 11,
+      "info": 4
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9591000dda17a70d89f9",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-837d5a2a5fc6bdc52fab",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3101aa8f812eb7cf4557",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CX-LIST-BUDGET",
+      "message": "codex: The 50 skills in this folder have 10,457 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+      "metadata": {
+        "harness": "codex",
+        "effect": "degraded",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ccae3dcdb6eb0099584b",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c6a3eda9c7de66358cca",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-37212c61aa99b93cdbf1",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-4e4975bc129927f97ee1",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-53e01e5dfcd1d26fd30d",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-LIST-BUDGET",
+      "message": "copilot-cli: 50 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-785a8005221b8230b359",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-5847f60c6c8eda2edef7",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CC-DOLLAR-N",
+      "message": "claude-code: 10 price-like $N tokens (lines 94, 95, 96, 97, 104 +2 more) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+      "suggestion": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash.",
+      "metadata": {
+        "harness": "claude-code",
+        "effect": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-dd52495560d7a3175913",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-be242e78b46c0f433d11",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8a6355887aa6c326a0e8",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "Scripts may lack error handling: calculate_cac.py",
+      "suggestion": "Scripts should handle errors explicitly",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-255cb1a67bc75e5c4e22",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-ad0c374d7cf84ffaabbc",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "OC-DOLLAR-N",
+      "message": "opencode: Run as a /command, every $N is replaced and left blank without that argument: 10 price-like tokens (lines 94, 95, 96, 97, 104 +2 more) lose their numbers. The skill tool path is unaffected.",
+      "suggestion": "Reword amounts (e.g. USD 4.00) instead of $4.00.",
+      "metadata": {
+        "harness": "opencode",
+        "effect": "degraded",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-dc30eea241295e31363b",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-77c919ad74d84bb7a09a",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-c4a799c3b152f3499167",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CC-LIST-BUDGET",
+      "message": "claude-code: The 50 skills in this folder have 10,457 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+      "metadata": {
+        "harness": "claude-code",
+        "effect": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-22460876c7084fa82eb9",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-d39f1bb166893e529bf8",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 224 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7c77c83c995d7b83ec80",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dcaa4beefa88f02b4dd1",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Session Persistence (RA2)",
+      "message": "Rogue Agent: Create task for",
+      "suggestion": "Skill establishes unauthorized persistence across sessions via cron jobs, startup scripts, or state files. Session persistence allows an attacker to maintain access beyond the current interaction. Remove any persistence mechanisms (cron jobs, startup scripts, state files). Skills should not maintain state across sessions without explicit user consent.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f7878fcc58232ef6bf87",
+          "validator": "Security Scan",
+          "file_path": "references/hubspot-workflows.md",
+          "line_number": 87
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-83266c7d628571a97d9f",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-df06426c1dc09f634cde",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "calculate_cac.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-488ef0ceb50d8a43036a",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/scripts/calculate_cac.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e323b5a8813439b24c96",
+      "category": "SCHEMA",
+      "severity": "info",
+      "check_name": "author_without_email",
+      "message": "Author has no email address: Alireza Rezvani",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+      "metadata": {
+        "current_author": "Alireza Rezvani",
+        "profile": "default",
+        "shape_ok": false,
+        "domain_ok": false
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-8366235b219158c2be56",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9fbacbd12ed552d1234d",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1058df2ee5ffc7dfc40b",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 3,
+    "independent_errors": 0,
+    "independent_warnings": 2
+  },
+  "skills": [
+    {
+      "name": "marketing-demand-acquisition",
+      "passed": true,
+      "issue_count": 20
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "marketing-demand-acquisition",
+          "passed": true,
+          "issue_count": 20
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "total_issues": 20
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "Rogue Agent",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill establishes unauthorized persistence across sessions via cron jobs, startup scripts, or state files. Session persistence allows an attacker to maintain access beyond the current interaction. Remove any persistence mechanisms (cron jobs, startup scripts, state files). Skills should not maintain state across sessions without explicit user consent."
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 224 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "Scripts may lack error handling: calculate_cac.py",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Scripts should handle errors explicitly"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "calculate_cac.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "claude-code: 10 price-like $N tokens (lines 94, 95, 96, 97, 104 +2 more) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash."
+    },
+    {
+      "message": "claude-code: The 50 skills in this folder have 10,457 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here."
+    },
+    {
+      "message": "codex: The 50 skills in this folder have 10,457 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here."
+    },
+    {
+      "message": "opencode: Run as a /command, every $N is replaced and left blank without that argument: 10 price-like tokens (lines 94, 95, 96, 97, 104 +2 more) lose their numbers. The skill tool path is unaffected.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Reword amounts (e.g. USD 4.00) instead of $4.00."
+    },
+    {
+      "message": "Author has no email address: Alireza Rezvani",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'"
+    },
+    {
+      "message": "copilot-cli: 50 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory."
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "marketing-demand-acquisition"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-837d5a2a5fc6bdc52fab",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-9fbacbd12ed552d1234d",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-e323b5a8813439b24c96",
+          "occurrence_id": "SEO-8366235b219158c2be56",
+          "category": "SCHEMA",
+          "severity": "info",
+          "check_name": "author_without_email",
+          "message": "Author has no email address: Alireza Rezvani",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": "author: Alireza Rezvani",
+          "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+          "metadata": {
+            "current_author": "Alireza Rezvani",
+            "profile": "default",
+            "shape_ok": false,
+            "domain_ok": false
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'marketing-demand-acquisition'",
+          "metadata": {
+            "description_length": 224
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/marketing-demand-acquisition/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'marketing-demand-acquisition' follows kebab-case convention",
+          "metadata": {
+            "name_length": 28
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (312/500)",
+          "metadata": {
+            "line_count": 312,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: references, scripts",
+          "metadata": {
+            "files_found": [
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'marketing-demand-acquisition'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[SCHEMA-INFO] Author has no email address: Alireza Rezvani in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'marketing-demand-acquisition'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/marketing-demand-acquisition/",
+          "[OK] naming_convention: Folder name 'marketing-demand-acquisition' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (312/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'marketing-demand-acquisition'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_semver",
+          "message": "Valid semantic version: 1.1.0",
+          "metadata": {
+            "version": "1.1.0",
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_semver: Valid semantic version: 1.1.0"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-dcaa4beefa88f02b4dd1",
+          "occurrence_id": "SEO-f7878fcc58232ef6bf87",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Session Persistence (RA2)",
+          "message": "Rogue Agent: Create task for",
+          "file_path": "references/hubspot-workflows.md",
+          "line_number": 87,
+          "line_content": "\n1. **Trigger:** Lead score reaches MQL threshold (>75 points)\n2. **Action 1:** Send automated email to SDR with lead details\n3. **Action 2:** Create task for SDR qualification call\n4. **Branch Logic:",
+          "suggestion": "Skill establishes unauthorized persistence across sessions via cron jobs, startup scripts, or state files. Session persistence allows an attacker to maintain access beyond the current interaction. Remove any persistence mechanisms (cron jobs, startup scripts, state files). Skills should not maintain state across sessions without explicit user consent.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "skillspector",
+          "message": "Security scan completed - 1 advisory finding(s) (no critical/high issues)",
+          "metadata": {
+            "issue_count": 1
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SECURITY-MEDIUM] Rogue Agent: Create task for in references/hubspot-workflows.md:87"
+        ],
+        "messages": [
+          "[OK] skillspector: Security scan completed - 1 advisory finding(s) (no critical/high issues)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 1,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 8,
+        "applicable_risk_score": 8
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 6,
+        "checks_performed": 2,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 6 files for PII",
+          "metadata": {
+            "file_count": 6
+          }
+        },
+        {
+          "check": "pii_detection",
+          "message": "No PII detected in 6 files (emails, SSNs, phone numbers, paths)",
+          "metadata": {
+            "files_scanned": 6
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 6 files for PII",
+          "[OK] pii_detection: No PII detected in 6 files (emails, SSNs, phone numbers, paths)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (not detected)",
+          "metadata": {
+            "license_status": "not_detected"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No license information found - manual review required. Add a LICENSE file or 'license' field in frontmatter."
+        ],
+        "messages": [
+          "No license detected in any tier",
+          "[OK] license_compliance: License compliance scan completed (not detected)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 1 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 5,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 5 markdown files for dead links",
+          "metadata": {
+            "file_count": 5
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 5 markdown file(s)",
+          "metadata": {
+            "files_checked": 5
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 5 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 5 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 6,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "unicode_scan",
+          "message": "No invisible Unicode characters detected in 6 file(s)",
+          "metadata": {
+            "files_scanned": 6
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] unicode_scan: No invisible Unicode characters detected in 6 file(s)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 8,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 6
+      },
+      "finding_counts": {
+        "raw_occurrences": 8,
+        "distinct_occurrences": 8,
+        "unique_findings": 8,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 6,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 6,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-be242e78b46c0f433d11",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-83266c7d628571a97d9f",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-d39f1bb166893e529bf8",
+          "occurrence_id": "SEO-7c77c83c995d7b83ec80",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 224 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-77c919ad74d84bb7a09a",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-8a6355887aa6c326a0e8",
+          "occurrence_id": "SEO-255cb1a67bc75e5c4e22",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "Scripts may lack error handling: calculate_cac.py",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Scripts should handle errors explicitly",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-4e4975bc129927f97ee1",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-1058df2ee5ffc7dfc40b",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-37212c61aa99b93cdbf1",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 87.2/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 87.2,
+            "grade": "B",
+            "skill_type": "script-based"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 224 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[QUALITY-LOW] Scripts may lack error handling: calculate_cac.py in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 87.2/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 87.2,
+        "grade": "B",
+        "skill_type": "script-based",
+        "skill_name": "marketing-demand-acquisition",
+        "dimensions": {
+          "correctness": {
+            "score": 85.0,
+            "weight": 0.35,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 224 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 80.0,
+            "weight": 0.25,
+            "issues_count": 4,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Scripts may lack error handling: calculate_cac.py",
+                "suggestion": "Scripts should handle errors explicitly",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 2367,
+          "estimated_tokens": 2367,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 173,
+          "instructions_tokens": 2191,
+          "script_count": 1,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-df06426c1dc09f634cde",
+          "occurrence_id": "SEO-488ef0ceb50d8a43036a",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "calculate_cac.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/scripts/calculate_cac.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-LOW] calculate_cac.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/scripts/calculate_cac.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 7,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 4
+      },
+      "finding_counts": {
+        "raw_occurrences": 7,
+        "distinct_occurrences": 7,
+        "unique_findings": 7,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 4,
+          "info": 3
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 4,
+          "info": 3
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-5847f60c6c8eda2edef7",
+          "occurrence_id": "SEO-dd52495560d7a3175913",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CC-DOLLAR-N",
+          "message": "claude-code: 10 price-like $N tokens (lines 94, 95, 96, 97, 104 +2 more) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash.",
+          "metadata": {
+            "harness": "claude-code",
+            "effect": "degraded",
+            "verified_version": "2.1.316",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-c4a799c3b152f3499167",
+          "occurrence_id": "SEO-22460876c7084fa82eb9",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CC-LIST-BUDGET",
+          "message": "claude-code: The 50 skills in this folder have 10,457 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+          "metadata": {
+            "harness": "claude-code",
+            "effect": "degraded",
+            "verified_version": "2.1.316",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-3101aa8f812eb7cf4557",
+          "occurrence_id": "SEO-ccae3dcdb6eb0099584b",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CX-LIST-BUDGET",
+          "message": "codex: The 50 skills in this folder have 10,457 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+          "metadata": {
+            "harness": "codex",
+            "effect": "degraded",
+            "verified_version": "0.166.0",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-53e01e5dfcd1d26fd30d",
+          "occurrence_id": "SEO-785a8005221b8230b359",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-LIST-BUDGET",
+          "message": "copilot-cli: 50 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-c6a3eda9c7de66358cca",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-ad0c374d7cf84ffaabbc",
+          "occurrence_id": "SEO-dc30eea241295e31363b",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "OC-DOLLAR-N",
+          "message": "opencode: Run as a /command, every $N is replaced and left blank without that argument: 10 price-like tokens (lines 94, 95, 96, 97, 104 +2 more) lose their numbers. The skill tool path is unaffected.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Reword amounts (e.g. USD 4.00) instead of $4.00.",
+          "metadata": {
+            "harness": "opencode",
+            "effect": "degraded",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-9591000dda17a70d89f9",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-LOW] claude-code: 10 price-like $N tokens (lines 94, 95, 96, 97, 104 +2 more) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim). in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[HARNESS-LOW] claude-code: The 50 skills in this folder have 10,457 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[HARNESS-LOW] codex: The 50 skills in this folder have 10,457 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: 50 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[HARNESS-LOW] opencode: Run as a /command, every $N is replaced and left blank without that argument: 10 price-like tokens (lines 94, 95, 96, 97, 104 +2 more) lose their numbers. The skill tool path is unaffected. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "marketing-demand-acquisition",
+        "skill_digest": "sha256:877bfdd57e8f0e140351160169975278057db930a46f9c4fa7b986961b403129",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "Required recognized built-in Tier 2 evidence is missing.",
+      "Tier 3 lacks publication-complete execution evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 87.2,
+      "grade": "B",
+      "skill_type": "script-based",
+      "skill_name": "marketing-demand-acquisition",
+      "dimensions": {
+        "correctness": {
+          "score": 85.0,
+          "weight": 0.35,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 224 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 80.0,
+          "weight": 0.25,
+          "issues_count": 4,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Scripts may lack error handling: calculate_cac.py",
+              "suggestion": "Scripts should handle errors explicitly",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 2367,
+        "estimated_tokens": 2367,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 173,
+        "instructions_tokens": 2191,
+        "script_count": 1,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:38:59.152889+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills/marketing-demand-acquisition": [
+      {
+        "listed": {
+          "mode": "shortened",
+          "text": ""
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CC-DOLLAR-N",
+            "effect": "degraded",
+            "message": "10 price-like $N tokens (lines 94, 95, 96, 97, 104 +2 more) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+            "fix": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash.",
+            "versions": "installed skills; bundled skills skip substitution",
+            "outcome": "text rewritten",
+            "confidence": "high"
+          },
+          {
+            "id": "CC-LIST-BUDGET",
+            "effect": "degraded",
+            "message": "The 50 skills in this folder have 10,457 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+            "fix": "Shorten descriptions (trigger first) or install fewer skills here.",
+            "outcome": "listing shortened",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 50,
+          "desc_chars": 10457,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "shortened",
+          "text": ""
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "degraded",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CX-LIST-BUDGET",
+            "effect": "degraded",
+            "message": "The 50 skills in this folder have 10,457 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+            "fix": "Shorten descriptions (trigger first) or install fewer skills here.",
+            "outcome": "listing shortened",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 50,
+          "desc_chars": 10457,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when planning demand generation, paid acquisition across Google, LinkedIn and Meta, or a marketing budget, before allocating spend. Computes blended and per-channel CAC with calculate_cac.py and sets MQL to SQL handoffs."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-LIST-BUDGET",
+            "effect": "advisory",
+            "message": "50 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+            "fix": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+            "outcome": "listing shortened",
+            "confidence": "medium"
+          },
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 50,
+          "desc_chars": 10457,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use when planning demand generation, paid acquisition across",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 50,
+          "desc_chars": 10457,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when planning demand generation, paid acquisition across Google, LinkedIn and Meta, or a marketing budget, before allocating spend. Computes blended and per-channel CAC with calculate_cac.py and sets MQL to SQL handoffs."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 50,
+          "desc_chars": 10457,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when planning demand generation, paid acquisition across Google, LinkedIn and Meta, or a marketing budget, before allocating spend. Computes blended and per-channel CAC with calculate_cac.py and sets MQL to SQL handoffs."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "degraded",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-DOLLAR-N",
+            "effect": "degraded",
+            "message": "Run as a /command, every $N is replaced and left blank without that argument: 10 price-like tokens (lines 94, 95, 96, 97, 104 +2 more) lose their numbers. The skill tool path is unaffected.",
+            "fix": "Reword amounts (e.g. USD 4.00) instead of $4.00.",
+            "versions": "1.x; v2 no longer registers skills as commands",
+            "outcome": "text rewritten",
+            "confidence": "high"
+          },
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 50,
+          "desc_chars": 10457,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/marketing-skill/skills"
+        }
+      }
+    ]
+  }
+}

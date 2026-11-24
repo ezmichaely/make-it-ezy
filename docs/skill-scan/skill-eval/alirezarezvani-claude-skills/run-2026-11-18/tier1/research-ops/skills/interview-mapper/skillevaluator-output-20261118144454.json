@@ -1,0 +1,3986 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/research-ops/skills/interview-mapper",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 10,
+  "total_warnings": 48,
+  "severity_counts": {
+    "critical": 0,
+    "high": 10,
+    "medium": 24,
+    "low": 20
+  },
+  "finding_counts": {
+    "raw_occurrences": 56,
+    "distinct_occurrences": 56,
+    "unique_findings": 39,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 17,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 10,
+      "medium": 24,
+      "low": 20,
+      "info": 2
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 2,
+      "medium": 15,
+      "low": 20,
+      "info": 2
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-00d491f9cf17b6f9839b",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "coverage_gaps.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-428a61b3c05da0d1e10d",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/coverage_gaps.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3ce2bd549e980685166b",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-0ad9367035581bfdf7ba",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "build_provenance.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-26d6cd20e94e24e96945",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/build_provenance.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-1a9a961fb236dd86b07e",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "check_support.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-110e4c006265835ca51b",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/check_support.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-1d29ed40cc54cdad04db",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "extract_claims.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-907fdeb331bdcd22f330",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/extract_claims.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-1f2c0f2364cc8fd3de47",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Autonomous Decision Making (EA2)",
+      "message": "Excessive Agency: no confirmation",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+      "metadata": {
+        "skillspector_confidence": 0.75,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7109ade6390cbc024b3a",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/gold/transcript.txt",
+          "line_number": 11
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-289659588552142b6d3e",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Anti-Refusal Statement (AR2)",
+      "message": "Anti-Refusal: no warning",
+      "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-a6772fa8e38793405e33",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/exit/claims.json",
+          "line_number": 7
+        },
+        {
+          "occurrence_id": "SEO-2f4800e30d68608855b7",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/exit/gold.md",
+          "line_number": 20
+        },
+        {
+          "occurrence_id": "SEO-c3c68057ba826dae4e65",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/exit/transcript.txt",
+          "line_number": 28
+        }
+      ],
+      "occurrence_count": 3
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f3992261f66485cb5b17",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c9c818eaf62d4650e2ae",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f7a8a1e5b5146c7a4ec4",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3fe14bed8c7088943282",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "extract_nuggets.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-33af18b85765f9dc0aaa",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/extract_nuggets.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-418fdc54080e003ab71d",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (AE4)",
+      "message": "analysis-evasion: Suspicious Unicode normalization or mixed-script content",
+      "suggestion": "Suspicious Unicode normalization or mixed-script content Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-cda72e4e2bf220851333",
+          "validator": "Security Scan",
+          "file_path": "scripts/consensus.py",
+          "line_number": 1
+        },
+        {
+          "occurrence_id": "SEO-049537489049d9059701",
+          "validator": "Security Scan",
+          "file_path": "scripts/extract_claims.py",
+          "line_number": 1
+        },
+        {
+          "occurrence_id": "SEO-55c9a9b2b3cb3283d054",
+          "validator": "Security Scan",
+          "file_path": "scripts/extract_nuggets.py",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 3
+    },
+    {
+      "finding_id": "SEF-423e3fef59865786be74",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "batch_prepare.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0e37045a97d97b0cb088",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/batch_prepare.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4583a532d6225cb45059",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "render_board.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9b5370478d3ae457064b",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/render_board.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-fa78721c8b8d9d1a009d",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6c72673be8bc18ad20",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "calibrate_threshold.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-752140703152f03d8769",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/calibrate_threshold.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4d1f083a996658d9a6ef",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "score_insights.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-03f69629d5a5a83b76d6",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/score_insights.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4e6732b02be884deff42",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Anti-Refusal Statement (AR2)",
+      "message": "Anti-Refusal: without warning",
+      "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-d9021f762336f0e357b7",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/candidate/claims.json",
+          "line_number": 83
+        },
+        {
+          "occurrence_id": "SEO-075d3582556d0fff2d2f",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/candidate/gold.md",
+          "line_number": 49
+        },
+        {
+          "occurrence_id": "SEO-8609a55782dfcc049e4b",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/candidate/review-example.md",
+          "line_number": 119
+        },
+        {
+          "occurrence_id": "SEO-6ef97233e854d44ea443",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/candidate/review-example.md",
+          "line_number": 127
+        },
+        {
+          "occurrence_id": "SEO-d047b1bfaf829fae7731",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/candidate/transcript.txt",
+          "line_number": 39
+        },
+        {
+          "occurrence_id": "SEO-e5af44b2b123d2ca4897",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/exit/claims.json",
+          "line_number": 7
+        },
+        {
+          "occurrence_id": "SEO-3962307e0030fad3c3f4",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/exit/gold.md",
+          "line_number": 19
+        }
+      ],
+      "occurrence_count": 7
+    },
+    {
+      "finding_id": "SEF-55bbc1f1b2ab31ddd68e",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Autonomous Decision Making (EA2)",
+      "message": "Excessive Agency: without approval",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+      "metadata": {
+        "skillspector_confidence": 0.75,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0cc360c82d919c672227",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/conflict-mediation/gold.md",
+          "line_number": 18
+        },
+        {
+          "occurrence_id": "SEO-f083c3d2d5378da911eb",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/conflict-mediation/transcript.txt",
+          "line_number": 27
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-607d3fe7ed5457d974fd",
+      "category": "SCHEMA",
+      "severity": "low",
+      "check_name": "unexpected_file",
+      "message": "Unexpected 'templates' in skill root",
+      "suggestion": "Consider moving to one of: agents/, assets/, config/, evals/, references/, scripts/, tests/, tools/. To allow additional directories, set $SKILLEVALUATOR_SCHEMA_ALLOWED_DIRS.",
+      "metadata": null,
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-a23b84a1a9a9a3299c0a",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/templates",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0be3ab901adf4cce589e",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-b49e0fd830203be0376d",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-75b1d9169bf145390656",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "number_lines.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ace7d9dee129d296bbc8",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/number_lines.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-7d8d9f72f99ec61dbf58",
+      "category": "SCHEMA",
+      "severity": "low",
+      "check_name": "author_missing",
+      "message": "Author not specified in metadata",
+      "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address",
+      "metadata": {
+        "profile": "default"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-08e9a342a2380d5b108d",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-91fea5e361bb1a73d7f8",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "subprocess module call (AST4)",
+      "message": "Dangerous Code Execution: subprocess.run(\n                [\n                    sys.executable,\n                    VERIFY,\n                    \"--transcript\",\n                    transcript,\n                    \"--claims\",\n  ",
+      "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2a035c27cb1f5c0833e0",
+          "validator": "Security Scan",
+          "file_path": "scripts/calibrate_threshold.py",
+          "line_number": 75
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-9b90a04cb44fda2b448c",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Indirect Prompt Extraction (P7)",
+      "message": "System Prompt Leakage: if you had to describe",
+      "suggestion": "Skill contains patterns that could indirectly extract system prompts through rephrasing, translation, summarization, or side-channel techniques. Guard against indirect extraction by refusing to summarize, translate, or rephrase system instructions. Add explicit anti-extraction clauses.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-347c8eb38c9cb67b7e9b",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/brand-positioning/transcript.txt",
+          "line_number": 78
+        },
+        {
+          "occurrence_id": "SEO-85f3132542d0a0198313",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/visitor-experience/transcript.txt",
+          "line_number": 89
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-a7665a44472aa33fe33a",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "consensus.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e84fcbe7c1323b683e1a",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/consensus.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-a803a9dad12b8db8f3ae",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "verify_quotes.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-4fa8f309acb0f13d463c",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/verify_quotes.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f1a7167069b09192753c",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-bf2d85d8c9d7a282e7ad",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+      "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7938e1ddd8ee040feb8c",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-491a1ccb6c78b6caf938",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e2193c8c8864e1766209",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Autonomous Decision Making (EA2)",
+      "message": "Excessive Agency: without checking",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+      "metadata": {
+        "skillspector_confidence": 0.75,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9206525ddf6ca5ee844d",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/conflict-mediation/gold.md",
+          "line_number": 79
+        },
+        {
+          "occurrence_id": "SEO-81fb01b443a126f5136b",
+          "validator": "Security Scan",
+          "file_path": "references/pipeline.md",
+          "line_number": 69
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ca0056495f5b5ff864c8",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-f1b22c7f98c4e7f5579e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 261 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-d83433435e76f1c130a4",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-f1cc8db8a6269223ec9c",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "YARA rule 'network_reconnaissance': Network reconnaissance and scanning patterns [hacktools] (YR4)",
+      "message": "YARA Match: fierce",
+      "suggestion": "YARA rule matched a hack tool or exploit indicator (offensive tools, reconnaissance, privilege escalation, or exploit frameworks). Remove offensive tool references and exploit code. Legitimate agent skills should not contain penetration testing tools, exploit frameworks, or reconnaissance utilities.",
+      "metadata": {
+        "skillspector_confidence": 0.65,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9fb29547842691edda7c",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/claims.json",
+          "line_number": 257
+        },
+        {
+          "occurrence_id": "SEO-6699468e7d510a58365f",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/transcript.txt",
+          "line_number": 82
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-f4b7c943ba2502fd6ea6",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "route.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-04dc529d47f66fbfd3c2",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/route.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-8e65b5ccfedd6ef28b10",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fd928b9ac4e2c564a21f",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Autonomous Decision Making (EA2)",
+      "message": "Excessive Agency: without asking",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+      "metadata": {
+        "skillspector_confidence": 0.75,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-208af6962ffc7e5259b4",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/conflict-mediation/transcript.txt",
+          "line_number": 26
+        },
+        {
+          "occurrence_id": "SEO-01d954814e1865c1d3c5",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/claims.json",
+          "line_number": 237
+        },
+        {
+          "occurrence_id": "SEO-dd9fcfb6f4622dee9587",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/gold.md",
+          "line_number": 190
+        },
+        {
+          "occurrence_id": "SEO-848487cc6ec36d8677a6",
+          "validator": "Security Scan",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/transcript.txt",
+          "line_number": 72
+        }
+      ],
+      "occurrence_count": 4
+    }
+  ],
+  "message_counts": {
+    "informational": 5,
+    "independent_errors": 0,
+    "independent_warnings": 2
+  },
+  "skills": [
+    {
+      "name": "interview-mapper",
+      "passed": false,
+      "issue_count": 56
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "interview-mapper",
+          "passed": false,
+          "issue_count": 56
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 56
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Anti-Refusal",
+      "severity": "high",
+      "total_count": 10,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user."
+    },
+    {
+      "message": "Excessive Agency",
+      "severity": "medium",
+      "total_count": 9,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state."
+    },
+    {
+      "message": "analysis-evasion",
+      "severity": "medium",
+      "total_count": 3,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Suspicious Unicode normalization or mixed-script content Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed."
+    },
+    {
+      "message": "System Prompt Leakage",
+      "severity": "medium",
+      "total_count": 2,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill contains patterns that could indirectly extract system prompts through rephrasing, translation, summarization, or side-channel techniques. Guard against indirect extraction by refusing to summarize, translate, or rephrase system instructions. Add explicit anti-extraction clauses."
+    },
+    {
+      "message": "YARA Match",
+      "severity": "medium",
+      "total_count": 2,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SECURITY",
+      "suggestion": "YARA rule matched a hack tool or exploit indicator (offensive tools, reconnaissance, privilege escalation, or exploit frameworks). Remove offensive tool references and exploit code. Legitimate agent skills should not contain penetration testing tools, exploit frameworks, or reconnaissance utilities."
+    },
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "Dangerous Code Execution",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SECURITY",
+      "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands."
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "Unexpected 'templates' in skill root",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider moving to one of: agents/, assets/, config/, evals/, references/, scripts/, tests/, tools/. To allow additional directories, set $SKILLEVALUATOR_SCHEMA_ALLOWED_DIRS."
+    },
+    {
+      "message": "Author not specified in metadata",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address"
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 261 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "batch_prepare.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "build_provenance.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "calibrate_threshold.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "check_support.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "consensus.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "coverage_gaps.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "extract_claims.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "extract_nuggets.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "number_lines.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "render_board.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "route.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "score_insights.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "verify_quotes.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "interview-mapper"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 2
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 2,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 2,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-f3992261f66485cb5b17",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-ca0056495f5b5ff864c8",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-607d3fe7ed5457d974fd",
+          "occurrence_id": "SEO-a23b84a1a9a9a3299c0a",
+          "category": "SCHEMA",
+          "severity": "low",
+          "check_name": "unexpected_file",
+          "message": "Unexpected 'templates' in skill root",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/templates",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider moving to one of: agents/, assets/, config/, evals/, references/, scripts/, tests/, tools/. To allow additional directories, set $SKILLEVALUATOR_SCHEMA_ALLOWED_DIRS.",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-7d8d9f72f99ec61dbf58",
+          "occurrence_id": "SEO-08e9a342a2380d5b108d",
+          "category": "SCHEMA",
+          "severity": "low",
+          "check_name": "author_missing",
+          "message": "Author not specified in metadata",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address",
+          "metadata": {
+            "profile": "default"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'interview-mapper'",
+          "metadata": {
+            "description_length": 261
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/interview-mapper/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'interview-mapper' follows kebab-case convention",
+          "metadata": {
+            "name_length": 16
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (126/500)",
+          "metadata": {
+            "line_count": 126,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: assets, references, scripts",
+          "metadata": {
+            "files_found": [
+              "assets",
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'interview-mapper'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[SCHEMA-LOW] Unexpected 'templates' in skill root in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/templates",
+          "[SCHEMA-LOW] Author not specified in metadata in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'interview-mapper'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/interview-mapper/",
+          "[OK] naming_convention: Folder name 'interview-mapper' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (126/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: assets, references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'interview-mapper'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_optional",
+          "message": "No semantic version label present; resource will use commit-hash history",
+          "metadata": {
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_optional: No semantic version label present; resource will use commit-hash history"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 10,
+        "warnings": 18,
+        "critical_count": 0,
+        "high_count": 10,
+        "medium_count": 18,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 28,
+        "distinct_occurrences": 28,
+        "unique_findings": 11,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 17,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 10,
+          "medium": 18,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 2,
+          "medium": 9,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-4e6732b02be884deff42",
+          "occurrence_id": "SEO-d9021f762336f0e357b7",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: without warning",
+          "file_path": "assets/evals/fixtures/candidate/claims.json",
+          "line_number": 83,
+          "line_content": "  {\n    \"cell\": \"K5\",\n    \"claim\": \"Candidate shifts responsibility onto external circumstances \u2014 management's tight deadlines and the infrastructure team's config change\",\n    \"quote\": \"QA didn't hav",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-4e6732b02be884deff42",
+          "occurrence_id": "SEO-075d3582556d0fff2d2f",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: without warning",
+          "file_path": "assets/evals/fixtures/candidate/gold.md",
+          "line_number": 49,
+          "line_content": "- Fact: acknowledges his own technical shortcoming \u2014 a race condition in the idempotency locking logic.\n  Quote: \"I didn't account for a race condition on request retries in rare cases, there was a wi",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-4e6732b02be884deff42",
+          "occurrence_id": "SEO-8609a55782dfcc049e4b",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: without warning",
+          "file_path": "assets/evals/fixtures/candidate/review-example.md",
+          "line_number": 119,
+          "line_content": "- Fact: acknowledges his own technical shortcoming \u2014 a race condition in the idempotency locking logic.\n  Quote: \"I didn't account for a race condition on request retries in rare cases, there was a wi",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-4e6732b02be884deff42",
+          "occurrence_id": "SEO-6ef97233e854d44ea443",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: without warning",
+          "file_path": "assets/evals/fixtures/candidate/review-example.md",
+          "line_number": 127,
+          "line_content": " idempotency locking logic.\n  Quote: \"I didn't account for a race condition on request retries in rare cases, there was a window of a few milliseconds where two requests could pass the idempotency che",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-4e6732b02be884deff42",
+          "occurrence_id": "SEO-d047b1bfaf829fae7731",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: without warning",
+          "file_path": "assets/evals/fixtures/candidate/transcript.txt",
+          "line_number": 39,
+          "line_content": " customers got double-charged.\n38\tInterviewer: What happened there technically and what was your role?\n39\tCandidate: I wrote part of the idempotency logic for that release, there was an idempotency ke",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-4e6732b02be884deff42",
+          "occurrence_id": "SEO-e5af44b2b123d2ca4897",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: without warning",
+          "file_path": "assets/evals/fixtures/exit/claims.json",
+          "line_number": 7,
+          "line_content": "y position was being reorganized into a \\\"multifunctional\\\" role, like now I'd also be handling procurement part-time.\", \"line\": 24},\n  {\"cell\": \"X2\", \"claim\": \"After this meeting the decision to leav",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-4e6732b02be884deff42",
+          "occurrence_id": "SEO-3962307e0030fad3c3f4",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: without warning",
+          "file_path": "assets/evals/fixtures/exit/gold.md",
+          "line_number": 19,
+          "line_content": "Quote: \"I realized there's no going back, I was literally sitting in the meeting room thinking \u2014 okay, that's it, this is definitely over\" \u2014 line 26\n\n**X3 Trigger event**\nFact: May 17th, three days af",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-289659588552142b6d3e",
+          "occurrence_id": "SEO-a6772fa8e38793405e33",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: no warning",
+          "file_path": "assets/evals/fixtures/exit/claims.json",
+          "line_number": 7,
+          "line_content": "versible.\", \"quote\": \"I realized there's no going back, I was literally sitting in the meeting room thinking \u2014 okay, that's it, this is definitely over\", \"line\": 26},\n  {\"cell\": \"X3\", \"claim\": \"Trigge",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-289659588552142b6d3e",
+          "occurrence_id": "SEO-2f4800e30d68608855b7",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: no warning",
+          "file_path": "assets/evals/fixtures/exit/gold.md",
+          "line_number": 20,
+          "line_content": "\n**X3 Trigger event**\nFact: May 17th, three days after the meeting, reagent budget cut by 40% without warning, learned about it from the storekeeper (not from her manager); that same evening messaged ",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-289659588552142b6d3e",
+          "occurrence_id": "SEO-c3c68057ba826dae4e65",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: no warning",
+          "file_path": "assets/evals/fixtures/exit/transcript.txt",
+          "line_number": 28,
+          "line_content": ": And was that the last straw?\nRespondent: Well, not exactly the last straw, it was more like... the thing after which I realized there's no going back, I was literally sitting in the meeting room thi",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-9b90a04cb44fda2b448c",
+          "occurrence_id": "SEO-347c8eb38c9cb67b7e9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Indirect Prompt Extraction (P7)",
+          "message": "System Prompt Leakage: if you had to describe",
+          "file_path": "assets/evals/fixtures/brand-positioning/transcript.txt",
+          "line_number": 78,
+          "line_content": "75\tRespondent: Probably because they're both yellow-brown in their design, both have these warm tones, and they're both right next to each other on the same street.\n76\tInterviewer: Coming back to cowo",
+          "suggestion": "Skill contains patterns that could indirectly extract system prompts through rephrasing, translation, summarization, or side-channel techniques. Guard against indirect extraction by refusing to summarize, translate, or rephrase system instructions. Add explicit anti-extraction clauses.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-55bbc1f1b2ab31ddd68e",
+          "occurrence_id": "SEO-0cc360c82d919c672227",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without approval",
+          "file_path": "assets/evals/fixtures/conflict-mediation/gold.md",
+          "line_number": 18,
+          "line_content": "chnical decisions showed up \u2014 maybe I wouldn't even be raising the share question at all.\" (line 14)\n\n### M3 Version of events (in Artem's words \u2014 not fact)\nTimeline per his version: partnership start",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-55bbc1f1b2ab31ddd68e",
+          "occurrence_id": "SEO-f083c3d2d5378da911eb",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without approval",
+          "file_path": "assets/evals/fixtures/conflict-mediation/transcript.txt",
+          "line_number": 27,
+          "line_content": "forty percent of our revenue, by the way. Because of the FinTrade priority we missed the fix deadline by eleven days, QuickPay were literally writing that they're leaving for competitors.\n25\tMediator:",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-e2193c8c8864e1766209",
+          "occurrence_id": "SEO-9206525ddf6ca5ee844d",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without checking",
+          "file_path": "assets/evals/fixtures/conflict-mediation/gold.md",
+          "line_number": 79,
+          "line_content": "## Reliability notes\n- The transcript contains ONLY Artem's side; all statements about Maxim's motives and position are one party's version, not fact (see A4).\n- Ambiguous points requiring advice/re-r",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-e2193c8c8864e1766209",
+          "occurrence_id": "SEO-81fb01b443a126f5136b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without checking",
+          "file_path": "references/pipeline.md",
+          "line_number": 69,
+          "line_content": "3. Result:\n   - `flagged` (labels diverged) \u2192 mark the cell `[\u2691 disputed]`, send it to a human for blind adjudication;\n   - agreeing \u2192 `[consensus]`, take the consensus label, take the text from the m",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-fd928b9ac4e2c564a21f",
+          "occurrence_id": "SEO-208af6962ffc7e5259b4",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without asking",
+          "file_path": "assets/evals/fixtures/conflict-mediation/transcript.txt",
+          "line_number": 26,
+          "line_content": "23\tMediator: Is that the case you wrote about in your mediation application?\n24\tArtem: Yes, that exact one. QuickPay is forty percent of our revenue, by the way. Because of the FinTrade priority we mi",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-fd928b9ac4e2c564a21f",
+          "occurrence_id": "SEO-01d954814e1865c1d3c5",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without asking",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/claims.json",
+          "line_number": 237,
+          "line_content": "  {\n    \"cell\": \"\u04216.4\",\n    \"claim\": \"Intangible needs \u2014 recognition and autonomy in small decisions\",\n    \"quote\": \"Probably recognition, most of all. And also autonomy \u2014 I'd like to decide some smal",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-fd928b9ac4e2c564a21f",
+          "occurrence_id": "SEO-dd9fcfb6f4622dee9587",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without asking",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/gold.md",
+          "line_number": 190,
+          "line_content": "\n### \u04216.4 Intangible needs\nList: Recognition + Autonomy (small decisions in the gallery without needing approval).\n_\u00abProbably recognition, most of all. And also autonomy \u2014 I'd like to decide some smal",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-fd928b9ac4e2c564a21f",
+          "occurrence_id": "SEO-848487cc6ec36d8677a6",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without asking",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/transcript.txt",
+          "line_number": 72,
+          "line_content": "69\tInterviewer: And which practices would be worth giving up?\n70\tRespondent: I'd give up the paper reporting, honestly. We still fill out the attendance log by hand, even though there's already an ele",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-f1cc8db8a6269223ec9c",
+          "occurrence_id": "SEO-9fb29547842691edda7c",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "YARA rule 'network_reconnaissance': Network reconnaissance and scanning patterns [hacktools] (YR4)",
+          "message": "YARA Match: fierce",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/claims.json",
+          "line_number": 257,
+          "line_content": "stable cell \u2014 latent forecast, mixed optimism/anxiety signal\"\n  },\n  {\n    \"cell\": \"\u041c\u0415\u0422\u0410.\u043f\u0440\u043e\u0442\u0438\u0432\u043e\u0440\u0435\u0447\u0438\u0435\",\n    \"claim\": \"The respondent herself flags the inconsistency: at the start she described the wor",
+          "suggestion": "YARA rule matched a hack tool or exploit indicator (offensive tools, reconnaissance, privilege escalation, or exploit frameworks). Remove offensive tool references and exploit code. Legitimate agent skills should not contain penetration testing tools, exploit frameworks, or reconnaissance utilities.",
+          "metadata": {
+            "skillspector_confidence": 0.65,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-f1cc8db8a6269223ec9c",
+          "occurrence_id": "SEO-6699468e7d510a58365f",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "YARA rule 'network_reconnaissance': Network reconnaissance and scanning patterns [hacktools] (YR4)",
+          "message": "YARA Match: fierce",
+          "file_path": "assets/evals/fixtures/org-mapping-vmdi/transcript.txt",
+          "line_number": 82,
+          "line_content": "ot to put anyone on the spot.\n81\tInterviewer: I understand. Another thing \u2014 at the start you said the work was calm, not hectic, but then you mentioned running around the gallery every twenty minutes ",
+          "suggestion": "YARA rule matched a hack tool or exploit indicator (offensive tools, reconnaissance, privilege escalation, or exploit frameworks). Remove offensive tool references and exploit code. Legitimate agent skills should not contain penetration testing tools, exploit frameworks, or reconnaissance utilities.",
+          "metadata": {
+            "skillspector_confidence": 0.65,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-9b90a04cb44fda2b448c",
+          "occurrence_id": "SEO-85f3132542d0a0198313",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Indirect Prompt Extraction (P7)",
+          "message": "System Prompt Leakage: If you had to describe",
+          "file_path": "assets/evals/fixtures/visitor-experience/transcript.txt",
+          "line_number": 89,
+          "line_content": "86\tVisitor: I would've liked an audio guide or a tour guide at least on some schedule, because just plaques don't give you any understanding of what's actually going on physics-wise.\n87\tInterviewer: A",
+          "suggestion": "Skill contains patterns that could indirectly extract system prompts through rephrasing, translation, summarization, or side-channel techniques. Guard against indirect extraction by refusing to summarize, translate, or rephrase system instructions. Add explicit anti-extraction clauses.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-1f2c0f2364cc8fd3de47",
+          "occurrence_id": "SEO-7109ade6390cbc024b3a",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: no confirmation",
+          "file_path": "assets/evals/gold/transcript.txt",
+          "line_number": 11,
+          "line_content": "L8: We had forty-three open tickets in Jira last week and nobody could tell me which ones were actually urgent.\nL9: The onboarding doc for new hires is like eleven pages and half of it is outdated.\nL1",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-91fea5e361bb1a73d7f8",
+          "occurrence_id": "SEO-2a035c27cb1f5c0833e0",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "subprocess module call (AST4)",
+          "message": "Dangerous Code Execution: subprocess.run(\n                [\n                    sys.executable,\n                    VERIFY,\n                    \"--transcript\",\n                    transcript,\n                    \"--claims\",\n  ",
+          "file_path": "scripts/calibrate_threshold.py",
+          "line_number": 75,
+          "line_content": "        with open(cpath, \"w\", encoding=\"utf-8\") as f:\n            json.dump(claims, f, ensure_ascii=False)\n        try:\n            out = subprocess.run(\n                [\n                    sys.exec",
+          "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-418fdc54080e003ab71d",
+          "occurrence_id": "SEO-cda72e4e2bf220851333",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (AE4)",
+          "message": "analysis-evasion: Suspicious Unicode normalization or mixed-script content",
+          "file_path": "scripts/consensus.py",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Suspicious Unicode normalization or mixed-script content Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-418fdc54080e003ab71d",
+          "occurrence_id": "SEO-049537489049d9059701",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (AE4)",
+          "message": "analysis-evasion: Suspicious Unicode normalization or mixed-script content",
+          "file_path": "scripts/extract_claims.py",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Suspicious Unicode normalization or mixed-script content Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-418fdc54080e003ab71d",
+          "occurrence_id": "SEO-55c9a9b2b3cb3283d054",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (AE4)",
+          "message": "analysis-evasion: Suspicious Unicode normalization or mixed-script content",
+          "file_path": "scripts/extract_nuggets.py",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Suspicious Unicode normalization or mixed-script content Review the flagged content for security risks. Ensure no credentials, secrets, or sensitive data are exposed.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "[SECURITY-HIGH] Anti-Refusal: without warning in assets/evals/fixtures/candidate/claims.json:83",
+          "[SECURITY-HIGH] Anti-Refusal: without warning in assets/evals/fixtures/candidate/gold.md:49",
+          "[SECURITY-HIGH] Anti-Refusal: without warning in assets/evals/fixtures/candidate/review-example.md:119",
+          "[SECURITY-HIGH] Anti-Refusal: without warning in assets/evals/fixtures/candidate/review-example.md:127",
+          "[SECURITY-HIGH] Anti-Refusal: without warning in assets/evals/fixtures/candidate/transcript.txt:39",
+          "[SECURITY-HIGH] Anti-Refusal: without warning in assets/evals/fixtures/exit/claims.json:7",
+          "[SECURITY-HIGH] Anti-Refusal: without warning in assets/evals/fixtures/exit/gold.md:19",
+          "[SECURITY-HIGH] Anti-Refusal: no warning in assets/evals/fixtures/exit/claims.json:7",
+          "[SECURITY-HIGH] Anti-Refusal: no warning in assets/evals/fixtures/exit/gold.md:20",
+          "[SECURITY-HIGH] Anti-Refusal: no warning in assets/evals/fixtures/exit/transcript.txt:28"
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1",
+          "[SECURITY-MEDIUM] System Prompt Leakage: if you had to describe in assets/evals/fixtures/brand-positioning/transcript.txt:78",
+          "[SECURITY-MEDIUM] Excessive Agency: without approval in assets/evals/fixtures/conflict-mediation/gold.md:18",
+          "[SECURITY-MEDIUM] Excessive Agency: without approval in assets/evals/fixtures/conflict-mediation/transcript.txt:27",
+          "[SECURITY-MEDIUM] Excessive Agency: without checking in assets/evals/fixtures/conflict-mediation/gold.md:79",
+          "[SECURITY-MEDIUM] Excessive Agency: without checking in references/pipeline.md:69",
+          "[SECURITY-MEDIUM] Excessive Agency: without asking in assets/evals/fixtures/conflict-mediation/transcript.txt:26",
+          "[SECURITY-MEDIUM] Excessive Agency: without asking in assets/evals/fixtures/org-mapping-vmdi/claims.json:237",
+          "[SECURITY-MEDIUM] Excessive Agency: without asking in assets/evals/fixtures/org-mapping-vmdi/gold.md:190",
+          "[SECURITY-MEDIUM] Excessive Agency: without asking in assets/evals/fixtures/org-mapping-vmdi/transcript.txt:72",
+          "[SECURITY-MEDIUM] YARA Match: fierce in assets/evals/fixtures/org-mapping-vmdi/claims.json:257",
+          "[SECURITY-MEDIUM] YARA Match: fierce in assets/evals/fixtures/org-mapping-vmdi/transcript.txt:82",
+          "[SECURITY-MEDIUM] System Prompt Leakage: If you had to describe in assets/evals/fixtures/visitor-experience/transcript.txt:89",
+          "[SECURITY-MEDIUM] Excessive Agency: no confirmation in assets/evals/gold/transcript.txt:11",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: subprocess.run(\n                [\n                    sys.executable,\n                    VERIFY,\n                    \"--transcript\",\n                    transcript,\n                    \"--claims\",\n   in scripts/calibrate_threshold.py:75",
+          "[SECURITY-MEDIUM] analysis-evasion: Suspicious Unicode normalization or mixed-script content in scripts/consensus.py:1",
+          "[SECURITY-MEDIUM] analysis-evasion: Suspicious Unicode normalization or mixed-script content in scripts/extract_claims.py:1",
+          "[SECURITY-MEDIUM] analysis-evasion: Suspicious Unicode normalization or mixed-script content in scripts/extract_nuggets.py:1"
+        ],
+        "messages": [
+          "skillspector risk score: 100/100 (CRITICAL)",
+          "skillspector found 28 issue(s) including critical/high severity"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "skillspector_version": "2.13.4",
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 28,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 100,
+        "applicable_risk_score": 100
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 44,
+        "checks_performed": 2,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 44 files for PII",
+          "metadata": {
+            "file_count": 44
+          }
+        },
+        {
+          "check": "pii_detection",
+          "message": "No PII detected in 44 files (emails, SSNs, phone numbers, paths)",
+          "metadata": {
+            "files_scanned": 44
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 44 files for PII",
+          "[OK] pii_detection: No PII detected in 44 files (emails, SSNs, phone numbers, paths)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (not detected)",
+          "metadata": {
+            "license_status": "not_detected"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No license information found - manual review required. Add a LICENSE file or 'license' field in frontmatter."
+        ],
+        "messages": [
+          "No license detected in any tier",
+          "[OK] license_compliance: License compliance scan completed (not detected)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 15 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 29,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 29 markdown files for dead links",
+          "metadata": {
+            "file_count": 29
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 29 markdown file(s)",
+          "metadata": {
+            "files_checked": 29
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 29 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 29 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 44,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "unicode_scan",
+          "message": "No invisible Unicode characters detected in 44 file(s)",
+          "metadata": {
+            "files_scanned": 44
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] unicode_scan: No invisible Unicode characters detected in 44 file(s)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 9,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 4,
+        "low_count": 5
+      },
+      "finding_counts": {
+        "raw_occurrences": 9,
+        "distinct_occurrences": 9,
+        "unique_findings": 9,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 4,
+          "low": 5,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 4,
+          "low": 5,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-b49e0fd830203be0376d",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-0be3ab901adf4cce589e",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-bf2d85d8c9d7a282e7ad",
+          "occurrence_id": "SEO-7938e1ddd8ee040feb8c",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-491a1ccb6c78b6caf938",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-f1b22c7f98c4e7f5579e",
+          "occurrence_id": "SEO-d83433435e76f1c130a4",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 261 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-f1a7167069b09192753c",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-fa78721c8b8d9d1a009d",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-8e65b5ccfedd6ef28b10",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-f7a8a1e5b5146c7a4ec4",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 83.2/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 83.2,
+            "grade": "B",
+            "skill_type": "hybrid"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.author' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 261 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 83.2/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "quality": {
+        "overall_score": 83.2,
+        "grade": "B",
+        "skill_type": "hybrid",
+        "skill_name": "interview-mapper",
+        "dimensions": {
+          "correctness": {
+            "score": 70.0,
+            "weight": 0.35,
+            "issues_count": 4,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+                "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+                "deduction": 5
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 261 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 85.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 1921,
+          "estimated_tokens": 1921,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 74,
+          "instructions_tokens": 1844,
+          "script_count": 15,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 13,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 13
+      },
+      "finding_counts": {
+        "raw_occurrences": 13,
+        "distinct_occurrences": 13,
+        "unique_findings": 13,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 13,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 13,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-423e3fef59865786be74",
+          "occurrence_id": "SEO-0e37045a97d97b0cb088",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "batch_prepare.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/batch_prepare.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-0ad9367035581bfdf7ba",
+          "occurrence_id": "SEO-26d6cd20e94e24e96945",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "build_provenance.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/build_provenance.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-4a6c72673be8bc18ad20",
+          "occurrence_id": "SEO-752140703152f03d8769",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "calibrate_threshold.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/calibrate_threshold.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-1a9a961fb236dd86b07e",
+          "occurrence_id": "SEO-110e4c006265835ca51b",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "check_support.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/check_support.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-a7665a44472aa33fe33a",
+          "occurrence_id": "SEO-e84fcbe7c1323b683e1a",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "consensus.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/consensus.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-00d491f9cf17b6f9839b",
+          "occurrence_id": "SEO-428a61b3c05da0d1e10d",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "coverage_gaps.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/coverage_gaps.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-1d29ed40cc54cdad04db",
+          "occurrence_id": "SEO-907fdeb331bdcd22f330",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "extract_claims.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/extract_claims.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-3fe14bed8c7088943282",
+          "occurrence_id": "SEO-33af18b85765f9dc0aaa",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "extract_nuggets.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/extract_nuggets.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-75b1d9169bf145390656",
+          "occurrence_id": "SEO-ace7d9dee129d296bbc8",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "number_lines.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/number_lines.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-4583a532d6225cb45059",
+          "occurrence_id": "SEO-9b5370478d3ae457064b",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "render_board.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/render_board.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-f4b7c943ba2502fd6ea6",
+          "occurrence_id": "SEO-04dc529d47f66fbfd3c2",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "route.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/route.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-4d1f083a996658d9a6ef",
+          "occurrence_id": "SEO-03f69629d5a5a83b76d6",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "score_insights.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/score_insights.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-a803a9dad12b8db8f3ae",
+          "occurrence_id": "SEO-4fa8f309acb0f13d463c",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "verify_quotes.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/verify_quotes.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-LOW] batch_prepare.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/batch_prepare.py",
+          "[SCRIPT_LINT-LOW] build_provenance.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/build_provenance.py",
+          "[SCRIPT_LINT-LOW] calibrate_threshold.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/calibrate_threshold.py",
+          "[SCRIPT_LINT-LOW] check_support.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/check_support.py",
+          "[SCRIPT_LINT-LOW] consensus.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/consensus.py",
+          "[SCRIPT_LINT-LOW] coverage_gaps.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/coverage_gaps.py",
+          "[SCRIPT_LINT-LOW] extract_claims.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/extract_claims.py",
+          "[SCRIPT_LINT-LOW] extract_nuggets.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/extract_nuggets.py",
+          "[SCRIPT_LINT-LOW] number_lines.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/number_lines.py",
+          "[SCRIPT_LINT-LOW] render_board.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/render_board.py",
+          "[SCRIPT_LINT-LOW] route.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/route.py",
+          "[SCRIPT_LINT-LOW] score_insights.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/score_insights.py",
+          "[SCRIPT_LINT-LOW] verify_quotes.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/scripts/verify_quotes.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 2,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 2,
+        "distinct_occurrences": 2,
+        "unique_findings": 2,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 2
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 2
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-c9c818eaf62d4650e2ae",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-3ce2bd549e980685166b",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [
+        "assets/evals"
+      ],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "interview-mapper",
+        "skill_digest": "sha256:d7753aeaea34aa7f946c3d674ff8b16a40e2394ea90fa08f8d57dc34ba03abf6",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "fail",
+  "publication": {
+    "status": "fail",
+    "eligible": false,
+    "reasons": [
+      "A validator failed."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 83.2,
+      "grade": "B",
+      "skill_type": "hybrid",
+      "skill_name": "interview-mapper",
+      "dimensions": {
+        "correctness": {
+          "score": 70.0,
+          "weight": 0.35,
+          "issues_count": 4,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+              "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+              "deduction": 5
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 261 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 85.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 1921,
+        "estimated_tokens": 1921,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 74,
+        "instructions_tokens": 1844,
+        "script_count": 15,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:44:54.867504+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills/interview-mapper": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when coding or making sense of one interview transcript (customer, JTBD, expert, usability, exit). Extracts verbatim-grounded nuggets with extract_nuggets.py, verifies quotes with verify_quotes.py and checks conclusions hold across reruns with consensus.py."
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "loads",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 6,
+          "desc_chars": 1461,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when coding or making sense of one interview transcript (customer, JTBD, expert, usability, exit). Extracts verbatim-grounded nuggets with extract_nuggets.py, verifies quotes with verify_quotes.py and checks conclusions hold across reruns with consensus.py."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 6,
+          "desc_chars": 1461,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when coding or making sense of one interview transcript (customer, JTBD, expert, usability, exit). Extracts verbatim-grounded nuggets with extract_nuggets.py, verifies quotes with verify_quotes.py and checks conclusions hold across reruns with consensus.py."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 6,
+          "desc_chars": 1461,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use when coding or making sense of one interview transcript ",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 6,
+          "desc_chars": 1461,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when coding or making sense of one interview transcript (customer, JTBD, expert, usability, exit). Extracts verbatim-grounded nuggets with extract_nuggets.py, verifies quotes with verify_quotes.py and checks conclusions hold across reruns with consensus.py."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 6,
+          "desc_chars": 1461,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when coding or making sense of one interview transcript (customer, JTBD, expert, usability, exit). Extracts verbatim-grounded nuggets with extract_nuggets.py, verifies quotes with verify_quotes.py and checks conclusions hold across reruns with consensus.py."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 6,
+          "desc_chars": 1461,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/research-ops/skills"
+        }
+      }
+    ]
+  }
+}

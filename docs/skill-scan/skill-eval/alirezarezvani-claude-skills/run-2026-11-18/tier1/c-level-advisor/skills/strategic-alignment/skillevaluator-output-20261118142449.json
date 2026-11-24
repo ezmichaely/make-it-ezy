@@ -1,0 +1,2503 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/c-level-advisor/skills/strategic-alignment",
+  "overall_passed": true,
+  "overall_status": "passed",
+  "incomplete_scans": [],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 0,
+  "total_warnings": 20,
+  "severity_counts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 6,
+    "low": 9
+  },
+  "finding_counts": {
+    "raw_occurrences": 19,
+    "distinct_occurrences": 19,
+    "unique_findings": 16,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 3,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 6,
+      "low": 9,
+      "info": 4
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 6,
+      "low": 6,
+      "info": 4
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-8df9802b8f0ae6730317",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-4631f5eb087aee5b6a6f",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-b36500da30a0ed0309cf",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7b03cf7ebe015582a95d",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-01ead73f67d7e8460e3a",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-5ebbc59c916f1fed8e43",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-LIST-BUDGET",
+      "message": "copilot-cli: 34 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ae18fd223362037f62cc",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6b66555d1029e567b59c",
+      "category": "UNICODE",
+      "severity": "low",
+      "check_name": "isolated_invisible_char",
+      "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+      "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+      "metadata": {
+        "char_count": 1,
+        "unicode_category": "variation_selectors"
+      },
+      "validators": [
+        "Unicode Smuggling Detection"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6bba400b6389de1c94ae",
+          "validator": "Unicode Smuggling Detection",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 332
+        },
+        {
+          "occurrence_id": "SEO-168273676ea12c278f24",
+          "validator": "Unicode Smuggling Detection",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 343
+        },
+        {
+          "occurrence_id": "SEO-29852bcd70c31ffbc814",
+          "validator": "Unicode Smuggling Detection",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 353
+        },
+        {
+          "occurrence_id": "SEO-7df3422fcdd88a876adb",
+          "validator": "Unicode Smuggling Detection",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 401
+        }
+      ],
+      "occurrence_count": 4
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-46b1830ab6aaf6e92fc2",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2c43f136c5b8b0f07c0f",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e334126df4c37e477d48",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-c7d2c915972b34ef90c0",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "alignment_checker.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e4e48cf791702510d323",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/scripts/alignment_checker.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ed8702c9b252351e1597",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e323b5a8813439b24c96",
+      "category": "SCHEMA",
+      "severity": "info",
+      "check_name": "author_without_email",
+      "message": "Author has no email address: Alireza Rezvani",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+      "metadata": {
+        "current_author": "Alireza Rezvani",
+        "profile": "default",
+        "shape_ok": false,
+        "domain_ok": false
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e86cbfec98b2e25aa26c",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-14ed12818bd3d521b876",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-86cc92a89d3d3b3d7c9b",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 4,
+    "independent_errors": 0,
+    "independent_warnings": 1
+  },
+  "skills": [
+    {
+      "name": "strategic-alignment",
+      "passed": true,
+      "issue_count": 19
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "strategic-alignment",
+          "passed": true,
+          "issue_count": 19
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 1,
+      "failed_count": 0,
+      "total_issues": 19
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+      "severity": "low",
+      "total_count": 4,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "UNICODE",
+      "suggestion": "Likely a copy-paste artifact. Remove if not intentional."
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "alignment_checker.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "Author has no email address: Alireza Rezvani",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'"
+    },
+    {
+      "message": "copilot-cli: 34 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory."
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "strategic-alignment"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-4631f5eb087aee5b6a6f",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-14ed12818bd3d521b876",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-e323b5a8813439b24c96",
+          "occurrence_id": "SEO-e86cbfec98b2e25aa26c",
+          "category": "SCHEMA",
+          "severity": "info",
+          "check_name": "author_without_email",
+          "message": "Author has no email address: Alireza Rezvani",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": "author: Alireza Rezvani",
+          "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+          "metadata": {
+            "current_author": "Alireza Rezvani",
+            "profile": "default",
+            "shape_ok": false,
+            "domain_ok": false
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'strategic-alignment'",
+          "metadata": {
+            "description_length": 182
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/strategic-alignment/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'strategic-alignment' follows kebab-case convention",
+          "metadata": {
+            "name_length": 19
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (194/500)",
+          "metadata": {
+            "line_count": 194,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: references, scripts",
+          "metadata": {
+            "files_found": [
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'strategic-alignment'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[SCHEMA-INFO] Author has no email address: Alireza Rezvani in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'strategic-alignment'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/strategic-alignment/",
+          "[OK] naming_convention: Folder name 'strategic-alignment' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (194/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'strategic-alignment'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_semver",
+          "message": "Valid semantic version: 1.0.0",
+          "metadata": {
+            "version": "1.0.0",
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_semver: Valid semantic version: 1.0.0"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "skillspector",
+          "message": "Security scan completed - 1 advisory finding(s) (no critical/high issues)",
+          "metadata": {
+            "issue_count": 1
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1"
+        ],
+        "messages": [
+          "[OK] skillspector: Security scan completed - 1 advisory finding(s) (no critical/high issues)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 1,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 7,
+        "applicable_risk_score": 7
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 3,
+        "checks_performed": 2,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 3 files for PII",
+          "metadata": {
+            "file_count": 3
+          }
+        },
+        {
+          "check": "pii_detection",
+          "message": "No PII detected in 3 files (emails, SSNs, phone numbers, paths)",
+          "metadata": {
+            "files_scanned": 3
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 3 files for PII",
+          "[OK] pii_detection: No PII detected in 3 files (emails, SSNs, phone numbers, paths)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (allowed)",
+          "metadata": {
+            "license_status": "allowed"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Tier 1: Found license declaration in frontmatter (SKILL.md)",
+          "License: MIT (ALLOWED - permissive)",
+          "[OK] license_compliance: License compliance scan completed (allowed)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 1 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 2,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 2 markdown files for dead links",
+          "metadata": {
+            "file_count": 2
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 2 markdown file(s)",
+          "metadata": {
+            "files_checked": 2
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 2 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 2 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 3,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 4
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 3,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 4,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-6b66555d1029e567b59c",
+          "occurrence_id": "SEO-6bba400b6389de1c94ae",
+          "category": "UNICODE",
+          "severity": "low",
+          "check_name": "isolated_invisible_char",
+          "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 332,
+          "line_content": "teams_str = \", \".join(s[\"team\"] for s in supporting) if supporting else \"\u26a0\ufe0f  NONE\"",
+          "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+          "metadata": {
+            "char_count": 1,
+            "unicode_category": "variation_selectors"
+          }
+        },
+        {
+          "finding_id": "SEF-6b66555d1029e567b59c",
+          "occurrence_id": "SEO-168273676ea12c278f24",
+          "category": "UNICODE",
+          "severity": "low",
+          "check_name": "isolated_invisible_char",
+          "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 343,
+          "line_content": "print(f\"  \u26a0\ufe0f  [{o['okr_id']}] {o['team']}: {o['objective']}\")",
+          "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+          "metadata": {
+            "char_count": 1,
+            "unicode_category": "variation_selectors"
+          }
+        },
+        {
+          "finding_id": "SEF-6b66555d1029e567b59c",
+          "occurrence_id": "SEO-29852bcd70c31ffbc814",
+          "category": "UNICODE",
+          "severity": "low",
+          "check_name": "isolated_invisible_char",
+          "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 353,
+          "line_content": "print(f\"\\n\ud83d\udd73\ufe0f  COVERAGE GAPS ({len(gaps)} company OKRs with zero team support)\\n\")",
+          "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+          "metadata": {
+            "char_count": 1,
+            "unicode_category": "variation_selectors"
+          }
+        },
+        {
+          "finding_id": "SEF-6b66555d1029e567b59c",
+          "occurrence_id": "SEO-7df3422fcdd88a876adb",
+          "category": "UNICODE",
+          "severity": "low",
+          "check_name": "isolated_invisible_char",
+          "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+          "file_path": "scripts/alignment_checker.py",
+          "line_number": 401,
+          "line_content": "print(\"  \u26a0\ufe0f  RECOMMENDED ACTIONS:\")",
+          "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+          "metadata": {
+            "char_count": 1,
+            "unicode_category": "variation_selectors"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[UNICODE-LOW] Isolated invisible character(s) (1): VARIATION SELECTOR-16 in scripts/alignment_checker.py:332",
+          "[UNICODE-LOW] Isolated invisible character(s) (1): VARIATION SELECTOR-16 in scripts/alignment_checker.py:343",
+          "[UNICODE-LOW] Isolated invisible character(s) (1): VARIATION SELECTOR-16 in scripts/alignment_checker.py:353",
+          "[UNICODE-LOW] Isolated invisible character(s) (1): VARIATION SELECTOR-16 in scripts/alignment_checker.py:401"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 7,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 3,
+        "low_count": 4
+      },
+      "finding_counts": {
+        "raw_occurrences": 7,
+        "distinct_occurrences": 7,
+        "unique_findings": 7,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 4,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 4,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-2c43f136c5b8b0f07c0f",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-46b1830ab6aaf6e92fc2",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-ed8702c9b252351e1597",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-e334126df4c37e477d48",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-01ead73f67d7e8460e3a",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-86cc92a89d3d3b3d7c9b",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-7b03cf7ebe015582a95d",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 86.2/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 86.2,
+            "grade": "B",
+            "skill_type": "script-based"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 86.2/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 86.2,
+        "grade": "B",
+        "skill_type": "script-based",
+        "skill_name": "strategic-alignment",
+        "dimensions": {
+          "correctness": {
+            "score": 75.0,
+            "weight": 0.35,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 95.0,
+            "weight": 0.25,
+            "issues_count": 1,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 85.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 2274,
+          "estimated_tokens": 2274,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 108,
+          "instructions_tokens": 2164,
+          "script_count": 1,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-c7d2c915972b34ef90c0",
+          "occurrence_id": "SEO-e4e48cf791702510d323",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "alignment_checker.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/scripts/alignment_checker.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-LOW] alignment_checker.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/scripts/alignment_checker.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 3
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 3
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-5ebbc59c916f1fed8e43",
+          "occurrence_id": "SEO-ae18fd223362037f62cc",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-LIST-BUDGET",
+          "message": "copilot-cli: 34 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-b36500da30a0ed0309cf",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-8df9802b8f0ae6730317",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-INFO] copilot-cli: 34 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "strategic-alignment",
+        "skill_digest": "sha256:fac55c8db4098283cf220146c507ad7b518161a3907047acb103074f784ea68e",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "Required recognized built-in Tier 2 evidence is missing.",
+      "Tier 3 lacks publication-complete execution evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 86.2,
+      "grade": "B",
+      "skill_type": "script-based",
+      "skill_name": "strategic-alignment",
+      "dimensions": {
+        "correctness": {
+          "score": 75.0,
+          "weight": 0.35,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 95.0,
+          "weight": 0.25,
+          "issues_count": 1,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 85.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 2274,
+        "estimated_tokens": 2274,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 108,
+        "instructions_tokens": 2164,
+        "script_count": 1,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:24:49.933085+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills/strategic-alignment": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when teams pull in different directions, OKRs don't connect or departments optimize locally. Maps the strategy cascade and finds orphan goals and silos with alignment_checker.py."
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "loads",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 34,
+          "desc_chars": 6515,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when teams pull in different directions, OKRs don't connect or departments optimize locally. Maps the strategy cascade and finds orphan goals and silos with alignment_checker.py."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 34,
+          "desc_chars": 6515,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when teams pull in different directions, OKRs don't connect or departments optimize locally. Maps the strategy cascade and finds orphan goals and silos with alignment_checker.py."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-LIST-BUDGET",
+            "effect": "advisory",
+            "message": "34 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+            "fix": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+            "outcome": "listing shortened",
+            "confidence": "medium"
+          },
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 34,
+          "desc_chars": 6515,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use when teams pull in different directions, OKRs don't conn",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 34,
+          "desc_chars": 6515,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when teams pull in different directions, OKRs don't connect or departments optimize locally. Maps the strategy cascade and finds orphan goals and silos with alignment_checker.py."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 34,
+          "desc_chars": 6515,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when teams pull in different directions, OKRs don't connect or departments optimize locally. Maps the strategy cascade and finds orphan goals and silos with alignment_checker.py."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 34,
+          "desc_chars": 6515,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/c-level-advisor/skills"
+        }
+      }
+    ]
+  }
+}

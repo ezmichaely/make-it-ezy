@@ -1,0 +1,2682 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/engineering/claude-coach/skills/claude-coach",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 4,
+  "total_warnings": 18,
+  "severity_counts": {
+    "critical": 0,
+    "high": 4,
+    "medium": 4,
+    "low": 10
+  },
+  "finding_counts": {
+    "raw_occurrences": 21,
+    "distinct_occurrences": 21,
+    "unique_findings": 21,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 0,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 4,
+      "medium": 4,
+      "low": 10,
+      "info": 3
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 4,
+      "medium": 4,
+      "low": 10,
+      "info": 3
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-015d868f472daddfdef6",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Anti-Refusal Statement (AR2)",
+      "message": "Anti-Refusal: Do not lecture",
+      "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+      "metadata": {
+        "skillspector_confidence": 0.85,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e3c57cf3c847e5199b51",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 118
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-01a479175917a848c502",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "prompt_rater.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-dbf3a45c3ee69749c3fc",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/prompt_rater.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c53d6e86c8ba636b4227",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-0a2cf18d1dd5f0b5d3e5",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "HM-LINKED-LAYOUT",
+      "message": "hermes: 1 files outside references/, templates/, assets/ and scripts/ (README.md) are left out of the skill's file list; the model finds them only if SKILL.md names their paths.",
+      "suggestion": "Move supporting files under references/, templates/, assets/ or scripts/.",
+      "metadata": {
+        "harness": "hermes",
+        "effect": "advisory",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-58e977ae85e3baf76852",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2b8dac1ad79d5a7aba7d",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Context Leakage (E4)",
+      "message": "Data Exfiltration: Capture context",
+      "suggestion": "Code or instructions that leak agent conversation context to external services, potentially exposing sensitive user interactions. Remove any code that sends prompts, responses, or session data externally. Preserve user privacy; never exfiltrate conversation content.",
+      "metadata": {
+        "skillspector_confidence": 0.75,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e49199c8a5bd44ecece0",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 33
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c31c9303d7549751d0f0",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-36caf002def6429e7de6",
+      "category": "SCHEMA",
+      "severity": "high",
+      "check_name": "frontmatter_field",
+      "message": "Field 'name': Value error, Skill name 'claude-coach' must not contain reserved words {'anthropic', 'claude'}",
+      "suggestion": "Fix the 'name' field in frontmatter according to schema requirements",
+      "metadata": {
+        "field": "name",
+        "error_type": "value_error"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-21385b8afe2b511c36e4",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-10bc23a37815d5a9e0a1",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f7c9a798d0854677c42c",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-06a0197c94da40838d58",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6f567dfd5bf329ade5b5",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 226 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0b41a710822da012c56a",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c7317e0063aa6d110083",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-9612bbfb3f32d491ac5d",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No mention of error handling or validation",
+      "suggestion": "Document expected errors and how to handle them",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e3dbd93035fe482b596c",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-9cb0895f1370e8bdc993",
+      "category": "QUALITY",
+      "severity": "high",
+      "check_name": "quality_correctness",
+      "message": "Name contains reserved word: claude",
+      "suggestion": "Remove reserved words from skill name",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 15
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-52a2b2b9620e6bbee6f8",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7914b11dd3c3a536b408",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f7688cd995a2485529ac",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e18fde4bbc9e7881071e",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "cheat_code_filter.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2f63f10c905f8615916f",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/cheat_code_filter.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e31ec0572821fe905e9d",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_efficiency",
+      "message": "Instructions not in list format",
+      "suggestion": "Use bullet points or numbered steps for clarity",
+      "metadata": {
+        "dimension": "efficiency",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e8146f1a79463cc09c5f",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-ef2c4e76adf3d4c02b5a",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "coach_tip_classifier.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-8369739e15e4fea28c58",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/coach_tip_classifier.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c78b3402e96b21fd623c",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 5,
+    "independent_errors": 0,
+    "independent_warnings": 1
+  },
+  "skills": [
+    {
+      "name": "claude-coach",
+      "passed": false,
+      "issue_count": 21
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "claude-coach",
+          "passed": false,
+          "issue_count": 21
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 21
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Field 'name': Value error, Skill name 'claude-coach' must not contain reserved words {'anthropic', 'claude'}",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Fix the 'name' field in frontmatter according to schema requirements"
+    },
+    {
+      "message": "Data Exfiltration",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Code or instructions that leak agent conversation context to external services, potentially exposing sensitive user interactions. Remove any code that sends prompts, responses, or session data externally. Preserve user privacy; never exfiltrate conversation content."
+    },
+    {
+      "message": "Anti-Refusal",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user."
+    },
+    {
+      "message": "Name contains reserved word: claude",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Remove reserved words from skill name"
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 226 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No mention of error handling or validation",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document expected errors and how to handle them"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "Instructions not in list format",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Use bullet points or numbered steps for clarity"
+    },
+    {
+      "message": "cheat_code_filter.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "coach_tip_classifier.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "prompt_rater.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "hermes: 1 files outside references/, templates/, assets/ and scripts/ (README.md) are left out of the skill's file list; the model finds them only if SKILL.md names their paths.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Move supporting files under references/, templates/, assets/ or scripts/."
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "claude-coach"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 1,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 1,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-36caf002def6429e7de6",
+          "occurrence_id": "SEO-21385b8afe2b511c36e4",
+          "category": "SCHEMA",
+          "severity": "high",
+          "check_name": "frontmatter_field",
+          "message": "Field 'name': Value error, Skill name 'claude-coach' must not contain reserved words {'anthropic', 'claude'}",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Fix the 'name' field in frontmatter according to schema requirements",
+          "metadata": {
+            "field": "name",
+            "error_type": "value_error"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [
+          "[SCHEMA-HIGH] Field 'name': Value error, Skill name 'claude-coach' must not contain reserved words {'anthropic', 'claude'} in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md"
+        ],
+        "warnings": [],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_semver",
+          "message": "Valid semantic version: 2.9.0",
+          "metadata": {
+            "version": "2.9.0",
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_semver: Valid semantic version: 2.9.0"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 2,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 2,
+        "medium_count": 1,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 2,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 2,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2b8dac1ad79d5a7aba7d",
+          "occurrence_id": "SEO-e49199c8a5bd44ecece0",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Context Leakage (E4)",
+          "message": "Data Exfiltration: Capture context",
+          "file_path": "SKILL.md",
+          "line_number": 33,
+          "line_content": "\nWhen activated for the first time, do this sequence:\n\n### Step 1: Capture context (one question, then proceed)\n\nAsk exactly one question:\n",
+          "suggestion": "Code or instructions that leak agent conversation context to external services, potentially exposing sensitive user interactions. Remove any code that sends prompts, responses, or session data externally. Preserve user privacy; never exfiltrate conversation content.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-015d868f472daddfdef6",
+          "occurrence_id": "SEO-e3c57cf3c847e5199b51",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Anti-Refusal Statement (AR2)",
+          "message": "Anti-Refusal: Do not lecture",
+          "file_path": "SKILL.md",
+          "line_number": 118,
+          "line_content": "Do not lecture. The before/after rewrite is the lesson.",
+          "suggestion": "Skill instructs the agent to omit warnings, disclaimers, or ethical commentary. Stripping safety caveats hides risk from the user and is a common jailbreak preamble. Remove instructions that suppress warnings, disclaimers, or ethical commentary. Let the agent surface safety-relevant caveats to the user.",
+          "metadata": {
+            "skillspector_confidence": 0.85,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "[SECURITY-HIGH] Data Exfiltration: Capture context in SKILL.md:33",
+          "[SECURITY-HIGH] Anti-Refusal: Do not lecture in SKILL.md:118"
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1"
+        ],
+        "messages": [
+          "skillspector found 3 issue(s) including critical/high severity"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 3,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 47,
+        "applicable_risk_score": 47
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 7,
+        "checks_performed": 2,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 7 files for PII",
+          "metadata": {
+            "file_count": 7
+          }
+        },
+        {
+          "check": "pii_detection",
+          "message": "No PII detected in 7 files (emails, SSNs, phone numbers, paths)",
+          "metadata": {
+            "files_scanned": 7
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 7 files for PII",
+          "[OK] pii_detection: No PII detected in 7 files (emails, SSNs, phone numbers, paths)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (allowed)",
+          "metadata": {
+            "license_status": "allowed"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Tier 1: Found license declaration in frontmatter (SKILL.md)",
+          "License: MIT (ALLOWED - permissive)",
+          "[OK] license_compliance: License compliance scan completed (allowed)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 3 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 4,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 4 markdown files for dead links",
+          "metadata": {
+            "file_count": 4
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 4 markdown file(s)",
+          "metadata": {
+            "files_checked": 4
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 4 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 4 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 7,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "unicode_scan",
+          "message": "No invisible Unicode characters detected in 7 file(s)",
+          "metadata": {
+            "files_scanned": 7
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] unicode_scan: No invisible Unicode characters detected in 7 file(s)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 1,
+        "warnings": 10,
+        "critical_count": 0,
+        "high_count": 1,
+        "medium_count": 3,
+        "low_count": 7
+      },
+      "finding_counts": {
+        "raw_occurrences": 11,
+        "distinct_occurrences": 11,
+        "unique_findings": 11,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "medium": 3,
+          "low": 7,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "medium": 3,
+          "low": 7,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-9cb0895f1370e8bdc993",
+          "occurrence_id": "SEO-52a2b2b9620e6bbee6f8",
+          "category": "QUALITY",
+          "severity": "high",
+          "check_name": "quality_correctness",
+          "message": "Name contains reserved word: claude",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Remove reserved words from skill name",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 15
+          }
+        },
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-c7317e0063aa6d110083",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-06a0197c94da40838d58",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-f7688cd995a2485529ac",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-6f567dfd5bf329ade5b5",
+          "occurrence_id": "SEO-0b41a710822da012c56a",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 226 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-7914b11dd3c3a536b408",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-9612bbfb3f32d491ac5d",
+          "occurrence_id": "SEO-e3dbd93035fe482b596c",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No mention of error handling or validation",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document expected errors and how to handle them",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-f7c9a798d0854677c42c",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-c78b3402e96b21fd623c",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-10bc23a37815d5a9e0a1",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-e31ec0572821fe905e9d",
+          "occurrence_id": "SEO-e8146f1a79463cc09c5f",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_efficiency",
+          "message": "Instructions not in list format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Use bullet points or numbered steps for clarity",
+          "metadata": {
+            "dimension": "efficiency",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 76.5/100 (Grade: C)",
+          "metadata": {
+            "overall_score": 76.5,
+            "grade": "C",
+            "skill_type": "script-based"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [
+          "[QUALITY-HIGH] Name contains reserved word: claude in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md"
+        ],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 226 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-LOW] No mention of error handling or validation in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[QUALITY-LOW] Instructions not in list format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 76.5/100 (Grade: C)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 76.5,
+        "grade": "C",
+        "skill_type": "script-based",
+        "skill_name": "claude-coach",
+        "dimensions": {
+          "correctness": {
+            "score": 60.0,
+            "weight": 0.35,
+            "issues_count": 4,
+            "issues": [
+              {
+                "severity": "error",
+                "message": "Name contains reserved word: claude",
+                "suggestion": "Remove reserved words from skill name",
+                "deduction": 15
+              },
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 226 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 75.0,
+            "weight": 0.25,
+            "issues_count": 4,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No mention of error handling or validation",
+                "suggestion": "Document expected errors and how to handle them",
+                "deduction": 10
+              },
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 95.0,
+            "weight": 0.15,
+            "issues_count": 1,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Instructions not in list format",
+                "suggestion": "Use bullet points or numbered steps for clarity",
+                "deduction": 5
+              }
+            ]
+          }
+        },
+        "metrics": {
+          "total_tokens": 2022,
+          "estimated_tokens": 2022,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 96,
+          "instructions_tokens": 1923,
+          "script_count": 3,
+          "has_examples": true,
+          "has_error_handling": false,
+          "has_frontmatter": true,
+          "has_instructions": true,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 3
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 3,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 3,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-e18fde4bbc9e7881071e",
+          "occurrence_id": "SEO-2f63f10c905f8615916f",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "cheat_code_filter.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/cheat_code_filter.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-ef2c4e76adf3d4c02b5a",
+          "occurrence_id": "SEO-8369739e15e4fea28c58",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "coach_tip_classifier.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/coach_tip_classifier.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-01a479175917a848c502",
+          "occurrence_id": "SEO-dbf3a45c3ee69749c3fc",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "prompt_rater.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/prompt_rater.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-LOW] cheat_code_filter.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/cheat_code_filter.py",
+          "[SCRIPT_LINT-LOW] coach_tip_classifier.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/coach_tip_classifier.py",
+          "[SCRIPT_LINT-LOW] prompt_rater.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/scripts/prompt_rater.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 3
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 3
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-c31c9303d7549751d0f0",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-0a2cf18d1dd5f0b5d3e5",
+          "occurrence_id": "SEO-58e977ae85e3baf76852",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "HM-LINKED-LAYOUT",
+          "message": "hermes: 1 files outside references/, templates/, assets/ and scripts/ (README.md) are left out of the skill's file list; the model finds them only if SKILL.md names their paths.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Move supporting files under references/, templates/, assets/ or scripts/.",
+          "metadata": {
+            "harness": "hermes",
+            "effect": "advisory",
+            "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-c53d6e86c8ba636b4227",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[HARNESS-INFO] hermes: 1 files outside references/, templates/, assets/ and scripts/ (README.md) are left out of the skill's file list; the model finds them only if SKILL.md names their paths. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "claude-coach",
+        "skill_digest": "sha256:0d3978b9c6e74e2828a1211ddcd9175443ec5dd252d4cf2ac1f7ca43b8e54cf3",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "fail",
+  "publication": {
+    "status": "fail",
+    "eligible": false,
+    "reasons": [
+      "A validator failed."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 76.5,
+      "grade": "C",
+      "skill_type": "script-based",
+      "skill_name": "claude-coach",
+      "dimensions": {
+        "correctness": {
+          "score": 60.0,
+          "weight": 0.35,
+          "issues_count": 4,
+          "issues": [
+            {
+              "severity": "error",
+              "message": "Name contains reserved word: claude",
+              "suggestion": "Remove reserved words from skill name",
+              "deduction": 15
+            },
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 226 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 75.0,
+          "weight": 0.25,
+          "issues_count": 4,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No mention of error handling or validation",
+              "suggestion": "Document expected errors and how to handle them",
+              "deduction": 10
+            },
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 95.0,
+          "weight": 0.15,
+          "issues_count": 1,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Instructions not in list format",
+              "suggestion": "Use bullet points or numbered steps for clarity",
+              "deduction": 5
+            }
+          ]
+        }
+      },
+      "metrics": {
+        "total_tokens": 2022,
+        "estimated_tokens": 2022,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 96,
+        "instructions_tokens": 1923,
+        "script_count": 3,
+        "has_examples": true,
+        "has_error_handling": false,
+        "has_frontmatter": true,
+        "has_instructions": true,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:27:17.143868+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills/claude-coach": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when the user wants to get better at using Claude ('coach me', 'teach me Claude tricks', 'make me a power user'). Rates their prompts with prompt_rater.py and surfaces one relevant power-user tip per turn after activation."
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "loads",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 226,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when the user wants to get better at using Claude ('coach me', 'teach me Claude tricks', 'make me a power user'). Rates their prompts with prompt_rater.py and surfaces one relevant power-user tip per turn after activation."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 226,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when the user wants to get better at using Claude ('coach me', 'teach me Claude tricks', 'make me a power user'). Rates their prompts with prompt_rater.py and surfaces one relevant power-user tip per turn after activation."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 226,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use when the user wants to get better at using Claude ('coac",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "HM-LINKED-LAYOUT",
+            "effect": "advisory",
+            "message": "1 files outside references/, templates/, assets/ and scripts/ (README.md) are left out of the skill's file list; the model finds them only if SKILL.md names their paths.",
+            "fix": "Move supporting files under references/, templates/, assets/ or scripts/.",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 226,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when the user wants to get better at using Claude ('coach me', 'teach me Claude tricks', 'make me a power user'). Rates their prompts with prompt_rater.py and surfaces one relevant power-user tip per turn after activation."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 226,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when the user wants to get better at using Claude ('coach me', 'teach me Claude tricks', 'make me a power user'). Rates their prompts with prompt_rater.py and surfaces one relevant power-user tip per turn after activation."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 226,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/claude-coach/skills"
+        }
+      }
+    ]
+  }
+}

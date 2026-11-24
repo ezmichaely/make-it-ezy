@@ -1,0 +1,2805 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/ra-qm-team/skills/fda-consultant-specialist",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [
+    "skillspector"
+  ],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 2,
+  "total_warnings": 24,
+  "severity_counts": {
+    "critical": 0,
+    "high": 1,
+    "medium": 7,
+    "low": 13
+  },
+  "finding_counts": {
+    "raw_occurrences": 23,
+    "distinct_occurrences": 23,
+    "unique_findings": 23,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 0,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 1,
+      "medium": 7,
+      "low": 13,
+      "info": 2
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 1,
+      "medium": 7,
+      "low": 13,
+      "info": 2
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-69c32578f0c248b7d109",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-14855f9c902ad8ffea52",
+      "category": "SCRIPT_LINT",
+      "severity": "medium",
+      "check_name": "deep_nesting",
+      "message": "hipaa_risk_assessment.py has deeply nested code (depth 7, max 6)",
+      "suggestion": "Refactor into smaller functions to reduce complexity",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2b20f0945a126a047ce9",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/hipaa_risk_assessment.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-180b5f008c1dac2fde05",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "fda_submission_tracker.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3895e27bd14c400712f6",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/fda_submission_tracker.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2e41dc1e349e7ae3f34e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 241 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ad18b6acd5b882f4565b",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-329066001b36b3d2a3a3",
+      "category": "SCRIPT_LINT",
+      "severity": "medium",
+      "check_name": "deep_nesting",
+      "message": "qsr_compliance_checker.py has deeply nested code (depth 8, max 6)",
+      "suggestion": "Refactor into smaller functions to reduce complexity",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f8b2189d958deffd8f14",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/qsr_compliance_checker.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-78e823d13be99944151e",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-781fe6cf88995435ce71",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7c1ce7ebcfb0ee524610",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-575b59f330d72a7d29a7",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CC-DOLLAR-N",
+      "message": "claude-code: 5 price-like $N tokens (lines 44, 45, 46, 47, 48) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+      "suggestion": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash.",
+      "metadata": {
+        "harness": "claude-code",
+        "effect": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7ca2bd332a25e48e05cf",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-66ec2931fa11bb85554d",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "qsr_compliance_checker.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c1ec6f5f8dfa463eaa32",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/qsr_compliance_checker.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6b66555d1029e567b59c",
+      "category": "UNICODE",
+      "severity": "low",
+      "check_name": "isolated_invisible_char",
+      "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+      "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+      "metadata": {
+        "char_count": 1,
+        "unicode_category": "variation_selectors"
+      },
+      "validators": [
+        "Unicode Smuggling Detection"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f96bf230916ee669a1e9",
+          "validator": "Unicode Smuggling Detection",
+          "file_path": "references/qsr_compliance_requirements.md",
+          "line_number": 3
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3269923db8409113d616",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-7d8d9f72f99ec61dbf58",
+      "category": "SCHEMA",
+      "severity": "low",
+      "check_name": "author_missing",
+      "message": "Author not specified in metadata",
+      "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address",
+      "metadata": {
+        "profile": "default"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-83fe63bc00e8dab63768",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-7e9e464f55b9796c16de",
+      "category": "SECURITY",
+      "severity": "low",
+      "check_name": "Unpinned Dependencies (SC1)",
+      "message": "Supply Chain: Implementation",
+      "suggestion": "Dependencies lack version pinning, allowing potential malicious package updates. Consider pinning versions. Pin all dependency versions in requirements.txt or pyproject.toml. Use exact versions (==) or compatible ranges. Run pip-audit regularly.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-81d15154e6d139675531",
+          "validator": "Security Scan",
+          "file_path": "references/fda_capa_requirements.md",
+          "line_number": 437
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8d2e12daa42830823610",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "OC-DOLLAR-N",
+      "message": "opencode: Run as a /command, every $N is replaced and left blank without that argument: 5 price-like tokens (lines 44, 45, 46, 47, 48) lose their numbers. The skill tool path is unaffected.",
+      "suggestion": "Reword amounts (e.g. USD 4.00) instead of $4.00.",
+      "metadata": {
+        "harness": "opencode",
+        "effect": "degraded",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-638bb44ca9cefc8c498d",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-99c04ddf5d0d08ce78c5",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: security@manufacturer.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "security@manufacturer.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/device_cybersecurity_guidance.md",
+            "line": 502
+          }
+        ],
+        "evidence_sha256": "c5ef846c95807f6bf41f35a3c20e000644cbba9790be67ab952e23ae8b126b3d"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-85c2a4621e2aa7f9c515",
+          "validator": "PII Scan",
+          "file_path": "references/device_cybersecurity_guidance.md",
+          "line_number": 502
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-faece4ccc1434127db55",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-bf2d85d8c9d7a282e7ad",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+      "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-d530ae98d96487e42a1d",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-c328885bc0311e03a94f",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "hipaa_risk_assessment.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6993d5088eb78e56afa0",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/hipaa_risk_assessment.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-25109b4bd699c4008b3f",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-a11754e70a86c473b80d",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6856927aeede3d8b84d7",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 3,
+    "independent_errors": 1,
+    "independent_warnings": 2
+  },
+  "skills": [
+    {
+      "name": "fda-consultant-specialist",
+      "passed": false,
+      "issue_count": 23
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "fda-consultant-specialist",
+          "passed": false,
+          "issue_count": 23
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 23
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Non-placeholder email address: security@manufacturer.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "hipaa_risk_assessment.py has deeply nested code (depth 7, max 6)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Refactor into smaller functions to reduce complexity"
+    },
+    {
+      "message": "qsr_compliance_checker.py has deeply nested code (depth 8, max 6)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Refactor into smaller functions to reduce complexity"
+    },
+    {
+      "message": "Author not specified in metadata",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address"
+    },
+    {
+      "message": "Supply Chain",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Dependencies lack version pinning, allowing potential malicious package updates. Consider pinning versions. Pin all dependency versions in requirements.txt or pyproject.toml. Use exact versions (==) or compatible ranges. Run pip-audit regularly."
+    },
+    {
+      "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "UNICODE",
+      "suggestion": "Likely a copy-paste artifact. Remove if not intentional."
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 241 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "fda_submission_tracker.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "hipaa_risk_assessment.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "qsr_compliance_checker.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "claude-code: 5 price-like $N tokens (lines 44, 45, 46, 47, 48) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash."
+    },
+    {
+      "message": "opencode: Run as a /command, every $N is replaced and left blank without that argument: 5 price-like tokens (lines 44, 45, 46, 47, 48) lose their numbers. The skill tool path is unaffected.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Reword amounts (e.g. USD 4.00) instead of $4.00."
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "fda-consultant-specialist"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 9,
+        "errors": 0,
+        "warnings": 2,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 2,
+        "distinct_occurrences": 2,
+        "unique_findings": 2,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-a11754e70a86c473b80d",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-7d8d9f72f99ec61dbf58",
+          "occurrence_id": "SEO-83fe63bc00e8dab63768",
+          "category": "SCHEMA",
+          "severity": "low",
+          "check_name": "author_missing",
+          "message": "Author not specified in metadata",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address",
+          "metadata": {
+            "profile": "default"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'fda-consultant-specialist'",
+          "metadata": {
+            "description_length": 241
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/fda-consultant-specialist/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'fda-consultant-specialist' follows kebab-case convention",
+          "metadata": {
+            "name_length": 25
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (311/500)",
+          "metadata": {
+            "line_count": 311,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "body_recommended_section",
+          "message": "Found recommended section: '## Instructions' (or '## Usage')",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: references, scripts",
+          "metadata": {
+            "files_found": [
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'fda-consultant-specialist'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[SCHEMA-LOW] Author not specified in metadata in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'fda-consultant-specialist'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/fda-consultant-specialist/",
+          "[OK] naming_convention: Folder name 'fda-consultant-specialist' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (311/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] body_recommended_section: Found recommended section: '## Instructions' (or '## Usage')",
+          "[OK] optional_files: Found optional supporting files: references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'fda-consultant-specialist'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_optional",
+          "message": "No semantic version label present; resource will use commit-hash history",
+          "metadata": {
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_optional: No semantic version label present; resource will use commit-hash history"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "incomplete",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [
+        "skillspector"
+      ],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 1,
+        "warnings": 2,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 2,
+        "distinct_occurrences": 2,
+        "unique_findings": 2,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-7e9e464f55b9796c16de",
+          "occurrence_id": "SEO-81d15154e6d139675531",
+          "category": "SECURITY",
+          "severity": "low",
+          "check_name": "Unpinned Dependencies (SC1)",
+          "message": "Supply Chain: Implementation",
+          "file_path": "references/fda_capa_requirements.md",
+          "line_number": 437,
+          "line_content": "Change Approved\n        \u2502\n        \u25bc\nImplementation\n\u251c\u2500\u2500 Document updates\n\u251c\u2500\u2500 Training\n\u251c\u2500\u2500 Validation (if required)",
+          "suggestion": "Dependencies lack version pinning, allowing potential malicious package updates. Consider pinning versions. Pin all dependency versions in requirements.txt or pyproject.toml. Use exact versions (==) or compatible ranges. Run pip-audit regularly.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "skillspector JSON field 'analysis_completeness' reports caveats that SkillEvaluator does not accept (status 'complete_with_caveats'): SKILL.md:166 [reference_resolution; reference_missing]; security scan did not complete. Missing references require a standalone target with complete, matching reference and scan evidence. See https://docs.nvidia.com/skills/skillevaluator/tier1-validation."
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1",
+          "[SECURITY-LOW] Supply Chain: Implementation in references/fda_capa_requirements.md:437"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 2,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 10,
+        "applicable_risk_score": 10
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 9,
+        "checks_performed": 1,
+        "errors": 1,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 1,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-99c04ddf5d0d08ce78c5",
+          "occurrence_id": "SEO-85c2a4621e2aa7f9c515",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: security@manufacturer.com",
+          "file_path": "references/device_cybersecurity_guidance.md",
+          "line_number": 502,
+          "line_content": "- Security contact: security@manufacturer.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "security@manufacturer.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/device_cybersecurity_guidance.md",
+                "line": 502
+              }
+            ],
+            "evidence_sha256": "c5ef846c95807f6bf41f35a3c20e000644cbba9790be67ab952e23ae8b126b3d"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 9 files for PII",
+          "metadata": {
+            "file_count": 9
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [
+          "[PII-HIGH] Non-placeholder email address: security@manufacturer.com in references/device_cybersecurity_guidance.md:502"
+        ],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 9 files for PII"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (not detected)",
+          "metadata": {
+            "license_status": "not_detected"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No license information found - manual review required. Add a LICENSE file or 'license' field in frontmatter."
+        ],
+        "messages": [
+          "No license detected in any tier",
+          "[OK] license_compliance: License compliance scan completed (not detected)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 3 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 6,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 6 markdown files for dead links",
+          "metadata": {
+            "file_count": 6
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 6 markdown file(s)",
+          "metadata": {
+            "files_checked": 6
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 6 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 6 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 9,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-6b66555d1029e567b59c",
+          "occurrence_id": "SEO-f96bf230916ee669a1e9",
+          "category": "UNICODE",
+          "severity": "low",
+          "check_name": "isolated_invisible_char",
+          "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+          "file_path": "references/qsr_compliance_requirements.md",
+          "line_number": 3,
+          "line_content": "> ## \u26a0\ufe0f STATUS: QMSR transition \u2014 the QSR structure below is HISTORICAL",
+          "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+          "metadata": {
+            "char_count": 1,
+            "unicode_category": "variation_selectors"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[UNICODE-LOW] Isolated invisible character(s) (1): VARIATION SELECTOR-16 in references/qsr_compliance_requirements.md:3"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 8,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 3,
+        "low_count": 5
+      },
+      "finding_counts": {
+        "raw_occurrences": 8,
+        "distinct_occurrences": 8,
+        "unique_findings": 8,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-3269923db8409113d616",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-bf2d85d8c9d7a282e7ad",
+          "occurrence_id": "SEO-d530ae98d96487e42a1d",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-25109b4bd699c4008b3f",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-2e41dc1e349e7ae3f34e",
+          "occurrence_id": "SEO-ad18b6acd5b882f4565b",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 241 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-faece4ccc1434127db55",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-7c1ce7ebcfb0ee524610",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-6856927aeede3d8b84d7",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-781fe6cf88995435ce71",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 86.8/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 86.8,
+            "grade": "B",
+            "skill_type": "script-based"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.author' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 241 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 86.8/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 86.8,
+        "grade": "B",
+        "skill_type": "script-based",
+        "skill_name": "fda-consultant-specialist",
+        "dimensions": {
+          "correctness": {
+            "score": 80.0,
+            "weight": 0.35,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+                "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+                "deduction": 5
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 241 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 85.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 2914,
+          "estimated_tokens": 2914,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 72,
+          "instructions_tokens": 2840,
+          "script_count": 3,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": true,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 5,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 3
+      },
+      "finding_counts": {
+        "raw_occurrences": 5,
+        "distinct_occurrences": 5,
+        "unique_findings": 5,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 3,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 3,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-180b5f008c1dac2fde05",
+          "occurrence_id": "SEO-3895e27bd14c400712f6",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "fda_submission_tracker.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/fda_submission_tracker.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-14855f9c902ad8ffea52",
+          "occurrence_id": "SEO-2b20f0945a126a047ce9",
+          "category": "SCRIPT_LINT",
+          "severity": "medium",
+          "check_name": "deep_nesting",
+          "message": "hipaa_risk_assessment.py has deeply nested code (depth 7, max 6)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/hipaa_risk_assessment.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Refactor into smaller functions to reduce complexity",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-c328885bc0311e03a94f",
+          "occurrence_id": "SEO-6993d5088eb78e56afa0",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "hipaa_risk_assessment.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/hipaa_risk_assessment.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-329066001b36b3d2a3a3",
+          "occurrence_id": "SEO-f8b2189d958deffd8f14",
+          "category": "SCRIPT_LINT",
+          "severity": "medium",
+          "check_name": "deep_nesting",
+          "message": "qsr_compliance_checker.py has deeply nested code (depth 8, max 6)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/qsr_compliance_checker.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Refactor into smaller functions to reduce complexity",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-66ec2931fa11bb85554d",
+          "occurrence_id": "SEO-c1ec6f5f8dfa463eaa32",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "qsr_compliance_checker.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/qsr_compliance_checker.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-LOW] fda_submission_tracker.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/fda_submission_tracker.py",
+          "[SCRIPT_LINT-MEDIUM] hipaa_risk_assessment.py has deeply nested code (depth 7, max 6) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/hipaa_risk_assessment.py",
+          "[SCRIPT_LINT-LOW] hipaa_risk_assessment.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/hipaa_risk_assessment.py",
+          "[SCRIPT_LINT-MEDIUM] qsr_compliance_checker.py has deeply nested code (depth 8, max 6) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/qsr_compliance_checker.py",
+          "[SCRIPT_LINT-LOW] qsr_compliance_checker.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/scripts/qsr_compliance_checker.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 2
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 2,
+          "info": 2
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 2,
+          "info": 2
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-575b59f330d72a7d29a7",
+          "occurrence_id": "SEO-7ca2bd332a25e48e05cf",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CC-DOLLAR-N",
+          "message": "claude-code: 5 price-like $N tokens (lines 44, 45, 46, 47, 48) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash.",
+          "metadata": {
+            "harness": "claude-code",
+            "effect": "degraded",
+            "verified_version": "2.1.316",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-78e823d13be99944151e",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-8d2e12daa42830823610",
+          "occurrence_id": "SEO-638bb44ca9cefc8c498d",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "OC-DOLLAR-N",
+          "message": "opencode: Run as a /command, every $N is replaced and left blank without that argument: 5 price-like tokens (lines 44, 45, 46, 47, 48) lose their numbers. The skill tool path is unaffected.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Reword amounts (e.g. USD 4.00) instead of $4.00.",
+          "metadata": {
+            "harness": "opencode",
+            "effect": "degraded",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-69c32578f0c248b7d109",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-LOW] claude-code: 5 price-like $N tokens (lines 44, 45, 46, 47, 48) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim). in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[HARNESS-LOW] opencode: Run as a /command, every $N is replaced and left blank without that argument: 5 price-like tokens (lines 44, 45, 46, 47, 48) lose their numbers. The skill tool path is unaffected. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "fda-consultant-specialist",
+        "skill_digest": "sha256:f13f85e0715383b6981390e46f8d9cd2a4a008ad74aaeb4aa5fa62ec0b1757f5",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "One or more validators reported incomplete scanner evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 86.8,
+      "grade": "B",
+      "skill_type": "script-based",
+      "skill_name": "fda-consultant-specialist",
+      "dimensions": {
+        "correctness": {
+          "score": 80.0,
+          "weight": 0.35,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+              "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+              "deduction": 5
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 241 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 85.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 2914,
+        "estimated_tokens": 2914,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 72,
+        "instructions_tokens": 2840,
+        "script_count": 3,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": true,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:42:42.466653+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills/fda-consultant-specialist": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for FDA medical device questions: 510(k) vs De Novo vs PMA, predicates and substantial equivalence, QMSR (21 CFR 820), HIPAA or device cybersecurity. Runs fda_submission_tracker.py, qsr_compliance_checker.py and hipaa_risk_assessment.py."
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CC-DOLLAR-N",
+            "effect": "degraded",
+            "message": "5 price-like $N tokens (lines 44, 45, 46, 47, 48) are argument placeholders: invoked with five or more arguments, $4.00 becomes <5th argument>.00 (an unmatched $N is kept verbatim).",
+            "fix": "Reword amounts (e.g. USD 4.00); \\$4.00 escapes it here, but other harnesses then show the backslash.",
+            "versions": "installed skills; bundled skills skip substitution",
+            "outcome": "text rewritten",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 23,
+          "desc_chars": 6866,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for FDA medical device questions: 510(k) vs De Novo vs PMA, predicates and substantial equivalence, QMSR (21 CFR 820), HIPAA or device cybersecurity. Runs fda_submission_tracker.py, qsr_compliance_checker.py and hipaa_risk_assessment.py."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 23,
+          "desc_chars": 6866,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for FDA medical device questions: 510(k) vs De Novo vs PMA, predicates and substantial equivalence, QMSR (21 CFR 820), HIPAA or device cybersecurity. Runs fda_submission_tracker.py, qsr_compliance_checker.py and hipaa_risk_assessment.py."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 23,
+          "desc_chars": 6866,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use for FDA medical device questions: 510(k) vs De Novo vs P",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 23,
+          "desc_chars": 6866,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for FDA medical device questions: 510(k) vs De Novo vs PMA, predicates and substantial equivalence, QMSR (21 CFR 820), HIPAA or device cybersecurity. Runs fda_submission_tracker.py, qsr_compliance_checker.py and hipaa_risk_assessment.py."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 23,
+          "desc_chars": 6866,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for FDA medical device questions: 510(k) vs De Novo vs PMA, predicates and substantial equivalence, QMSR (21 CFR 820), HIPAA or device cybersecurity. Runs fda_submission_tracker.py, qsr_compliance_checker.py and hipaa_risk_assessment.py."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "degraded",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-DOLLAR-N",
+            "effect": "degraded",
+            "message": "Run as a /command, every $N is replaced and left blank without that argument: 5 price-like tokens (lines 44, 45, 46, 47, 48) lose their numbers. The skill tool path is unaffected.",
+            "fix": "Reword amounts (e.g. USD 4.00) instead of $4.00.",
+            "versions": "1.x; v2 no longer registers skills as commands",
+            "outcome": "text rewritten",
+            "confidence": "high"
+          },
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 23,
+          "desc_chars": 6866,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/ra-qm-team/skills"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,3918 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/engineering/helm-chart-builder/skills/helm-chart-builder",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [
+    "skillspector"
+  ],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 13,
+  "total_warnings": 22,
+  "severity_counts": {
+    "critical": 1,
+    "high": 11,
+    "medium": 11,
+    "low": 7
+  },
+  "finding_counts": {
+    "raw_occurrences": 33,
+    "distinct_occurrences": 33,
+    "unique_findings": 26,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 7,
+    "raw_by_severity": {
+      "critical": 1,
+      "high": 11,
+      "medium": 11,
+      "low": 7,
+      "info": 3
+    },
+    "unique_by_severity": {
+      "critical": 1,
+      "high": 5,
+      "medium": 10,
+      "low": 7,
+      "info": 3
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c57d190fe15ca51497ad",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3dd307b106584353ac19",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-311bfc700171c8f9c9bd",
+      "category": "PII",
+      "severity": "critical",
+      "check_name": "hardcoded_secrets",
+      "message": "Hardcoded secret/credential in code: [REDACTED]",
+      "suggestion": "Use environment variable or secrets manager instead of hardcoded value",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "[REDACTED]",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/values-design.md",
+            "line": 218
+          }
+        ]
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6339b8d6425cc745d662",
+          "validator": "PII Scan",
+          "file_path": "references/values-design.md",
+          "line_number": 218
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-69b099478a940d85661c",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6de62f593ea8e4afd3e1",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3e21559e8e7a16e32a4b",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Privileged Kubernetes Workload (TM4)",
+      "message": "Tool Misuse: privileged: true",
+      "suggestion": "Code deploys a privileged Kubernetes workload (privileged container, hostPath mount, or host namespaces). This grants root on the node and is a node/cluster takeover vector. Remove privileged, hostPath, and host-namespace settings from workloads. Use a least-privilege securityContext, drop capabilities, and avoid mounting the host filesystem.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-726c59f229aed0d16847",
+          "validator": "Security Scan",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 91
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-421ff6b593933d8813c5",
+      "category": "SCRIPT_LINT",
+      "severity": "medium",
+      "check_name": "deep_nesting",
+      "message": "chart_analyzer.py has deeply nested code (depth 10, max 6)",
+      "suggestion": "Refactor into smaller functions to reduce complexity",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f69a27ec887104a15720",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/chart_analyzer.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7aa900c4e308b96f9348",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4ba3ebe0b03b1e0d143f",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "chart_analyzer.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f1c4d6b42c8c11d16830",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/chart_analyzer.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-67274a14f138207cf638",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 215 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-670d8d8c404254f280bb",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6a930c598a3925c99c60",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Incomplete referenced artifact analysis (AE1)",
+      "message": "analysis-evasion: scripts/chart_analyzer.py (partial)",
+      "suggestion": "Referenced artifact scripts/chart_analyzer.py was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+      "metadata": {
+        "skillspector_confidence": 1.0,
+        "skillspector_evidence": {
+          "target_path": "scripts/chart_analyzer.py",
+          "target_disposition": "partial",
+          "reasons": [
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_agent_snooping"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_anti_refusal"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_deserialization"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_excessive_agency"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_harmful_content"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_memory_poisoning"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_privilege_escalation"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_prompt_injection"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_rogue_agent"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_ssrf"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_supply_chain"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_system_prompt_leakage"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_tool_misuse"
+              ]
+            }
+          ]
+        },
+        "skillspector_occurrences": [
+          {
+            "file": "SKILL.md",
+            "start_line": 111
+          }
+        ],
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-93f967e883c0468ac3d4",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 111
+        },
+        {
+          "occurrence_id": "SEO-94a50c694aec86d8f483",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 209
+        },
+        {
+          "occurrence_id": "SEO-236c59934b306f3f2607",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 224
+        },
+        {
+          "occurrence_id": "SEO-56d5a5772ef95b13671f",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 227
+        },
+        {
+          "occurrence_id": "SEO-29e7477acbff12176efc",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 230
+        }
+      ],
+      "occurrence_count": 5
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-35805c2362d78b0a067c",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2e40429e6f514d85a3e2",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1f35705bf1c87de1677b",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b9b0ae31f6c695d22033",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Credential Access (PE3)",
+      "message": "Privilege Escalation: secrets.yaml",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-fa724fc0f1ef721d8c49",
+          "validator": "Security Scan",
+          "file_path": "references/values-design.md",
+          "line_number": 315
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-c242bc9b4ae21c3104e4",
+      "category": "SCRIPT_LINT",
+      "severity": "medium",
+      "check_name": "deep_nesting",
+      "message": "values_validator.py has deeply nested code (depth 10, max 6)",
+      "suggestion": "Refactor into smaller functions to reduce complexity",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-34baf22aea687cba0f64",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/values_validator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-c2a5bf061a1f5d8f2b56",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Sudo/Root Execution (PE2)",
+      "message": "Privilege Escalation: run as root",
+      "suggestion": "Commands invoke sudo or root privileges. Verify this elevated access is necessary and justified. Avoid sudo/root unless strictly required. Prefer least-privilege patterns. If elevation is needed, document the justification and scope.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7dc4ac4a5cdd526d10cb",
+          "validator": "Security Scan",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 83
+        },
+        {
+          "occurrence_id": "SEO-b53af55a067027294389",
+          "validator": "Security Scan",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 97
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-c2bc434f365de26cadf1",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Session Persistence (RA2)",
+      "message": "Rogue Agent: Create one. Every chart needs standard labels and fullname helpers.\n- **Hardcoded image tag in template** \u2192 Extract to values.yaml. Tags must be overridable.\n- **No resource requests/limits** \u2192 Add th",
+      "suggestion": "Skill establishes unauthorized persistence across sessions via cron jobs, startup scripts, or state files. Session persistence allows an attacker to maintain access beyond the current interaction. Remove any persistence mechanisms (cron jobs, startup scripts, state files). Skills should not maintain state across sessions without explicit user consent.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-8574aba792ba29859cd8",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 413
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-ccf273303ecea9b4d391",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Privileged Kubernetes Workload (TM4)",
+      "message": "Tool Misuse: hostNetwork: true",
+      "suggestion": "Code deploys a privileged Kubernetes workload (privileged container, hostPath mount, or host namespaces). This grants root on the node and is a node/cluster takeover vector. Remove privileged, hostPath, and host-namespace settings from workloads. Use a least-privilege securityContext, drop capabilities, and avoid mounting the host filesystem.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f4b8eb386bded07d6c8c",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 189
+        },
+        {
+          "occurrence_id": "SEO-384e6815979c34a5719f",
+          "validator": "Security Scan",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 125
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-304db01f5c343b95b2fc",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e323b5a8813439b24c96",
+      "category": "SCHEMA",
+      "severity": "info",
+      "check_name": "author_without_email",
+      "message": "Author has no email address: Alireza Rezvani",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+      "metadata": {
+        "current_author": "Alireza Rezvani",
+        "profile": "default",
+        "shape_ok": false,
+        "domain_ok": false
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f7cce905cce3e574f4f1",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-cf3a371f96114f14abb4",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-eed01c543d016e3a0c2c",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Credential Access (PE3)",
+      "message": "Privilege Escalation: secret.yaml",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0717a7b1a34983ccf221",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 78
+        },
+        {
+          "occurrence_id": "SEO-5f7a4b4d20971b4f3215",
+          "validator": "Security Scan",
+          "file_path": "references/chart-patterns.md",
+          "line_number": 40
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7dc4c14180eeab21e90b",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fe30da1dc6dacd7a901f",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "values_validator.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-edbc6c91c300c6d3d6ee",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/values_validator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 5,
+    "independent_errors": 1,
+    "independent_warnings": 1
+  },
+  "skills": [
+    {
+      "name": "helm-chart-builder",
+      "passed": false,
+      "issue_count": 33
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "helm-chart-builder",
+          "passed": false,
+          "issue_count": 33
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 33
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Hardcoded secret/credential in code: [REDACTED]",
+      "severity": "critical",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "PII",
+      "suggestion": "Use environment variable or secrets manager instead of hardcoded value"
+    },
+    {
+      "message": "Privilege Escalation",
+      "severity": "high",
+      "total_count": 5,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths."
+    },
+    {
+      "message": "analysis-evasion",
+      "severity": "high",
+      "total_count": 5,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Referenced artifact scripts/chart_analyzer.py was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion."
+    },
+    {
+      "message": "Tool Misuse",
+      "severity": "high",
+      "total_count": 3,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Code deploys a privileged Kubernetes workload (privileged container, hostPath mount, or host namespaces). This grants root on the node and is a node/cluster takeover vector. Remove privileged, hostPath, and host-namespace settings from workloads. Use a least-privilege securityContext, drop capabilities, and avoid mounting the host filesystem."
+    },
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "Rogue Agent",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill establishes unauthorized persistence across sessions via cron jobs, startup scripts, or state files. Session persistence allows an attacker to maintain access beyond the current interaction. Remove any persistence mechanisms (cron jobs, startup scripts, state files). Skills should not maintain state across sessions without explicit user consent."
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "chart_analyzer.py has deeply nested code (depth 10, max 6)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Refactor into smaller functions to reduce complexity"
+    },
+    {
+      "message": "values_validator.py has deeply nested code (depth 10, max 6)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Refactor into smaller functions to reduce complexity"
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 215 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "chart_analyzer.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "values_validator.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "Author has no email address: Alireza Rezvani",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'"
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "helm-chart-builder"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-3dd307b106584353ac19",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-cf3a371f96114f14abb4",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-e323b5a8813439b24c96",
+          "occurrence_id": "SEO-f7cce905cce3e574f4f1",
+          "category": "SCHEMA",
+          "severity": "info",
+          "check_name": "author_without_email",
+          "message": "Author has no email address: Alireza Rezvani",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": "author: Alireza Rezvani",
+          "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+          "metadata": {
+            "current_author": "Alireza Rezvani",
+            "profile": "default",
+            "shape_ok": false,
+            "domain_ok": false
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'helm-chart-builder'",
+          "metadata": {
+            "description_length": 215
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/helm-chart-builder/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'helm-chart-builder' follows kebab-case convention",
+          "metadata": {
+            "name_length": 18
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (456/500)",
+          "metadata": {
+            "line_count": 456,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: references, scripts",
+          "metadata": {
+            "files_found": [
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'helm-chart-builder'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[SCHEMA-INFO] Author has no email address: Alireza Rezvani in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'helm-chart-builder'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/helm-chart-builder/",
+          "[OK] naming_convention: Folder name 'helm-chart-builder' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (456/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'helm-chart-builder'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_semver",
+          "message": "Valid semantic version: 1.0.0",
+          "metadata": {
+            "version": "1.0.0",
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_semver: Valid semantic version: 1.0.0"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [
+        "skillspector"
+      ],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 12,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 11,
+        "medium_count": 4,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 15,
+        "distinct_occurrences": 15,
+        "unique_findings": 8,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 7,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 11,
+          "medium": 4,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 5,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-eed01c543d016e3a0c2c",
+          "occurrence_id": "SEO-0717a7b1a34983ccf221",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: secret.yaml",
+          "file_path": "SKILL.md",
+          "line_number": 78,
+          "line_content": "   \u2502   \u251c\u2500\u2500 pdb.yaml            # PodDisruptionBudget\n   \u2502   \u251c\u2500\u2500 networkpolicy.yaml  # NetworkPolicy\n   \u2502   \u251c\u2500\u2500 configmap.yaml      # ConfigMap (if needed)\n   \u2502   \u251c\u2500\u2500 secret.yaml         # Secret (if n",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-eed01c543d016e3a0c2c",
+          "occurrence_id": "SEO-5f7a4b4d20971b4f3215",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: secret.yaml",
+          "file_path": "references/chart-patterns.md",
+          "line_number": 40,
+          "line_content": "\u2502   \u251c\u2500\u2500 pdb.yaml\n\u2502   \u251c\u2500\u2500 networkpolicy.yaml\n\u2502   \u251c\u2500\u2500 configmap.yaml\n\u2502   \u251c\u2500\u2500 secret.yaml\n\u2502   \u251c\u2500\u2500 NOTES.txt\n\u2502   \u2514\u2500\u2500 tests/\n\u2502       \u2514\u2500\u2500 test-connection.yaml",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-6a930c598a3925c99c60",
+          "occurrence_id": "SEO-93f967e883c0468ac3d4",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: scripts/chart_analyzer.py (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 111,
+          "line_content": "python3 scripts/chart_analyzer.py mychart/",
+          "suggestion": "Referenced artifact scripts/chart_analyzer.py was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "scripts/chart_analyzer.py",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_agent_snooping"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_anti_refusal"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_deserialization"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_excessive_agency"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_harmful_content"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_memory_poisoning"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_privilege_escalation"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_prompt_injection"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_rogue_agent"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_ssrf"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_supply_chain"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_system_prompt_leakage"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 111
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-6a930c598a3925c99c60",
+          "occurrence_id": "SEO-94a50c694aec86d8f483",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: scripts/chart_analyzer.py (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 209,
+          "line_content": "### `scripts/chart_analyzer.py`",
+          "suggestion": "Referenced artifact scripts/chart_analyzer.py was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "scripts/chart_analyzer.py",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_agent_snooping"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_anti_refusal"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_deserialization"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_excessive_agency"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_harmful_content"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_memory_poisoning"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_privilege_escalation"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_prompt_injection"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_rogue_agent"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_ssrf"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_supply_chain"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_system_prompt_leakage"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 209
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-6a930c598a3925c99c60",
+          "occurrence_id": "SEO-236c59934b306f3f2607",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: scripts/chart_analyzer.py (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 224,
+          "line_content": "python3 scripts/chart_analyzer.py mychart/",
+          "suggestion": "Referenced artifact scripts/chart_analyzer.py was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "scripts/chart_analyzer.py",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_agent_snooping"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_anti_refusal"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_deserialization"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_excessive_agency"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_harmful_content"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_memory_poisoning"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_privilege_escalation"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_prompt_injection"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_rogue_agent"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_ssrf"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_supply_chain"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_system_prompt_leakage"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 224
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-6a930c598a3925c99c60",
+          "occurrence_id": "SEO-56d5a5772ef95b13671f",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: scripts/chart_analyzer.py (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 227,
+          "line_content": "python3 scripts/chart_analyzer.py mychart/ --output json",
+          "suggestion": "Referenced artifact scripts/chart_analyzer.py was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "scripts/chart_analyzer.py",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_agent_snooping"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_anti_refusal"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_deserialization"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_excessive_agency"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_harmful_content"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_memory_poisoning"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_privilege_escalation"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_prompt_injection"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_rogue_agent"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_ssrf"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_supply_chain"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_system_prompt_leakage"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 227
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-6a930c598a3925c99c60",
+          "occurrence_id": "SEO-29e7477acbff12176efc",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: scripts/chart_analyzer.py (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 230,
+          "line_content": "python3 scripts/chart_analyzer.py mychart/ --security",
+          "suggestion": "Referenced artifact scripts/chart_analyzer.py was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "scripts/chart_analyzer.py",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_agent_snooping"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_anti_refusal"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_deserialization"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_excessive_agency"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_harmful_content"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_memory_poisoning"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_privilege_escalation"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_prompt_injection"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_rogue_agent"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_ssrf"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_supply_chain"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_system_prompt_leakage"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 230
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-ccf273303ecea9b4d391",
+          "occurrence_id": "SEO-f4b8eb386bded07d6c8c",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Privileged Kubernetes Workload (TM4)",
+          "message": "Tool Misuse: hostNetwork: true",
+          "file_path": "SKILL.md",
+          "line_number": 189,
+          "line_content": "   | No NetworkPolicy | Medium | Add default-deny ingress + explicit allow rules |\n   | Secrets in values.yaml | Critical | Use external secrets operator or sealed-secrets |\n   | No PodDisruptionBudge",
+          "suggestion": "Code deploys a privileged Kubernetes workload (privileged container, hostPath mount, or host namespaces). This grants root on the node and is a node/cluster takeover vector. Remove privileged, hostPath, and host-namespace settings from workloads. Use a least-privilege securityContext, drop capabilities, and avoid mounting the host filesystem.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-ccf273303ecea9b4d391",
+          "occurrence_id": "SEO-384e6815979c34a5719f",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Privileged Kubernetes Workload (TM4)",
+          "message": "Tool Misuse: hostNetwork: true",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 125,
+          "line_content": "        \"id\": \"SC007\",\n        \"severity\": \"high\",\n        \"check\": \"host_network\",\n        \"message\": \"hostNetwork: true \u2014 pod shares host network namespace\",\n        \"fix\": \"Remove hostNetwork unles",
+          "suggestion": "Code deploys a privileged Kubernetes workload (privileged container, hostPath mount, or host namespaces). This grants root on the node and is a node/cluster takeover vector. Remove privileged, hostPath, and host-namespace settings from workloads. Use a least-privilege securityContext, drop capabilities, and avoid mounting the host filesystem.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b9b0ae31f6c695d22033",
+          "occurrence_id": "SEO-fa724fc0f1ef721d8c49",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: secrets.yaml",
+          "file_path": "references/values-design.md",
+          "line_number": 315,
+          "line_content": "helm install myapp . --set replicaCount=3 --set image.tag=v2.1.0\n\n# Multiple value files (last wins)\nhelm install myapp . -f values-base.yaml -f values-production.yaml -f values-secrets.yaml\n```\n\n### ",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-3e21559e8e7a16e32a4b",
+          "occurrence_id": "SEO-726c59f229aed0d16847",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Privileged Kubernetes Workload (TM4)",
+          "message": "Tool Misuse: privileged: true",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 91,
+          "line_content": "        \"severity\": \"critical\",\n        \"check\": \"privileged_container\",\n        \"message\": \"Privileged container detected \u2014 full host access\",\n        \"fix\": \"Remove privileged: true. Use specific ca",
+          "suggestion": "Code deploys a privileged Kubernetes workload (privileged container, hostPath mount, or host namespaces). This grants root on the node and is a node/cluster takeover vector. Remove privileged, hostPath, and host-namespace settings from workloads. Use a least-privilege securityContext, drop capabilities, and avoid mounting the host filesystem.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-c2bc434f365de26cadf1",
+          "occurrence_id": "SEO-8574aba792ba29859cd8",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Session Persistence (RA2)",
+          "message": "Rogue Agent: Create one. Every chart needs standard labels and fullname helpers.\n- **Hardcoded image tag in template** \u2192 Extract to values.yaml. Tags must be overridable.\n- **No resource requests/limits** \u2192 Add th",
+          "file_path": "SKILL.md",
+          "line_number": 413,
+          "line_content": "\nFlag these without being asked:\n\n- **No _helpers.tpl** \u2192 Create one. Every chart needs standard labels and fullname helpers.\n- **Hardcoded image tag in template** \u2192 Extract to values.yaml. Tags must ",
+          "suggestion": "Skill establishes unauthorized persistence across sessions via cron jobs, startup scripts, or state files. Session persistence allows an attacker to maintain access beyond the current interaction. Remove any persistence mechanisms (cron jobs, startup scripts, state files). Skills should not maintain state across sessions without explicit user consent.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-c2a5bf061a1f5d8f2b56",
+          "occurrence_id": "SEO-7dc4ac4a5cdd526d10cb",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Sudo/Root Execution (PE2)",
+          "message": "Privilege Escalation: run as root",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 83,
+          "line_content": "        \"id\": \"SC001\",\n        \"severity\": \"critical\",\n        \"check\": \"no_security_context\",\n        \"message\": \"No securityContext found in any template \u2014 pods run as root with full capabilities\",\n",
+          "suggestion": "Commands invoke sudo or root privileges. Verify this elevated access is necessary and justified. Avoid sudo/root unless strictly required. Prefer least-privilege patterns. If elevation is needed, document the justification and scope.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-c2a5bf061a1f5d8f2b56",
+          "occurrence_id": "SEO-b53af55a067027294389",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Sudo/Root Execution (PE2)",
+          "message": "Privilege Escalation: run as root",
+          "file_path": "scripts/chart_analyzer.py",
+          "line_number": 97,
+          "line_content": "        \"id\": \"SC003\",\n        \"severity\": \"high\",\n        \"check\": \"no_run_as_non_root\",\n        \"message\": \"No runAsNonRoot: true \u2014 container may run as root\",\n        \"fix\": \"Add runAsNonRoot: true",
+          "suggestion": "Commands invoke sudo or root privileges. Verify this elevated access is necessary and justified. Avoid sudo/root unless strictly required. Prefer least-privilege patterns. If elevation is needed, document the justification and scope.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "skillspector JSON field 'analysis_completeness' reports incomplete analysis (status 'partial'): SKILL.md:142 [reference_resolution; reference_missing]; SKILL.md:268 [reference_resolution; reference_missing]; SKILL.md:269 [reference_resolution; reference_missing]; and 7 more (incomplete files by reason: reference_missing 1, obfuscated_instruction_text 1); security scan did not complete",
+          "[SECURITY-HIGH] Privilege Escalation: secret.yaml in SKILL.md:78",
+          "[SECURITY-HIGH] Privilege Escalation: secret.yaml in references/chart-patterns.md:40",
+          "[SECURITY-HIGH] analysis-evasion: scripts/chart_analyzer.py (partial) in SKILL.md:111",
+          "[SECURITY-HIGH] analysis-evasion: scripts/chart_analyzer.py (partial) in SKILL.md:209",
+          "[SECURITY-HIGH] analysis-evasion: scripts/chart_analyzer.py (partial) in SKILL.md:224",
+          "[SECURITY-HIGH] analysis-evasion: scripts/chart_analyzer.py (partial) in SKILL.md:227",
+          "[SECURITY-HIGH] analysis-evasion: scripts/chart_analyzer.py (partial) in SKILL.md:230",
+          "[SECURITY-HIGH] Tool Misuse: hostNetwork: true in SKILL.md:189",
+          "[SECURITY-HIGH] Tool Misuse: hostNetwork: true in scripts/chart_analyzer.py:125",
+          "[SECURITY-HIGH] Privilege Escalation: secrets.yaml in references/values-design.md:315",
+          "[SECURITY-HIGH] Tool Misuse: privileged: true in scripts/chart_analyzer.py:91"
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1",
+          "[SECURITY-MEDIUM] Rogue Agent: Create one. Every chart needs standard labels and fullname helpers.\n- **Hardcoded image tag in template** \u2192 Extract to values.yaml. Tags must be overridable.\n- **No resource requests/limits** \u2192 Add th in SKILL.md:413",
+          "[SECURITY-MEDIUM] Privilege Escalation: run as root in scripts/chart_analyzer.py:83",
+          "[SECURITY-MEDIUM] Privilege Escalation: run as root in scripts/chart_analyzer.py:97"
+        ],
+        "messages": [
+          "skillspector risk score: 100/100 (CRITICAL)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_completeness": {
+        "records": [
+          {
+            "stage": "skillspector",
+            "reported_status": "partial",
+            "ledger_exceptions": [
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 142,
+                "end_line": 142
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 268,
+                "end_line": 268
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 269,
+                "end_line": 269
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 270,
+                "end_line": 270
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 280,
+                "end_line": 280
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 292,
+                "end_line": 292
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 294,
+                "end_line": 294
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 320,
+                "end_line": 320
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 434,
+                "end_line": 434
+              },
+              {
+                "path": "scripts/chart_analyzer.py",
+                "phase": "static",
+                "reason_code": "obfuscated_instruction_text",
+                "analyzers": [
+                  "static_patterns_agent_snooping",
+                  "static_patterns_anti_refusal",
+                  "static_patterns_deserialization",
+                  "static_patterns_excessive_agency",
+                  "static_patterns_harmful_content",
+                  "static_patterns_memory_poisoning",
+                  "static_patterns_privilege_escalation",
+                  "static_patterns_prompt_injection"
+                ],
+                "omitted_analyzers": 5
+              }
+            ],
+            "limitations": [
+              "Analyzer static_patterns_agent_snooping status: degraded.",
+              "Analyzer static_patterns_anti_refusal status: degraded.",
+              "Analyzer static_patterns_deserialization status: degraded.",
+              "Analyzer static_patterns_excessive_agency status: degraded.",
+              "Analyzer static_patterns_harmful_content status: degraded.",
+              "Analyzer static_patterns_memory_poisoning status: degraded.",
+              "Analyzer static_patterns_privilege_escalation status: degraded.",
+              "Analyzer static_patterns_prompt_injection status: degraded."
+            ],
+            "omitted_exceptions": 0,
+            "omitted_limitations": 5
+          }
+        ],
+        "omitted_records": 0
+      },
+      "gate_failures": [
+        "skillspector JSON field 'analysis_completeness' reports incomplete analysis (status 'partial'): SKILL.md:142 [reference_resolution; reference_missing]; SKILL.md:268 [reference_resolution; reference_missing]; SKILL.md:269 [reference_resolution; reference_missing]; and 7 more (incomplete files by reason: reference_missing 1, obfuscated_instruction_text 1); security scan did not complete"
+      ],
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 15,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 100,
+        "applicable_risk_score": 100
+      },
+      "skillspector_reference_summary": {
+        "affected_artifacts": 1,
+        "reference_occurrences": 5,
+        "reference_occurrences_truncated": false
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 5,
+        "checks_performed": 1,
+        "errors": 1,
+        "warnings": 0,
+        "critical_count": 1,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 1,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 1,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-311bfc700171c8f9c9bd",
+          "occurrence_id": "SEO-6339b8d6425cc745d662",
+          "category": "PII",
+          "severity": "critical",
+          "check_name": "hardcoded_secrets",
+          "message": "Hardcoded secret/credential in code: [REDACTED]",
+          "file_path": "references/values-design.md",
+          "line_number": 218,
+          "line_content": null,
+          "suggestion": "Use environment variable or secrets manager instead of hardcoded value",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "[REDACTED]",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/values-design.md",
+                "line": 218
+              }
+            ]
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 5 files for PII",
+          "metadata": {
+            "file_count": 5
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [
+          "[PII-CRITICAL] Hardcoded secret/credential in code: [REDACTED] in references/values-design.md:218"
+        ],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 5 files for PII"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (allowed)",
+          "metadata": {
+            "license_status": "allowed"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Tier 1: Found license declaration in frontmatter (SKILL.md)",
+          "License: MIT (ALLOWED - permissive)",
+          "[OK] license_compliance: License compliance scan completed (allowed)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 2 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 3,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 3 markdown files for dead links",
+          "metadata": {
+            "file_count": 3
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 3 markdown file(s)",
+          "metadata": {
+            "files_checked": 3
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 3 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 3 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 5,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "unicode_scan",
+          "message": "No invisible Unicode characters detected in 5 file(s)",
+          "metadata": {
+            "files_scanned": 5
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] unicode_scan: No invisible Unicode characters detected in 5 file(s)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 8,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 3,
+        "low_count": 5
+      },
+      "finding_counts": {
+        "raw_occurrences": 8,
+        "distinct_occurrences": 8,
+        "unique_findings": 8,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-2e40429e6f514d85a3e2",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-35805c2362d78b0a067c",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-304db01f5c343b95b2fc",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-67274a14f138207cf638",
+          "occurrence_id": "SEO-670d8d8c404254f280bb",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 215 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-1f35705bf1c87de1677b",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-7aa900c4e308b96f9348",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-7dc4c14180eeab21e90b",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-6de62f593ea8e4afd3e1",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 85.0/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 85.0,
+            "grade": "B",
+            "skill_type": "script-based"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 215 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 85.0/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 85.0,
+        "grade": "B",
+        "skill_type": "script-based",
+        "skill_name": "helm-chart-builder",
+        "dimensions": {
+          "correctness": {
+            "score": 75.0,
+            "weight": 0.35,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 215 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 85.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 3788,
+          "estimated_tokens": 3788,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 92,
+          "instructions_tokens": 3694,
+          "script_count": 2,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 2
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 2,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 2,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-421ff6b593933d8813c5",
+          "occurrence_id": "SEO-f69a27ec887104a15720",
+          "category": "SCRIPT_LINT",
+          "severity": "medium",
+          "check_name": "deep_nesting",
+          "message": "chart_analyzer.py has deeply nested code (depth 10, max 6)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/chart_analyzer.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Refactor into smaller functions to reduce complexity",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-4ba3ebe0b03b1e0d143f",
+          "occurrence_id": "SEO-f1c4d6b42c8c11d16830",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "chart_analyzer.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/chart_analyzer.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-c242bc9b4ae21c3104e4",
+          "occurrence_id": "SEO-34baf22aea687cba0f64",
+          "category": "SCRIPT_LINT",
+          "severity": "medium",
+          "check_name": "deep_nesting",
+          "message": "values_validator.py has deeply nested code (depth 10, max 6)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/values_validator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Refactor into smaller functions to reduce complexity",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-fe30da1dc6dacd7a901f",
+          "occurrence_id": "SEO-edbc6c91c300c6d3d6ee",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "values_validator.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/values_validator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-MEDIUM] chart_analyzer.py has deeply nested code (depth 10, max 6) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/chart_analyzer.py",
+          "[SCRIPT_LINT-LOW] chart_analyzer.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/chart_analyzer.py",
+          "[SCRIPT_LINT-MEDIUM] values_validator.py has deeply nested code (depth 10, max 6) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/values_validator.py",
+          "[SCRIPT_LINT-LOW] values_validator.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/scripts/values_validator.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 2,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 2,
+        "distinct_occurrences": 2,
+        "unique_findings": 2,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 2
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 2
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-69b099478a940d85661c",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-c57d190fe15ca51497ad",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "helm-chart-builder",
+        "skill_digest": "sha256:63f95eccf83e862f5f33beb58b67e1638451c18dfd8d5c2b96f98d853415956c",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "One or more validators reported incomplete scanner evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 85.0,
+      "grade": "B",
+      "skill_type": "script-based",
+      "skill_name": "helm-chart-builder",
+      "dimensions": {
+        "correctness": {
+          "score": 75.0,
+          "weight": 0.35,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 215 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 85.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 3788,
+        "estimated_tokens": 3788,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 92,
+        "instructions_tokens": 3694,
+        "script_count": 2,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:27:59.844350+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills/helm-chart-builder": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for any Helm chart to create, review or harden (values.yaml, templates, subcharts, RBAC, pod security), before editing it. Analyzes the chart with chart_analyzer.py and validates values with values_validator.py."
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "loads",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 215,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for any Helm chart to create, review or harden (values.yaml, templates, subcharts, RBAC, pod security), before editing it. Analyzes the chart with chart_analyzer.py and validates values with values_validator.py."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 215,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for any Helm chart to create, review or harden (values.yaml, templates, subcharts, RBAC, pod security), before editing it. Analyzes the chart with chart_analyzer.py and validates values with values_validator.py."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 215,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use for any Helm chart to create, review or harden (values.y",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 215,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for any Helm chart to create, review or harden (values.yaml, templates, subcharts, RBAC, pod security), before editing it. Analyzes the chart with chart_analyzer.py and validates values with values_validator.py."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 215,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use for any Helm chart to create, review or harden (values.yaml, templates, subcharts, RBAC, pod security), before editing it. Analyzes the chart with chart_analyzer.py and validates values with values_validator.py."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 215,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/helm-chart-builder/skills"
+        }
+      }
+    ]
+  }
+}

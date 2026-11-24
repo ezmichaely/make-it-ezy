@@ -1,0 +1,3582 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/business-operations/skills/knowledge-ops",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [
+    "skillspector"
+  ],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 10,
+  "total_warnings": 24,
+  "severity_counts": {
+    "critical": 0,
+    "high": 9,
+    "medium": 6,
+    "low": 9
+  },
+  "finding_counts": {
+    "raw_occurrences": 32,
+    "distinct_occurrences": 44,
+    "unique_findings": 32,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 12,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 9,
+      "medium": 6,
+      "low": 9,
+      "info": 8
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 9,
+      "medium": 6,
+      "low": 9,
+      "info": 8
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-009b8f4082c8d905f4ae",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OW-CLAUDE-ONLY",
+      "message": "openclaw: Ignored here (Claude Code only): context.",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+      "metadata": {
+        "harness": "openclaw",
+        "effect": "advisory",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f4a1accf614d8d35ea71",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9e4c2cb3b5074719d497",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-15a706749cdd66b6b40d",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "runbook_validator.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2bca0d146e4c74e082cb",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/runbook_validator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6364dd1f2b2434452a23",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2c062a93bd9699624823",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: comms-lead@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 338; assets/runbook_template.md line 68)",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "comms-lead@company.com",
+        "occurrence_count": 2,
+        "occurrences": [
+          {
+            "file": "scripts/runbook_validator.py",
+            "line": 338
+          },
+          {
+            "file": "assets/runbook_template.md",
+            "line": 68
+          }
+        ],
+        "evidence_sha256": "3909c6e89df4aace46877669e8fe34e407a7ca898fb3ef82048abb4ddba0e88e"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-45d9db1019afb3f277e8",
+          "validator": "PII Scan",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 68
+        },
+        {
+          "occurrence_id": "SEO-60938a71ec5d2bcd0985",
+          "validator": "PII Scan",
+          "file_path": "scripts/runbook_validator.py",
+          "line_number": 338
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-2d98d34381d12c20d522",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: alex@company.com \u2014 7 occurrences (SKILL.md line 73; scripts/sop_generator.py lines 29, 126; scripts/kb_ingester.py lines 422, 431; +1 more file(s))",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "alex@company.com",
+        "occurrence_count": 7,
+        "occurrences": [
+          {
+            "file": "SKILL.md",
+            "line": 73
+          },
+          {
+            "file": "scripts/sop_generator.py",
+            "line": 29
+          },
+          {
+            "file": "scripts/sop_generator.py",
+            "line": 126
+          },
+          {
+            "file": "scripts/kb_ingester.py",
+            "line": 422
+          },
+          {
+            "file": "scripts/kb_ingester.py",
+            "line": 431
+          },
+          {
+            "file": "assets/sop_template.md",
+            "line": 17
+          },
+          {
+            "file": "assets/sop_template.md",
+            "line": 68
+          }
+        ],
+        "evidence_sha256": "75d51078ef0b0177a6b22ae947990c8d51690c46e08b74b1adc9d3bc217ad2c9"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f52a53c9eacafb201dc4",
+          "validator": "PII Scan",
+          "file_path": "SKILL.md",
+          "line_number": 73
+        },
+        {
+          "occurrence_id": "SEO-18ff4bef2a5acf6e42d0",
+          "validator": "PII Scan",
+          "file_path": "assets/sop_template.md",
+          "line_number": 17
+        },
+        {
+          "occurrence_id": "SEO-65631a5f55aeaf7a33f9",
+          "validator": "PII Scan",
+          "file_path": "assets/sop_template.md",
+          "line_number": 68
+        },
+        {
+          "occurrence_id": "SEO-5f62c59e6b10e48f5ba2",
+          "validator": "PII Scan",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 422
+        },
+        {
+          "occurrence_id": "SEO-fa23e2eb467ed911807e",
+          "validator": "PII Scan",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 431
+        },
+        {
+          "occurrence_id": "SEO-3c606c51f49bf5727fd3",
+          "validator": "PII Scan",
+          "file_path": "scripts/sop_generator.py",
+          "line_number": 29
+        },
+        {
+          "occurrence_id": "SEO-9a8e6645d210d72a1fa9",
+          "validator": "PII Scan",
+          "file_path": "scripts/sop_generator.py",
+          "line_number": 126
+        }
+      ],
+      "occurrence_count": 7
+    },
+    {
+      "finding_id": "SEF-3334c8af2b75975250ab",
+      "category": "SCHEMA",
+      "severity": "low",
+      "check_name": "unknown_field",
+      "message": "Frontmatter field(s) outside the agentskills.io spec: context; agent harnesses do not pass them to the model",
+      "suggestion": "Remove them or move them under 'metadata'",
+      "metadata": {
+        "fields": [
+          "context"
+        ]
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-cdf24c30148b01f5652f",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-5be216ef978f11b02894",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-42282cf7526338483bb0",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-48b20c5298e29d34bbe4",
+      "category": "SCHEMA",
+      "severity": "info",
+      "check_name": "author_without_email",
+      "message": "Author has no email address: claude-code-skills",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+      "metadata": {
+        "current_author": "claude-code-skills",
+        "profile": "default",
+        "shape_ok": false,
+        "domain_ok": false
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6d9afcb365defd828f8d",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-17dcf27ea921ca87d1b0",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4dd87c9e5d4e21c8e2fe",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "sop_generator.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-554f873238c082c4e77f",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/sop_generator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-53be0eb93eb494eb0bb5",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: comms-lead@co.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "comms-lead@co.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "assets/runbook_template.md",
+            "line": 36
+          }
+        ],
+        "evidence_sha256": "ffa83712955628baa59186dc65dfdae6a4d8af5efd89ffff4a5830e248c41440"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-487e745da842d916cb42",
+          "validator": "PII Scan",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 36
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-571fb3182e3c3d814da0",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: vp-comms@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 347; assets/runbook_template.md line 74)",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "vp-comms@company.com",
+        "occurrence_count": 2,
+        "occurrences": [
+          {
+            "file": "scripts/runbook_validator.py",
+            "line": 347
+          },
+          {
+            "file": "assets/runbook_template.md",
+            "line": 74
+          }
+        ],
+        "evidence_sha256": "8c798887e68f9c0be92819a257d29175fa6ed6433fdcf27adf91912d99a0a56a"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e7451f2d6d818e9b6b88",
+          "validator": "PII Scan",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 74
+        },
+        {
+          "occurrence_id": "SEO-4d5206ccae67ebdb4bb3",
+          "validator": "PII Scan",
+          "file_path": "scripts/runbook_validator.py",
+          "line_number": 347
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1b52669da6f98289c3e6",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-a627a1a4135fa5c71d83",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-84579795bbb110241864",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: pat@company.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "pat@company.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "scripts/kb_ingester.py",
+            "line": 466
+          }
+        ],
+        "evidence_sha256": "8836819f744c544cc8ca2912e4639427009e0668dbb969748e647392655ce98e"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-feaf551d80e5e9afb4bb",
+          "validator": "PII Scan",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 466
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8cc7ec0184ee170920ae",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CX-CLAUDE-ONLY",
+      "message": "codex: Ignored here (Claude Code only): context.",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+      "metadata": {
+        "harness": "codex",
+        "effect": "advisory",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7130645c1a847758ebfd",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-926e9e3db7ad45ee7d48",
+      "category": "SCRIPT_LINT",
+      "severity": "medium",
+      "check_name": "deep_nesting",
+      "message": "runbook_validator.py has deeply nested code (depth 9, max 6)",
+      "suggestion": "Refactor into smaller functions to reduce complexity",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9a18e16cb28aa4f56b70",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/runbook_validator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-96ff4d05d6d0d157db6e",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "kb_ingester.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-84c6e0774db38fc9fe32",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/kb_ingester.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-9c162dddba55fb05ef7e",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: jordan@company.com \u2014 2 occurrences (scripts/kb_ingester.py lines 440, 450)",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "jordan@company.com",
+        "occurrence_count": 2,
+        "occurrences": [
+          {
+            "file": "scripts/kb_ingester.py",
+            "line": 440
+          },
+          {
+            "file": "scripts/kb_ingester.py",
+            "line": 450
+          }
+        ],
+        "evidence_sha256": "37fd48fca4f8cd232724f86b5d5fa8e59190ccb5b7421a9f88b00a512e15fa61"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-65fadedacad9303de33e",
+          "validator": "PII Scan",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 440
+        },
+        {
+          "occurrence_id": "SEO-31ac56d375497303d258",
+          "validator": "PII Scan",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 450
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-9c3a3261195395b12ade",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: em-primary@company.com \u2014 4 occurrences (scripts/runbook_validator.py line 333; assets/runbook_template.md lines 54, 64, 96)",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "em-primary@company.com",
+        "occurrence_count": 4,
+        "occurrences": [
+          {
+            "file": "scripts/runbook_validator.py",
+            "line": 333
+          },
+          {
+            "file": "assets/runbook_template.md",
+            "line": 54
+          },
+          {
+            "file": "assets/runbook_template.md",
+            "line": 64
+          },
+          {
+            "file": "assets/runbook_template.md",
+            "line": 96
+          }
+        ],
+        "evidence_sha256": "61df785cb393f168b300127c8c2a4154e5563ca702a7953487ce2125d5282e58"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ee3a19c3d489ace1754e",
+          "validator": "PII Scan",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 54
+        },
+        {
+          "occurrence_id": "SEO-22a1d8042eda1739b847",
+          "validator": "PII Scan",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 64
+        },
+        {
+          "occurrence_id": "SEO-df5ade6a5746bdf8a546",
+          "validator": "PII Scan",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 96
+        },
+        {
+          "occurrence_id": "SEO-a0fe938a130069a39521",
+          "validator": "PII Scan",
+          "file_path": "scripts/runbook_validator.py",
+          "line_number": 333
+        }
+      ],
+      "occurrence_count": 4
+    },
+    {
+      "finding_id": "SEF-a69c7df30a29939316fb",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: hr@company.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "hr@company.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "scripts/kb_ingester.py",
+            "line": 479
+          }
+        ],
+        "evidence_sha256": "5f4bd015fd289a5e2080ec2fc714d7f1a106111744e31313172b440209e03026"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0746dc17d302737bd7d2",
+          "validator": "PII Scan",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 479
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b2aa1a113021130edad2",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: em-primary@co.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "em-primary@co.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "assets/runbook_template.md",
+            "line": 34
+          }
+        ],
+        "evidence_sha256": "9261565b21a7cc87590a8b487eb96cf613b5a7cd75f4df0dab9b162f2120e7fe"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1b03f98ff4a857e8f1c5",
+          "validator": "PII Scan",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 34
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-bcaaa17e5f456de38165",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 219 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-265a66e4a7cfa0ab7428",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-c40dd7d12eb9c05fce3e",
+      "category": "SECURITY",
+      "severity": "low",
+      "check_name": "Dynamic attribute access via getattr() (AST7)",
+      "message": "Dangerous Code Execution: getattr(self, fld)",
+      "suggestion": "Dynamic getattr() with a non-literal attribute name can access arbitrary object attributes, potentially bypassing access controls. Replace dynamic getattr() with explicit attribute access or a dictionary lookup with an allowlist of permitted attributes.",
+      "metadata": {
+        "skillspector_confidence": 0.5,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e0ab2fefcadf14c85683",
+          "validator": "Security Scan",
+          "file_path": "scripts/sop_generator.py",
+          "line_number": 110
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-caf11c3388539ae1ff4e",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "HM-CLAUDE-ONLY",
+      "message": "hermes: Ignored here (Claude Code only): context.",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+      "metadata": {
+        "harness": "hermes",
+        "effect": "advisory",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ff07a8152f38db57d6ca",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f3060773025907cc3cdc",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-f5d8984ac1609defffa1",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-CLAUDE-ONLY",
+      "message": "copilot-cli: Ignored here (Claude Code only): context.",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-48df058fa0a538b7fb8c",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc55c6170a35a35d4a35",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-CLAUDE-ONLY",
+      "message": "opencode: Ignored here (Claude Code only): context.",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3c57c8ae5be9107c8d5c",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0b495cd5075f009ec2b2",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 4,
+    "independent_errors": 1,
+    "independent_warnings": 1
+  },
+  "skills": [
+    {
+      "name": "knowledge-ops",
+      "passed": false,
+      "issue_count": 32
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "knowledge-ops",
+          "passed": false,
+          "issue_count": 32
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 32
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Non-placeholder email address: alex@company.com \u2014 7 occurrences (SKILL.md line 73; scripts/sop_generator.py lines 29, 126; scripts/kb_ingester.py lines 422, 431; +1 more file(s))",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: em-primary@company.com \u2014 4 occurrences (scripts/runbook_validator.py line 333; assets/runbook_template.md lines 54, 64, 96)",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: comms-lead@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 338; assets/runbook_template.md line 68)",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: vp-comms@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 347; assets/runbook_template.md line 74)",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: jordan@company.com \u2014 2 occurrences (scripts/kb_ingester.py lines 440, 450)",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: pat@company.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: hr@company.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: em-primary@co.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: comms-lead@co.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "runbook_validator.py has deeply nested code (depth 9, max 6)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Refactor into smaller functions to reduce complexity"
+    },
+    {
+      "message": "Frontmatter field(s) outside the agentskills.io spec: context; agent harnesses do not pass them to the model",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Remove them or move them under 'metadata'"
+    },
+    {
+      "message": "Dangerous Code Execution",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Dynamic getattr() with a non-literal attribute name can access arbitrary object attributes, potentially bypassing access controls. Replace dynamic getattr() with explicit attribute access or a dictionary lookup with an allowlist of permitted attributes."
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 219 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "kb_ingester.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "runbook_validator.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "sop_generator.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "Author has no email address: claude-code-skills",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'"
+    },
+    {
+      "message": "codex: Ignored here (Claude Code only): context.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere."
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "copilot-cli: Ignored here (Claude Code only): context.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere."
+    },
+    {
+      "message": "hermes: Ignored here (Claude Code only): context.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere."
+    },
+    {
+      "message": "openclaw: Ignored here (Claude Code only): context.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere."
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: Ignored here (Claude Code only): context.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "knowledge-ops"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere."
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 1,
+          "info": 1
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 1,
+          "info": 1
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-6364dd1f2b2434452a23",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-f3060773025907cc3cdc",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-48b20c5298e29d34bbe4",
+          "occurrence_id": "SEO-6d9afcb365defd828f8d",
+          "category": "SCHEMA",
+          "severity": "info",
+          "check_name": "author_without_email",
+          "message": "Author has no email address: claude-code-skills",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": "author: claude-code-skills",
+          "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+          "metadata": {
+            "current_author": "claude-code-skills",
+            "profile": "default",
+            "shape_ok": false,
+            "domain_ok": false
+          }
+        },
+        {
+          "finding_id": "SEF-3334c8af2b75975250ab",
+          "occurrence_id": "SEO-cdf24c30148b01f5652f",
+          "category": "SCHEMA",
+          "severity": "low",
+          "check_name": "unknown_field",
+          "message": "Frontmatter field(s) outside the agentskills.io spec: context; agent harnesses do not pass them to the model",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Remove them or move them under 'metadata'",
+          "metadata": {
+            "fields": [
+              "context"
+            ]
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'knowledge-ops'",
+          "metadata": {
+            "description_length": 219
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/knowledge-ops/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'knowledge-ops' follows kebab-case convention",
+          "metadata": {
+            "name_length": 13
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (128/500)",
+          "metadata": {
+            "line_count": 128,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: assets, references, scripts",
+          "metadata": {
+            "files_found": [
+              "assets",
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'knowledge-ops'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[SCHEMA-INFO] Author has no email address: claude-code-skills in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[SCHEMA-LOW] Frontmatter field(s) outside the agentskills.io spec: context; agent harnesses do not pass them to the model in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'knowledge-ops'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/knowledge-ops/",
+          "[OK] naming_convention: Folder name 'knowledge-ops' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (128/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: assets, references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'knowledge-ops'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_semver",
+          "message": "Valid semantic version: 2.8.0",
+          "metadata": {
+            "version": "2.8.0",
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_semver: Valid semantic version: 2.8.0"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "incomplete",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [
+        "skillspector"
+      ],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 1,
+        "warnings": 2,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 2,
+        "distinct_occurrences": 2,
+        "unique_findings": 2,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-c40dd7d12eb9c05fce3e",
+          "occurrence_id": "SEO-e0ab2fefcadf14c85683",
+          "category": "SECURITY",
+          "severity": "low",
+          "check_name": "Dynamic attribute access via getattr() (AST7)",
+          "message": "Dangerous Code Execution: getattr(self, fld)",
+          "file_path": "scripts/sop_generator.py",
+          "line_number": 110,
+          "line_content": "        errs = []\n        for fld in (\"sop_name\", \"process_owner\", \"triggering_event\",\n                    \"audience_role\", \"frequency\"):\n            if not getattr(self, fld):\n                errs.ap",
+          "suggestion": "Dynamic getattr() with a non-literal attribute name can access arbitrary object attributes, potentially bypassing access controls. Replace dynamic getattr() with explicit attribute access or a dictionary lookup with an allowlist of permitted attributes.",
+          "metadata": {
+            "skillspector_confidence": 0.5,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "skillspector JSON field 'analysis_completeness' reports caveats that SkillEvaluator does not accept (status 'complete_with_caveats'): SKILL.md:54 [reference_resolution; reference_missing]; security scan did not complete. Missing references require a standalone target with complete, matching reference and scan evidence. See https://docs.nvidia.com/skills/skillevaluator/tier1-validation."
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1",
+          "[SECURITY-LOW] Dangerous Code Execution: getattr(self, fld) in scripts/sop_generator.py:110"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 2,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 10,
+        "applicable_risk_score": 10
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 9,
+        "checks_performed": 1,
+        "errors": 9,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 9,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 9,
+        "distinct_occurrences": 21,
+        "unique_findings": 9,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 12,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 9,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2d98d34381d12c20d522",
+          "occurrence_id": "SEO-f52a53c9eacafb201dc4",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: alex@company.com \u2014 7 occurrences (SKILL.md line 73; scripts/sop_generator.py lines 29, 126; scripts/kb_ingester.py lines 422, 431; +1 more file(s))",
+          "file_path": "SKILL.md",
+          "line_number": 73,
+          "line_content": "3. Owner metadata lives in YAML frontmatter (`owner: alex@company.com`) or in a top-of-page \"Owner:\" line. Tribal-knowledge ownership (the person who last edited the page) is treated as missing.",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "alex@company.com",
+            "occurrence_count": 7,
+            "occurrences": [
+              {
+                "file": "SKILL.md",
+                "line": 73
+              },
+              {
+                "file": "scripts/sop_generator.py",
+                "line": 29
+              },
+              {
+                "file": "scripts/sop_generator.py",
+                "line": 126
+              },
+              {
+                "file": "scripts/kb_ingester.py",
+                "line": 422
+              },
+              {
+                "file": "scripts/kb_ingester.py",
+                "line": 431
+              },
+              {
+                "file": "assets/sop_template.md",
+                "line": 17
+              },
+              {
+                "file": "assets/sop_template.md",
+                "line": 68
+              }
+            ],
+            "evidence_sha256": "75d51078ef0b0177a6b22ae947990c8d51690c46e08b74b1adc9d3bc217ad2c9"
+          }
+        },
+        {
+          "finding_id": "SEF-9c3a3261195395b12ade",
+          "occurrence_id": "SEO-a0fe938a130069a39521",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: em-primary@company.com \u2014 4 occurrences (scripts/runbook_validator.py line 333; assets/runbook_template.md lines 54, 64, 96)",
+          "file_path": "scripts/runbook_validator.py",
+          "line_number": 333,
+          "line_content": "                              \"(em-primary@company.com)\",",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "em-primary@company.com",
+            "occurrence_count": 4,
+            "occurrences": [
+              {
+                "file": "scripts/runbook_validator.py",
+                "line": 333
+              },
+              {
+                "file": "assets/runbook_template.md",
+                "line": 54
+              },
+              {
+                "file": "assets/runbook_template.md",
+                "line": 64
+              },
+              {
+                "file": "assets/runbook_template.md",
+                "line": 96
+              }
+            ],
+            "evidence_sha256": "61df785cb393f168b300127c8c2a4154e5563ca702a7953487ce2125d5282e58"
+          }
+        },
+        {
+          "finding_id": "SEF-2c062a93bd9699624823",
+          "occurrence_id": "SEO-60938a71ec5d2bcd0985",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: comms-lead@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 338; assets/runbook_template.md line 68)",
+          "file_path": "scripts/runbook_validator.py",
+          "line_number": 338,
+          "line_content": "                         \"(comms-lead@company.com)\",",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "comms-lead@company.com",
+            "occurrence_count": 2,
+            "occurrences": [
+              {
+                "file": "scripts/runbook_validator.py",
+                "line": 338
+              },
+              {
+                "file": "assets/runbook_template.md",
+                "line": 68
+              }
+            ],
+            "evidence_sha256": "3909c6e89df4aace46877669e8fe34e407a7ca898fb3ef82048abb4ddba0e88e"
+          }
+        },
+        {
+          "finding_id": "SEF-571fb3182e3c3d814da0",
+          "occurrence_id": "SEO-4d5206ccae67ebdb4bb3",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: vp-comms@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 347; assets/runbook_template.md line 74)",
+          "file_path": "scripts/runbook_validator.py",
+          "line_number": 347,
+          "line_content": "                              \"(vp-comms@company.com)\",",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "vp-comms@company.com",
+            "occurrence_count": 2,
+            "occurrences": [
+              {
+                "file": "scripts/runbook_validator.py",
+                "line": 347
+              },
+              {
+                "file": "assets/runbook_template.md",
+                "line": 74
+              }
+            ],
+            "evidence_sha256": "8c798887e68f9c0be92819a257d29175fa6ed6433fdcf27adf91912d99a0a56a"
+          }
+        },
+        {
+          "finding_id": "SEF-9c162dddba55fb05ef7e",
+          "occurrence_id": "SEO-65fadedacad9303de33e",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: jordan@company.com \u2014 2 occurrences (scripts/kb_ingester.py lines 440, 450)",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 440,
+          "line_content": "owner: jordan@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "jordan@company.com",
+            "occurrence_count": 2,
+            "occurrences": [
+              {
+                "file": "scripts/kb_ingester.py",
+                "line": 440
+              },
+              {
+                "file": "scripts/kb_ingester.py",
+                "line": 450
+              }
+            ],
+            "evidence_sha256": "37fd48fca4f8cd232724f86b5d5fa8e59190ccb5b7421a9f88b00a512e15fa61"
+          }
+        },
+        {
+          "finding_id": "SEF-84579795bbb110241864",
+          "occurrence_id": "SEO-feaf551d80e5e9afb4bb",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: pat@company.com",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 466,
+          "line_content": "owner: pat@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "pat@company.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "scripts/kb_ingester.py",
+                "line": 466
+              }
+            ],
+            "evidence_sha256": "8836819f744c544cc8ca2912e4639427009e0668dbb969748e647392655ce98e"
+          }
+        },
+        {
+          "finding_id": "SEF-a69c7df30a29939316fb",
+          "occurrence_id": "SEO-0746dc17d302737bd7d2",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: hr@company.com",
+          "file_path": "scripts/kb_ingester.py",
+          "line_number": 479,
+          "line_content": "owner: hr@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "hr@company.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "scripts/kb_ingester.py",
+                "line": 479
+              }
+            ],
+            "evidence_sha256": "5f4bd015fd289a5e2080ec2fc714d7f1a106111744e31313172b440209e03026"
+          }
+        },
+        {
+          "finding_id": "SEF-b2aa1a113021130edad2",
+          "occurrence_id": "SEO-1b03f98ff4a857e8f1c5",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: em-primary@co.com",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 34,
+          "line_content": "| 1 | _e.g., Acknowledge alert in PagerDuty_ | _Incident Commander on-call_ | _2 min_ | _PagerDuty incident transitions to acknowledged_ | _Incident remains in triggered state after 2 min_ | _n/a \u2014 read-only_ | _Engineering Manager on-call (em-primary@co.com)_ |",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "em-primary@co.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "assets/runbook_template.md",
+                "line": 34
+              }
+            ],
+            "evidence_sha256": "9261565b21a7cc87590a8b487eb96cf613b5a7cd75f4df0dab9b162f2120e7fe"
+          }
+        },
+        {
+          "finding_id": "SEF-53be0eb93eb494eb0bb5",
+          "occurrence_id": "SEO-487e745da842d916cb42",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: comms-lead@co.com",
+          "file_path": "assets/runbook_template.md",
+          "line_number": 36,
+          "line_content": "| 3 | _e.g., Notify execs via paging tree_ | _Comms Lead (comms-lead@co.com)_ | _5 min_ | _SES API returns 200 for all exec recipients_ | _SES API returns 5xx OR delivery=bounced_ | _Send retraction email with subject prefix 'RETRACTION:'_ | _VP Communications_ |",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "comms-lead@co.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "assets/runbook_template.md",
+                "line": 36
+              }
+            ],
+            "evidence_sha256": "ffa83712955628baa59186dc65dfdae6a4d8af5efd89ffff4a5830e248c41440"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 9 files for PII",
+          "metadata": {
+            "file_count": 9
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [
+          "[PII-HIGH] Non-placeholder email address: alex@company.com \u2014 7 occurrences (SKILL.md line 73; scripts/sop_generator.py lines 29, 126; scripts/kb_ingester.py lines 422, 431; +1 more file(s)) in SKILL.md:73",
+          "[PII-HIGH] Non-placeholder email address: em-primary@company.com \u2014 4 occurrences (scripts/runbook_validator.py line 333; assets/runbook_template.md lines 54, 64, 96) in scripts/runbook_validator.py:333",
+          "[PII-HIGH] Non-placeholder email address: comms-lead@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 338; assets/runbook_template.md line 68) in scripts/runbook_validator.py:338",
+          "[PII-HIGH] Non-placeholder email address: vp-comms@company.com \u2014 2 occurrences (scripts/runbook_validator.py line 347; assets/runbook_template.md line 74) in scripts/runbook_validator.py:347",
+          "[PII-HIGH] Non-placeholder email address: jordan@company.com \u2014 2 occurrences (scripts/kb_ingester.py lines 440, 450) in scripts/kb_ingester.py:440",
+          "[PII-HIGH] Non-placeholder email address: pat@company.com in scripts/kb_ingester.py:466",
+          "[PII-HIGH] Non-placeholder email address: hr@company.com in scripts/kb_ingester.py:479",
+          "[PII-HIGH] Non-placeholder email address: em-primary@co.com in assets/runbook_template.md:34",
+          "[PII-HIGH] Non-placeholder email address: comms-lead@co.com in assets/runbook_template.md:36"
+        ],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 9 files for PII"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (allowed)",
+          "metadata": {
+            "license_status": "allowed"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Tier 1: Found license declaration in frontmatter (SKILL.md)",
+          "License: MIT (ALLOWED - permissive)",
+          "[OK] license_compliance: License compliance scan completed (allowed)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 3 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 6,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 6 markdown files for dead links",
+          "metadata": {
+            "file_count": 6
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 6 markdown file(s)",
+          "metadata": {
+            "files_checked": 6
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 6 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 6 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 9,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "unicode_scan",
+          "message": "No invisible Unicode characters detected in 9 file(s)",
+          "metadata": {
+            "files_scanned": 9
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] unicode_scan: No invisible Unicode characters detected in 9 file(s)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 6,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 4
+      },
+      "finding_counts": {
+        "raw_occurrences": 6,
+        "distinct_occurrences": 6,
+        "unique_findings": 6,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 4,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 4,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-a627a1a4135fa5c71d83",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-1b52669da6f98289c3e6",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-bcaaa17e5f456de38165",
+          "occurrence_id": "SEO-265a66e4a7cfa0ab7428",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 219 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-17dcf27ea921ca87d1b0",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-0b495cd5075f009ec2b2",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-42282cf7526338483bb0",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 88.0/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 88.0,
+            "grade": "B",
+            "skill_type": "hybrid"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 219 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 88.0/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 88.0,
+        "grade": "B",
+        "skill_type": "hybrid",
+        "skill_name": "knowledge-ops",
+        "dimensions": {
+          "correctness": {
+            "score": 80.0,
+            "weight": 0.35,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 95.0,
+            "weight": 0.25,
+            "issues_count": 1,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 219 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 85.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 3915,
+          "estimated_tokens": 3915,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 128,
+          "instructions_tokens": 3784,
+          "script_count": 3,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 3
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 3,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 3,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-96ff4d05d6d0d157db6e",
+          "occurrence_id": "SEO-84c6e0774db38fc9fe32",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "kb_ingester.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/kb_ingester.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-926e9e3db7ad45ee7d48",
+          "occurrence_id": "SEO-9a18e16cb28aa4f56b70",
+          "category": "SCRIPT_LINT",
+          "severity": "medium",
+          "check_name": "deep_nesting",
+          "message": "runbook_validator.py has deeply nested code (depth 9, max 6)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/runbook_validator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Refactor into smaller functions to reduce complexity",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-15a706749cdd66b6b40d",
+          "occurrence_id": "SEO-2bca0d146e4c74e082cb",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "runbook_validator.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/runbook_validator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-4dd87c9e5d4e21c8e2fe",
+          "occurrence_id": "SEO-554f873238c082c4e77f",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "sop_generator.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/sop_generator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-LOW] kb_ingester.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/kb_ingester.py",
+          "[SCRIPT_LINT-MEDIUM] runbook_validator.py has deeply nested code (depth 9, max 6) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/runbook_validator.py",
+          "[SCRIPT_LINT-LOW] runbook_validator.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/runbook_validator.py",
+          "[SCRIPT_LINT-LOW] sop_generator.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/scripts/sop_generator.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 7,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 7,
+        "distinct_occurrences": 7,
+        "unique_findings": 7,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 7
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 7
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-8cc7ec0184ee170920ae",
+          "occurrence_id": "SEO-7130645c1a847758ebfd",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CX-CLAUDE-ONLY",
+          "message": "codex: Ignored here (Claude Code only): context.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+          "metadata": {
+            "harness": "codex",
+            "effect": "advisory",
+            "verified_version": "0.166.0",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-5be216ef978f11b02894",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-f5d8984ac1609defffa1",
+          "occurrence_id": "SEO-48df058fa0a538b7fb8c",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-CLAUDE-ONLY",
+          "message": "copilot-cli: Ignored here (Claude Code only): context.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-caf11c3388539ae1ff4e",
+          "occurrence_id": "SEO-ff07a8152f38db57d6ca",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "HM-CLAUDE-ONLY",
+          "message": "hermes: Ignored here (Claude Code only): context.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+          "metadata": {
+            "harness": "hermes",
+            "effect": "advisory",
+            "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-009b8f4082c8d905f4ae",
+          "occurrence_id": "SEO-f4a1accf614d8d35ea71",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OW-CLAUDE-ONLY",
+          "message": "openclaw: Ignored here (Claude Code only): context.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+          "metadata": {
+            "harness": "openclaw",
+            "effect": "advisory",
+            "verified_version": "2026.10.9",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-9e4c2cb3b5074719d497",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-fc55c6170a35a35d4a35",
+          "occurrence_id": "SEO-3c57c8ae5be9107c8d5c",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-CLAUDE-ONLY",
+          "message": "opencode: Ignored here (Claude Code only): context.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-INFO] codex: Ignored here (Claude Code only): context. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: Ignored here (Claude Code only): context. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[HARNESS-INFO] hermes: Ignored here (Claude Code only): context. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[HARNESS-INFO] openclaw: Ignored here (Claude Code only): context. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md",
+          "[HARNESS-INFO] opencode: Ignored here (Claude Code only): context. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "knowledge-ops",
+        "skill_digest": "sha256:aff2744449b0c1f67bd8fe29615896ecd418927d97dfd9150a5957aeca603368",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "One or more validators reported incomplete scanner evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 88.0,
+      "grade": "B",
+      "skill_type": "hybrid",
+      "skill_name": "knowledge-ops",
+      "dimensions": {
+        "correctness": {
+          "score": 80.0,
+          "weight": 0.35,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 95.0,
+          "weight": 0.25,
+          "issues_count": 1,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 219 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 85.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 3915,
+        "estimated_tokens": 3915,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 128,
+        "instructions_tokens": 3784,
+        "script_count": 3,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:22:33.378119+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills/knowledge-ops": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when writing, checking or cleaning up SOPs and runbooks. Generates them with sop_generator.py, checks 5W2H completeness and links with runbook_validator.py and ingests an existing knowledge base with kb_ingester.py."
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "loads",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 7,
+          "desc_chars": 1537,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when writing, checking or cleaning up SOPs and runbooks. Generates them with sop_generator.py, checks 5W2H completeness and links with runbook_validator.py and ingests an existing knowledge base with kb_ingester.py."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CX-CLAUDE-ONLY",
+            "effect": "advisory",
+            "message": "Ignored here (Claude Code only): context.",
+            "fix": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 7,
+          "desc_chars": 1537,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when writing, checking or cleaning up SOPs and runbooks. Generates them with sop_generator.py, checks 5W2H completeness and links with runbook_validator.py and ingests an existing knowledge base with kb_ingester.py."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          },
+          {
+            "id": "CP-CLAUDE-ONLY",
+            "effect": "advisory",
+            "message": "Ignored here (Claude Code only): context.",
+            "fix": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 7,
+          "desc_chars": 1537,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use when writing, checking or cleaning up SOPs and runbooks.",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "HM-CLAUDE-ONLY",
+            "effect": "advisory",
+            "message": "Ignored here (Claude Code only): context.",
+            "fix": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 7,
+          "desc_chars": 1537,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when writing, checking or cleaning up SOPs and runbooks. Generates them with sop_generator.py, checks 5W2H completeness and links with runbook_validator.py and ingests an existing knowledge base with kb_ingester.py."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OW-CLAUDE-ONLY",
+            "effect": "advisory",
+            "message": "Ignored here (Claude Code only): context.",
+            "fix": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 7,
+          "desc_chars": 1537,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when writing, checking or cleaning up SOPs and runbooks. Generates them with sop_generator.py, checks 5W2H completeness and links with runbook_validator.py and ingests an existing knowledge base with kb_ingester.py."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          },
+          {
+            "id": "OC-CLAUDE-ONLY",
+            "effect": "advisory",
+            "message": "Ignored here (Claude Code only): context.",
+            "fix": "Fine to keep for Claude Code; don't depend on them elsewhere.",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 7,
+          "desc_chars": 1537,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/business-operations/skills"
+        }
+      }
+    ]
+  }
+}

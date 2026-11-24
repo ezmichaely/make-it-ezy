@@ -1,0 +1,4207 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/engineering/skills/ship-gate",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [
+    "skillspector"
+  ],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 29,
+  "total_warnings": 27,
+  "severity_counts": {
+    "critical": 0,
+    "high": 28,
+    "medium": 12,
+    "low": 9
+  },
+  "finding_counts": {
+    "raw_occurrences": 54,
+    "distinct_occurrences": 54,
+    "unique_findings": 32,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 22,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 28,
+      "medium": 12,
+      "low": 9,
+      "info": 5
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 7,
+      "medium": 11,
+      "low": 9,
+      "info": 5
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f6959853981388ed9fc6",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-0a046cedaad0ac6f0723",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Credential Access (PE3)",
+      "message": "Privilege Escalation: .env ",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e9048c8208cda34be587",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 44
+        },
+        {
+          "occurrence_id": "SEO-f7713e925d1dfcc5e461",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 45
+        },
+        {
+          "occurrence_id": "SEO-6f2b6208512f70094af5",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 132
+        },
+        {
+          "occurrence_id": "SEO-78a578f221e7c90a3453",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 134
+        },
+        {
+          "occurrence_id": "SEO-c24e19ff0bda1ff915db",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 135
+        },
+        {
+          "occurrence_id": "SEO-e6b40ba16121de945cb7",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 195
+        },
+        {
+          "occurrence_id": "SEO-331eb83c85b721789b6e",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 198
+        },
+        {
+          "occurrence_id": "SEO-ba6c9c0bc53fd4e20446",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 202
+        },
+        {
+          "occurrence_id": "SEO-b359c598e54b75b9b1d1",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 205
+        },
+        {
+          "occurrence_id": "SEO-0539725f4e016dd2659f",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 310
+        },
+        {
+          "occurrence_id": "SEO-58f67afaeb9fc6f535a6",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 311
+        },
+        {
+          "occurrence_id": "SEO-d88df6707110b7665bb2",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 520
+        },
+        {
+          "occurrence_id": "SEO-29e4ce5849c2acc72e38",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 537
+        },
+        {
+          "occurrence_id": "SEO-2f2dc0417650a829637d",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 549
+        }
+      ],
+      "occurrence_count": 14
+    },
+    {
+      "finding_id": "SEF-29923f4d680e578e37e3",
+      "category": "SCHEMA",
+      "severity": "low",
+      "check_name": "description_trigger",
+      "message": "Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list",
+      "suggestion": "State when to use the skill within the first 60 characters",
+      "metadata": null,
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6ca55d2af0c20b5ea1d7",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ec7e1044853375532a3a",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2d35e0f5b1ccc655569f",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unrestricted Tool Access (EA1)",
+      "message": "Excessive Agency: execute arbitrary commands",
+      "suggestion": "Skill grants unrestricted tool access without appropriate constraints. An agent with unfettered tool access can perform arbitrary actions including file modification, network requests, and code execution. Restrict tool access to only the tools required for the skill's stated purpose. Use an explicit allowlist rather than granting blanket access.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-8d172bcd04899f72a242",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 426
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-5673e87aefa67893a503",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-317d75a4f5da907e6bc9",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-39f95442cf99bf81f224",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Credential Access (PE3)",
+      "message": "Privilege Escalation: .env.production\"",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-18318c7d40c0c1a8dc32",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 577
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-422fc4440d72281f4d0a",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-59c1733f41a5c61cee53",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-LIST-BUDGET",
+      "message": "copilot-cli: 46 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0abcfac39440d6342d06",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6720c7976fade20d5d68",
+      "category": "SCHEMA",
+      "severity": "info",
+      "check_name": "author_without_email",
+      "message": "Author has no email address: Rajaraman Arumugam",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+      "metadata": {
+        "current_author": "Rajaraman Arumugam",
+        "profile": "default",
+        "shape_ok": false,
+        "domain_ok": false
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-70fb2be524ab02d719bf",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-fc42151b6828689f0fcb",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-01d058dbbe2e5628ec06",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-85caefda570ce0720cb0",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CX-LIST-BUDGET",
+      "message": "codex: The 46 skills in this folder have 10,436 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+      "metadata": {
+        "harness": "codex",
+        "effect": "degraded",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-a4d5ce79d2a35c446612",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8a7d71fa00fceef161d0",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 239 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c10c8f77dcc1500b950f",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8f1907788a426e68cbef",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unbounded Resource Access (EA4)",
+      "message": "Excessive Agency: unbounded queries",
+      "suggestion": "Skill allows unbounded resource consumption (API calls, storage, compute). Without rate limits or quotas, a compromised or misbehaving agent can cause denial-of-service or cost overruns. Set explicit rate limits, timeouts, and resource quotas for API calls, file operations, and compute. Implement circuit breakers for runaway loops.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-b74c6ea42d8ca56fe8d2",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 407
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8fa8649bfa8458e22ed2",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unsafe Defaults (TM3)",
+      "message": "Tool Misuse: CORS wildcard\n\n```bash\ngrep -rnE $EXCLUDE \\\n  \"(origin:\\s*['\\\"]?\\*['\\\"]?|Access-Control-Allow-Origin.*\\*|cors\\(\\s*\\))\" \\\n  . 2>/dev/null\n```\n\n### SEC-05: CSRF protection missing\n\n```bash\n# Check for s",
+      "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+      "metadata": {
+        "skillspector_confidence": 0.65,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c7111c7a484e22f92a92",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 56
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-a61f701a4f73ab2bb69c",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Incomplete referenced artifact analysis (AE1)",
+      "message": "analysis-evasion: references/checks.md (partial)",
+      "suggestion": "Referenced artifact references/checks.md was not completely inspected (partial). static_parse_limit (static_patterns_tool_misuse): A security-relevant expression could not be fully resolved by the bounded static parser. Review the reported expression and analyzer's parsing limitation; correct the scanner if it misinterprets valid source, then rerun the scan. Keep required references; incomplete analysis is not proof of malicious evasion.",
+      "metadata": {
+        "skillspector_confidence": 1.0,
+        "skillspector_evidence": {
+          "target_path": "references/checks.md",
+          "target_disposition": "partial",
+          "reasons": [
+            {
+              "reason_code": "static_parse_limit",
+              "phase": "static",
+              "message": "A security-relevant expression could not be fully resolved by the bounded static parser.",
+              "analyzers": [
+                "static_patterns_tool_misuse"
+              ]
+            }
+          ]
+        },
+        "skillspector_occurrences": [
+          {
+            "file": "SKILL.md",
+            "start_line": 78
+          }
+        ],
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9bea195ceba2e86a1dab",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 78
+        },
+        {
+          "occurrence_id": "SEO-3fdfbfc853d1b7ef30eb",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 87
+        },
+        {
+          "occurrence_id": "SEO-02cb5b870597d21d1eb0",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 153
+        }
+      ],
+      "occurrence_count": 3
+    },
+    {
+      "finding_id": "SEF-a8aa2da8c78507de3dd0",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Credential Access (PE3)",
+      "message": "Privilege Escalation: .env.local\"",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ba8215749ebe622a2823",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 577
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-a90e7ec4119b22e44c96",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Incomplete referenced artifact analysis (AE1)",
+      "message": "analysis-evasion: references/patterns.md (partial)",
+      "suggestion": "Referenced artifact references/patterns.md was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+      "metadata": {
+        "skillspector_confidence": 1.0,
+        "skillspector_evidence": {
+          "target_path": "references/patterns.md",
+          "target_disposition": "partial",
+          "reasons": [
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_agent_snooping"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_anti_refusal"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_deserialization"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_excessive_agency"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_harmful_content"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_memory_poisoning"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_privilege_escalation"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_prompt_injection"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_rogue_agent"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_ssrf"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_supply_chain"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_system_prompt_leakage"
+              ]
+            },
+            {
+              "reason_code": "obfuscated_instruction_text",
+              "phase": "static",
+              "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+              "analyzers": [
+                "static_patterns_tool_misuse"
+              ]
+            }
+          ]
+        },
+        "skillspector_occurrences": [
+          {
+            "file": "SKILL.md",
+            "start_line": 87
+          }
+        ],
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e1148f497c4f180e2ec6",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 87
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b54270ec48eb1aa13be1",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CC-LIST-BUDGET",
+      "message": "claude-code: The 46 skills in this folder have 10,436 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+      "metadata": {
+        "harness": "claude-code",
+        "effect": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6a30d9472fab43b14724",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-fa4a16655b0a186196e2",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-bbe7a135d793a65e5242",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Credential Access (PE3)",
+      "message": "Privilege Escalation: Access tokens",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-d28a3030320d15883eb7",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 104
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-bd0e680581769fe55848",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Credential Access (PE3)",
+      "message": "Privilege Escalation: .env\"",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c5b89978e378b74db746",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 203
+        },
+        {
+          "occurrence_id": "SEO-87ca9e10b8e8972e1f1b",
+          "validator": "Security Scan",
+          "file_path": "references/patterns.md",
+          "line_number": 206
+        },
+        {
+          "occurrence_id": "SEO-17a01d3d766a2837331f",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 390
+        },
+        {
+          "occurrence_id": "SEO-e28a46319b418360a978",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 524
+        },
+        {
+          "occurrence_id": "SEO-d8f4ab1b79f4cefa6191",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 534
+        },
+        {
+          "occurrence_id": "SEO-4d2f99b54a9c9b6336f7",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 547
+        },
+        {
+          "occurrence_id": "SEO-d99c6b13d7a768e25b3d",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 577
+        }
+      ],
+      "occurrence_count": 7
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e4d232ac696b71bb0d64",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e0623bdfb91d6bbb829f",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "HM-DESC-60",
+      "message": "hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+      "suggestion": "Put the trigger (\"Use when \u2026\") in the first 57 characters.",
+      "metadata": {
+        "harness": "hermes",
+        "effect": "advisory",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c87367be2ba97f983d24",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-7d2a40aca4b861619ba2",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e82f34741d8bbd8cad13",
+      "category": "SCRIPT_LINT",
+      "severity": "medium",
+      "check_name": "deep_nesting",
+      "message": "ship_gate_scanner.py has deeply nested code (depth 9, max 6)",
+      "suggestion": "Refactor into smaller functions to reduce complexity",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2d1bc5b09d6899f38435",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/scripts/ship_gate_scanner.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e9b8a3c7d5dcf3f1cd64",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "ship_gate_scanner.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-83311a6604605ff7893f",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/scripts/ship_gate_scanner.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-4d00195fa1f80a21d1dc",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-feaa3ace8a19ea185169",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Autonomous Decision Making (EA2)",
+      "message": "Excessive Agency: without consent",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+      "metadata": {
+        "skillspector_confidence": 0.75,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-4015483dd7066eca2525",
+          "validator": "Security Scan",
+          "file_path": "references/checks.md",
+          "line_number": 383
+        },
+        {
+          "occurrence_id": "SEO-1453b7fbcd0b0cb87502",
+          "validator": "Security Scan",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 364
+        }
+      ],
+      "occurrence_count": 2
+    }
+  ],
+  "message_counts": {
+    "informational": 5,
+    "independent_errors": 1,
+    "independent_warnings": 1
+  },
+  "skills": [
+    {
+      "name": "ship-gate",
+      "passed": false,
+      "issue_count": 54
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "ship-gate",
+          "passed": false,
+          "issue_count": 54
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 54
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Privilege Escalation",
+      "severity": "high",
+      "total_count": 24,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths."
+    },
+    {
+      "message": "analysis-evasion",
+      "severity": "high",
+      "total_count": 4,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Referenced artifact references/checks.md was not completely inspected (partial). static_parse_limit (static_patterns_tool_misuse): A security-relevant expression could not be fully resolved by the bounded static parser. Review the reported expression and analyzer's parsing limitation; correct the scanner if it misinterprets valid source, then rerun the scan. Keep required references; incomplete analysis is not proof of malicious evasion."
+    },
+    {
+      "message": "Excessive Agency",
+      "severity": "medium",
+      "total_count": 4,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state."
+    },
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "Tool Misuse",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations."
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "ship_gate_scanner.py has deeply nested code (depth 9, max 6)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Refactor into smaller functions to reduce complexity"
+    },
+    {
+      "message": "Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "State when to use the skill within the first 60 characters"
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 239 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "ship_gate_scanner.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "claude-code: The 46 skills in this folder have 10,436 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here."
+    },
+    {
+      "message": "codex: The 46 skills in this folder have 10,436 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here."
+    },
+    {
+      "message": "Author has no email address: Rajaraman Arumugam",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'"
+    },
+    {
+      "message": "copilot-cli: 46 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory."
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Put the trigger (\"Use when \u2026\") in the first 57 characters."
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "ship-gate"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 1,
+          "info": 1
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 1,
+          "info": 1
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-ec7e1044853375532a3a",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-7d2a40aca4b861619ba2",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-6720c7976fade20d5d68",
+          "occurrence_id": "SEO-70fb2be524ab02d719bf",
+          "category": "SCHEMA",
+          "severity": "info",
+          "check_name": "author_without_email",
+          "message": "Author has no email address: Rajaraman Arumugam",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": "author: Rajaraman Arumugam",
+          "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+          "metadata": {
+            "current_author": "Rajaraman Arumugam",
+            "profile": "default",
+            "shape_ok": false,
+            "domain_ok": false
+          }
+        },
+        {
+          "finding_id": "SEF-29923f4d680e578e37e3",
+          "occurrence_id": "SEO-6ca55d2af0c20b5ea1d7",
+          "category": "SCHEMA",
+          "severity": "low",
+          "check_name": "description_trigger",
+          "message": "Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "State when to use the skill within the first 60 characters",
+          "metadata": null
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'ship-gate'",
+          "metadata": {
+            "description_length": 239
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/ship-gate/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'ship-gate' follows kebab-case convention",
+          "metadata": {
+            "name_length": 9
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (184/500)",
+          "metadata": {
+            "line_count": 184,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: references, scripts",
+          "metadata": {
+            "files_found": [
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'ship-gate'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[SCHEMA-INFO] Author has no email address: Rajaraman Arumugam in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[SCHEMA-LOW] Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'ship-gate'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/ship-gate/",
+          "[OK] naming_convention: Folder name 'ship-gate' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (184/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'ship-gate'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_semver",
+          "message": "Valid semantic version: 1.0.0",
+          "metadata": {
+            "version": "1.0.0",
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_semver: Valid semantic version: 1.0.0"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [
+        "skillspector"
+      ],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 29,
+        "warnings": 6,
+        "critical_count": 0,
+        "high_count": 28,
+        "medium_count": 6,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 34,
+        "distinct_occurrences": 34,
+        "unique_findings": 12,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 22,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 28,
+          "medium": 6,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 7,
+          "medium": 5,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-a61f701a4f73ab2bb69c",
+          "occurrence_id": "SEO-9bea195ceba2e86a1dab",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: references/checks.md (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 78,
+          "line_content": "are relevant. Checks tagged with a specific stack in `references/checks.md`",
+          "suggestion": "Referenced artifact references/checks.md was not completely inspected (partial). static_parse_limit (static_patterns_tool_misuse): A security-relevant expression could not be fully resolved by the bounded static parser. Review the reported expression and analyzer's parsing limitation; correct the scanner if it misinterprets valid source, then rerun the scan. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "references/checks.md",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "static_parse_limit",
+                  "phase": "static",
+                  "message": "A security-relevant expression could not be fully resolved by the bounded static parser.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 78
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-a61f701a4f73ab2bb69c",
+          "occurrence_id": "SEO-3fdfbfc853d1b7ef30eb",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: references/checks.md (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 87,
+          "line_content": "`references/checks.md` using the patterns in `references/patterns.md`.",
+          "suggestion": "Referenced artifact references/checks.md was not completely inspected (partial). static_parse_limit (static_patterns_tool_misuse): A security-relevant expression could not be fully resolved by the bounded static parser. Review the reported expression and analyzer's parsing limitation; correct the scanner if it misinterprets valid source, then rerun the scan. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "references/checks.md",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "static_parse_limit",
+                  "phase": "static",
+                  "message": "A security-relevant expression could not be fully resolved by the bounded static parser.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 87
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-a61f701a4f73ab2bb69c",
+          "occurrence_id": "SEO-02cb5b870597d21d1eb0",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: references/checks.md (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 153,
+          "line_content": "`references/checks.md`.",
+          "suggestion": "Referenced artifact references/checks.md was not completely inspected (partial). static_parse_limit (static_patterns_tool_misuse): A security-relevant expression could not be fully resolved by the bounded static parser. Review the reported expression and analyzer's parsing limitation; correct the scanner if it misinterprets valid source, then rerun the scan. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "references/checks.md",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "static_parse_limit",
+                  "phase": "static",
+                  "message": "A security-relevant expression could not be fully resolved by the bounded static parser.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 153
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-a90e7ec4119b22e44c96",
+          "occurrence_id": "SEO-e1148f497c4f180e2ec6",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Incomplete referenced artifact analysis (AE1)",
+          "message": "analysis-evasion: references/patterns.md (partial)",
+          "file_path": "SKILL.md",
+          "line_number": 87,
+          "line_content": "`references/checks.md` using the patterns in `references/patterns.md`.",
+          "suggestion": "Referenced artifact references/patterns.md was not completely inspected (partial). obfuscated_instruction_text (static_patterns_agent_snooping, static_patterns_anti_refusal, static_patterns_deserialization, static_patterns_excessive_agency, static_patterns_harmful_content, static_patterns_memory_poisoning, static_patterns_privilege_escalation, static_patterns_prompt_injection, static_patterns_rogue_agent, static_patterns_ssrf, static_patterns_supply_chain, static_patterns_system_prompt_leakage, static_patterns_tool_misuse): Obfuscated instruction text could not be fully evaluated by the deterministic layer. Review the target's analysis-completeness ledger and resolve all limitations. Keep required references; incomplete analysis is not proof of malicious evasion.",
+          "metadata": {
+            "skillspector_confidence": 1.0,
+            "skillspector_evidence": {
+              "target_path": "references/patterns.md",
+              "target_disposition": "partial",
+              "reasons": [
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_agent_snooping"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_anti_refusal"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_deserialization"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_excessive_agency"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_harmful_content"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_memory_poisoning"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_privilege_escalation"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_prompt_injection"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_rogue_agent"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_ssrf"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_supply_chain"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_system_prompt_leakage"
+                  ]
+                },
+                {
+                  "reason_code": "obfuscated_instruction_text",
+                  "phase": "static",
+                  "message": "Obfuscated instruction text could not be fully evaluated by the deterministic layer.",
+                  "analyzers": [
+                    "static_patterns_tool_misuse"
+                  ]
+                }
+              ]
+            },
+            "skillspector_occurrences": [
+              {
+                "file": "SKILL.md",
+                "start_line": 87
+              }
+            ],
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-e9048c8208cda34be587",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/checks.md",
+          "line_number": 44,
+          "line_content": "| SEC-14 | No sensitive data in URL parameters or logs | auto | high | all |\n| SEC-15 | Cookie security flags set (HttpOnly, Secure, SameSite) | auto | high | all |\n| SEC-16 | File upload validates ty",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-f7713e925d1dfcc5e461",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/checks.md",
+          "line_number": 45,
+          "line_content": "| SEC-15 | Cookie security flags set (HttpOnly, Secure, SameSite) | auto | high | all |\n| SEC-16 | File upload validates type, size, no path traversal | auto | high | all |\n| SEC-17 | No hardcoded sec",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-6f2b6208512f70094af5",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/checks.md",
+          "line_number": 132,
+          "line_content": "Remediation: Use RS256 or HS256 with a strong secret (32+ characters).\nNever allow alg:none.\n\n### SEC-17: No hardcoded secrets in .env committed\n\nCheck git history for .env files: `git log --all --nam",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-78a578f221e7c90a3453",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/checks.md",
+          "line_number": 134,
+          "line_content": "\n### SEC-17: No hardcoded secrets in .env committed\n\nCheck git history for .env files: `git log --all --name-only | grep .env`\nCheck if .env exists in the working tree and is not in .gitignore.\n\nRemed",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-c24e19ff0bda1ff915db",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/checks.md",
+          "line_number": 135,
+          "line_content": "### SEC-17: No hardcoded secrets in .env committed\n\nCheck git history for .env files: `git log --all --name-only | grep .env`\nCheck if .env exists in the working tree and is not in .gitignore.\n\nRemedi",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-e6b40ba16121de945cb7",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/patterns.md",
+          "line_number": 195,
+          "line_content": "  . 2>/dev/null\n```\n\n### SEC-17/18: .env in repo\n\n```bash\n# Check if .env files exist in working tree",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-331eb83c85b721789b6e",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/patterns.md",
+          "line_number": 198,
+          "line_content": "### SEC-17/18: .env in repo\n\n```bash\n# Check if .env files exist in working tree\nfind . -maxdepth 3 -name \".env*\" -not -path \"*/node_modules/*\" \\\n  -not -name \".env.example\" -not -name \".env.sample\" 2",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-ba6c9c0bc53fd4e20446",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/patterns.md",
+          "line_number": 202,
+          "line_content": "find . -maxdepth 3 -name \".env*\" -not -path \"*/node_modules/*\" \\\n  -not -name \".env.example\" -not -name \".env.sample\" 2>/dev/null\n\n# Check if .env is in .gitignore\ngrep -n \"\\.env\" .gitignore 2>/dev/nu",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-b359c598e54b75b9b1d1",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "references/patterns.md",
+          "line_number": 205,
+          "line_content": "# Check if .env is in .gitignore\ngrep -n \"\\.env\" .gitignore 2>/dev/null\n\n# Check git history for .env commits\ngit log --all --name-only --diff-filter=A 2>/dev/null | grep \"\\.env\" || true\n```\n",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-0539725f4e016dd2659f",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 310,
+          "line_content": "    \"SEC-11\": CheckDef(\"SEC-11\", \"CSP headers configured\", Severity.HIGH, \"SEC\"),\n    \"SEC-13\": CheckDef(\"SEC-13\", \"No eval() or dangerouslySetInnerHTML without sanitization\", Severity.HIGH, \"SEC\", st",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-58f67afaeb9fc6f535a6",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 311,
+          "line_content": "    \"SEC-13\": CheckDef(\"SEC-13\", \"No eval() or dangerouslySetInnerHTML without sanitization\", Severity.HIGH, \"SEC\", stack=\"js\"),  # noqa: SEC-AUDITOR\n    \"SEC-14\": CheckDef(\"SEC-14\", \"No sensitive dat",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-d88df6707110b7665bb2",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 520,
+          "line_content": "\ndef check_sec17(root, stack):\n    c = CHECKS[\"SEC-17\"]\n    # Check for .env files that are not .example/.sample\n    env_files = []\n    for entry in os.scandir(root):\n        name = entry.name",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-29e4ce5849c2acc72e38",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 537,
+          "line_content": "        if \".env\" in content:\n            return Result(c, Status.PASS)\n    return Result(c, Status.FAIL,\n                  f\".env file(s) exist ({', '.join(env_files)}) and may not be gitignored\",\n  ",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0a046cedaad0ac6f0723",
+          "occurrence_id": "SEO-2f2dc0417650a829637d",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env ",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 549,
+          "line_content": "    content = open(gitignore_path, errors=\"ignore\").read()\n    if re.search(r\"\\.env\", content):\n        return Result(c, Status.PASS)\n    return Result(c, Status.FAIL, \".env not listed in .gitignore\")",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bbe7a135d793a65e5242",
+          "occurrence_id": "SEO-d28a3030320d15883eb7",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: Access tokens",
+          "file_path": "references/checks.md",
+          "line_number": 104,
+          "line_content": "Search JWT sign calls for expiresIn/exp claims. Check if tokens are\ncreated without expiry. Search for `sign(`, `jwt.encode(`, `createToken`.\n\nRemediation: Set token expiry. Access tokens: 15-60 minut",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd0e680581769fe55848",
+          "occurrence_id": "SEO-c5b89978e378b74db746",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env\"",
+          "file_path": "references/patterns.md",
+          "line_number": 203,
+          "line_content": "  -not -name \".env.example\" -not -name \".env.sample\" 2>/dev/null\n\n# Check if .env is in .gitignore\ngrep -n \"\\.env\" .gitignore 2>/dev/null\n\n# Check git history for .env commits\ngit log --all --name-onl",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd0e680581769fe55848",
+          "occurrence_id": "SEO-87ca9e10b8e8972e1f1b",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env\"",
+          "file_path": "references/patterns.md",
+          "line_number": 206,
+          "line_content": "grep -n \"\\.env\" .gitignore 2>/dev/null\n\n# Check git history for .env commits\ngit log --all --name-only --diff-filter=A 2>/dev/null | grep \"\\.env\" || true\n```\n\n---",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd0e680581769fe55848",
+          "occurrence_id": "SEO-17a01d3d766a2837331f",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env\"",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 390,
+          "line_content": "    ]\n    findings = []\n    for pat in patterns:\n        findings += grep_files(root, pat, exts=JS_EXTS | {\".env\", \".json\"},\n                               dirs=dirs if dirs else None, max_findings=5)",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd0e680581769fe55848",
+          "occurrence_id": "SEO-e28a46319b418360a978",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env\"",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 524,
+          "line_content": "    env_files = []\n    for entry in os.scandir(root):\n        name = entry.name\n        if name.startswith(\".env\") and name not in (\".env.example\", \".env.sample\",\n                                     ",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd0e680581769fe55848",
+          "occurrence_id": "SEO-d8f4ab1b79f4cefa6191",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env\"",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 534,
+          "line_content": "    gitignore_path = os.path.join(root, \".gitignore\")\n    if os.path.isfile(gitignore_path):\n        content = open(gitignore_path, errors=\"ignore\").read()\n        if \".env\" in content:\n            re",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd0e680581769fe55848",
+          "occurrence_id": "SEO-4d2f99b54a9c9b6336f7",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env\"",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 547,
+          "line_content": "    if not os.path.isfile(gitignore_path):\n        return Result(c, Status.FAIL, \".gitignore file not found\")\n    content = open(gitignore_path, errors=\"ignore\").read()\n    if re.search(r\"\\.env\", cont",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd0e680581769fe55848",
+          "occurrence_id": "SEO-d99c6b13d7a768e25b3d",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env\"",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 577,
+          "line_content": "    c = CHECKS[\"DB-05\"]\n    findings = grep_files(root,\n        r\"(pool|connectionLimit|max_connections|poolSize|pooler|6543)\",\n        exts=ALL_CODE_EXTS | {\".env\", \".env.local\", \".env.production\"})\n",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-a8aa2da8c78507de3dd0",
+          "occurrence_id": "SEO-ba8215749ebe622a2823",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env.local\"",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 577,
+          "line_content": "    c = CHECKS[\"DB-05\"]\n    findings = grep_files(root,\n        r\"(pool|connectionLimit|max_connections|poolSize|pooler|6543)\",\n        exts=ALL_CODE_EXTS | {\".env\", \".env.local\", \".env.production\"})\n",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-39f95442cf99bf81f224",
+          "occurrence_id": "SEO-18318c7d40c0c1a8dc32",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Credential Access (PE3)",
+          "message": "Privilege Escalation: .env.production\"",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 577,
+          "line_content": "    c = CHECKS[\"DB-05\"]\n    findings = grep_files(root,\n        r\"(pool|connectionLimit|max_connections|poolSize|pooler|6543)\",\n        exts=ALL_CODE_EXTS | {\".env\", \".env.local\", \".env.production\"})\n",
+          "suggestion": "Code accesses credential files (SSH keys, AWS credentials, etc.). This could indicate credential theft attempts. Remove references to credential paths. Use environment variables or secrets managers. For docs, use placeholder paths (e.g., /path/to/config). Never load .env or token files in production code paths.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-feaa3ace8a19ea185169",
+          "occurrence_id": "SEO-4015483dd7066eca2525",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without consent",
+          "file_path": "references/checks.md",
+          "line_number": 383,
+          "line_content": "| AI-05 | AI response output sanitized before rendering | auto | high | ai |\n| AI-06 | MCP server inputs validated | auto | high | ai |\n| AI-07 | Agent permissions scoped (no unrestricted access) | ma",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-feaa3ace8a19ea185169",
+          "occurrence_id": "SEO-1453b7fbcd0b0cb87502",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without consent",
+          "file_path": "scripts/ship_gate_scanner.py",
+          "line_number": 364,
+          "line_content": "    CheckDef(\"DEPLOY-05\",  \"Rollback plan exists\",                            Severity.HIGH,     \"DEPLOY\"),\n    CheckDef(\"DEPLOY-06\",  \"Staging test passed before production\",           Severity.HIGH,",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-2d35e0f5b1ccc655569f",
+          "occurrence_id": "SEO-8d172bcd04899f72a242",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unrestricted Tool Access (EA1)",
+          "message": "Excessive Agency: execute arbitrary commands",
+          "file_path": "references/checks.md",
+          "line_number": 426,
+          "line_content": "### DEP-05: Suspicious postinstall scripts\n\nCheck package.json for `postinstall`, `preinstall`, `install` scripts\nthat execute arbitrary commands, download files, or access the network.\n\nRemediation: ",
+          "suggestion": "Skill grants unrestricted tool access without appropriate constraints. An agent with unfettered tool access can perform arbitrary actions including file modification, network requests, and code execution. Restrict tool access to only the tools required for the skill's stated purpose. Use an explicit allowlist rather than granting blanket access.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-8fa8649bfa8458e22ed2",
+          "occurrence_id": "SEO-c7111c7a484e22f92a92",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: CORS wildcard\n\n```bash\ngrep -rnE $EXCLUDE \\\n  \"(origin:\\s*['\\\"]?\\*['\\\"]?|Access-Control-Allow-Origin.*\\*|cors\\(\\s*\\))\" \\\n  . 2>/dev/null\n```\n\n### SEC-05: CSRF protection missing\n\n```bash\n# Check for s",
+          "file_path": "references/patterns.md",
+          "line_number": 56,
+          "line_content": "  src/ app/ pages/ components/ public/ 2>/dev/null\n```\n\n### SEC-04: CORS wildcard\n\n```bash\ngrep -rnE $EXCLUDE \\",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.65,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-8f1907788a426e68cbef",
+          "occurrence_id": "SEO-b74c6ea42d8ca56fe8d2",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unbounded Resource Access (EA4)",
+          "message": "Excessive Agency: unbounded queries",
+          "file_path": "references/patterns.md",
+          "line_number": 407,
+          "line_content": "### CODE-05: Pagination on list endpoints\n\n```bash\n# Check API routes for unbounded queries\ngrep -rnE $EXCLUDE \\\n  \"(\\.findMany|\\.find\\(\\)|\\.select\\(\\)|SELECT \\*)\" \\\n  --include=\"*.ts\" --include=\"*.js",
+          "suggestion": "Skill allows unbounded resource consumption (API calls, storage, compute). Without rate limits or quotas, a compromised or misbehaving agent can cause denial-of-service or cost overruns. Set explicit rate limits, timeouts, and resource quotas for API calls, file operations, and compute. Implement circuit breakers for runaway loops.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "skillspector JSON field 'analysis_completeness' reports incomplete analysis (status 'partial'): SKILL.md:63 [reference_resolution; reference_missing]; SKILL.md:126 [reference_resolution; reference_missing]; SKILL.md:132 [reference_resolution; reference_missing]; and 2 more (incomplete files by reason: reference_missing 1, static_parse_limit 1, obfuscated_instruction_text 1); security scan did not complete",
+          "[SECURITY-HIGH] analysis-evasion: references/checks.md (partial) in SKILL.md:78",
+          "[SECURITY-HIGH] analysis-evasion: references/checks.md (partial) in SKILL.md:87",
+          "[SECURITY-HIGH] analysis-evasion: references/checks.md (partial) in SKILL.md:153",
+          "[SECURITY-HIGH] analysis-evasion: references/patterns.md (partial) in SKILL.md:87",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/checks.md:44",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/checks.md:45",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/checks.md:132",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/checks.md:134",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/checks.md:135",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/patterns.md:195",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/patterns.md:198",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/patterns.md:202",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in references/patterns.md:205",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in scripts/ship_gate_scanner.py:310",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in scripts/ship_gate_scanner.py:311",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in scripts/ship_gate_scanner.py:520",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in scripts/ship_gate_scanner.py:537",
+          "[SECURITY-HIGH] Privilege Escalation: .env  in scripts/ship_gate_scanner.py:549",
+          "[SECURITY-HIGH] Privilege Escalation: Access tokens in references/checks.md:104",
+          "[SECURITY-HIGH] Privilege Escalation: .env\" in references/patterns.md:203",
+          "[SECURITY-HIGH] Privilege Escalation: .env\" in references/patterns.md:206",
+          "[SECURITY-HIGH] Privilege Escalation: .env\" in scripts/ship_gate_scanner.py:390",
+          "[SECURITY-HIGH] Privilege Escalation: .env\" in scripts/ship_gate_scanner.py:524",
+          "[SECURITY-HIGH] Privilege Escalation: .env\" in scripts/ship_gate_scanner.py:534",
+          "[SECURITY-HIGH] Privilege Escalation: .env\" in scripts/ship_gate_scanner.py:547",
+          "[SECURITY-HIGH] Privilege Escalation: .env\" in scripts/ship_gate_scanner.py:577",
+          "[SECURITY-HIGH] Privilege Escalation: .env.local\" in scripts/ship_gate_scanner.py:577",
+          "[SECURITY-HIGH] Privilege Escalation: .env.production\" in scripts/ship_gate_scanner.py:577"
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1",
+          "[SECURITY-MEDIUM] Excessive Agency: without consent in references/checks.md:383",
+          "[SECURITY-MEDIUM] Excessive Agency: without consent in scripts/ship_gate_scanner.py:364",
+          "[SECURITY-MEDIUM] Excessive Agency: execute arbitrary commands in references/checks.md:426",
+          "[SECURITY-MEDIUM] Tool Misuse: CORS wildcard\n\n```bash\ngrep -rnE $EXCLUDE \\\n  \"(origin:\\s*['\\\"]?\\*['\\\"]?|Access-Control-Allow-Origin.*\\*|cors\\(\\s*\\))\" \\\n  . 2>/dev/null\n```\n\n### SEC-05: CSRF protection missing\n\n```bash\n# Check for s in references/patterns.md:56",
+          "[SECURITY-MEDIUM] Excessive Agency: unbounded queries in references/patterns.md:407"
+        ],
+        "messages": [
+          "skillspector risk score: 100/100 (CRITICAL)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_completeness": {
+        "records": [
+          {
+            "stage": "skillspector",
+            "reported_status": "partial",
+            "ledger_exceptions": [
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 63,
+                "end_line": 63
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 126,
+                "end_line": 126
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 132,
+                "end_line": 132
+              },
+              {
+                "path": "references/checks.md",
+                "phase": "static",
+                "reason_code": "static_parse_limit",
+                "analyzers": [
+                  "static_patterns_tool_misuse"
+                ],
+                "omitted_analyzers": 0
+              },
+              {
+                "path": "references/patterns.md",
+                "phase": "static",
+                "reason_code": "obfuscated_instruction_text",
+                "analyzers": [
+                  "static_patterns_agent_snooping",
+                  "static_patterns_anti_refusal",
+                  "static_patterns_deserialization",
+                  "static_patterns_excessive_agency",
+                  "static_patterns_harmful_content",
+                  "static_patterns_memory_poisoning",
+                  "static_patterns_privilege_escalation",
+                  "static_patterns_prompt_injection"
+                ],
+                "omitted_analyzers": 5
+              }
+            ],
+            "limitations": [
+              "Analyzer static_patterns_agent_snooping status: degraded.",
+              "Analyzer static_patterns_anti_refusal status: degraded.",
+              "Analyzer static_patterns_deserialization status: degraded.",
+              "Analyzer static_patterns_excessive_agency status: degraded.",
+              "Analyzer static_patterns_harmful_content status: degraded.",
+              "Analyzer static_patterns_memory_poisoning status: degraded.",
+              "Analyzer static_patterns_privilege_escalation status: degraded.",
+              "Analyzer static_patterns_prompt_injection status: degraded."
+            ],
+            "omitted_exceptions": 0,
+            "omitted_limitations": 5
+          }
+        ],
+        "omitted_records": 0
+      },
+      "gate_failures": [
+        "skillspector JSON field 'analysis_completeness' reports incomplete analysis (status 'partial'): SKILL.md:63 [reference_resolution; reference_missing]; SKILL.md:126 [reference_resolution; reference_missing]; SKILL.md:132 [reference_resolution; reference_missing]; and 2 more (incomplete files by reason: reference_missing 1, static_parse_limit 1, obfuscated_instruction_text 1); security scan did not complete"
+      ],
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 34,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 100,
+        "applicable_risk_score": 100
+      },
+      "skillspector_reference_summary": {
+        "affected_artifacts": 2,
+        "reference_occurrences": 4,
+        "reference_occurrences_truncated": false
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 4,
+        "checks_performed": 2,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 4 files for PII",
+          "metadata": {
+            "file_count": 4
+          }
+        },
+        {
+          "check": "pii_detection",
+          "message": "No PII detected in 4 files (emails, SSNs, phone numbers, paths)",
+          "metadata": {
+            "files_scanned": 4
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 4 files for PII",
+          "[OK] pii_detection: No PII detected in 4 files (emails, SSNs, phone numbers, paths)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (allowed)",
+          "metadata": {
+            "license_status": "allowed"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Tier 1: Found license declaration in frontmatter (SKILL.md)",
+          "License: MIT (ALLOWED - permissive)",
+          "[OK] license_compliance: License compliance scan completed (allowed)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "bandit",
+          "message": "Bandit: No security issues found",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Found 1 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "[OK] bandit: Bandit: No security issues found",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 3,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 3 markdown files for dead links",
+          "metadata": {
+            "file_count": 3
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 3 markdown file(s)",
+          "metadata": {
+            "files_checked": 3
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 3 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 3 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 4,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "unicode_scan",
+          "message": "No invisible Unicode characters detected in 4 file(s)",
+          "metadata": {
+            "files_scanned": 4
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] unicode_scan: No invisible Unicode characters detected in 4 file(s)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 8,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 3,
+        "low_count": 5
+      },
+      "finding_counts": {
+        "raw_occurrences": 8,
+        "distinct_occurrences": 8,
+        "unique_findings": 8,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-01d058dbbe2e5628ec06",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-fc42151b6828689f0fcb",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-e4d232ac696b71bb0d64",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-8a7d71fa00fceef161d0",
+          "occurrence_id": "SEO-c10c8f77dcc1500b950f",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 239 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-fa4a16655b0a186196e2",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-422fc4440d72281f4d0a",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-4d00195fa1f80a21d1dc",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-317d75a4f5da907e6bc9",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 85.0/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 85.0,
+            "grade": "B",
+            "skill_type": "script-based"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 239 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 85.0/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 85.0,
+        "grade": "B",
+        "skill_type": "script-based",
+        "skill_name": "ship-gate",
+        "dimensions": {
+          "correctness": {
+            "score": 75.0,
+            "weight": 0.35,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 239 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 85.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 1603,
+          "estimated_tokens": 1603,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 84,
+          "instructions_tokens": 1516,
+          "script_count": 1,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 2,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 2,
+        "distinct_occurrences": 2,
+        "unique_findings": 2,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-e82f34741d8bbd8cad13",
+          "occurrence_id": "SEO-2d1bc5b09d6899f38435",
+          "category": "SCRIPT_LINT",
+          "severity": "medium",
+          "check_name": "deep_nesting",
+          "message": "ship_gate_scanner.py has deeply nested code (depth 9, max 6)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/scripts/ship_gate_scanner.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Refactor into smaller functions to reduce complexity",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-e9b8a3c7d5dcf3f1cd64",
+          "occurrence_id": "SEO-83311a6604605ff7893f",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "ship_gate_scanner.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/scripts/ship_gate_scanner.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-MEDIUM] ship_gate_scanner.py has deeply nested code (depth 9, max 6) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/scripts/ship_gate_scanner.py",
+          "[SCRIPT_LINT-LOW] ship_gate_scanner.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/scripts/ship_gate_scanner.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 6,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 2
+      },
+      "finding_counts": {
+        "raw_occurrences": 6,
+        "distinct_occurrences": 6,
+        "unique_findings": 6,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 2,
+          "info": 4
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 2,
+          "info": 4
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-b54270ec48eb1aa13be1",
+          "occurrence_id": "SEO-6a30d9472fab43b14724",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CC-LIST-BUDGET",
+          "message": "claude-code: The 46 skills in this folder have 10,436 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+          "metadata": {
+            "harness": "claude-code",
+            "effect": "degraded",
+            "verified_version": "2.1.316",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-85caefda570ce0720cb0",
+          "occurrence_id": "SEO-a4d5ce79d2a35c446612",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CX-LIST-BUDGET",
+          "message": "codex: The 46 skills in this folder have 10,436 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+          "metadata": {
+            "harness": "codex",
+            "effect": "degraded",
+            "verified_version": "0.166.0",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-59c1733f41a5c61cee53",
+          "occurrence_id": "SEO-0abcfac39440d6342d06",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-LIST-BUDGET",
+          "message": "copilot-cli: 46 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-5673e87aefa67893a503",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-e0623bdfb91d6bbb829f",
+          "occurrence_id": "SEO-c87367be2ba97f983d24",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "HM-DESC-60",
+          "message": "hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Put the trigger (\"Use when \u2026\") in the first 57 characters.",
+          "metadata": {
+            "harness": "hermes",
+            "effect": "advisory",
+            "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-f6959853981388ed9fc6",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-LOW] claude-code: The 46 skills in this folder have 10,436 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[HARNESS-LOW] codex: The 46 skills in this folder have 10,436 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: 46 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[HARNESS-INFO] hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "ship-gate",
+        "skill_digest": "sha256:b220b129381f2f4ae03457cb63d13a3887e65573b696725b07a92b048aa177e0",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "One or more validators reported incomplete scanner evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 85.0,
+      "grade": "B",
+      "skill_type": "script-based",
+      "skill_name": "ship-gate",
+      "dimensions": {
+        "correctness": {
+          "score": 75.0,
+          "weight": 0.35,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 239 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 85.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 1603,
+        "estimated_tokens": 1603,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 84,
+        "instructions_tokens": 1516,
+        "script_count": 1,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:31:09.376532+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills/ship-gate": [
+      {
+        "listed": {
+          "mode": "shortened",
+          "text": ""
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CC-LIST-BUDGET",
+            "effect": "degraded",
+            "message": "The 46 skills in this folder have 10,436 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+            "fix": "Shorten descriptions (trigger first) or install fewer skills here.",
+            "outcome": "listing shortened",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 46,
+          "desc_chars": 10436,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "shortened",
+          "text": ""
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "degraded",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CX-LIST-BUDGET",
+            "effect": "degraded",
+            "message": "The 46 skills in this folder have 10,436 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+            "fix": "Shorten descriptions (trigger first) or install fewer skills here.",
+            "outcome": "listing shortened",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 46,
+          "desc_chars": 10436,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use before deploying or going live ('am I ready to ship', 'can I deploy', 'preflight check'). Scans the codebase with ship_gate_scanner.py across security, database, deploy, AI, dependencies and observability, and blocks on critical items."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-LIST-BUDGET",
+            "effect": "advisory",
+            "message": "46 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+            "fix": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+            "outcome": "listing shortened",
+            "confidence": "medium"
+          },
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 46,
+          "desc_chars": 10436,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use before deploying or going live ('am I ready to ship', 'c",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "HM-DESC-60",
+            "effect": "advisory",
+            "message": "The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+            "fix": "Put the trigger (\"Use when \u2026\") in the first 57 characters.",
+            "outcome": "listing shortened",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 46,
+          "desc_chars": 10436,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use before deploying or going live ('am I ready to ship', 'can I deploy', 'preflight check'). Scans the codebase with ship_gate_scanner.py across security, database, deploy, AI, dependencies and observability, and blocks on critical items."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 46,
+          "desc_chars": 10436,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use before deploying or going live ('am I ready to ship', 'can I deploy', 'preflight check'). Scans the codebase with ship_gate_scanner.py across security, database, deploy, AI, dependencies and observability, and blocks on critical items."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 46,
+          "desc_chars": 10436,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/skills"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,3638 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/engineering/book-to-skill/skills/book-to-skill",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [
+    "skillspector"
+  ],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 7,
+  "total_warnings": 39,
+  "severity_counts": {
+    "critical": 0,
+    "high": 4,
+    "medium": 27,
+    "low": 9
+  },
+  "finding_counts": {
+    "raw_occurrences": 43,
+    "distinct_occurrences": 42,
+    "unique_findings": 32,
+    "duplicates_removed": 1,
+    "occurrences_grouped": 10,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 4,
+      "medium": 27,
+      "low": 9,
+      "info": 3
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 1,
+      "medium": 19,
+      "low": 9,
+      "info": 3
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-b59c29105428b174807e",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-099af0848e1680693eab",
+      "category": "SECURITY",
+      "severity": "high",
+      "check_name": "Tool Parameter Abuse (TM1)",
+      "message": "Tool Misuse: --skip-validation",
+      "suggestion": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns). Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+      "metadata": {
+        "skillspector_confidence": 0.7999999999999999,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-d949a64728979c9f5929",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 155
+        },
+        {
+          "occurrence_id": "SEO-e7da5d411280a5190b4d",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 397
+        },
+        {
+          "occurrence_id": "SEO-cedfde842a77b93c4f58",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 412
+        },
+        {
+          "occurrence_id": "SEO-349d6e961cd5abf09ca9",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 569
+        }
+      ],
+      "occurrence_count": 4
+    },
+    {
+      "finding_id": "SEF-116824637c50f173be5b",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "skill_plugin_emitter.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-36776fd833366e8c1282",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/skill_plugin_emitter.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-134e69f9d55069d3b358",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "subprocess module call (AST4)",
+      "message": "Dangerous Code Execution: subprocess.run(\n                [\"ebook-convert\", input_path, str(output_path)],\n                capture_output=True, text=True, timeout=300\n            )",
+      "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-05245d135a087eb3ab82",
+          "validator": "Security Scan",
+          "file_path": "scripts/book_to_skill/parsers/calibre.py",
+          "line_number": 27
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-206ad653cdc4ab6a0ae1",
+      "category": "PII",
+      "severity": "medium",
+      "check_name": "phone_numbers",
+      "message": "International phone number: +1160",
+      "suggestion": "Remove phone number or use placeholder like +1-555-555-5555",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "+1160",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/document_extraction_pipeline.md",
+            "line": 102
+          }
+        ],
+        "evidence_sha256": "62cdacbc4be1ca3e00b9710383e249b8273109862883448418248cb160139bf3"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-170b83e1d7f8a68c9bfd",
+          "validator": "PII Scan",
+          "file_path": "references/document_extraction_pipeline.md",
+          "line_number": 102
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1b176c19a31f620569a7",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-35bfedf2b9980a0f5cae",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Skill Enumeration (AS3)",
+      "message": "Agent Snooping: dir ~/.claude/skills",
+      "suggestion": "Skill enumerates or reads other installed skills. Access to other skills' SKILL.md files or the skills directory reveals prompt instructions, capabilities, and secrets that should be invisible to peer skills. Remove all code or instructions that list or read other skills' files or directories. Skills should operate independently; cross-skill access is a privilege escalation.",
+      "metadata": {
+        "skillspector_confidence": 0.85,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-d4d07ba63a53ec4d1f88",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 37
+        },
+        {
+          "occurrence_id": "SEO-96c1dc44b41c6c182f4b",
+          "validator": "Security Scan",
+          "file_path": "scripts/token_budget_estimator.py",
+          "line_number": 41
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-90f0adafa9f391a8ae05",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-378f24adfec67572e606",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No troubleshooting section documented",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1f86f4b5fd94dfa083a6",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-482276da7c1e005199ac",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "extract_document.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-b2bb699514d3c125d655",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/extract_document.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f526de11c85e5b089acc",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-543d11314ce86839d9d8",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "token_budget_estimator.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3924a436e3c3b8a76791",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/token_budget_estimator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-61595a4b5d2d92c53989",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unsafe Defaults (TM3)",
+      "message": "Tool Misuse: world-writable",
+      "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-450b92286a9a4582f9fd",
+          "validator": "Security Scan",
+          "file_path": "scripts/book_to_skill/config.py",
+          "line_number": 10
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6c3294c2b85362410fc8",
+      "category": "BANDIT",
+      "severity": "medium",
+      "check_name": "B314:blacklist",
+      "message": "Using xml.etree.ElementTree.fromstring to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.etree.ElementTree.fromstring with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called (CWE-20)",
+      "suggestion": "Review blacklist (B314) (CWE-20)",
+      "metadata": {
+        "cwe": 20
+      },
+      "validators": [
+        "Code Risk Analysis"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-51ab35fef6c0d18f9a2a",
+          "validator": "Code Risk Analysis",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/book_to_skill/parsers/docx.py",
+          "line_number": 33
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-517227218df95e8a2cca",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-534cbef9c3c74ffd0f52",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-742940e9bfab055dcf27",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "subprocess module call (AST4)",
+      "message": "Dangerous Code Execution: subprocess.run(\n                [\"pdfinfo\", pdf_path], capture_output=True, text=True, timeout=15\n            )",
+      "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-33a80338635450e36a0e",
+          "validator": "Security Scan",
+          "file_path": "scripts/book_to_skill/parsers/pdf.py",
+          "line_number": 128
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-75fc498ca33029b6ba44",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description very long (recommend 50-150 chars): 287 chars, maximum 200",
+      "suggestion": "Keep descriptions concise for progressive disclosure",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-841e4ef97f3033850903",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-838102854e373804a230",
+      "category": "PII",
+      "severity": "medium",
+      "check_name": "phone_numbers",
+      "message": "International phone number: +2060",
+      "suggestion": "Remove phone number or use placeholder like +1-555-555-5555",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "+2060",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/document_extraction_pipeline.md",
+            "line": 92
+          }
+        ],
+        "evidence_sha256": "4061ffaaba348f86923e23c8a7c6c6121d4c71fc980dcca63bb8e1210ee5d09f"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1542c3db825aee48cde3",
+          "validator": "PII Scan",
+          "file_path": "references/document_extraction_pipeline.md",
+          "line_number": 92
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-af635a54cdc75fd90a2b",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "book_skill_validator.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-177acd10fef2ec75c29d",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/book_skill_validator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b29a7d5b4f5a7558fab8",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unsafe Defaults (TM3)",
+      "message": "Tool Misuse: skip-validation",
+      "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f1417e62ced3ac669e65",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 155
+        },
+        {
+          "occurrence_id": "SEO-5c5248cbd2483f2f59be",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 397
+        },
+        {
+          "occurrence_id": "SEO-093002bc2c10cb753872",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 412
+        },
+        {
+          "occurrence_id": "SEO-c03aec1d926a6c395419",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 569
+        }
+      ],
+      "occurrence_count": 4
+    },
+    {
+      "finding_id": "SEF-b600785a6395f15c3ba6",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unsafe Defaults (TM3)",
+      "message": "Tool Misuse: skip_validation",
+      "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+      "metadata": {
+        "skillspector_confidence": 0.8,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1c74037f85303d8c82e5",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 378
+        },
+        {
+          "occurrence_id": "SEO-7271b38c7d274c7fbbf8",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 401
+        },
+        {
+          "occurrence_id": "SEO-d296e666977683f6e48d",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 516
+        },
+        {
+          "occurrence_id": "SEO-143dc296dc0caf1cdf71",
+          "validator": "Security Scan",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 589
+        }
+      ],
+      "occurrence_count": 4
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ead223374b086cdfd6e5",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b8be3096686e21ee05e4",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "subprocess module call (AST4)",
+      "message": "Dangerous Code Execution: subprocess.run(\n            [\"pdftotext\", \"-layout\", pdf_path, \"-\"],\n            capture_output=True, text=True, timeout=120,\n            encoding=\"utf-8\", errors=\"replace\",\n        )",
+      "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-b6ea67370ea12e76eaae",
+          "validator": "Security Scan",
+          "file_path": "scripts/book_to_skill/parsers/pdf.py",
+          "line_number": 55
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dba7ced4980558b40d33",
+      "category": "PII",
+      "severity": "medium",
+      "check_name": "phone_numbers",
+      "message": "International phone number: +2066",
+      "suggestion": "Remove phone number or use placeholder like +1-555-555-5555",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "+2066",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/document_extraction_pipeline.md",
+            "line": 95
+          }
+        ],
+        "evidence_sha256": "71c9730851ad6b3de55b84e7fba9a003d0811de116705b351a08f0e32ed58896"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1032766e7f8ee1f644a0",
+          "validator": "PII Scan",
+          "file_path": "references/document_extraction_pipeline.md",
+          "line_number": 95
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-830543f091ee23d14913",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e1db9c03911f117ace8c",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "subprocess module call (AST4)",
+      "message": "Dangerous Code Execution: subprocess.run(\n            [sys.executable, \"-m\", \"pip\", \"install\", *packages],\n            text=True,\n            timeout=600,\n        )",
+      "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-4be4dffb6bd3a9af3733",
+          "validator": "Security Scan",
+          "file_path": "scripts/book_to_skill/dependencies.py",
+          "line_number": 110
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e323b5a8813439b24c96",
+      "category": "SCHEMA",
+      "severity": "info",
+      "check_name": "author_without_email",
+      "message": "Author has no email address: Alireza Rezvani",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+      "metadata": {
+        "current_author": "Alireza Rezvani",
+        "profile": "default",
+        "shape_ok": false,
+        "domain_ok": false
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e5be961db6ba8d280fd1",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2e1eb304fb80b0c1adbb",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9d10afabb383dba0ee0d",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-fd928b9ac4e2c564a21f",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Autonomous Decision Making (EA2)",
+      "message": "Excessive Agency: without asking",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+      "metadata": {
+        "skillspector_confidence": 0.75,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f10f87d600061982baa1",
+          "validator": "Security Scan",
+          "file_path": "scripts/extract_document.py",
+          "line_number": 353
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 6,
+    "independent_errors": 2,
+    "independent_warnings": 1
+  },
+  "skills": [
+    {
+      "name": "book-to-skill",
+      "passed": false,
+      "issue_count": 43
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "book-to-skill",
+          "passed": false,
+          "issue_count": 43
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 43
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Tool Misuse",
+      "severity": "high",
+      "total_count": 14,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns). Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults."
+    },
+    {
+      "message": "Dangerous Code Execution",
+      "severity": "medium",
+      "total_count": 4,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SECURITY",
+      "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands."
+    },
+    {
+      "message": "Agent Snooping",
+      "severity": "medium",
+      "total_count": 2,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill enumerates or reads other installed skills. Access to other skills' SKILL.md files or the skills directory reveals prompt instructions, capabilities, and secrets that should be invisible to peer skills. Remove all code or instructions that list or read other skills' files or directories. Skills should operate independently; cross-skill access is a privilege escalation."
+    },
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "Excessive Agency",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state."
+    },
+    {
+      "message": "International phone number: +2060",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "PII",
+      "suggestion": "Remove phone number or use placeholder like +1-555-555-5555"
+    },
+    {
+      "message": "International phone number: +2066",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "PII",
+      "suggestion": "Remove phone number or use placeholder like +1-555-555-5555"
+    },
+    {
+      "message": "International phone number: +1160",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "PII",
+      "suggestion": "Remove phone number or use placeholder like +1-555-555-5555"
+    },
+    {
+      "message": "Using xml.etree.ElementTree.fromstring to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.etree.ElementTree.fromstring with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called (CWE-20)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "BANDIT",
+      "suggestion": "Review blacklist (B314) (CWE-20)"
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "Description very long (recommend 50-150 chars): 287 chars, maximum 200",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Keep descriptions concise for progressive disclosure"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "No troubleshooting section documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns"
+    },
+    {
+      "message": "book_skill_validator.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "extract_document.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "skill_plugin_emitter.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "token_budget_estimator.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "Author has no email address: Alireza Rezvani",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'"
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "book-to-skill"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 0,
+          "info": 1
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-1b176c19a31f620569a7",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-2e1eb304fb80b0c1adbb",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-e323b5a8813439b24c96",
+          "occurrence_id": "SEO-e5be961db6ba8d280fd1",
+          "category": "SCHEMA",
+          "severity": "info",
+          "check_name": "author_without_email",
+          "message": "Author has no email address: Alireza Rezvani",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": "author: Alireza Rezvani",
+          "suggestion": "A name is accepted as attribution unless the profile requires a contact address (such as 'registry'); then use 'Name <email@example.com>'",
+          "metadata": {
+            "current_author": "Alireza Rezvani",
+            "profile": "default",
+            "shape_ok": false,
+            "domain_ok": false
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'book-to-skill'",
+          "metadata": {
+            "description_length": 287
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/book-to-skill/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'book-to-skill' follows kebab-case convention",
+          "metadata": {
+            "name_length": 13
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (229/500)",
+          "metadata": {
+            "line_count": 229,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: assets, references, scripts",
+          "metadata": {
+            "files_found": [
+              "assets",
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'book-to-skill'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[SCHEMA-INFO] Author has no email address: Alireza Rezvani in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'book-to-skill'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/book-to-skill/",
+          "[OK] naming_convention: Folder name 'book-to-skill' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (229/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: assets, references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'book-to-skill'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_semver",
+          "message": "Valid semantic version: 1.0.0",
+          "metadata": {
+            "version": "1.0.0",
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_semver: Valid semantic version: 1.0.0"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [
+        "skillspector"
+      ],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 5,
+        "warnings": 18,
+        "critical_count": 0,
+        "high_count": 4,
+        "medium_count": 18,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 22,
+        "distinct_occurrences": 21,
+        "unique_findings": 11,
+        "duplicates_removed": 1,
+        "occurrences_grouped": 10,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 4,
+          "medium": 18,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 1,
+          "medium": 10,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-099af0848e1680693eab",
+          "occurrence_id": "SEO-d949a64728979c9f5929",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Tool Parameter Abuse (TM1)",
+          "message": "Tool Misuse: --skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 155,
+          "line_content": "\n    Refusing beats `copytree(symlinks=True)`: preserving the link would ship a\n    package whose contents depend on the emitting machine's filesystem. This\n    check runs even under `--skip-validatio",
+          "suggestion": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns). Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+          "metadata": {
+            "skillspector_confidence": 0.7999999999999999,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-099af0848e1680693eab",
+          "occurrence_id": "SEO-e7da5d411280a5190b4d",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Tool Parameter Abuse (TM1)",
+          "message": "Tool Misuse: --skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 397,
+          "line_content": "            \"Or emit with --distribution local (the default) to keep it on this machine.\"\n        )\n\n    # Unconditional: --skip-validation waives content findings, never the\n    # guarantee that pack",
+          "suggestion": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns). Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+          "metadata": {
+            "skillspector_confidence": 0.7999999999999999,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-099af0848e1680693eab",
+          "occurrence_id": "SEO-cedfde842a77b93c4f58",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Tool Parameter Abuse (TM1)",
+          "message": "Tool Misuse: --skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 412,
+          "line_content": "            raise EmitError(\n                f\"source skill has {len(errors)} validation error(s); fix them before wrapping \"\n                f\"it in a plugin:\\n{summary}\\n\"\n                \"(--skip-v",
+          "suggestion": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns). Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+          "metadata": {
+            "skillspector_confidence": 0.7999999999999999,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-099af0848e1680693eab",
+          "occurrence_id": "SEO-349d6e961cd5abf09ca9",
+          "category": "SECURITY",
+          "severity": "high",
+          "check_name": "Tool Parameter Abuse (TM1)",
+          "message": "Tool Misuse: --skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 569,
+          "line_content": "                        help=\"basis on which the compiled notes may be redistributed\")\n    parser.add_argument(\"--force\", action=\"store_true\", help=\"replace an existing destination\")\n    parser.add_ar",
+          "suggestion": "Tool parameters are crafted to achieve unintended or unsafe behavior. Parameter abuse can bypass intended safety checks (e.g. shell=True, --force, dangerous glob patterns). Validate all tool parameters against an allowlist. Reject dangerous parameter values (shell=True, --force, -rf /) and use safe defaults.",
+          "metadata": {
+            "skillspector_confidence": 0.7999999999999999,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-61595a4b5d2d92c53989",
+          "occurrence_id": "SEO-450b92286a9a4582f9fd",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: world-writable",
+          "file_path": "scripts/book_to_skill/config.py",
+          "line_number": 10,
+          "line_content": "#\n# Upstream defaulted to a fixed `<tempdir>/book_skill_work`. On a shared host\n# that is CWE-377/CWE-59: any local user can pre-create the directory in a\n# world-writable /tmp (the sticky bit stops d",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-e1db9c03911f117ace8c",
+          "occurrence_id": "SEO-4be4dffb6bd3a9af3733",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "subprocess module call (AST4)",
+          "message": "Dangerous Code Execution: subprocess.run(\n            [sys.executable, \"-m\", \"pip\", \"install\", *packages],\n            text=True,\n            timeout=600,\n        )",
+          "file_path": "scripts/book_to_skill/dependencies.py",
+          "line_number": 110,
+          "line_content": "\n    print(f\"Installing missing Python package(s): {', '.join(packages)}\")\n    try:\n        result = subprocess.run(\n            [sys.executable, \"-m\", \"pip\", \"install\", *packages],\n            text=T",
+          "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-134e69f9d55069d3b358",
+          "occurrence_id": "SEO-05245d135a087eb3ab82",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "subprocess module call (AST4)",
+          "message": "Dangerous Code Execution: subprocess.run(\n                [\"ebook-convert\", input_path, str(output_path)],\n                capture_output=True, text=True, timeout=300\n            )",
+          "file_path": "scripts/book_to_skill/parsers/calibre.py",
+          "line_number": 27,
+          "line_content": "        input_path = os.path.abspath(input_path)\n        with tempfile.TemporaryDirectory(prefix=\"book_skill_calibre_\") as scratch:\n            output_path = Path(scratch) / \"ebook-convert-output.txt\"",
+          "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b8be3096686e21ee05e4",
+          "occurrence_id": "SEO-b6ea67370ea12e76eaae",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "subprocess module call (AST4)",
+          "message": "Dangerous Code Execution: subprocess.run(\n            [\"pdftotext\", \"-layout\", pdf_path, \"-\"],\n            capture_output=True, text=True, timeout=120,\n            encoding=\"utf-8\", errors=\"replace\",\n        )",
+          "file_path": "scripts/book_to_skill/parsers/pdf.py",
+          "line_number": 55,
+          "line_content": "        return None\n    try:\n        pdf_path = os.path.abspath(pdf_path)\n        result = subprocess.run(\n            [\"pdftotext\", \"-layout\", pdf_path, \"-\"],\n            capture_output=True, text=Tr",
+          "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-742940e9bfab055dcf27",
+          "occurrence_id": "SEO-33a80338635450e36a0e",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "subprocess module call (AST4)",
+          "message": "Dangerous Code Execution: subprocess.run(\n                [\"pdfinfo\", pdf_path], capture_output=True, text=True, timeout=15\n            )",
+          "file_path": "scripts/book_to_skill/parsers/pdf.py",
+          "line_number": 128,
+          "line_content": "    if shutil.which(\"pdfinfo\"):\n        try:\n            pdf_path = os.path.abspath(pdf_path)\n            result = subprocess.run(\n                [\"pdfinfo\", pdf_path], capture_output=True, text=True",
+          "suggestion": "subprocess module calls execute external commands. Without careful input validation, this enables command injection. Use subprocess.run() with shell=False and an explicit argument list. Validate all inputs and avoid passing user-controlled data to commands.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-fd928b9ac4e2c564a21f",
+          "occurrence_id": "SEO-f10f87d600061982baa1",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Autonomous Decision Making (EA2)",
+          "message": "Excessive Agency: without asking",
+          "file_path": "scripts/extract_document.py",
+          "line_number": 353,
+          "line_content": "                                          \"is printed and stored in metadata.json)\")\n    parser.add_argument(\"--install-missing\", choices=INSTALL_MODES, default=None,\n                        help=\"rep",
+          "suggestion": "Skill enables autonomous high-impact decisions without human-in-the-loop verification. Critical operations (destructive commands, financial transactions, data deletion) should require explicit user confirmation. Add human-in-the-loop confirmation for destructive, irreversible, or high-impact operations. Never auto-execute commands that modify files, send data, or alter system state.",
+          "metadata": {
+            "skillspector_confidence": 0.75,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-35bfedf2b9980a0f5cae",
+          "occurrence_id": "SEO-d4d07ba63a53ec4d1f88",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Skill Enumeration (AS3)",
+          "message": "Agent Snooping: dir ~/.claude/skills",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 37,
+          "line_content": "    2  bad invocation\n\nUsage:\n    python3 skill_plugin_emitter.py --skill-dir ~/.claude/skills/meadows-systems \\\\\n        --dest ./engineering --domain engineering\n    python3 skill_plugin_emitter.py ",
+          "suggestion": "Skill enumerates or reads other installed skills. Access to other skills' SKILL.md files or the skills directory reveals prompt instructions, capabilities, and secrets that should be invisible to peer skills. Remove all code or instructions that list or read other skills' files or directories. Skills should operate independently; cross-skill access is a privilege escalation.",
+          "metadata": {
+            "skillspector_confidence": 0.85,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-35bfedf2b9980a0f5cae",
+          "occurrence_id": "SEO-96c1dc44b41c6c182f4b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Skill Enumeration (AS3)",
+          "message": "Agent Snooping: dir ~/.claude/skills",
+          "file_path": "scripts/token_budget_estimator.py",
+          "line_number": 41,
+          "line_content": "\nUsage:\n    python3 token_budget_estimator.py --full-text \"$WORKDIR/full_text.txt\"\n    python3 token_budget_estimator.py --skill-dir ~/.claude/skills/meadows-systems\n    python3 token_budget_estimator",
+          "suggestion": "Skill enumerates or reads other installed skills. Access to other skills' SKILL.md files or the skills directory reveals prompt instructions, capabilities, and secrets that should be invisible to peer skills. Remove all code or instructions that list or read other skills' files or directories. Skills should operate independently; cross-skill access is a privilege escalation.",
+          "metadata": {
+            "skillspector_confidence": 0.85,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b29a7d5b4f5a7558fab8",
+          "occurrence_id": "SEO-f1417e62ced3ac669e65",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 155,
+          "line_content": "\n    Refusing beats `copytree(symlinks=True)`: preserving the link would ship a\n    package whose contents depend on the emitting machine's filesystem. This\n    check runs even under `--skip-validatio",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b29a7d5b4f5a7558fab8",
+          "occurrence_id": "SEO-5c5248cbd2483f2f59be",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 397,
+          "line_content": "            \"Or emit with --distribution local (the default) to keep it on this machine.\"\n        )\n\n    # Unconditional: --skip-validation waives content findings, never the\n    # guarantee that pack",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b29a7d5b4f5a7558fab8",
+          "occurrence_id": "SEO-093002bc2c10cb753872",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 412,
+          "line_content": "            raise EmitError(\n                f\"source skill has {len(errors)} validation error(s); fix them before wrapping \"\n                f\"it in a plugin:\\n{summary}\\n\"\n                \"(--skip-v",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b29a7d5b4f5a7558fab8",
+          "occurrence_id": "SEO-c03aec1d926a6c395419",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip-validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 569,
+          "line_content": "                        help=\"basis on which the compiled notes may be redistributed\")\n    parser.add_argument(\"--force\", action=\"store_true\", help=\"replace an existing destination\")\n    parser.add_ar",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b600785a6395f15c3ba6",
+          "occurrence_id": "SEO-1c74037f85303d8c82e5",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip_validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 378,
+          "line_content": "def emit(*, skill_dir: Path, dest_root: Path, domain: str, author: str, author_url: str,\n         repository: str,\n         distribution: str, rights: str | None, source_note: str, slug_override: str ",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b600785a6395f15c3ba6",
+          "occurrence_id": "SEO-7271b38c7d274c7fbbf8",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip_validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 401,
+          "line_content": "    # guarantee that packaging copies only what is actually in the source tree.\n    _assert_no_symlinks(skill_dir)\n\n    if not skip_validation:\n        try:\n            findings = validate(skill_dir)\n",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b600785a6395f15c3ba6",
+          "occurrence_id": "SEO-d296e666977683f6e48d",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip_validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 516,
+          "line_content": "            author=\"Alireza Rezvani\", author_url=\"https://alirezarezvani.com\",\n            repository=\"https://github.com/alirezarezvani/claude-skills\",\n            distribution=\"local\", rights=None, ",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b600785a6395f15c3ba6",
+          "occurrence_id": "SEO-143dc296dc0caf1cdf71",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip_validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 589,
+          "line_content": "            author=args.author, author_url=args.author_url, repository=args.repository,\n            distribution=args.distribution,\n            rights=args.rights, source_note=args.source_note, slug_o",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-b600785a6395f15c3ba6",
+          "occurrence_id": "SEO-143dc296dc0caf1cdf71",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unsafe Defaults (TM3)",
+          "message": "Tool Misuse: skip_validation",
+          "file_path": "scripts/skill_plugin_emitter.py",
+          "line_number": 589,
+          "line_content": "            author=args.author, author_url=args.author_url, repository=args.repository,\n            distribution=args.distribution,\n            rights=args.rights, source_note=args.source_note, slug_o",
+          "suggestion": "Tool defaults are unsafe or overly permissive (e.g. disabled TLS verification, no authentication, world-writable permissions). Unsafe defaults widen the attack surface. Override unsafe defaults with secure settings (verify=True, auth required, restrictive permissions). Review and harden all tool configurations.",
+          "metadata": {
+            "skillspector_confidence": 0.8,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "skillspector JSON field 'analysis_completeness' reports incomplete analysis (status 'partial'): SKILL.md:28 [reference_resolution; reference_missing]; SKILL.md:29 [reference_resolution; reference_missing]; SKILL.md:30 [reference_resolution; reference_missing]; and 11 more (incomplete files by reason: static_parse_limit 2, reference_missing 1); security scan did not complete",
+          "[SECURITY-HIGH] Tool Misuse: --skip-validation in scripts/skill_plugin_emitter.py:155",
+          "[SECURITY-HIGH] Tool Misuse: --skip-validation in scripts/skill_plugin_emitter.py:397",
+          "[SECURITY-HIGH] Tool Misuse: --skip-validation in scripts/skill_plugin_emitter.py:412",
+          "[SECURITY-HIGH] Tool Misuse: --skip-validation in scripts/skill_plugin_emitter.py:569"
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1",
+          "[SECURITY-MEDIUM] Tool Misuse: world-writable in scripts/book_to_skill/config.py:10",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: subprocess.run(\n            [sys.executable, \"-m\", \"pip\", \"install\", *packages],\n            text=True,\n            timeout=600,\n        ) in scripts/book_to_skill/dependencies.py:110",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: subprocess.run(\n                [\"ebook-convert\", input_path, str(output_path)],\n                capture_output=True, text=True, timeout=300\n            ) in scripts/book_to_skill/parsers/calibre.py:27",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: subprocess.run(\n            [\"pdftotext\", \"-layout\", pdf_path, \"-\"],\n            capture_output=True, text=True, timeout=120,\n            encoding=\"utf-8\", errors=\"replace\",\n        ) in scripts/book_to_skill/parsers/pdf.py:55",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: subprocess.run(\n                [\"pdfinfo\", pdf_path], capture_output=True, text=True, timeout=15\n            ) in scripts/book_to_skill/parsers/pdf.py:128",
+          "[SECURITY-MEDIUM] Excessive Agency: without asking in scripts/extract_document.py:353",
+          "[SECURITY-MEDIUM] Agent Snooping: dir ~/.claude/skills in scripts/skill_plugin_emitter.py:37",
+          "[SECURITY-MEDIUM] Agent Snooping: dir ~/.claude/skills in scripts/token_budget_estimator.py:41",
+          "[SECURITY-MEDIUM] Tool Misuse: skip-validation in scripts/skill_plugin_emitter.py:155",
+          "[SECURITY-MEDIUM] Tool Misuse: skip-validation in scripts/skill_plugin_emitter.py:397",
+          "[SECURITY-MEDIUM] Tool Misuse: skip-validation in scripts/skill_plugin_emitter.py:412",
+          "[SECURITY-MEDIUM] Tool Misuse: skip-validation in scripts/skill_plugin_emitter.py:569",
+          "[SECURITY-MEDIUM] Tool Misuse: skip_validation in scripts/skill_plugin_emitter.py:378",
+          "[SECURITY-MEDIUM] Tool Misuse: skip_validation in scripts/skill_plugin_emitter.py:401",
+          "[SECURITY-MEDIUM] Tool Misuse: skip_validation in scripts/skill_plugin_emitter.py:516",
+          "[SECURITY-MEDIUM] Tool Misuse: skip_validation in scripts/skill_plugin_emitter.py:589",
+          "[SECURITY-MEDIUM] Tool Misuse: skip_validation in scripts/skill_plugin_emitter.py:589"
+        ],
+        "messages": [
+          "skillspector risk score: 100/100 (CRITICAL)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_completeness": {
+        "records": [
+          {
+            "stage": "skillspector",
+            "reported_status": "partial",
+            "ledger_exceptions": [
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 28,
+                "end_line": 28
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 29,
+                "end_line": 29
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 30,
+                "end_line": 30
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 111,
+                "end_line": 111
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 113,
+                "end_line": 113
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 116,
+                "end_line": 116
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 121,
+                "end_line": 121
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 122,
+                "end_line": 122
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 125,
+                "end_line": 125
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 126,
+                "end_line": 126
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 145,
+                "end_line": 145
+              },
+              {
+                "path": "SKILL.md",
+                "phase": "reference_resolution",
+                "reason_code": "reference_missing",
+                "start_line": 164,
+                "end_line": 164
+              },
+              {
+                "path": "scripts/book_to_skill/parsers/html_text.py",
+                "phase": "static",
+                "reason_code": "static_parse_limit",
+                "analyzers": [
+                  "static_patterns_tool_misuse"
+                ],
+                "omitted_analyzers": 0
+              },
+              {
+                "path": "scripts/book_to_skill/utils.py",
+                "phase": "static",
+                "reason_code": "static_parse_limit",
+                "analyzers": [
+                  "static_patterns_tool_misuse"
+                ],
+                "omitted_analyzers": 0
+              }
+            ],
+            "limitations": [
+              "Analyzer static_patterns_tool_misuse status: degraded."
+            ],
+            "omitted_exceptions": 0,
+            "omitted_limitations": 0
+          }
+        ],
+        "omitted_records": 0
+      },
+      "gate_failures": [
+        "skillspector JSON field 'analysis_completeness' reports incomplete analysis (status 'partial'): SKILL.md:28 [reference_resolution; reference_missing]; SKILL.md:29 [reference_resolution; reference_missing]; SKILL.md:30 [reference_resolution; reference_missing]; and 11 more (incomplete files by reason: static_parse_limit 2, reference_missing 1); security scan did not complete"
+      ],
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 22,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 100,
+        "applicable_risk_score": 100
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 28,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 3,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 3,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-838102854e373804a230",
+          "occurrence_id": "SEO-1542c3db825aee48cde3",
+          "category": "PII",
+          "severity": "medium",
+          "check_name": "phone_numbers",
+          "message": "International phone number: +2060",
+          "file_path": "references/document_extraction_pipeline.md",
+          "line_number": 92,
+          "line_content": "1. **Zero-width and invisible spacers** \u2014 U+200B\u2013U+200D, U+2060\u2013U+2064, U+FEFF, U+00AD,",
+          "suggestion": "Remove phone number or use placeholder like +1-555-555-5555",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "+2060",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/document_extraction_pipeline.md",
+                "line": 92
+              }
+            ],
+            "evidence_sha256": "4061ffaaba348f86923e23c8a7c6c6121d4c71fc980dcca63bb8e1210ee5d09f"
+          }
+        },
+        {
+          "finding_id": "SEF-dba7ced4980558b40d33",
+          "occurrence_id": "SEO-1032766e7f8ee1f644a0",
+          "category": "PII",
+          "severity": "medium",
+          "check_name": "phone_numbers",
+          "message": "International phone number: +2066",
+          "file_path": "references/document_extraction_pipeline.md",
+          "line_number": 95,
+          "line_content": "2. **Bidirectional formatting controls** \u2014 U+202A\u2013U+202E, U+2066\u2013U+2069, U+200E/U+200F,",
+          "suggestion": "Remove phone number or use placeholder like +1-555-555-5555",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "+2066",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/document_extraction_pipeline.md",
+                "line": 95
+              }
+            ],
+            "evidence_sha256": "71c9730851ad6b3de55b84e7fba9a003d0811de116705b351a08f0e32ed58896"
+          }
+        },
+        {
+          "finding_id": "SEF-206ad653cdc4ab6a0ae1",
+          "occurrence_id": "SEO-170b83e1d7f8a68c9bfd",
+          "category": "PII",
+          "severity": "medium",
+          "check_name": "phone_numbers",
+          "message": "International phone number: +1160",
+          "file_path": "references/document_extraction_pipeline.md",
+          "line_number": 102,
+          "line_content": "3. **Invisible letters** \u2014 Hangul fillers U+115F, U+1160, U+3164, U+FFA0. Not format",
+          "suggestion": "Remove phone number or use placeholder like +1-555-555-5555",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "+1160",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/document_extraction_pipeline.md",
+                "line": 102
+              }
+            ],
+            "evidence_sha256": "62cdacbc4be1ca3e00b9710383e249b8273109862883448418248cb160139bf3"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 28 files for PII",
+          "metadata": {
+            "file_count": 28
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[PII-MEDIUM] International phone number: +2060 in references/document_extraction_pipeline.md:92",
+          "[PII-MEDIUM] International phone number: +2066 in references/document_extraction_pipeline.md:95",
+          "[PII-MEDIUM] International phone number: +1160 in references/document_extraction_pipeline.md:102"
+        ],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 28 files for PII"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (allowed)",
+          "metadata": {
+            "license_status": "allowed"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "Tier 1: Found license declaration in frontmatter (SKILL.md)",
+          "License: MIT (ALLOWED - permissive)",
+          "[OK] license_compliance: License compliance scan completed (allowed)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 1,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-6c3294c2b85362410fc8",
+          "occurrence_id": "SEO-51ab35fef6c0d18f9a2a",
+          "category": "BANDIT",
+          "severity": "medium",
+          "check_name": "B314:blacklist",
+          "message": "Using xml.etree.ElementTree.fromstring to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.etree.ElementTree.fromstring with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called (CWE-20)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/book_to_skill/parsers/docx.py",
+          "line_number": 33,
+          "line_content": null,
+          "suggestion": "Review blacklist (B314) (CWE-20)",
+          "metadata": {
+            "cwe": 20
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "[BANDIT-MEDIUM] Using xml.etree.ElementTree.fromstring to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.etree.ElementTree.fromstring with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called (CWE-20) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/book_to_skill/parsers/docx.py:33"
+        ],
+        "warnings": [],
+        "messages": [
+          "Found 19 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "Bandit found: 0 HIGH, 1 MEDIUM, 0 LOW",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 9,
+        "checks_performed": 3,
+        "errors": 1,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 9 markdown files for dead links",
+          "metadata": {
+            "file_count": 9
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [
+          "Dead link in master_skill_template.md: chapters/ch01-%3Cslug%3E.md"
+        ],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 9 markdown files for dead links",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 28,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "unicode_scan",
+          "message": "No invisible Unicode characters detected in 28 file(s)",
+          "metadata": {
+            "files_scanned": 28
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] unicode_scan: No invisible Unicode characters detected in 28 file(s)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 8,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 3,
+        "low_count": 5
+      },
+      "finding_counts": {
+        "raw_occurrences": 8,
+        "distinct_occurrences": 8,
+        "unique_findings": 8,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 5,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-534cbef9c3c74ffd0f52",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-517227218df95e8a2cca",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-830543f091ee23d14913",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-75fc498ca33029b6ba44",
+          "occurrence_id": "SEO-841e4ef97f3033850903",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description very long (recommend 50-150 chars): 287 chars, maximum 200",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep descriptions concise for progressive disclosure",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-ead223374b086cdfd6e5",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-f526de11c85e5b089acc",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-9d10afabb383dba0ee0d",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-378f24adfec67572e606",
+          "occurrence_id": "SEO-1f86f4b5fd94dfa083a6",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No troubleshooting section documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 85.0/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 85.0,
+            "grade": "B",
+            "skill_type": "hybrid"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[QUALITY-LOW] Description very long (recommend 50-150 chars): 287 chars, maximum 200 in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[QUALITY-LOW] No troubleshooting section documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 85.0/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 85.0,
+        "grade": "B",
+        "skill_type": "hybrid",
+        "skill_name": "book-to-skill",
+        "dimensions": {
+          "correctness": {
+            "score": 75.0,
+            "weight": 0.35,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description very long (recommend 50-150 chars): 287 chars, maximum 200",
+                "suggestion": "Keep descriptions concise for progressive disclosure",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 85.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No troubleshooting section documented",
+                "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 2855,
+          "estimated_tokens": 2855,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 108,
+          "instructions_tokens": 2745,
+          "script_count": 4,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 4
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 4,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 4,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-af635a54cdc75fd90a2b",
+          "occurrence_id": "SEO-177acd10fef2ec75c29d",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "book_skill_validator.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/book_skill_validator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-482276da7c1e005199ac",
+          "occurrence_id": "SEO-b2bb699514d3c125d655",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "extract_document.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/extract_document.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-116824637c50f173be5b",
+          "occurrence_id": "SEO-36776fd833366e8c1282",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "skill_plugin_emitter.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/skill_plugin_emitter.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-543d11314ce86839d9d8",
+          "occurrence_id": "SEO-3924a436e3c3b8a76791",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "token_budget_estimator.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/token_budget_estimator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-LOW] book_skill_validator.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/book_skill_validator.py",
+          "[SCRIPT_LINT-LOW] extract_document.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/extract_document.py",
+          "[SCRIPT_LINT-LOW] skill_plugin_emitter.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/skill_plugin_emitter.py",
+          "[SCRIPT_LINT-LOW] token_budget_estimator.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/scripts/token_budget_estimator.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 2,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 2,
+        "distinct_occurrences": 2,
+        "unique_findings": 2,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 2
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 2
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-90f0adafa9f391a8ae05",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-b59c29105428b174807e",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "book-to-skill",
+        "skill_digest": "sha256:7cd23f50e3306e40330381139adddb5a400623cb0fb043d91d46796c88232c75",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "One or more validators reported incomplete scanner evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 85.0,
+      "grade": "B",
+      "skill_type": "hybrid",
+      "skill_name": "book-to-skill",
+      "dimensions": {
+        "correctness": {
+          "score": 75.0,
+          "weight": 0.35,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description very long (recommend 50-150 chars): 287 chars, maximum 200",
+              "suggestion": "Keep descriptions concise for progressive disclosure",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 85.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No troubleshooting section documented",
+              "suggestion": "Add '## Troubleshooting' with Error/Cause/Solution patterns",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 2855,
+        "estimated_tokens": 2855,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 108,
+        "instructions_tokens": 2745,
+        "script_count": 4,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:27:13.737774+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills/book-to-skill": [
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when turning a book, docs folder or spec collection (PDF, EPUB, DOCX, HTML, Markdown) into an agent skill, before summarizing it by hand. Extracts with extract_document.py, compiles chapters, glossary and cheatsheet, validates with book_skill_validator.py and enforces a rights gate."
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "loads",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 287,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when turning a book, docs folder or spec collection (PDF, EPUB, DOCX, HTML, Markdown) into an agent skill, before summarizing it by hand. Extracts with extract_document.py, compiles chapters, glossary and cheatsheet, validates with book_skill_validator.py and enforces a rights gate."
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "loads",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 287,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when turning a book, docs folder or spec collection (PDF, EPUB, DOCX, HTML, Markdown) into an agent skill, before summarizing it by hand. Extracts with extract_document.py, compiles chapters, glossary and cheatsheet, validates with book_skill_validator.py and enforces a rights gate."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 287,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Use when turning a book, docs folder or spec collection (PDF",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 287,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when turning a book, docs folder or spec collection (PDF, EPUB, DOCX, HTML, Markdown) into an agent skill, before summarizing it by hand. Extracts with extract_document.py, compiles chapters, glossary and cheatsheet, validates with book_skill_validator.py and enforces a rights gate."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 287,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Use when turning a book, docs folder or spec collection (PDF, EPUB, DOCX, HTML, Markdown) into an agent skill, before summarizing it by hand. Extracts with extract_document.py, compiles chapters, glossary and cheatsheet, validates with book_skill_validator.py and enforces a rights gate."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 1,
+          "desc_chars": 287,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering/book-to-skill/skills"
+        }
+      }
+    ]
+  }
+}

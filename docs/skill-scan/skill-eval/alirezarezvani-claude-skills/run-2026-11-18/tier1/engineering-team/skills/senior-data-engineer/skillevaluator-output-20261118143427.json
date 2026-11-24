@@ -1,0 +1,3888 @@
+{
+  "version": "1.0.1",
+  "target_path": "https://github.com/alirezarezvani/claude-skills/tree/main/engineering-team/skills/senior-data-engineer",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "incomplete_scans": [
+    "skillspector"
+  ],
+  "total_validators": 12,
+  "total_skipped": 0,
+  "total_advisory_skipped": 0,
+  "total_errors": 7,
+  "total_warnings": 40,
+  "severity_counts": {
+    "critical": 0,
+    "high": 6,
+    "medium": 19,
+    "low": 13
+  },
+  "finding_counts": {
+    "raw_occurrences": 44,
+    "distinct_occurrences": 45,
+    "unique_findings": 40,
+    "duplicates_removed": 0,
+    "occurrences_grouped": 5,
+    "raw_by_severity": {
+      "critical": 0,
+      "high": 6,
+      "medium": 19,
+      "low": 13,
+      "info": 6
+    },
+    "unique_by_severity": {
+      "critical": 0,
+      "high": 6,
+      "medium": 15,
+      "low": 13,
+      "info": 6
+    }
+  },
+  "finding_groups": [
+    {
+      "finding_id": "SEF-03e029934351881ba688",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-RELOAD",
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ccbb41a99aa5a721bb66",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-0f3cde56a46498377f1a",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Description doesn't mention WHEN to use this skill",
+      "suggestion": "Add trigger context: 'Use for...', 'When you need to...'",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6a5aadd4d6d6f8ba149d",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-0fdd3e368677fe3226d1",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "External Transmission (E1)",
+      "message": "Data Exfiltration: curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d '{\"text\":\"dbt production deployment FAILED!\"}'\n```\n\n### dbt CI Configuration\n\n```yaml\n# dbt",
+      "suggestion": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended. Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0b7525ca6b5eb6574027",
+          "validator": "Security Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 826
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-1017300978cb9cb0eae9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "Broad description without negative triggers may cause over-triggering",
+      "suggestion": "Add boundary phrases like 'Do NOT use for...'",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-39b0cde9279985d1eb3d",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-12289cbfbe9695f53460",
+      "category": "BANDIT",
+      "severity": "medium",
+      "check_name": "B608:hardcoded_sql_expressions",
+      "message": "Possible SQL injection vector through string-based query construction. (CWE-89)",
+      "suggestion": "Review hardcoded_sql_expressions (B608) (CWE-89)",
+      "metadata": {
+        "cwe": 89
+      },
+      "validators": [
+        "Code Risk Analysis"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0151da9bea275f789d2f",
+          "validator": "Code Risk Analysis",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/etl_performance_optimizer.py",
+          "line_number": 968
+        },
+        {
+          "occurrence_id": "SEO-3d3be4418af0585e3c2d",
+          "validator": "Code Risk Analysis",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py",
+          "line_number": 615
+        },
+        {
+          "occurrence_id": "SEO-985f866b38422f2c9319",
+          "validator": "Code Risk Analysis",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py",
+          "line_number": 676
+        }
+      ],
+      "occurrence_count": 3
+    },
+    {
+      "finding_id": "SEF-1800560550347eb146f3",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: data-alerts@company.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "data-alerts@company.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/workflows.md",
+            "line": 127
+          }
+        ],
+        "evidence_sha256": "a9be48b8cf6c37dfe788aa4ed492cc95afdb1d76df0b923c5293119a56f2a16a"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-5c3658b154f0a4bffff4",
+          "validator": "PII Scan",
+          "file_path": "references/workflows.md",
+          "line_number": 127
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-1cd9f4d8a1527b2ce9d1",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "etl_performance_optimizer.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-ac76e48f55c8e6cf936e",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/etl_performance_optimizer.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-29923f4d680e578e37e3",
+      "category": "SCHEMA",
+      "severity": "low",
+      "check_name": "description_trigger",
+      "message": "Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list",
+      "suggestion": "State when to use the skill within the first 60 characters",
+      "metadata": null,
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0eb62bd90ad217ec184c",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-2ab016a817c566724ba9",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Instructions'",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+      "metadata": {
+        "missing_section": "## Instructions"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-404302355708806c546f",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3661379ea9e5c1072875",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-RELOAD",
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "suggestion": null,
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-2ecbce4c70c02df02028",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-3843bfe121da9e2b4dde",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: data-platform@company.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "data-platform@company.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/dataops_best_practices.md",
+            "line": 423
+          }
+        ],
+        "evidence_sha256": "0742d97b468add80524f31a363f25d77c1514d903e3516841855ee846573dafd"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-26ca017a1beb14cb072b",
+          "validator": "PII Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 423
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4a6560f4aec006f302f9",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No prerequisites/requirements documented",
+      "suggestion": "Document dependencies, API keys, or setup needed",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3bf16e0bfcdcb6d8d11b",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-4c381f02f498d31730fe",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: finance@company.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "finance@company.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/dataops_best_practices.md",
+            "line": 536
+          }
+        ],
+        "evidence_sha256": "b695ba9ac6c9a3ab847ac86574ee007a3136db3a2ad3cc38d04f2d909e8e095a"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-0e21f2890e6e08e96f46",
+          "validator": "PII Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 536
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6b66555d1029e567b59c",
+      "category": "UNICODE",
+      "severity": "low",
+      "check_name": "isolated_invisible_char",
+      "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+      "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+      "metadata": {
+        "char_count": 1,
+        "unicode_category": "variation_selectors"
+      },
+      "validators": [
+        "Unicode Smuggling Detection"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-5bfaa3a2e5aae19f7fdb",
+          "validator": "Unicode Smuggling Detection",
+          "file_path": "scripts/data_quality_validator.py",
+          "line_number": 1160
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-6d68dab37ccc357a6814",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "Instructions don't mention 'run_script'",
+      "suggestion": "Add explicit run_script() call examples",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-799a77c3ff302d17cdf7",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-740453e5661b3b5b6f1e",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "No documented scripts in table format",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 10
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3f15b60f9fbf5ab38a69",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-7d8d9f72f99ec61dbf58",
+      "category": "SCHEMA",
+      "severity": "low",
+      "check_name": "author_missing",
+      "message": "Author not specified in metadata",
+      "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address",
+      "metadata": {
+        "profile": "default"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-dadc0c6ac2f47b3781e0",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-821847759f63d6996320",
+      "category": "SCRIPT_LINT",
+      "severity": "medium",
+      "check_name": "deep_nesting",
+      "message": "data_quality_validator.py has deeply nested code (depth 8, max 6)",
+      "suggestion": "Refactor into smaller functions to reduce complexity",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-dd7e27eac52007472a6b",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/data_quality_validator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-89a0f6f580a653ddfe5e",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Cloud Storage Exfiltration (E5)",
+      "message": "Data Exfiltration: aws s3 sync",
+      "suggestion": "Data is uploaded to cloud storage (S3 / GCS / Azure Blob). This may be a legitimate backup or exfiltration to an external bucket. Manual review is recommended. Verify the destination bucket is trusted and owned by you. Never upload credentials, secrets, or workspace contents to external or unverified cloud storage.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-e26b990954c3f0ce6682",
+          "validator": "Security Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 907
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-8e1fcdbf37b720508663",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Unknown (LP3)",
+      "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+      "metadata": {
+        "skillspector_confidence": 0.7,
+        "artifact_type": "skill",
+        "file_role": "agent_instruction",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "validator": "Security Scan",
+          "file_path": "SKILL.md",
+          "line_number": 1
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-945e1fec491a6e4fe8ae",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "CP-LIST-BUDGET",
+      "message": "copilot-cli: 35 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+      "metadata": {
+        "harness": "copilot-cli",
+        "effect": "advisory",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-f46a1e2b9df5fd4ba7fc",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-9d915cf6329b07b39c45",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "Cloud Storage Exfiltration (E5)",
+      "message": "Data Exfiltration: aws s3 cp",
+      "suggestion": "Data is uploaded to cloud storage (S3 / GCS / Azure Blob). This may be a legitimate backup or exfiltration to an external bucket. Manual review is recommended. Verify the destination bucket is trusted and owned by you. Never upload credentials, secrets, or workspace contents to external or unverified cloud storage.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-54a7d408c37924f3bd9c",
+          "validator": "Security Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 891
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-9ee247b094bacb186bfe",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: ml-team@company.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "ml-team@company.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/dataops_best_practices.md",
+            "line": 530
+          }
+        ],
+        "evidence_sha256": "2234ae3f3aa2f4cefa389fb659267da239f97b2c84bdb5587ed609af0dd12f09"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-6acc67889f52a6e84a68",
+          "validator": "PII Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 530
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-a9a74c1e6b101d24d121",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OW-REF-BUDGET",
+      "message": "openclaw: 1 files over 64,000 bytes (scripts/etl_performance_optimizer.py): OpenClaw's read cap is 16,000-64,000 UTF-8 bytes by model context, so each takes several reads.",
+      "suggestion": "Split large reference files into pieces under 16,000 UTF-8 bytes.",
+      "metadata": {
+        "harness": "openclaw",
+        "effect": "advisory",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-bc1f1041363b8ce17159",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-ad11d8a5a4f279647925",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CC-LIST-BUDGET",
+      "message": "claude-code: The 35 skills in this folder have 9,167 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+      "metadata": {
+        "harness": "claude-code",
+        "effect": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-1867eeddbeff29aba545",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_discoverability",
+      "message": "No '## Purpose' section",
+      "suggestion": "Add purpose section to clarify use cases",
+      "metadata": {
+        "dimension": "discoverability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-b4722bc07c14ae78874b",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-bd391608ad88ed553b34",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "External Transmission (E1)",
+      "message": "Data Exfiltration: curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d ",
+      "suggestion": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended. Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted.",
+      "metadata": {
+        "skillspector_confidence": 0.6,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-346751dfa77636376c1e",
+          "validator": "Security Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 819
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-bf2d85d8c9d7a282e7ad",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+      "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c588553aae486b99a097",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-c040a8cc2093f87ecb0a",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "data_quality_validator.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c74ba572fafb5a4fc703",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/data_quality_validator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-d3fd990dcb629fee5945",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "External Transmission (E1)",
+      "message": "Data Exfiltration: https://api.pagerduty.com/",
+      "suggestion": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended. Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted.",
+      "metadata": {
+        "skillspector_confidence": 0.5,
+        "artifact_type": "skill",
+        "file_role": "agent_reference",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-cb849a581b5cde4b1199",
+          "validator": "Security Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 1215
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+      "category": "QUALITY",
+      "severity": "medium",
+      "check_name": "quality_correctness",
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+      "metadata": {
+        "dimension": "correctness",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-84e0cdfbbec80c6312eb",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-df42902583e9362bf196",
+      "category": "SCRIPT_LINT",
+      "severity": "low",
+      "check_name": "magic_numbers",
+      "message": "pipeline_orchestrator.py contains magic numbers",
+      "suggestion": "Extract magic numbers to named constants",
+      "metadata": null,
+      "validators": [
+        "SCRIPT_LINT"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-c7129a60f63a1f1ffbb8",
+          "validator": "SCRIPT_LINT",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e01374b12c7719c69d44",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: data-team@company.com \u2014 2 occurrences (references/data_modeling_patterns.md line 1020; references/workflows.md line 513)",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "data-team@company.com",
+        "occurrence_count": 2,
+        "occurrences": [
+          {
+            "file": "references/data_modeling_patterns.md",
+            "line": 1020
+          },
+          {
+            "file": "references/workflows.md",
+            "line": 513
+          }
+        ],
+        "evidence_sha256": "e892d1511007ea8baa0b182da1fcad83eac9840f1326f87c13073dd0fcdb4c05"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-3f7d7f5d3af7a54f18bf",
+          "validator": "PII Scan",
+          "file_path": "references/data_modeling_patterns.md",
+          "line_number": 1020
+        },
+        {
+          "occurrence_id": "SEO-7cd8e402c0a50e8d26d7",
+          "validator": "PII Scan",
+          "file_path": "references/workflows.md",
+          "line_number": 513
+        }
+      ],
+      "occurrence_count": 2
+    },
+    {
+      "finding_id": "SEF-e0623bdfb91d6bbb829f",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "HM-DESC-60",
+      "message": "hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+      "suggestion": "Put the trigger (\"Use when \u2026\") in the first 57 characters.",
+      "metadata": {
+        "harness": "hermes",
+        "effect": "advisory",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-af779e797b5eb009361d",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e1919690e920506c37f2",
+      "category": "HARNESS",
+      "severity": "info",
+      "check_name": "OC-REF-CUT",
+      "message": "opencode: 2 files are over 51,200 bytes or 2,000 lines (scripts/data_quality_validator.py, scripts/etl_performance_optimizer.py); OpenCode's read tool returns at most that per call, so the model must page.",
+      "suggestion": "Split large files into pieces under 51,200 bytes and 2,000 lines.",
+      "metadata": {
+        "harness": "opencode",
+        "effect": "advisory",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-9fd6bd0776bd0c153cca",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e3f5c930756d6b8f695b",
+      "category": "SCHEMA",
+      "severity": "medium",
+      "check_name": "body_recommended_section",
+      "message": "Missing recommended section: '## Examples'",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+      "metadata": {
+        "missing_section": "## Examples"
+      },
+      "validators": [
+        "Schema & Repository Governance"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-063218b81c8eb57cd2dc",
+          "validator": "Schema & Repository Governance",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-e681d8c910f37c13d328",
+      "category": "HARNESS",
+      "severity": "low",
+      "check_name": "CX-LIST-BUDGET",
+      "message": "codex: The 35 skills in this folder have 9,167 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+      "metadata": {
+        "harness": "codex",
+        "effect": "degraded",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01"
+      },
+      "validators": [
+        "Harness Compatibility"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-125be0ca5a0b73516e99",
+          "validator": "Harness Compatibility",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-ec1c23e7ce3a1d271a54",
+      "category": "PII",
+      "severity": "high",
+      "check_name": "emails",
+      "message": "Non-placeholder email address: analytics@company.com",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+      "metadata": {
+        "confidence": "high",
+        "matched_value": "analytics@company.com",
+        "occurrence_count": 1,
+        "occurrences": [
+          {
+            "file": "references/dataops_best_practices.md",
+            "line": 524
+          }
+        ],
+        "evidence_sha256": "4db77ab0ee03846cf2ef1a4a3e6a49e24aad5c1e8da493903adb2890857feb96"
+      },
+      "validators": [
+        "PII Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-5341a9d1f03ec30436c0",
+          "validator": "PII Scan",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 524
+        }
+      ],
+      "occurrence_count": 1
+    },
+    {
+      "finding_id": "SEF-f9d4284c9cf89b8c81db",
+      "category": "SECURITY",
+      "severity": "medium",
+      "check_name": "compile() call detected (AST6)",
+      "message": "Dangerous Code Execution: compile(code, '<string>', 'exec')",
+      "suggestion": "compile() creates code objects from strings. When combined with exec()/eval(), it enables obfuscated code execution. Avoid compile() with dynamic strings. If code generation is needed, use templates or AST manipulation with strict validation.",
+      "metadata": {
+        "skillspector_confidence": 0.65,
+        "artifact_type": "skill",
+        "file_role": "agent_executable",
+        "applicability": "agent-control-path"
+      },
+      "validators": [
+        "Security Scan"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-8f2aa8769d0c1b1e75d5",
+          "validator": "Security Scan",
+          "file_path": "scripts/pipeline_orchestrator.py",
+          "line_number": 339
+        },
+        {
+          "occurrence_id": "SEO-e71afbea51b2fd7b6fb7",
+          "validator": "Security Scan",
+          "file_path": "scripts/pipeline_orchestrator.py",
+          "line_number": 452
+        },
+        {
+          "occurrence_id": "SEO-c15b51c738dca7adf082",
+          "validator": "Security Scan",
+          "file_path": "scripts/pipeline_orchestrator.py",
+          "line_number": 579
+        }
+      ],
+      "occurrence_count": 3
+    },
+    {
+      "finding_id": "SEF-fc6fe3747c071963a76e",
+      "category": "QUALITY",
+      "severity": "low",
+      "check_name": "quality_reliability",
+      "message": "No limitations documented",
+      "suggestion": "Add '## Limitations' section with known issues/constraints",
+      "metadata": {
+        "dimension": "reliability",
+        "deduction": 5
+      },
+      "validators": [
+        "QUALITY"
+      ],
+      "occurrences": [
+        {
+          "occurrence_id": "SEO-4389236a8db374da3e44",
+          "validator": "QUALITY",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null
+        }
+      ],
+      "occurrence_count": 1
+    }
+  ],
+  "message_counts": {
+    "informational": 4,
+    "independent_errors": 1,
+    "independent_warnings": 2
+  },
+  "skills": [
+    {
+      "name": "senior-data-engineer",
+      "passed": false,
+      "issue_count": 44
+    }
+  ],
+  "contributors": [
+    {
+      "author": "Unknown",
+      "items": [
+        {
+          "name": "senior-data-engineer",
+          "passed": false,
+          "issue_count": 44
+        }
+      ],
+      "total_items": 1,
+      "passed_count": 0,
+      "failed_count": 1,
+      "total_issues": 44
+    }
+  ],
+  "top_issues": [
+    {
+      "message": "Non-placeholder email address: data-team@company.com \u2014 2 occurrences (references/data_modeling_patterns.md line 1020; references/workflows.md line 513)",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: data-alerts@company.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: data-platform@company.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: analytics@company.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: ml-team@company.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Non-placeholder email address: finance@company.com",
+      "severity": "high",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "PII",
+      "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required."
+    },
+    {
+      "message": "Data Exfiltration",
+      "severity": "medium",
+      "total_count": 5,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended. Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted."
+    },
+    {
+      "message": "Dangerous Code Execution",
+      "severity": "medium",
+      "total_count": 3,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SECURITY",
+      "suggestion": "compile() creates code objects from strings. When combined with exec()/eval(), it enables obfuscated code execution. Avoid compile() with dynamic strings. If code generation is needed, use templates or AST manipulation with strict validation."
+    },
+    {
+      "message": "Possible SQL injection vector through string-based query construction. (CWE-89)",
+      "severity": "medium",
+      "total_count": 3,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "BANDIT",
+      "suggestion": "Review hardcoded_sql_expressions (B608) (CWE-89)"
+    },
+    {
+      "message": "Missing recommended section: '## Instructions'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics."
+    },
+    {
+      "message": "Missing recommended section: '## Examples'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped."
+    },
+    {
+      "message": "MCP Least Privilege",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SECURITY",
+      "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities."
+    },
+    {
+      "message": "No documented scripts in table format",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |"
+    },
+    {
+      "message": "Instructions don't mention 'run_script'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add explicit run_script() call examples"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)"
+    },
+    {
+      "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)"
+    },
+    {
+      "message": "data_quality_validator.py has deeply nested code (depth 8, max 6)",
+      "severity": "medium",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Refactor into smaller functions to reduce complexity"
+    },
+    {
+      "message": "Author not specified in metadata",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address"
+    },
+    {
+      "message": "Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCHEMA",
+      "suggestion": "State when to use the skill within the first 60 characters"
+    },
+    {
+      "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "UNICODE",
+      "suggestion": "Likely a copy-paste artifact. Remove if not intentional."
+    },
+    {
+      "message": "Description doesn't mention WHEN to use this skill",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add trigger context: 'Use for...', 'When you need to...'"
+    },
+    {
+      "message": "Broad description without negative triggers may cause over-triggering",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add boundary phrases like 'Do NOT use for...'"
+    },
+    {
+      "message": "No '## Purpose' section",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add purpose section to clarify use cases"
+    },
+    {
+      "message": "No prerequisites/requirements documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Document dependencies, API keys, or setup needed"
+    },
+    {
+      "message": "No limitations documented",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "QUALITY",
+      "suggestion": "Add '## Limitations' section with known issues/constraints"
+    },
+    {
+      "message": "data_quality_validator.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "etl_performance_optimizer.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "pipeline_orchestrator.py contains magic numbers",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "SCRIPT_LINT",
+      "suggestion": "Extract magic numbers to named constants"
+    },
+    {
+      "message": "claude-code: The 35 skills in this folder have 9,167 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here."
+    },
+    {
+      "message": "codex: The 35 skills in this folder have 9,167 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+      "severity": "low",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Shorten descriptions (trigger first) or install fewer skills here."
+    },
+    {
+      "message": "copilot-cli: 35 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory."
+    },
+    {
+      "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Put the trigger (\"Use when \u2026\") in the first 57 characters."
+    },
+    {
+      "message": "openclaw: 1 files over 64,000 bytes (scripts/etl_performance_optimizer.py): OpenClaw's read cap is 16,000-64,000 UTF-8 bytes by model context, so each takes several reads.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Split large reference files into pieces under 16,000 UTF-8 bytes."
+    },
+    {
+      "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": null
+    },
+    {
+      "message": "opencode: 2 files are over 51,200 bytes or 2,000 lines (scripts/data_quality_validator.py, scripts/etl_performance_optimizer.py); OpenCode's read tool returns at most that per call, so the model must page.",
+      "severity": "info",
+      "total_count": 1,
+      "skills_affected": [
+        "senior-data-engineer"
+      ],
+      "category": "HARNESS",
+      "suggestion": "Split large files into pieces under 51,200 bytes and 2,000 lines."
+    }
+  ],
+  "results": [
+    {
+      "validator": "Schema & Repository Governance",
+      "description": "Validate SKILL.md frontmatter and repository structure",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 8,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 2,
+        "low_count": 2
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 2,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 2,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-2ab016a817c566724ba9",
+          "occurrence_id": "SEO-404302355708806c546f",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Instructions'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Instructions' or '## Usage' section. Per agentskills.io the body format is unrestricted, so this is a convention nudge \u2014 it also gives the quality scorer a stable anchor for instruction-quality heuristics.",
+          "metadata": {
+            "missing_section": "## Instructions"
+          }
+        },
+        {
+          "finding_id": "SEF-e3f5c930756d6b8f695b",
+          "occurrence_id": "SEO-063218b81c8eb57cd2dc",
+          "category": "SCHEMA",
+          "severity": "medium",
+          "check_name": "body_recommended_section",
+          "message": "Missing recommended section: '## Examples'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Consider adding a '## Examples' section. If examples are already inline under instructions, this can be skipped.",
+          "metadata": {
+            "missing_section": "## Examples"
+          }
+        },
+        {
+          "finding_id": "SEF-7d8d9f72f99ec61dbf58",
+          "occurrence_id": "SEO-dadc0c6ac2f47b3781e0",
+          "category": "SCHEMA",
+          "severity": "low",
+          "check_name": "author_missing",
+          "message": "Author not specified in metadata",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'metadata.author' with a person, team, or organization name, or 'Name <email@example.com>' to include a contact address",
+          "metadata": {
+            "profile": "default"
+          }
+        },
+        {
+          "finding_id": "SEF-29923f4d680e578e37e3",
+          "occurrence_id": "SEO-0eb62bd90ad217ec184c",
+          "category": "SCHEMA",
+          "severity": "low",
+          "check_name": "description_trigger",
+          "message": "Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "State when to use the skill within the first 60 characters",
+          "metadata": null
+        }
+      ],
+      "success_details": [
+        {
+          "check": "manifest_exists",
+          "message": "Found skill manifest: SKILL.md",
+          "metadata": {
+            "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md"
+          }
+        },
+        {
+          "check": "frontmatter_valid",
+          "message": "Valid frontmatter for skill 'senior-data-engineer'",
+          "metadata": {
+            "description_length": 194
+          }
+        },
+        {
+          "check": "folder_hierarchy",
+          "message": "Valid general skill structure: skills/senior-data-engineer/",
+          "metadata": null
+        },
+        {
+          "check": "naming_convention",
+          "message": "Folder name 'senior-data-engineer' follows kebab-case convention",
+          "metadata": {
+            "name_length": 20
+          }
+        },
+        {
+          "check": "line_count",
+          "message": "SKILL.md within line limit (191/500)",
+          "metadata": {
+            "line_count": 191,
+            "limit": 500
+          }
+        },
+        {
+          "check": "body_heading",
+          "message": "Body contains a top-level heading",
+          "metadata": null
+        },
+        {
+          "check": "optional_files",
+          "message": "Found optional supporting files: references, scripts",
+          "metadata": {
+            "files_found": [
+              "references",
+              "scripts"
+            ]
+          }
+        },
+        {
+          "check": "name_consistency",
+          "message": "Directory name matches frontmatter: 'senior-data-engineer'",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Instructions' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[SCHEMA-MEDIUM] Missing recommended section: '## Examples' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[SCHEMA-LOW] Author not specified in metadata in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[SCHEMA-LOW] Description has no 'Use when ...' trigger; some harnesses show only the first ~60 characters in their skill list in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md"
+        ],
+        "messages": [
+          "[OK] manifest_exists: Found skill manifest: SKILL.md",
+          "[OK] frontmatter_valid: Valid frontmatter for skill 'senior-data-engineer'",
+          "[OK] folder_hierarchy: Valid general skill structure: skills/senior-data-engineer/",
+          "[OK] naming_convention: Folder name 'senior-data-engineer' follows kebab-case convention",
+          "[OK] line_count: SKILL.md within line limit (191/500)",
+          "[OK] body_heading: Body contains a top-level heading",
+          "[OK] optional_files: Found optional supporting files: references, scripts",
+          "[OK] name_consistency: Directory name matches frontmatter: 'senior-data-engineer'"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "schema"
+      }
+    },
+    {
+      "validator": "Semantic Version Validation",
+      "description": "Validate optional metadata.version labels and require strict bumps",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "version_optional",
+          "message": "No semantic version label present; resource will use commit-hash history",
+          "metadata": {
+            "previous_version": null
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] version_optional: No semantic version label present; resource will use commit-hash history"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "version"
+      }
+    },
+    {
+      "validator": "Security Scan",
+      "description": "Detect security vulnerabilities and PII/secrets",
+      "passed": false,
+      "status": "incomplete",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [
+        "skillspector"
+      ],
+      "scanners": {
+        "skillspector": "2.13.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 1,
+        "warnings": 9,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 9,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 9,
+        "distinct_occurrences": 9,
+        "unique_findings": 7,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 2,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 9,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 7,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-8e1fcdbf37b720508663",
+          "occurrence_id": "SEO-c04b8c5539e90a8aac9b",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Unknown (LP3)",
+          "message": "MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated.",
+          "file_path": "SKILL.md",
+          "line_number": 1,
+          "line_content": null,
+          "suggestion": "Without declared permissions the skill's intent is opaque and cannot be validated. Declare the skill's tool scope: for Claude Code / Agent Skills SKILL.md, list the tools the skill may invoke in the 'allowed-tools' frontmatter field; for MCP server manifests, add a 'permissions' list naming the required capabilities.",
+          "metadata": {
+            "skillspector_confidence": 0.7,
+            "artifact_type": "skill",
+            "file_role": "agent_instruction",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-bd391608ad88ed553b34",
+          "occurrence_id": "SEO-346751dfa77636376c1e",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "External Transmission (E1)",
+          "message": "Data Exfiltration: curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d ",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 819,
+          "line_content": "      - name: Notify on success\n        if: success()\n        run: |\n          curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d '{\"text\":\"db",
+          "suggestion": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended. Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-0fdd3e368677fe3226d1",
+          "occurrence_id": "SEO-0b7525ca6b5eb6574027",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "External Transmission (E1)",
+          "message": "Data Exfiltration: curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d '{\"text\":\"dbt production deployment FAILED!\"}'\n```\n\n### dbt CI Configuration\n\n```yaml\n# dbt",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 826,
+          "line_content": "      - name: Notify on failure\n        if: failure()\n        run: |\n          curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d '{\"text\":\"db",
+          "suggestion": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended. Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-9d915cf6329b07b39c45",
+          "occurrence_id": "SEO-54a7d408c37924f3bd9c",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Cloud Storage Exfiltration (E5)",
+          "message": "Data Exfiltration: aws s3 cp",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 891,
+          "line_content": "set -e\n\n# Download production manifest for state comparison\naws s3 cp s3://dbt-artifacts/prod/manifest.json ./target/prod_manifest.json\n\n# Run only modified models and their downstream dependencies\ndb",
+          "suggestion": "Data is uploaded to cloud storage (S3 / GCS / Azure Blob). This may be a legitimate backup or exfiltration to an external bucket. Manual review is recommended. Verify the destination bucket is trusted and owned by you. Never upload credentials, secrets, or workspace contents to external or unverified cloud storage.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-89a0f6f580a653ddfe5e",
+          "occurrence_id": "SEO-e26b990954c3f0ce6682",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "Cloud Storage Exfiltration (E5)",
+          "message": "Data Exfiltration: aws s3 sync",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 907,
+          "line_content": "\n# Upload CI artifacts\ndbt docs generate\naws s3 sync ./target s3://dbt-artifacts/ci/${GITHUB_SHA}/\n```\n\n---",
+          "suggestion": "Data is uploaded to cloud storage (S3 / GCS / Azure Blob). This may be a legitimate backup or exfiltration to an external bucket. Manual review is recommended. Verify the destination bucket is trusted and owned by you. Never upload credentials, secrets, or workspace contents to external or unverified cloud storage.",
+          "metadata": {
+            "skillspector_confidence": 0.6,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-d3fd990dcb629fee5945",
+          "occurrence_id": "SEO-cb849a581b5cde4b1199",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "External Transmission (E1)",
+          "message": "Data Exfiltration: https://api.pagerduty.com/",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 1215,
+          "line_content": "### 1. Acknowledge the Alert\n```bash\n# Acknowledge in PagerDuty\ncurl -X POST https://api.pagerduty.com/incidents/{incident_id}/acknowledge\n\n# Post in #data-incidents Slack channel\n```",
+          "suggestion": "Data is being sent to an external URL. This could be legitimate telemetry or data exfiltration. Manual review is recommended. Verify the destination URL is trusted and necessary. Remove or replace with documented APIs. Ensure no secrets, tokens, or PII are transmitted.",
+          "metadata": {
+            "skillspector_confidence": 0.5,
+            "artifact_type": "skill",
+            "file_role": "agent_reference",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-f9d4284c9cf89b8c81db",
+          "occurrence_id": "SEO-8f2aa8769d0c1b1e75d5",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "compile() call detected (AST6)",
+          "message": "Dangerous Code Execution: compile(code, '<string>', 'exec')",
+          "file_path": "scripts/pipeline_orchestrator.py",
+          "line_number": 339,
+          "line_content": "\n        # Try to parse the code\n        try:\n            compile(code, '<string>', 'exec')  # noqa: SEC-AUDITOR (syntax check of generated DAG source; the compiled code is never run)\n        except S",
+          "suggestion": "compile() creates code objects from strings. When combined with exec()/eval(), it enables obfuscated code execution. Avoid compile() with dynamic strings. If code generation is needed, use templates or AST manipulation with strict validation.",
+          "metadata": {
+            "skillspector_confidence": 0.65,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-f9d4284c9cf89b8c81db",
+          "occurrence_id": "SEO-e71afbea51b2fd7b6fb7",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "compile() call detected (AST6)",
+          "message": "Dangerous Code Execution: compile(code, '<string>', 'exec')",
+          "file_path": "scripts/pipeline_orchestrator.py",
+          "line_number": 452,
+          "line_content": "            issues.append(\"No tasks defined with @task decorator\")\n\n        try:\n            compile(code, '<string>', 'exec')  # noqa: SEC-AUDITOR (syntax check of generated DAG source; the compiled ",
+          "suggestion": "compile() creates code objects from strings. When combined with exec()/eval(), it enables obfuscated code execution. Avoid compile() with dynamic strings. If code generation is needed, use templates or AST manipulation with strict validation.",
+          "metadata": {
+            "skillspector_confidence": 0.65,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        },
+        {
+          "finding_id": "SEF-f9d4284c9cf89b8c81db",
+          "occurrence_id": "SEO-c15b51c738dca7adf082",
+          "category": "SECURITY",
+          "severity": "medium",
+          "check_name": "compile() call detected (AST6)",
+          "message": "Dangerous Code Execution: compile(code, '<string>', 'exec')",
+          "file_path": "scripts/pipeline_orchestrator.py",
+          "line_number": 579,
+          "line_content": "            issues.append(\"No ops defined with @op decorator\")\n\n        try:\n            compile(code, '<string>', 'exec')  # noqa: SEC-AUDITOR (syntax check of generated DAG source; the compiled code",
+          "suggestion": "compile() creates code objects from strings. When combined with exec()/eval(), it enables obfuscated code execution. Avoid compile() with dynamic strings. If code generation is needed, use templates or AST manipulation with strict validation.",
+          "metadata": {
+            "skillspector_confidence": 0.65,
+            "artifact_type": "skill",
+            "file_role": "agent_executable",
+            "applicability": "agent-control-path"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [
+          "skillspector JSON field 'analysis_completeness' reports caveats that SkillEvaluator does not accept (status 'complete_with_caveats'): SKILL.md:72 [reference_resolution; reference_missing]; SKILL.md:73 [reference_resolution; reference_missing]; SKILL.md:78 [reference_resolution; reference_missing]; security scan did not complete. Missing references require a standalone target with complete, matching reference and scan evidence. See https://docs.nvidia.com/skills/skillevaluator/tier1-validation."
+        ],
+        "warnings": [
+          "[SECURITY-MEDIUM] MCP Least Privilege: Without declared permissions the skill's intent is opaque and cannot be validated. in SKILL.md:1",
+          "[SECURITY-MEDIUM] Data Exfiltration: curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d  in references/dataops_best_practices.md:819",
+          "[SECURITY-MEDIUM] Data Exfiltration: curl -X POST ${{ secrets.SLACK_WEBHOOK }} \\\n            -H 'Content-type: application/json' \\\n            -d '{\"text\":\"dbt production deployment FAILED!\"}'\n```\n\n### dbt CI Configuration\n\n```yaml\n# dbt in references/dataops_best_practices.md:826",
+          "[SECURITY-MEDIUM] Data Exfiltration: aws s3 cp in references/dataops_best_practices.md:891",
+          "[SECURITY-MEDIUM] Data Exfiltration: aws s3 sync in references/dataops_best_practices.md:907",
+          "[SECURITY-MEDIUM] Data Exfiltration: https://api.pagerduty.com/ in references/dataops_best_practices.md:1215",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: compile(code, '<string>', 'exec') in scripts/pipeline_orchestrator.py:339",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: compile(code, '<string>', 'exec') in scripts/pipeline_orchestrator.py:452",
+          "[SECURITY-MEDIUM] Dangerous Code Execution: compile(code, '<string>', 'exec') in scripts/pipeline_orchestrator.py:579"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "skillspector_version": "2.13.4",
+      "skillspector_applicability": {
+        "artifact_type": "skill",
+        "kept_issues": 9,
+        "suppressed_inapplicable_issues": 0,
+        "suppressed_by_file_role": {},
+        "raw_risk_score": 41,
+        "applicable_risk_score": 41
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "security"
+      }
+    },
+    {
+      "validator": "PII Scan",
+      "description": "Detect PII and local identifiers",
+      "passed": false,
+      "status": "failed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 9,
+        "checks_performed": 1,
+        "errors": 6,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 6,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 6,
+        "distinct_occurrences": 7,
+        "unique_findings": 6,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 1,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 6,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 6,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-e01374b12c7719c69d44",
+          "occurrence_id": "SEO-3f7d7f5d3af7a54f18bf",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: data-team@company.com \u2014 2 occurrences (references/data_modeling_patterns.md line 1020; references/workflows.md line 513)",
+          "file_path": "references/data_modeling_patterns.md",
+          "line_number": 1020,
+          "line_content": "owner: data-team@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "data-team@company.com",
+            "occurrence_count": 2,
+            "occurrences": [
+              {
+                "file": "references/data_modeling_patterns.md",
+                "line": 1020
+              },
+              {
+                "file": "references/workflows.md",
+                "line": 513
+              }
+            ],
+            "evidence_sha256": "e892d1511007ea8baa0b182da1fcad83eac9840f1326f87c13073dd0fcdb4c05"
+          }
+        },
+        {
+          "finding_id": "SEF-1800560550347eb146f3",
+          "occurrence_id": "SEO-5c3658b154f0a4bffff4",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: data-alerts@company.com",
+          "file_path": "references/workflows.md",
+          "line_number": 127,
+          "line_content": "    'email': ['data-alerts@company.com'],",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "data-alerts@company.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/workflows.md",
+                "line": 127
+              }
+            ],
+            "evidence_sha256": "a9be48b8cf6c37dfe788aa4ed492cc95afdb1d76df0b923c5293119a56f2a16a"
+          }
+        },
+        {
+          "finding_id": "SEF-3843bfe121da9e2b4dde",
+          "occurrence_id": "SEO-26ca017a1beb14cb072b",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: data-platform@company.com",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 423,
+          "line_content": "  owner: data-platform@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "data-platform@company.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/dataops_best_practices.md",
+                "line": 423
+              }
+            ],
+            "evidence_sha256": "0742d97b468add80524f31a363f25d77c1514d903e3516841855ee846573dafd"
+          }
+        },
+        {
+          "finding_id": "SEF-ec1c23e7ce3a1d271a54",
+          "occurrence_id": "SEO-5341a9d1f03ec30436c0",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: analytics@company.com",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 524,
+          "line_content": "    contact: analytics@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "analytics@company.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/dataops_best_practices.md",
+                "line": 524
+              }
+            ],
+            "evidence_sha256": "4db77ab0ee03846cf2ef1a4a3e6a49e24aad5c1e8da493903adb2890857feb96"
+          }
+        },
+        {
+          "finding_id": "SEF-9ee247b094bacb186bfe",
+          "occurrence_id": "SEO-6acc67889f52a6e84a68",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: ml-team@company.com",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 530,
+          "line_content": "    contact: ml-team@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "ml-team@company.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/dataops_best_practices.md",
+                "line": 530
+              }
+            ],
+            "evidence_sha256": "2234ae3f3aa2f4cefa389fb659267da239f97b2c84bdb5587ed609af0dd12f09"
+          }
+        },
+        {
+          "finding_id": "SEF-4c381f02f498d31730fe",
+          "occurrence_id": "SEO-0e21f2890e6e08e96f46",
+          "category": "PII",
+          "severity": "high",
+          "check_name": "emails",
+          "message": "Non-placeholder email address: finance@company.com",
+          "file_path": "references/dataops_best_practices.md",
+          "line_number": 536,
+          "line_content": "    contact: finance@company.com",
+          "suggestion": "Keep the metadata.author attribution. Replace other contact addresses with a handle, a contact-directory link, or user@example.com; use a reviewed --pii-waivers entry if the address is required.",
+          "metadata": {
+            "confidence": "high",
+            "matched_value": "finance@company.com",
+            "occurrence_count": 1,
+            "occurrences": [
+              {
+                "file": "references/dataops_best_practices.md",
+                "line": 536
+              }
+            ],
+            "evidence_sha256": "b695ba9ac6c9a3ab847ac86574ee007a3136db3a2ad3cc38d04f2d909e8e095a"
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "pii_scan_start",
+          "message": "Scanning 9 files for PII",
+          "metadata": {
+            "file_count": 9
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [
+          "[PII-HIGH] Non-placeholder email address: data-team@company.com \u2014 2 occurrences (references/data_modeling_patterns.md line 1020; references/workflows.md line 513) in references/data_modeling_patterns.md:1020",
+          "[PII-HIGH] Non-placeholder email address: data-alerts@company.com in references/workflows.md:127",
+          "[PII-HIGH] Non-placeholder email address: data-platform@company.com in references/dataops_best_practices.md:423",
+          "[PII-HIGH] Non-placeholder email address: analytics@company.com in references/dataops_best_practices.md:524",
+          "[PII-HIGH] Non-placeholder email address: ml-team@company.com in references/dataops_best_practices.md:530",
+          "[PII-HIGH] Non-placeholder email address: finance@company.com in references/dataops_best_practices.md:536"
+        ],
+        "warnings": [],
+        "messages": [
+          "[OK] pii_scan_start: Scanning 9 files for PII"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "pii"
+      }
+    },
+    {
+      "validator": "License Compliance",
+      "description": "Validate license compliance for Skills, Rules, and Workflows",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "license_compliance",
+          "message": "License compliance scan completed (not detected)",
+          "metadata": {
+            "license_status": "not_detected"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No license information found - manual review required. Add a LICENSE file or 'license' field in frontmatter."
+        ],
+        "messages": [
+          "No license detected in any tier",
+          "[OK] license_compliance: License compliance scan completed (not detected)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "license"
+      }
+    },
+    {
+      "validator": "Code Risk Analysis",
+      "description": "Static code analysis using Bandit and packaged Semgrep rules",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "bandit": "1.9.4"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 3,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 3,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 3,
+        "distinct_occurrences": 3,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 2,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-12289cbfbe9695f53460",
+          "occurrence_id": "SEO-0151da9bea275f789d2f",
+          "category": "BANDIT",
+          "severity": "medium",
+          "check_name": "B608:hardcoded_sql_expressions",
+          "message": "Possible SQL injection vector through string-based query construction. (CWE-89)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/etl_performance_optimizer.py",
+          "line_number": 968,
+          "line_content": null,
+          "suggestion": "Review hardcoded_sql_expressions (B608) (CWE-89)",
+          "metadata": {
+            "cwe": 89
+          }
+        },
+        {
+          "finding_id": "SEF-12289cbfbe9695f53460",
+          "occurrence_id": "SEO-3d3be4418af0585e3c2d",
+          "category": "BANDIT",
+          "severity": "medium",
+          "check_name": "B608:hardcoded_sql_expressions",
+          "message": "Possible SQL injection vector through string-based query construction. (CWE-89)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py",
+          "line_number": 615,
+          "line_content": null,
+          "suggestion": "Review hardcoded_sql_expressions (B608) (CWE-89)",
+          "metadata": {
+            "cwe": 89
+          }
+        },
+        {
+          "finding_id": "SEF-12289cbfbe9695f53460",
+          "occurrence_id": "SEO-985f866b38422f2c9319",
+          "category": "BANDIT",
+          "severity": "medium",
+          "check_name": "B608:hardcoded_sql_expressions",
+          "message": "Possible SQL injection vector through string-based query construction. (CWE-89)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py",
+          "line_number": 676,
+          "line_content": null,
+          "suggestion": "Review hardcoded_sql_expressions (B608) (CWE-89)",
+          "metadata": {
+            "cwe": 89
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[BANDIT-MEDIUM] Possible SQL injection vector through string-based query construction. (CWE-89) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/etl_performance_optimizer.py:968",
+          "[BANDIT-MEDIUM] Possible SQL injection vector through string-based query construction. (CWE-89) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py:615",
+          "[BANDIT-MEDIUM] Possible SQL injection vector through string-based query construction. (CWE-89) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py:676"
+        ],
+        "messages": [
+          "Found 3 Python, 0 Shell, 0 JavaScript/TypeScript files",
+          "Bandit found: 0 HIGH, 3 MEDIUM, 0 LOW",
+          "Semgrep not installed; skipped. Optional; install separately with: brew install semgrep (macOS) or uv tool install semgrep"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Secrets Detection",
+      "description": "Detect hardcoded secrets, API keys, and credentials using Gitleaks",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "scanners": {
+        "gitleaks": "8.30.0"
+      },
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 0,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "gitleaks",
+          "message": "No secrets detected by Gitleaks",
+          "metadata": null
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [],
+        "messages": [
+          "[OK] gitleaks: No secrets detected by Gitleaks"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Code Integrity & Hygiene",
+      "description": "Validate dead links, dependencies, and static Python test-file discovery",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 6,
+        "checks_performed": 4,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 0
+      },
+      "finding_counts": {
+        "raw_occurrences": 0,
+        "distinct_occurrences": 0,
+        "unique_findings": 0,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0,
+          "info": 0
+        }
+      },
+      "findings": [],
+      "success_details": [
+        {
+          "check": "dead_links_scan",
+          "message": "Checking 6 markdown files for dead links",
+          "metadata": {
+            "file_count": 6
+          }
+        },
+        {
+          "check": "dead_links",
+          "message": "All relative links valid in 6 markdown file(s)",
+          "metadata": {
+            "files_checked": 6
+          }
+        },
+        {
+          "check": "dependencies",
+          "message": "No dependency files found (requirements.txt, pyproject.toml)",
+          "metadata": null
+        },
+        {
+          "check": "test_discovery",
+          "message": "No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests.",
+          "metadata": {
+            "test_count": 0,
+            "execution_performed": false,
+            "coverage_measured": false,
+            "patterns": [
+              "test_*.py",
+              "*_test.py"
+            ]
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "No standard Python test-file candidates found; consider adding tests"
+        ],
+        "messages": [
+          "[OK] dead_links_scan: Checking 6 markdown files for dead links",
+          "[OK] dead_links: All relative links valid in 6 markdown file(s)",
+          "[OK] dependencies: No dependency files found (requirements.txt, pyproject.toml)",
+          "[OK] test_discovery: No standard Python test-file candidates found; target tests were not executed and coverage was not measured. Consider adding tests."
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "code-integrity"
+      }
+    },
+    {
+      "validator": "Unicode Smuggling Detection",
+      "description": "Detect invisible Unicode characters and ASCII smuggling",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 9,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 1,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 1
+      },
+      "finding_counts": {
+        "raw_occurrences": 1,
+        "distinct_occurrences": 1,
+        "unique_findings": 1,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 1,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-6b66555d1029e567b59c",
+          "occurrence_id": "SEO-5bfaa3a2e5aae19f7fdb",
+          "category": "UNICODE",
+          "severity": "low",
+          "check_name": "isolated_invisible_char",
+          "message": "Isolated invisible character(s) (1): VARIATION SELECTOR-16",
+          "file_path": "scripts/data_quality_validator.py",
+          "line_number": 1160,
+          "line_content": "severity_icon = \"\u274c\" if r.severity == \"error\" else \"\u26a0\ufe0f\"",
+          "suggestion": "Likely a copy-paste artifact. Remove if not intentional.",
+          "metadata": {
+            "char_count": 1,
+            "unicode_category": "variation_selectors"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[UNICODE-LOW] Isolated invisible character(s) (1): VARIATION SELECTOR-16 in scripts/data_quality_validator.py:1160"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "unicode"
+      }
+    },
+    {
+      "validator": "QUALITY",
+      "description": "Skill quality scoring across Correctness (35%), Discoverability (25%), Reliability (25%), and Efficiency (15%)",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 1,
+        "errors": 0,
+        "warnings": 9,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 4,
+        "low_count": 5
+      },
+      "finding_counts": {
+        "raw_occurrences": 9,
+        "distinct_occurrences": 9,
+        "unique_findings": 9,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 4,
+          "low": 5,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 4,
+          "low": 5,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-740453e5661b3b5b6f1e",
+          "occurrence_id": "SEO-3f15b60f9fbf5ab38a69",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "No documented scripts in table format",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-6d68dab37ccc357a6814",
+          "occurrence_id": "SEO-799a77c3ff302d17cdf7",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "Instructions don't mention 'run_script'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add explicit run_script() call examples",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-bf2d85d8c9d7a282e7ad",
+          "occurrence_id": "SEO-c588553aae486b99a097",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-dd828fd8f6476dc5f3c7",
+          "occurrence_id": "SEO-84e0cdfbbec80c6312eb",
+          "category": "QUALITY",
+          "severity": "medium",
+          "check_name": "quality_correctness",
+          "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+          "metadata": {
+            "dimension": "correctness",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-0f3cde56a46498377f1a",
+          "occurrence_id": "SEO-6a5aadd4d6d6f8ba149d",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Description doesn't mention WHEN to use this skill",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add trigger context: 'Use for...', 'When you need to...'",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 10
+          }
+        },
+        {
+          "finding_id": "SEF-1017300978cb9cb0eae9",
+          "occurrence_id": "SEO-39b0cde9279985d1eb3d",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "Broad description without negative triggers may cause over-triggering",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add boundary phrases like 'Do NOT use for...'",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-b6533ad44b39dbc6d0d2",
+          "occurrence_id": "SEO-b4722bc07c14ae78874b",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_discoverability",
+          "message": "No '## Purpose' section",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add purpose section to clarify use cases",
+          "metadata": {
+            "dimension": "discoverability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-4a6560f4aec006f302f9",
+          "occurrence_id": "SEO-3bf16e0bfcdcb6d8d11b",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No prerequisites/requirements documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Document dependencies, API keys, or setup needed",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        },
+        {
+          "finding_id": "SEF-fc6fe3747c071963a76e",
+          "occurrence_id": "SEO-4389236a8db374da3e44",
+          "category": "QUALITY",
+          "severity": "low",
+          "check_name": "quality_reliability",
+          "message": "No limitations documented",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Add '## Limitations' section with known issues/constraints",
+          "metadata": {
+            "dimension": "reliability",
+            "deduction": 5
+          }
+        }
+      ],
+      "success_details": [
+        {
+          "check": "quality_score",
+          "message": "Score: 82.0/100 (Grade: B)",
+          "metadata": {
+            "overall_score": 82.0,
+            "grade": "B",
+            "skill_type": "script-based"
+          }
+        }
+      ],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[QUALITY-MEDIUM] No documented scripts in table format in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-MEDIUM] Instructions don't mention 'run_script' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.author' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-MEDIUM] SKILL_SPEC recommended field missing: 'metadata.tags' in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-LOW] Description doesn't mention WHEN to use this skill in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-LOW] Broad description without negative triggers may cause over-triggering in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-LOW] No '## Purpose' section in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-LOW] No prerequisites/requirements documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[QUALITY-LOW] No limitations documented in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md"
+        ],
+        "messages": [
+          "[OK] quality_score: Score: 82.0/100 (Grade: B)"
+        ]
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "quality": {
+        "overall_score": 82.0,
+        "grade": "B",
+        "skill_type": "script-based",
+        "skill_name": "senior-data-engineer",
+        "dimensions": {
+          "correctness": {
+            "score": 70.0,
+            "weight": 0.35,
+            "issues_count": 4,
+            "issues": [
+              {
+                "severity": "warning",
+                "message": "No documented scripts in table format",
+                "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "Instructions don't mention 'run_script'",
+                "suggestion": "Add explicit run_script() call examples",
+                "deduction": 10
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+                "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+                "deduction": 5
+              },
+              {
+                "severity": "warning",
+                "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+                "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+                "deduction": 5
+              }
+            ]
+          },
+          "discoverability": {
+            "score": 80.0,
+            "weight": 0.25,
+            "issues_count": 3,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "Description doesn't mention WHEN to use this skill",
+                "suggestion": "Add trigger context: 'Use for...', 'When you need to...'",
+                "deduction": 10
+              },
+              {
+                "severity": "info",
+                "message": "Broad description without negative triggers may cause over-triggering",
+                "suggestion": "Add boundary phrases like 'Do NOT use for...'",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No '## Purpose' section",
+                "suggestion": "Add purpose section to clarify use cases",
+                "deduction": 5
+              }
+            ]
+          },
+          "reliability": {
+            "score": 90.0,
+            "weight": 0.25,
+            "issues_count": 2,
+            "issues": [
+              {
+                "severity": "info",
+                "message": "No prerequisites/requirements documented",
+                "suggestion": "Document dependencies, API keys, or setup needed",
+                "deduction": 5
+              },
+              {
+                "severity": "info",
+                "message": "No limitations documented",
+                "suggestion": "Add '## Limitations' section with known issues/constraints",
+                "deduction": 5
+              }
+            ]
+          },
+          "efficiency": {
+            "score": 100.0,
+            "weight": 0.15,
+            "issues_count": 0,
+            "issues": []
+          }
+        },
+        "metrics": {
+          "total_tokens": 1380,
+          "estimated_tokens": 1380,
+          "estimate_method": "characters/4",
+          "recommended_max_tokens": 5000,
+          "frontmatter_tokens": 59,
+          "instructions_tokens": 1318,
+          "script_count": 3,
+          "has_examples": true,
+          "has_error_handling": true,
+          "has_frontmatter": true,
+          "has_instructions": false,
+          "has_scripts": true,
+          "has_lib_module": false
+        }
+      },
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "quality"
+      }
+    },
+    {
+      "validator": "SCRIPT_LINT",
+      "description": "AST-based code quality checks for skill scripts",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 4,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 1,
+        "low_count": 3
+      },
+      "finding_counts": {
+        "raw_occurrences": 4,
+        "distinct_occurrences": 4,
+        "unique_findings": 4,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 3,
+          "info": 0
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 1,
+          "low": 3,
+          "info": 0
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-821847759f63d6996320",
+          "occurrence_id": "SEO-dd7e27eac52007472a6b",
+          "category": "SCRIPT_LINT",
+          "severity": "medium",
+          "check_name": "deep_nesting",
+          "message": "data_quality_validator.py has deeply nested code (depth 8, max 6)",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/data_quality_validator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Refactor into smaller functions to reduce complexity",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-c040a8cc2093f87ecb0a",
+          "occurrence_id": "SEO-c74ba572fafb5a4fc703",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "data_quality_validator.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/data_quality_validator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-1cd9f4d8a1527b2ce9d1",
+          "occurrence_id": "SEO-ac76e48f55c8e6cf936e",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "etl_performance_optimizer.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/etl_performance_optimizer.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        },
+        {
+          "finding_id": "SEF-df42902583e9362bf196",
+          "occurrence_id": "SEO-c7129a60f63a1f1ffbb8",
+          "category": "SCRIPT_LINT",
+          "severity": "low",
+          "check_name": "magic_numbers",
+          "message": "pipeline_orchestrator.py contains magic numbers",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Extract magic numbers to named constants",
+          "metadata": null
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[SCRIPT_LINT-MEDIUM] data_quality_validator.py has deeply nested code (depth 8, max 6) in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/data_quality_validator.py",
+          "[SCRIPT_LINT-LOW] data_quality_validator.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/data_quality_validator.py",
+          "[SCRIPT_LINT-LOW] etl_performance_optimizer.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/etl_performance_optimizer.py",
+          "[SCRIPT_LINT-LOW] pipeline_orchestrator.py contains magic numbers in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/scripts/pipeline_orchestrator.py"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "lint"
+      }
+    },
+    {
+      "validator": "Harness Compatibility",
+      "description": "Advisory: whether each agent harness loads, degrades or drops the skill",
+      "passed": true,
+      "status": "passed",
+      "skipped": false,
+      "skip_reason": null,
+      "incomplete_scans": [],
+      "summary": {
+        "files_scanned": 0,
+        "checks_performed": 0,
+        "errors": 0,
+        "warnings": 8,
+        "critical_count": 0,
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 2
+      },
+      "finding_counts": {
+        "raw_occurrences": 8,
+        "distinct_occurrences": 8,
+        "unique_findings": 8,
+        "duplicates_removed": 0,
+        "occurrences_grouped": 0,
+        "raw_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 2,
+          "info": 6
+        },
+        "unique_by_severity": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 2,
+          "info": 6
+        }
+      },
+      "findings": [
+        {
+          "finding_id": "SEF-ad11d8a5a4f279647925",
+          "occurrence_id": "SEO-1867eeddbeff29aba545",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CC-LIST-BUDGET",
+          "message": "claude-code: The 35 skills in this folder have 9,167 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+          "metadata": {
+            "harness": "claude-code",
+            "effect": "degraded",
+            "verified_version": "2.1.316",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-e681d8c910f37c13d328",
+          "occurrence_id": "SEO-125be0ca5a0b73516e99",
+          "category": "HARNESS",
+          "severity": "low",
+          "check_name": "CX-LIST-BUDGET",
+          "message": "codex: The 35 skills in this folder have 9,167 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Shorten descriptions (trigger first) or install fewer skills here.",
+          "metadata": {
+            "harness": "codex",
+            "effect": "degraded",
+            "verified_version": "0.166.0",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-945e1fec491a6e4fe8ae",
+          "occurrence_id": "SEO-f46a1e2b9df5fd4ba7fc",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-LIST-BUDGET",
+          "message": "copilot-cli: 35 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-3661379ea9e5c1072875",
+          "occurrence_id": "SEO-2ecbce4c70c02df02028",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "CP-RELOAD",
+          "message": "copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "copilot-cli",
+            "effect": "advisory",
+            "verified_version": "1.0.105",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-e0623bdfb91d6bbb829f",
+          "occurrence_id": "SEO-af779e797b5eb009361d",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "HM-DESC-60",
+          "message": "hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Put the trigger (\"Use when \u2026\") in the first 57 characters.",
+          "metadata": {
+            "harness": "hermes",
+            "effect": "advisory",
+            "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-a9a74c1e6b101d24d121",
+          "occurrence_id": "SEO-bc1f1041363b8ce17159",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OW-REF-BUDGET",
+          "message": "openclaw: 1 files over 64,000 bytes (scripts/etl_performance_optimizer.py): OpenClaw's read cap is 16,000-64,000 UTF-8 bytes by model context, so each takes several reads.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Split large reference files into pieces under 16,000 UTF-8 bytes.",
+          "metadata": {
+            "harness": "openclaw",
+            "effect": "advisory",
+            "verified_version": "2026.10.9",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-03e029934351881ba688",
+          "occurrence_id": "SEO-ccbb41a99aa5a721bb66",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-RELOAD",
+          "message": "opencode: Skill list and text are cached at startup; edits need a restart.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": null,
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        },
+        {
+          "finding_id": "SEF-e1919690e920506c37f2",
+          "occurrence_id": "SEO-9fd6bd0776bd0c153cca",
+          "category": "HARNESS",
+          "severity": "info",
+          "check_name": "OC-REF-CUT",
+          "message": "opencode: 2 files are over 51,200 bytes or 2,000 lines (scripts/data_quality_validator.py, scripts/etl_performance_optimizer.py); OpenCode's read tool returns at most that per call, so the model must page.",
+          "file_path": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "line_number": null,
+          "line_content": null,
+          "suggestion": "Split large files into pieces under 51,200 bytes and 2,000 lines.",
+          "metadata": {
+            "harness": "opencode",
+            "effect": "advisory",
+            "verified_version": "1.19.5",
+            "verified_date": "2026-11-01"
+          }
+        }
+      ],
+      "success_details": [],
+      "legacy": {
+        "errors": [],
+        "warnings": [
+          "[HARNESS-LOW] claude-code: The 35 skills in this folder have 9,167 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[HARNESS-LOW] codex: The 35 skills in this folder have 9,167 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: 35 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[HARNESS-INFO] copilot-cli: New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[HARNESS-INFO] hermes: The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[HARNESS-INFO] openclaw: 1 files over 64,000 bytes (scripts/etl_performance_optimizer.py): OpenClaw's read cap is 16,000-64,000 UTF-8 bytes by model context, so each takes several reads. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[HARNESS-INFO] opencode: Skill list and text are cached at startup; edits need a restart. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md",
+          "[HARNESS-INFO] opencode: 2 files are over 51,200 bytes or 2,000 lines (scripts/data_quality_validator.py, scripts/etl_performance_optimizer.py); OpenCode's read tool returns at most that per call, so the model must page. in /Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer/SKILL.md"
+        ],
+        "messages": []
+      },
+      "tier1_required_checks": [
+        "code-integrity",
+        "license",
+        "lint",
+        "pii",
+        "quality",
+        "schema",
+        "security",
+        "unicode",
+        "version"
+      ],
+      "tier1_unscanned_paths": [],
+      "gating": {
+        "tier": 1,
+        "blocking": true
+      },
+      "publication_target": {
+        "skill_name": "senior-data-engineer",
+        "skill_digest": "sha256:86625f9fb0642a81a85ad197022ebc8768315a360ad6b4843ddd84a212c1bb05",
+        "skill_digest_algorithm": "skill-evaluator-source-tree/2"
+      },
+      "publication_evidence": {
+        "schema_version": 1,
+        "producer": "skillevaluator.tier1",
+        "tier": 1,
+        "check_id": "harness"
+      }
+    }
+  ],
+  "benchmark_policy": {
+    "tier2_required": true,
+    "tier3_required": true
+  },
+  "publication_status": "incomplete",
+  "publication": {
+    "status": "incomplete",
+    "eligible": false,
+    "reasons": [
+      "One or more validators reported incomplete scanner evidence."
+    ],
+    "tier3": {
+      "status": "not_run",
+      "evidence_complete": false,
+      "execution_status": "not_run",
+      "verdict": "not_run",
+      "reason": "Tier 3 lacks publication-complete execution evidence."
+    }
+  },
+  "policy": {
+    "profile": "default",
+    "audience": "all",
+    "digest": "sha256:64a069b8853f7123049a675d6853ef8d8b424792bb9a2a5157a73ec312f38ed4",
+    "author_email_regex": null,
+    "severity_overrides": {
+      "SCHEMA.author_missing": "low",
+      "SCHEMA.author_without_email": "info",
+      "SCHEMA.author_format": "high",
+      "WORKFLOWS.author_format": "high",
+      "LICENSE.*": "critical"
+    },
+    "metadata_id_requirement": "ignore",
+    "source": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-evaluator/.venv/lib/python3.13/site-packages/skillevaluator/config/profiles/default.yaml"
+  },
+  "quality_config": {
+    "source": "packaged",
+    "file": null,
+    "digest": "sha256:2b34707afbb1b7b88df35e84b2b59d613943c62bfda7f2f82bc31b28b44f1af0",
+    "min_score": 70
+  },
+  "evaluated_source": {
+    "repository": "alirezarezvani/claude-skills",
+    "commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+  },
+  "gating": {
+    "tiers": {
+      "1": {
+        "blocking": true,
+        "validators": [
+          "Schema & Repository Governance",
+          "Semantic Version Validation",
+          "Security Scan",
+          "PII Scan",
+          "License Compliance",
+          "Code Risk Analysis",
+          "Secrets Detection",
+          "Code Integrity & Hygiene",
+          "Unicode Smuggling Detection",
+          "QUALITY",
+          "SCRIPT_LINT",
+          "Harness Compatibility"
+        ],
+        "validator_policies": [
+          {
+            "validator": "Schema & Repository Governance",
+            "blocking": true
+          },
+          {
+            "validator": "Semantic Version Validation",
+            "blocking": true
+          },
+          {
+            "validator": "Security Scan",
+            "blocking": true
+          },
+          {
+            "validator": "PII Scan",
+            "blocking": true
+          },
+          {
+            "validator": "License Compliance",
+            "blocking": true
+          },
+          {
+            "validator": "Code Risk Analysis",
+            "blocking": true
+          },
+          {
+            "validator": "Secrets Detection",
+            "blocking": true
+          },
+          {
+            "validator": "Code Integrity & Hygiene",
+            "blocking": true
+          },
+          {
+            "validator": "Unicode Smuggling Detection",
+            "blocking": true
+          },
+          {
+            "validator": "QUALITY",
+            "blocking": true
+          },
+          {
+            "validator": "SCRIPT_LINT",
+            "blocking": true
+          },
+          {
+            "validator": "Harness Compatibility",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  },
+  "quality_summary": [
+    {
+      "overall_score": 82.0,
+      "grade": "B",
+      "skill_type": "script-based",
+      "skill_name": "senior-data-engineer",
+      "dimensions": {
+        "correctness": {
+          "score": 70.0,
+          "weight": 0.35,
+          "issues_count": 4,
+          "issues": [
+            {
+              "severity": "warning",
+              "message": "No documented scripts in table format",
+              "suggestion": "Add '## Available Scripts' with table: | Script | Purpose | Arguments |",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "Instructions don't mention 'run_script'",
+              "suggestion": "Add explicit run_script() call examples",
+              "deduction": 10
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.author'",
+              "suggestion": "Add 'author' under metadata: \u2014 Author name or team (under metadata:)",
+              "deduction": 5
+            },
+            {
+              "severity": "warning",
+              "message": "SKILL_SPEC recommended field missing: 'metadata.tags'",
+              "suggestion": "Add 'tags' under metadata: \u2014 Categorization tags (under metadata:, list of 1-5 items)",
+              "deduction": 5
+            }
+          ]
+        },
+        "discoverability": {
+          "score": 80.0,
+          "weight": 0.25,
+          "issues_count": 3,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "Description doesn't mention WHEN to use this skill",
+              "suggestion": "Add trigger context: 'Use for...', 'When you need to...'",
+              "deduction": 10
+            },
+            {
+              "severity": "info",
+              "message": "Broad description without negative triggers may cause over-triggering",
+              "suggestion": "Add boundary phrases like 'Do NOT use for...'",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No '## Purpose' section",
+              "suggestion": "Add purpose section to clarify use cases",
+              "deduction": 5
+            }
+          ]
+        },
+        "reliability": {
+          "score": 90.0,
+          "weight": 0.25,
+          "issues_count": 2,
+          "issues": [
+            {
+              "severity": "info",
+              "message": "No prerequisites/requirements documented",
+              "suggestion": "Document dependencies, API keys, or setup needed",
+              "deduction": 5
+            },
+            {
+              "severity": "info",
+              "message": "No limitations documented",
+              "suggestion": "Add '## Limitations' section with known issues/constraints",
+              "deduction": 5
+            }
+          ]
+        },
+        "efficiency": {
+          "score": 100.0,
+          "weight": 0.15,
+          "issues_count": 0,
+          "issues": []
+        }
+      },
+      "metrics": {
+        "total_tokens": 1380,
+        "estimated_tokens": 1380,
+        "estimate_method": "characters/4",
+        "recommended_max_tokens": 5000,
+        "frontmatter_tokens": 59,
+        "instructions_tokens": 1318,
+        "script_count": 3,
+        "has_examples": true,
+        "has_error_handling": true,
+        "has_frontmatter": true,
+        "has_instructions": false,
+        "has_scripts": true,
+        "has_lib_module": false
+      }
+    }
+  ],
+  "generated_at": "2026-11-18T14:34:27.089980+00:00",
+  "harness_compatibility": {
+    "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills/senior-data-engineer": [
+      {
+        "listed": {
+          "mode": "shortened",
+          "text": ""
+        },
+        "harness": "claude-code",
+        "display_name": "Claude Code",
+        "status": "degraded",
+        "verified_version": "2.1.316",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CC-LIST-BUDGET",
+            "effect": "degraded",
+            "message": "The 35 skills in this folder have 9,167 description chars; Claude Code's skill list fits 8,000 (1% of the context window at 4 chars per token; 8,000 if the window is unknown), so descriptions get shortened.",
+            "fix": "Shorten descriptions (trigger first) or install fewer skills here.",
+            "outcome": "listing shortened",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 35,
+          "desc_chars": 9167,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "shortened",
+          "text": ""
+        },
+        "harness": "codex",
+        "display_name": "OpenAI Codex CLI",
+        "status": "degraded",
+        "verified_version": "0.166.0",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CX-LIST-BUDGET",
+            "effect": "degraded",
+            "message": "The 35 skills in this folder have 9,167 description chars; Codex's skill list fits about 8,000 (2% of the context window at 4 bytes per token; 8,000 chars if unknown), so descriptions get shortened, then removed, then skills left out.",
+            "fix": "Shorten descriptions (trigger first) or install fewer skills here.",
+            "outcome": "listing shortened",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 35,
+          "desc_chars": 9167,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Data pipelines: Airflow DAGs, Spark, dbt, Kafka, ETL/ELT, data quality checks. Load whenever a DAG or batch job times out or fails, data arrives wrong, or the user designs an ingestion pipeline."
+        },
+        "harness": "copilot-cli",
+        "display_name": "GitHub Copilot CLI",
+        "status": "loads",
+        "verified_version": "1.0.105",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "CP-LIST-BUDGET",
+            "effect": "advisory",
+            "message": "35 skills here: Copilot gives full descriptions to the first 32 only; the rest are listed by name.",
+            "fix": "Keep 32 or fewer skills in one place, or make names self-explanatory.",
+            "outcome": "listing shortened",
+            "confidence": "medium"
+          },
+          {
+            "id": "CP-RELOAD",
+            "effect": "advisory",
+            "message": "New skills appear only after `/skills reload` or a restart; edits to existing skills apply at once.",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 35,
+          "desc_chars": 9167,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "cut",
+          "text": "Data pipelines: Airflow DAGs, Spark, dbt, Kafka, ETL/ELT, da",
+          "limit": 60
+        },
+        "harness": "hermes",
+        "display_name": "Hermes Agent",
+        "status": "loads",
+        "verified_version": "main @ c419cf7c864a (binary reports 2026.9.24)",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "HM-DESC-60",
+            "effect": "advisory",
+            "message": "The skill list shows only the first ~60 chars of the description (57 + '...' in 0.16, a word boundary near 59 on main), and the trigger isn't in them.",
+            "fix": "Put the trigger (\"Use when \u2026\") in the first 57 characters.",
+            "outcome": "listing shortened",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 35,
+          "desc_chars": 9167,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Data pipelines: Airflow DAGs, Spark, dbt, Kafka, ETL/ELT, data quality checks. Load whenever a DAG or batch job times out or fails, data arrives wrong, or the user designs an ingestion pipeline."
+        },
+        "harness": "openclaw",
+        "display_name": "OpenClaw",
+        "status": "loads",
+        "verified_version": "2026.10.9",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OW-REF-BUDGET",
+            "effect": "advisory",
+            "message": "1 files over 64,000 bytes (scripts/etl_performance_optimizer.py): OpenClaw's read cap is 16,000-64,000 UTF-8 bytes by model context, so each takes several reads.",
+            "fix": "Split large reference files into pieces under 16,000 UTF-8 bytes.",
+            "versions": "2026.9+",
+            "outcome": "needs paging",
+            "confidence": "medium"
+          }
+        ],
+        "catalog": {
+          "size": 35,
+          "desc_chars": 9167,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills"
+        }
+      },
+      {
+        "listed": {
+          "mode": "full",
+          "text": "Data pipelines: Airflow DAGs, Spark, dbt, Kafka, ETL/ELT, data quality checks. Load whenever a DAG or batch job times out or fails, data arrives wrong, or the user designs an ingestion pipeline."
+        },
+        "harness": "opencode",
+        "display_name": "OpenCode",
+        "status": "loads",
+        "verified_version": "1.19.5",
+        "verified_date": "2026-11-01",
+        "findings": [
+          {
+            "id": "OC-RELOAD",
+            "effect": "advisory",
+            "message": "Skill list and text are cached at startup; edits need a restart.",
+            "confidence": "medium"
+          },
+          {
+            "id": "OC-REF-CUT",
+            "effect": "advisory",
+            "message": "2 files are over 51,200 bytes or 2,000 lines (scripts/data_quality_validator.py, scripts/etl_performance_optimizer.py); OpenCode's read tool returns at most that per call, so the model must page.",
+            "fix": "Split large files into pieces under 51,200 bytes and 2,000 lines.",
+            "outcome": "needs paging",
+            "confidence": "high"
+          }
+        ],
+        "catalog": {
+          "size": 35,
+          "desc_chars": 9167,
+          "folder": "/Users/michael.yucor/Documents/GitHub/skill-scan/skill-repo/alirezarezvani-claude-skills/engineering-team/skills"
+        }
+      }
+    ]
+  }
+}
