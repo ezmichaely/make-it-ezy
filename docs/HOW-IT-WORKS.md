@@ -15,7 +15,7 @@ Read this before the long handoff. It states who does what in one workflow.
 | **Make It Ezy (CLI)** | Understand the outcome and project, **discover** candidates (local `.agents/skills` + skills.sh), **filter** to a minimum useful set, **gate** installs, print a **handoff** (checklist + prompt). No LLM inside Ezy. |
 | **Host agent + installed skills** | **Do the work**: sharpen vague goals, research, deep inspect, implement. Uses **skills from the ecosystem** (Prompt Master, research skills, domain skills, optional tools like SkillEvaluator) when the handoff or you says so — those are **not** built into the Ezy binary. |
 
-**Shopping list vs kitchen:** Ezy does not replace Prompt Master, NVIDIA SkillEvaluator, or your coding agent. It decides **what belongs on the list for this job** and passes that to the agent.
+**Shopping list vs kitchen:** Ezy does not replace Prompt Master, NVIDIA SkillEvaluator, or your coding agent. The internal lifecycle contracts let Ezy represent these roles without bundling their implementations. It decides **what belongs on the list for this job** and passes that to the agent.
 
 ## Typical flow (coding in your repo)
 
@@ -35,7 +35,8 @@ Agent adapter: [`skills/ezy/SKILL.md`](../skills/ezy/SKILL.md) — the host must
 The handoff uses a lifecycle (discover, evaluate, compose, execute, verify). In the **shipped** product:
 
 - **Discover / filter / compose** → mostly **Ezy** (`search`, `plan`, `select`, `inspect` at a light level).
-- **Intake, deep research, deep security, coding, verification** → **host agent** and **skills you install from the internet**, when needed — not a fixed pipeline reimplemented in TypeScript.
+- **Intake, deep research, deep security, coding, verification** → still performed by the **host agent** and selected external skills when needed.
+- Ezy now also has **internal lifecycle contracts** for intake, skill evaluation, skill specification/composition, and outcome evaluation in `packages/core/src/lifecycle.ts`. These contracts define the boundary; they are **not yet wired as a mandatory CLI pipeline** and do not execute external skills.
 
 Discovery on skills.sh is **not** automatic trust. Popularity is not safety.
 
