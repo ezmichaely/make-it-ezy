@@ -159,17 +159,18 @@ All verified with actual GitHub SKILL.md files.
 - Various specialized skill repositories across all domains
 
 ### Coverage:
-- **40 major domains** spanning technical, creative, business, and professional fields
-- **36 meta-skills** for quality assurance and skill orchestration
-- **435+ individual skills** catalogued with descriptions and source references
+- **40 major domains** are reported by the workbook.
+- **36 meta-skills** are reported by the workbook.
+- **435+ individual skills** are reported in the inventory.
+- The numbered domain list above is a summary excerpt, not a complete enumeration of all 40 workbook rows.
 
 ---
 
 ## Recommendations
 
-1. ✅ Project is **COMPLETE** - all 76 items (40 domains + 36 meta-skills) verified
+1. The research run is **complete as an inventory pass**: the workbook reports 76 tracked items (40 domains + 36 meta-skills). This does **not** mean Ezy has implemented or runtime-verified all of those capabilities.
 2. All skills have GitHub repository backing
 3. Skills include exact file paths for direct access
 4. Two-pass verification ensures accuracy
 
-This appears to be a comprehensive catalog of agent capabilities across the entire software/AI tooling ecosystem.
+This is a research inventory, not the Ezy runtime catalog. It is useful for discovering candidate capability providers, but the workbook does not become a product dependency or automatic trust source.
