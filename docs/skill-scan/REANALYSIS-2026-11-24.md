@@ -152,8 +152,10 @@ Before:
 Current branch:
 - Phase 8 is explicitly current.
 
-Fixed:
-- badge now says Phase 8 launch.
+Fixed (partial):
+- the visible badge text now says Phase 8 launch.
+
+**Correction (2026-11-25):** this fix was incomplete. The badge image's `alt` text still read "Phase 7 shipped" until the docs-sync pass changed it (`README.md:14`). The visible text and the alt text are separate strings, so a reader using a screen reader or looking at a broken image still saw the old phase. See `docs/audits/DOCS-SYNC-AUDIT-2026-11-25.md` item 1.
 
 ### B. Roadmap broker-workflow status was stale
 
@@ -166,8 +168,10 @@ That conflicted with the current implementation and `MVP-SPECIFICATION.md`, whic
 - `skills/ezy` adapter
 - documentation sync
 
-Fixed:
-- roadmap now describes the first broker-workflow slice as shipped within Phase 8.
+Fixed (partial):
+- the roadmap body now describes the first broker-workflow slice as shipped within Phase 8.
+
+**Correction (2026-11-25):** the statement was true, but two related defects survived this pass. The `(**current**)` marker was left orphaned on its own line below the lifecycle block instead of on the `## Phase 8 — Launch and Distribution` heading, and `MVP-SPECIFICATION.md` still headed the same section "Broker workflow (approved — not in CLI output yet)" while its own body said "Shipped (first slice)" — the exact contradiction this item claims to have fixed. Both were corrected in the docs-sync pass (items 3 and 5), and `docs/handoff/README.md` now indexes that pass so a partial fix is visible rather than assumed.
 
 ### C. Architecture docs over-implied lifecycle implementation completeness
 

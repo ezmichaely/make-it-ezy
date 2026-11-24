@@ -24,6 +24,7 @@ Do not reconstruct the current product from archived handoffs or raw conversatio
 | [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **2026-11-07 audit** — findings **1–4 fixed**; **5–10** optional follow-up |
 | [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through the Phase 8 first slice) |
 | [`../audits/FULL-REPOSITORY-AUDIT.md`](../audits/FULL-REPOSITORY-AUDIT.md) | **2026-11-25 full read-only audit** — 28 findings F-01–F-28, contradictions, risks |
+| [`../audits/DOCS-SYNC-AUDIT-2026-11-25.md`](../audits/DOCS-SYNC-AUDIT-2026-11-25.md) | **2026-11-25 docs sync** — 22 defects fixed in 17 docs; link-check baseline |
 | [`../work-plan/FOLLOW-UP-WORK-PLAN.md`](../work-plan/FOLLOW-UP-WORK-PLAN.md) | Ranked follow-up proposal — **nothing implemented** |
 | [`../research/SKILL-SCAN-CORPUS-PLAN.md`](../research/SKILL-SCAN-CORPUS-PLAN.md) | What to do with the 224 MB `docs/skill-scan/` corpus |
 | [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) | Current layout |

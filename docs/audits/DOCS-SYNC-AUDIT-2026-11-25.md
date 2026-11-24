@@ -65,7 +65,18 @@ The link gate that should enforce this (work-plan item 6) must therefore skip `d
 3. **`docs/skill-scan/` size** — unchanged; the plan exists, the move is not approved.
 4. **`.gitignore` commented-out rules** (`#graphify-out/`, `# skill-scan/*`) — left as-is because enabling them without moving the files would make tracked content look ignored.
 
-## 6. Verification performed
+## 6. Follow-up corrections (same day)
+
+Two gaps in the first pass, found on review:
+
+| # | File | Defect | Fix |
+|---|---|---|---|
+| 23 | `docs/handoff/README.md` | Indexed the corpus plan but not this audit, so the pass itself was invisible from the doc index | Row added |
+| 24 | `docs/skill-scan/REANALYSIS-2026-11-24.md` §5A, §5B | Both items said "Fixed:" for work that was partial — the badge's `alt` text still said Phase 7, and the roadmap marker was orphaned while the MVP heading contradicted its body | Each marked "Fixed (partial)" with a dated correction naming the surviving defect and the item that closed it |
+
+Item 24 matters beyond itself: a report that says "fixed" when it was fixed halfway is the same failure this audit exists to catch. The correction is recorded in place rather than rewritten silently, because the 2026-11-24 report is a dated record.
+
+## 7. Verification performed
 
 - Every edited file re-read at the edited line after the edit.
 - Link script re-run over all 111 files: 230 links checked, 38 broken, all classified above.
