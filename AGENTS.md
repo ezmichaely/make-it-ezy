@@ -29,13 +29,15 @@ This is the product goal, not a claim that every part is shipped. Describe curre
 
 Trust and user control are core requirements: discovery does not equal recommendation; treat briefs and external skill text as untrusted; do not silently install or execute external content; sanitize skill metadata at load for search/plan output (inspect/format may still need defense-in-depth — see audit §2).
 
-## Current path — 2026-11-19
+## Current path — 2026-11-25
 
 - Phases 0–7 are shipped. Audit findings **1–4** are fixed (see [`docs/audits/2026-11-07-codebase-gaps.md`](docs/audits/2026-11-07-codebase-gaps.md)).
 - **Phase 7 — Project Brain** is shipped (hybrid B: machine slice in CLI, optional `agent` slice via `ezy brain enrich`).
 - **Phase 8 — Launch and Distribution** is the current phase. Phase 9 — Verification and exhaustive per-skill testing are post-launch; skill-by-skill tests are not a launch gate.
 - **Broker-directed workflow** (contractor routing + ordered stages) — first slice in core + `ezy next` output; see [`docs/superpowers/plans/2026-11-18-broker-workflow.md`](docs/superpowers/plans/2026-11-18-broker-workflow.md).
 - Audit findings **5–10** are optional maintenance; tackle only with explicit approval.
+- **Review inputs (2026-11-25):** full read-only audit [`docs/audits/FULL-REPOSITORY-AUDIT.md`](docs/audits/FULL-REPOSITORY-AUDIT.md) (28 findings F-01–F-28) and the ranked [`docs/work-plan/FOLLOW-UP-WORK-PLAN.md`](docs/work-plan/FOLLOW-UP-WORK-PLAN.md). **Nothing in the plan is implemented or approved** — do not treat it as a work order.
+- Lifecycle contracts in `packages/core/src/lifecycle.ts` remain **boundary contracts**: exported and unit-tested, not called by the CLI/planner. Say so when describing current behavior.
 
 The roadmap owns phase ordering. Update it when the agreed order changes.
 
@@ -103,9 +105,9 @@ Follow [`ponytail/SKILL.md`](.agents/skills/ponytail/SKILL.md) on every code cha
 
 When building this repo with **Qwen Code** and a **local Ollama** model (for example `qwen3.5:27b`):
 
-- **Context:** Qwen loads repo-root `AGENTS.md` and vendored skills under `.agents/skills/` after `pnpm skills:install` (see [`docs/BUILDER-SKILLS.md`](docs/BUILDER-SKILLS.md)). Project tool permissions can live in [`.qwen/settings.json`](.qwen/settings.json).
+- **Context:** Qwen loads repo-root `AGENTS.md` and vendored skills under `.agents/skills/` after `pnpm skills:install` (see [`docs/BUILDER-SKILLS.md`](docs/BUILDER-SKILLS.md)). Project tool permissions can live in `.qwen/settings.json` (gitignored; create it locally — there is no tracked copy).
 - **Ezy CLI is fast:** `pnpm ezy brief` / `next` / `plan` do not call an LLM. Slowness and timeouts are almost always the **host model** (large prompts: full `AGENTS.md`, Superpowers skills, long diffs). Prefer smaller tasks, `/ponytail lite`, or a smaller/faster local model for iteration; keep 27B for focused turns.
-- **Ollama timeouts:** Qwen may log `Request timeout after ~480s` when the model cannot finish a turn in time. In `~/.qwen/settings.json`, raise `model.generationConfig.timeout` and `streamIdleTimeoutMs` (and the same on the matching `modelProviders[]` entry for Ollama). This repo’s [`.qwen/settings.json`](.qwen/settings.json) sets 15m request / 10m stream-idle and `tools.shell.defaultTimeoutMs` 300000; reduce input if turns are still too heavy.
+- **Ollama timeouts:** Qwen may log `Request timeout after ~480s` when the model cannot finish a turn in time. In `~/.qwen/settings.json`, raise `model.generationConfig.timeout` and `streamIdleTimeoutMs` (and the same on the matching `modelProviders[]` entry for Ollama). This repo’s local `.qwen/settings.json` (gitignored) sets 15m request / 10m stream-idle and `tools.shell.defaultTimeoutMs` 300000; reduce input if turns are still too heavy.
 - **Tooling pitfalls:** Local models sometimes emit invalid tool args (for example `web_fetch` without `prompt`). Retry with a narrower instruction or use shell/`Read` instead of fetch. For Skills CLI installs use `pnpm skills:install` from the repo (non-interactive) — not raw `npx skills add` without `--yes` / agent flags (Qwen sessions have hit 120s shell timeouts waiting on npm prompts).
 - **Dogfood:** Same as other hosts — `pnpm build` then `pnpm ezy brief "…"` / `pnpm ezy next "…"` from the project cwd; follow [`skills/ezy/SKILL.md`](skills/ezy/SKILL.md) through implementation, not CLI-only output.
 

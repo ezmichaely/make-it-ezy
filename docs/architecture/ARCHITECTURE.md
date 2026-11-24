@@ -49,11 +49,11 @@ apps/cli            doctor | analyze | search | inspect | recommend | brief | br
 packages/core       detection, search, plan, brief, brain, install, handoff, lifecycle contracts
 skills/ezy          Agent Skill adapter #1 (Claude /ezy, Cursor/Codex skills)
 catalog/            reserved (empty)
-docs/               research, architecture, specs, plans, handoff
+docs/               research, architecture, decisions, audits, work-plan, specs, plans, handoff
 skills/ + skills-lock.json   Layer A pins; `.agents/skills/` installed locally (see BUILDER-SKILLS.md)
 ```
 
-`analyze` is wired into `plan` / `next` (Phase 5): requirements come from the goal plus the detected project. Lifecycle contracts are exported from core but remain an architectural boundary, not a runtime pipeline.
+`analyze` is wired into `plan` / `next` (Phase 5): requirements come from the goal plus the detected project. Lifecycle contracts are exported from core but remain an architectural boundary, not a runtime pipeline — verified in [`../audits/FULL-REPOSITORY-AUDIT.md`](../audits/FULL-REPOSITORY-AUDIT.md) §6, with the proposed wiring in [`../work-plan/FOLLOW-UP-WORK-PLAN.md`](../work-plan/FOLLOW-UP-WORK-PLAN.md) (nothing implemented).
 
 No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/Claude) and deep verify are not shipped.
 

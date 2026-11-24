@@ -3,6 +3,8 @@
 **Target:** current `main` branch  
 **Purpose:** Give the coding agent a concrete implementation brief for the architectural gaps identified after reviewing the current `main` against the latest Ezy design discussions.
 
+> **Status (2026-11-25): historical instruction, not current direction.** It says "the remaining work is wiring these contracts into the runtime/CLI"; [`docs/architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) and [`CAPABILITY-MODEL.md`](../architecture/CAPABILITY-MODEL.md) say the opposite (boundary contracts, runtime wiring not scheduled). The full audit records this conflict (§6) and work-plan item 1 proposes one ADR to settle it. Do not act on this file as if the decision were made.
+
 > **Important:** This is an implementation instruction for the coding agent. It does **not** authorize merging, publishing, adding external runtime dependencies, or turning every named external skill into Ezy core.
 
 > **Branch status:** The stable lifecycle contracts described below are now implemented in `packages/core/src/lifecycle-types.ts` and `packages/core/src/lifecycle.ts`, with unit coverage in `packages/core/src/lifecycle.test.ts`. The remaining work is wiring these contracts into the runtime/CLI without violating the Phase 8 / Phase 9 boundary.

@@ -1,5 +1,7 @@
 # Claude Implementation Command — Review Fix Pass
 
+> **Status (2026-11-25): historical instruction, not current direction.** It states "The evaluator must not remain a dead contract or helper", which conflicts with [`docs/architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) (lifecycle = boundary contract, not runtime). It also targets `docs/shared-evidence-self-improvement` / PR #21, not this branch. Full audit §6 records the conflict; work-plan item 1 proposes the ADR.
+
 You are taking over the Make It Ezy review/fix pass on this branch:
 
 - Repository: `ezmichaely/make-it-ezy`

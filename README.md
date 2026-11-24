@@ -11,7 +11,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/license/ezmichaely/make-it-ezy?style=flat-square&color=111111" alt="MIT license">
-  <img src="https://img.shields.io/badge/status-phase%208%20launch-111111?style=flat-square" alt="Phase 7 shipped">
+  <img src="https://img.shields.io/badge/status-phase%208%20launch-111111?style=flat-square" alt="Phase 8 launch">
   <img src="https://img.shields.io/badge/node-%3E%3D20-111111?style=flat-square" alt="Node 20+">
 </p>
 
@@ -163,6 +163,8 @@ Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
 |---|---|---|
 | Audit findings **5–10** only if approved. [Details](./docs/audits/2026-11-07-codebase-gaps.md) (1–4 fixed) | **Phase 8 — Launch and Distribution** | Soft-C, deep verify, trusted-auto |
 |  | Phase 9 — Outcome verification; Phase 10 — Web UI | Codex marketplace plugin, giant catalog |
+
+Full read-only audit (**2026-11-25**, 28 findings F-01–F-28): [`docs/audits/FULL-REPOSITORY-AUDIT.md`](./docs/audits/FULL-REPOSITORY-AUDIT.md) · Ranked follow-up plan (nothing implemented): [`docs/work-plan/FOLLOW-UP-WORK-PLAN.md`](./docs/work-plan/FOLLOW-UP-WORK-PLAN.md) · Research corpus disposition: [`docs/research/SKILL-SCAN-CORPUS-PLAN.md`](./docs/research/SKILL-SCAN-CORPUS-PLAN.md)
 
 Shared agent guide: [`AGENTS.md`](./AGENTS.md) · Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md)
 

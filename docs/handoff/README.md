@@ -22,7 +22,10 @@ Do not reconstruct the current product from archived handoffs or raw conversatio
 | [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) | **Product definition / trust / architecture intent** |
 | [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** (wins on phase numbering) |
 | [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **2026-11-07 audit** — findings **1–4 fixed**; **5–10** optional follow-up |
-| [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 7) |
+| [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through the Phase 8 first slice) |
+| [`../audits/FULL-REPOSITORY-AUDIT.md`](../audits/FULL-REPOSITORY-AUDIT.md) | **2026-11-25 full read-only audit** — 28 findings F-01–F-28, contradictions, risks |
+| [`../work-plan/FOLLOW-UP-WORK-PLAN.md`](../work-plan/FOLLOW-UP-WORK-PLAN.md) | Ranked follow-up proposal — **nothing implemented** |
+| [`../research/SKILL-SCAN-CORPUS-PLAN.md`](../research/SKILL-SCAN-CORPUS-PLAN.md) | What to do with the 224 MB `docs/skill-scan/` corpus |
 | [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) | Current layout |
 | [`../BUILDER-SKILLS.md`](../BUILDER-SKILLS.md) | Vendored builder skills (lockfile; not in git) |
 | [`../superpowers/specs/`](../superpowers/specs/) | Slice designs (Phases 4–7 done) |
@@ -50,5 +53,6 @@ Use:
 
 A good handoff should point agents to the relevant architecture and decisions instead of reconstructing the whole conversation.
 
-Current implementation instruction:
+2026-11-23 implementation instructions (both now carry a historical-status banner; they disagree about whether the lifecycle is dead or next — see audit §6):
 - [Missing Ezy Capabilities — Coding Agent Instruction](./CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md)
+- [Claude Implementation Command — Review Fix Pass](./CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md)

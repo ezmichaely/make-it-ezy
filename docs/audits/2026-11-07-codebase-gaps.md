@@ -6,6 +6,8 @@ Three probes against the real CLI on `main` (v0.1.4, 171 tests green):
 2. Quality audit (`/ponytail-audit` of `packages/core/src` and `apps/cli/src`)
 3. Convo themes (from `docs/convo/`) vs code
 
+**Scope note (2026-11-25):** this is the *narrow* audit (10 findings). A second, full read-only audit covers the whole repository: [`FULL-REPOSITORY-AUDIT.md`](./FULL-REPOSITORY-AUDIT.md) (28 findings F-01–F-28). It does not renumber or reopen findings 1–10.
+
 **Status as of 2026-11-18:** findings **1–4 are fixed** (merged). The last recorded `pnpm check:ci` run reported **180 tests** green (not the original audit’s 171). Findings **5–10** remain open. **Phase 7 — Project Brain** is shipped; **Phase 8 — Launch and Distribution** is current; verification moves to Phase 9 after launch.
 
 **Historical baseline (pre-fix):** the reproductions and 171-test result in sections below describe the tree **before** the maintenance tranche. Finding 3’s Stripe golden with network on was not re-run live after the fix; coverage is unit-tested in `select.test.ts`.

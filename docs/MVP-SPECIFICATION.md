@@ -66,7 +66,7 @@ pnpm ezy brain enrich
 Spec: [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](./superpowers/specs/2026-11-17-phase7-project-brain-design.md)  
 Plan: [`docs/superpowers/plans/2026-11-17-phase7-project-brain.md`](./superpowers/plans/2026-11-17-phase7-project-brain.md)
 
-## Broker workflow (approved — not in CLI output yet)
+## Broker workflow (first slice shipped)
 
 > Design: [`superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md)  
 > Plan: [`superpowers/plans/2026-11-18-broker-workflow.md`](./superpowers/plans/2026-11-18-broker-workflow.md)
@@ -82,6 +82,8 @@ Plan: [`docs/superpowers/plans/2026-11-17-phase7-project-brain.md`](./superpower
 - Keep external skill content untrusted and installs user-approved.
 - Launch does not require hand-testing every indexed skill; deeper tests can support stronger verification labels after launch.
 - Planned global install command after first publication: `npm install --global @make-it-ezy/cli`.
+
+**Lifecycle contracts are not CLI behavior.** `packages/core/src/lifecycle.ts` exports intent intake, skill evaluation, skill composition, outcome evaluation and evidence aggregation, with unit tests only. No CLI command calls them; planning still runs `analyze → requirements → search → select → plan → handoff`. See [`ROADMAP.md`](./ROADMAP.md) → *Lifecycle contract slice*.
 
 ## Post-launch (not release blockers)
 

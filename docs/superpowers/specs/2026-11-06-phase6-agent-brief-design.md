@@ -1,6 +1,6 @@
 # Phase 6 — Agent Brief + Decision Quality design
 
-**Status:** pending review
+**Status:** shipped (Phase 6, 2026-11-06)
 **Date:** 2026-11-06
 **Approach:** A — Ezy decides; the host agent understands and researches
 **Supersedes as next phase:** `2026-11-06-phase6-project-brain-design.md` (Brain moves to Phase 7, unchanged)

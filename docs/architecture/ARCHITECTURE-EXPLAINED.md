@@ -130,7 +130,7 @@ Domain-neutral na ang brief/plan/select pipeline; ang JS/TS-specific part mostly
 
 **Wala pa / later:**
 
-- **Phase 8 — Launch and Distribution** (make the CLI installable outside this repository)
+- **Phase 8 — Launch and Distribution** — **current** (make the CLI installable outside this repository)
 - **Phase 9 — Verification** (did the outcome actually happen?)
 - Deep skill verification, trusted-auto, Soft-C spawn, Web UI (Phase 10)
 - Full “trust score” pipeline nga naa sa product handoff vision — **partial** lang today (heuristics + brief + risk notes sa inspect)
@@ -170,4 +170,4 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 
 ---
 
-*Last aligned: 2026-11-18 — Phase 7 Project Brain shipped; Phase 8 Launch and Distribution current.*
+*Last aligned: 2026-11-25 — Phase 8 Launch and Distribution current; lifecycle contracts still unwired (audit §6); full audit and ranked plan indexed in [`docs/handoff/README.md`](../handoff/README.md).*
