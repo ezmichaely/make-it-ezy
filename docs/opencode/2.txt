@@ -1,0 +1,339 @@
+Let me start by understanding the task. The user has given me a complex multi-step task involving reading several documents, identifying misalignments, creating analysis, using brainstorming, and more. Let me break this down:
+ 1. Read CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md vs CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md
+ 2. Identify which docs vs code are misaligned
+ 3. Check /skill-scan/ANALYSIS.md vs /skill-scan/REANALYSIS-2026-11-24.md
+ 4. Session-11-23-2026.md or .txt is the last session analysis
+ 5. Are we able to integrate /skill-scan into make-it-ezy process?
+ 6. Create analysis per # inside /docs/opencode
+ 7. Use brainstorming across all and plan per phase, local-per-trench in a single new branch
+ 8. Compare analysis/full-scan-reconciliation and doc/skill-scan-analysis branches
+ 9. Use local graphify in /graphify-out to map overall analysis
+10. If mismatch across docs, readme, architecture, roadmap, update BUT provide a detailed report
+11. If server error or OOM, stop and notify
+This is a big task. Let me first explore the codebase to find these files. Let me be careful here - the user wants thorough investigation but also values low-cost, focused work. However, this is explicitly a large analysis task.
+Let me start by finding the files mentioned. Let me search for them first.
+Let me be systematic. First, I should use the brainstorming skill since the user explicitly asks to "use brainstorming across all those I ask". Actually, the user asks me to use brainstorming as part of step 7. But first I need to do the reading and analysis.
+Let me start by finding the relevant files. I'll do parallel searches.
+Let me first locate the files:
+- CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md
+- CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md
+- /skill-scan/ANALYSIS.md
+- /skill-scan/REANALYSIS-2026-11-24.md
+- Session-11-23-2026.md or .txt
+- /docs/opencode
+- /graphify-out
+- branches: analysis/full-scan-reconciliation and doc/skill-scan-analysis
+Let me search for these.
+The user also says if I encounter server error or OOM, stop and notify. I should be mindful of context limits given this is a heavy task with local model.
+Let me start exploring.
+I'll start by locating all the files and artifacts mentioned, then work through your steps methodically. Let me find them first.
+Glob "**/CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md" (1 match)
+Glob "**/CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md" (1 match)
+Glob "**/ANALYSIS.md" (1 match)
+Glob "**/REANALYSIS-2026-11-24.md" (1 match)
+Glob "**/Session-11-23-2026.*" (2 matches)
+Glob "**/skill-scan/**" (100 matches)
+Glob "**/docs/opencode/**" (3 matches)
+Glob "**/graphify-out/**" 
+Thought: 40.0s
+Let me note the key files found:
+- /Users/michael.yucor/Documents/GitHub/make-it-ezy/docs/handoff/CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md
+- /Users/michael.yucor/Documents/GitHub/make-it-ezy/docs/handoff/CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md
+- /Users/michael.yucor/Documents/GitHub/make-it-ezy/docs/skill-scan/ANALYSIS.md
+- /Users/michael.yucor/Documents/GitHub/make-it-ezy/docs/skill-scan/REANALYSIS-2026-11-24.md
+- /Users/michael.yucor/Documents/GitHub/make-it-ezy/docs/opencode/Session-11-23-2026.txt
+- /Users/michael.yucor/Documents/GitHub/make-it-ezy/docs/opencode/Session-11-23-2026.md
+- /docs/opencode exists
+- /graphify-out — No files found. So graphify-out doesn't exist yet. I'll need to build it.
+Let me check the docs/opencode directory and graphify-out, and also check the branches. Let me also read the main docs.
+First, let me look at the directory structures and the git branches. Let me do a bunch of parallel reads.
+Let me read the two handoff docs, the two skill-scan docs, and the session analysis. These are likely large. Let me be careful about context. The user wants a detailed report. But given local model constraints (27b, OOM risk), I should read in sections.
+Let me first get sizes and the directory listings, plus git branch info.
+Found the key files. Note graphify-out/ doesn't exist yet. Let me check the directory structures, git branches, and file sizes before reading.
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== git branches ==="…
+(78 earlier lines)
+drwxr-xr-x@  3 michael.yucor  staff     96 Nov 24 14:39 ezy-routing
+drwxr-xr-x   9 michael.yucor  staff    288 Nov 24 14:39 handoff
+drwxr-xr-x@  5 michael.yucor  staff    160 Nov 24 14:58 opencode
+drwxr-xr-x   7 michael.yucor  staff    224 Nov 24 14:39 research
+drwxr-xr-x@ 10 michael.yucor  staff    320 Nov 24 15:21 skill-scan
+drwxr-xr-x   4 michael.yucor  staff    128 Nov  5 05:55 superpowers
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== file sizes ==="…
+(2 earlier lines)
+     431 docs/handoff/CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md
+     176 docs/skill-scan/ANALYSIS.md
+     345 docs/skill-scan/REANALYSIS-2026-11-24.md
+     980 docs/opencode/Session-11-23-2026.md
+     980 docs/opencode/Session-11-23-2026.txt
+    3149 total
+Thought: 29.7s
+Good. Now I have a clear picture:
+- We're on branch analysis/full-scan-reconciliation.
+- Other branches: main, doc/skill-scan-analysis, dependabot/...
+- The two branches to compare: analysis/full-scan-reconciliation (current) and doc/skill-scan-analysis.
+- graphify-out exists with a graph.json, GRAPH_REPORT.md, etc.
+Files to read:
+1. CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md (237 lines)
+2. CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md (431 lines)
+3. docs/skill-scan/ANALYSIS.md (176 lines)
+4. docs/skill-scan/REANALYSIS-2026-11-24.md (345 lines)
+5. docs/opencode/Session-11-23-2026.md (980 lines)
+Let me read the four smaller docs first (the two handoff docs and the two skill-scan docs). These are manageable. Then I'll tackle the session analysis separately. Let me read them in parallel.
+Actually, let me read the 4 docs (sizes are small enough), and then do the session analysis separately. Let me read them all in one batch since they're all under 431 lines.
+Total: 237 + 431 + 176 + 345 = 1189 lines. That's fine to read in one batch.
+Now I understand the layout. Current branch is analysis/full-scan-reconciliation; I need to compare it with doc/skill-scan-analysis. graphify-out/ exists (built Nov 6). Let me read the four core docs (steps 1 & 3) in parallel.
+Read docs/handoff/CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md
+Read docs/handoff/CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md
+Read docs/skill-scan/ANALYSIS.md
+Read docs/skill-scan/REANALYSIS-2026-11-24.md
+Thought: 2m 17s
+Now I have a good picture. Let me note key points:
+CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md — This is a "command" to a Claude agent to implement fixes on branch docs/shared-evidence-self-improvement, PR #21, base main. It defines the intended lifecycle and 12 required review/fix areas. Key: "implement the fixes identified by the architecture/review audit, not merely summarize them." It references packages/core/src/lifecycle-types.ts and lifecycle.ts. It mentions docs/convo/ privacy issue (public repo).
+CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md — An implementation brief for the coding agent on current main. Describes the 4 missing capabilities: (1) Intent clarification, (2) Skill evaluation after discovery, (3) Skill spec/composition boundary, (4) Outcome evaluation after execution. Plus capability classification, safety constraints, phase discipline. Notes branch status: "stable lifecycle contracts are now implemented in packages/core/src/lifecycle-types.ts and packages/core/src/lifecycle.ts... remaining work is wiring these contracts into the runtime/CLI."
+ANALYSIS.md (skill-scan) — Summary of the xlsx skill inventory. 40 domains, 36 meta-skills, 435 skills. "Research inventory, not the Ezy runtime catalog." (This was already fixed by REANALYSIS to not overclaim.)
+REANALYSIS-2026-11-24.md — This is the full-scan re-analysis on branch analysis/full-scan-reconciliation, baseline doc/skill-scan-analysis. Key findings:
+- "The lifecycle contract slice exists. The runtime lifecycle is not wired through the CLI/planner yet."
+- Lifecycle contracts implemented in lifecycle-types.ts, lifecycle.ts, lifecycle.test.ts, exported from index.ts.
+- Runtime path still analyze → requirements → search → select → plan → handoff. Planner in plan.ts doesn't call lifecycle evaluators.
+- Capability role taxonomy remains conceptual (capabilities.ts is a token lexicon).
+- Skill discovery and skill evaluation remain separate.
+- Outcome verification remains Phase 9.
+- Documentation mismatches found and fixed (A-G): README badge, roadmap broker-workflow status, architecture docs, HOW-IT-WORKS, skill-scan ANALYSIS overclaim, skill-scan workspace docs, local runtime state removed.
+- Can SkillEvaluator be used? Yes as research/evaluation tool not runtime dependency.
+- Remaining code/doc gap: Contract → runtime wiring. Recommended order.
+- Validation: CI not run, pnpm check:ci not run. "Do not mark this branch as CI-green yet."
+So the misalignment between docs and code: The docs describe lifecycle contracts (intent intake, skill evaluation, skill spec composition, outcome evaluation, evidence aggregation, improvement proposals) as if they're part of the product flow, but the actual code only has them as standalone contracts (lifecycle-types.ts / lifecycle.ts) NOT wired into the planner/CLI. The "gap" is contract → runtime wiring.
+Now, the key thing the user wants:
+ 1. Read the two handoff docs (done) — and identify which docs vs code are misaligned.
+ 2. Check ANALYSIS.md vs REANALYSIS-2026-11-24.md (done reading both).
+ 3. Session-11-23-2026.md / .txt is the last session analysis (980 lines, 117KB — large). Need to read but carefully.
+ 4. Can we integrate /skill-scan into make-it-ezy process?
+ 5. Create analysis per # in /docs/opencode
+ 6. Use brainstorming across all, plan per phase, local-per-trench in a single new branch.
+ 7. Compare analysis/full-scan-reconciliation and doc/skill-scan-analysis branches.
+ 8. Use local graphify in /graphify-out to map analysis.
+ 9. If mismatch across docs/readme/architecture/roadmap, update BUT provide detailed report.
+10. If server error/OOM, stop and notify.
+Let me be careful. This is a huge task. The user wants a detailed report. But I'm running on a local 27b model (qwen3.8:27b per env), and there's OOM risk. Let me be strategic.
+Important: I should verify the actual code state vs docs, because the whole point is finding misalignment. Let me:
+- Verify the lifecycle contracts exist and whether they're wired (check plan.ts, index.ts, lifecycle.ts, lifecycle-types.ts).
+- Compare the two branches via git diff.
+- Read the session analysis (the last session).
+Let me also check: the CLAUDE doc references branch docs/shared-evidence-self-improvement and PR #21, base main. But that branch doesn't appear in the branch list! The branches are: analysis/full-scan-reconciliation, dependabot, doc/skill-scan-analysis, main. So docs/shared-evidence-self-improvement doesn't exist locally. That's a potential discrepancy — the CLAUDE command targeted a branch that's not present. Interesting.
+Let me verify the actual code. Let me look at the core packages structure and the lifecycle files. Let me also do the branch comparison.
+Let me first look at the structure of packages/core and read the lifecycle files, plan.ts, index.ts. And do git log/diff between branches.
+Let me be efficient. Let me run several commands in parallel:
+1. git log for both branches
+2. git diff --stat between the two branches
+3. Find lifecycle files
+4. Check packages structure
+Let me also read the session analysis file but it's 117KB / 980 lines. That's big. I'll read it in a targeted way — maybe first 300 lines to understand structure, or grep for key sections. Actually since the user says "Session-11-23-2026.md or .txt is your last session analysis" — it's a transcript. I should read it but I need to manage context. Let me read it in chunks or grep for the key findings. Given it's my "last session analysis," it likely contains the conclusions I should build on. Let me read it but be mindful.
+Actually, .md and .txt are the same size (117149 bytes), likely identical content. I'll read the .md.
+Let me start with code verification and branch comparison, plus the session analysis first portion. Let me do this in parallel but keep the session read separate to control context. Actually, let me do the git/code stuff first, then read the session.
+Let me run these commands.
+I've read all four core docs. Key finding already: REANALYSIS-2026-11-24.md explicitly states the central misalignment — the lifecycle contract slice exists but is not wired into the runtime/CLI. Now I need to (a) verify that against the actual code, (b) compare the two branches, and (c) read the session analysis. Let me verify the code state and compare branches.
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== git log: analysis/full-scan-reconciliation (last 15) ==="…
+(37 earlier lines)
+83bbb71 docs: add Claude implementation command for review fix pass
+193997e docs: mark lifecycle contract slice implemented
+6223462 docs: align Phase 8 lifecycle contracts
+9f162e1 docs: record shared-evidence contract implementation
+0794c22 docs: document lifecycle role contracts
+51e9c1d feat(core): export lifecycle and evidence contracts
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== diff --stat: main..doc/skill-scan-analysis (name only, grouped) ==="…
+(64 earlier lines)
+M	docs/skill-scan/ANALYSIS.md
+M	docs/skill-scan/README.md
+A	docs/skill-scan/REANALYSIS-2026-11-24.md
+D	docs/skill-scan/skill-eval/alirezarezvani-claude-skills/run-2026-11-18/run.pid
+M	docs/skill-scan/skill-evaluator/README.md
+M	docs/skill-scan/skill-evaluator/run-local.sh
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== packages/core/src listing ==="…
+(73 earlier lines)
+9f162e1 docs: record shared-evidence contract implementation
+e37ec21 feat(core): add intent lifecycle and evidence contracts
+2421439 docs: unify Codex, Cursor, and Claude agent entry via AGENTS.md
+809e621 docs: scope — general by design, specific by launch
+621ed03 fix(handoff): do not duplicate installs suffix in skill reasons
+da21899 docs(readme): use updated Make It Ezy logo
+Thought: 1m 13s
+Now I have a clearer picture. Key findings:
+1. Branch relationship: main == doc/skill-scan-analysis base is actually: doc/skill-scan-analysis = main + 1 commit (5034af0 doc: add skill scan). And analysis/full-scan-reconciliation is built on top of doc/skill-scan-analysis with ~15 more commits. Both branched from the merge of PR #21 (23efd49).
+Wait, let me re-read. main last commit is 23efd49 Merge pull request #21. doc/skill-scan-analysis last is 5034af0 doc: add skill scan whose parent is 23efd49. So doc/skill-scan-analysis = main + 1 commit (the skill scan add). Good, matches REANALYSIS "1 commit ahead, 0 behind."
+analysis/full-scan-reconciliation is 5034af0 + ~15 commits (the reconciliation + re-analysis).
+2. The branch the CLAUDE command targeted (docs/shared-evidence-self-improvement, PR #21) has been merged into main (commit 23efd49) and the branch no longer exists. So the CLAUDE-IMPLEMENTATION-COMMAND was an instruction to operate on that PR branch, which is now merged. The work it described (lifecycle contracts) is now in main. That's important context.
+3. The diff between the two analysis branches is purely docs + chore (README, HOW-IT-WORKS, ROADMAP, ARCHITECTURE, CAPABILITY-MODEL, ANALYSIS.md, README, REANALYSIS added, .qwen settings removed, run.pid removed, skill-evaluator README/run-local.sh). No code (.ts) changes. So analysis/full-scan-reconciliation = doc/skill-scan-analysis + documentation reconciliation only. This confirms REANALYSIS's claim: it was a doc-reconciliation + workspace-hygiene branch, NOT a runtime wiring branch.
+So the central misalignment confirmed: The lifecycle contracts exist in code (lifecycle.ts, lifecycle-types.ts, exported from index.ts) but are NOT wired into plan.ts / the runtime flow. The docs (before reconciliation) over-claimed. After reconciliation, docs now say "contract exists, runtime not wired yet."
+Now I need to verify by actually reading the code: lifecycle.ts, lifecycle-types.ts, plan.ts, index.ts, to confirm whether they're wired. Let me read those. This is the crux of step 2 (identify docs vs code misalignment).
+Let me read:
+- packages/core/src/lifecycle-types.ts
+- packages/core/src/lifecycle.ts
+- packages/core/src/lifecycle.test.ts
+- packages/core/src/index.ts
+- packages/core/src/plan.ts
+- packages/core/src/capabilities.ts
+And grep for whether plan.ts or any runtime path calls the lifecycle functions (buildIntentIntake, evaluateSkillCandidate, composeSkillSpec, evaluateOutcome, aggregateEvidence, proposeImprovement).
+Let me do that. Also read the session analysis. The session is 980 lines / 117KB. That's large for context. Let me read it but in a controlled way — I'll grep for its structure/headings first, then read key sections. Actually, the user explicitly says it's "your last session analysis" — I should at least skim it. But 117KB is ~30k tokens. Given local model OOM risk, I'll grep its headings first.
+Let me do the code verification + grep the session structure in parallel.
+The branch comparison is revealing: analysis/full-scan-reconciliation = doc/skill-scan-analysis + documentation-only reconciliation (no .ts changes). This confirms REANALYSIS's central claim. Now let me verify the actual code wiring — does the runtime call the lifecycle contracts? — and map the session analysis structure without blowing context.
+Read packages/core/src/lifecycle-types.ts
+Read packages/core/src/lifecycle.ts
+Read packages/core/src/index.ts
+Read packages/core/src/plan.ts
+Thought: 1m 15s
+Now I've confirmed the central misalignment precisely:
+Code reality (verified):
+- lifecycle.ts + lifecycle-types.ts + lifecycle.test.ts exist and define 6 functions: buildIntentIntake, evaluateSkillCandidate, composeSkillSpec, evaluateOutcome, aggregateEvidence, proposeImprovement.
+- They are exported from index.ts (lines 113-135).
+- BUT plan.ts (the actual runtime planner, planOutcome) does NOT call any of these. It imports from analyze, brain, contractors, load-local-skills, brief-types, requirements, recommend-types, select, search. NO import from lifecycle.js.
+- The runtime flow is: planOutcome → analyzeProject → extractRequirements → searchSkills → scoreCandidates → selectCapabilities → decide → persistBrainAfterPlan. No intent intake, no skill evaluation, no skill spec composition, no outcome evaluation, no evidence aggregation, no improvement proposals.
+So the contracts are exported but orphaned — they're public API surface that nothing in the runtime/CLI consumes. This is exactly the "contract → runtime wiring" gap REANALYSIS identified.
+This is the key doc-vs-code misalignment. Let me verify whether ANY code (other than index.ts re-export and lifecycle.test.ts) calls these functions. Let me grep across the whole codebase for calls to these functions to be thorough. Also check the CLI (apps) to see if the CLI wires them.
+Let me grep for: buildIntentIntake, evaluateSkillCandidate, composeSkillSpec, evaluateOutcome, aggregateEvidence, proposeImprovement across all .ts files (excluding lifecycle.ts/test and index.ts re-export).
+Also I need to check whether there's a CLI that might call them. Let me look at apps/ structure.
+Let me also read the session analysis. Given the size, let me grep its headings first to understand structure, then read targeted sections.
+Let me do these in parallel:
+1. grep for lifecycle function calls across the repo
+2. look at apps/ (CLI) structure
+3. grep session analysis for headings/structure
+Confirmed the core misalignment at the code level: plan.ts (the real runtime planner) imports analyze, requirements, select, search, contractors, brain — but never imports or calls any lifecycle.* function. The 6 lifecycle functions are exported from index.ts but appear orphaned. Let me prove this across the whole codebase and check the CLI layer, plus map the session-analysis structure.
+Grep "buildIntentIntake|evaluateSkillCandidate|composeSkillSpec|evaluateOutcome|aggregateEvidence|proposeImprovement" (25 matches)
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== apps/ tree (depth 2) ==="…
+(11 earlier lines)
+apps/cli/src/index.ts
+apps/cli/src/cli.test.ts
+
+=== any import of lifecycle outside core/src/lifecycle* and index.ts ? ===
+
+Exit code: 1
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== session analysis structure (headings) ==="…
+(42 earlier lines)
+- MG1_layered_label.psd — a Photoshop layered label, probably a design asset that shouldn't be in git
+- apps/cli/make-it-ezy-cli-0.1.5.tgz — a packaged tarball, definitely shouldn't be in git
+- apps/cli/package/LICENSE, README.md, package.json — these look like they might be a packaged/distributed version of the CLI
+
+=== diff .md vs .txt ===
+IDENTICAL
+Thought: 2m 27s
+This confirms it definitively:
+The 6 lifecycle functions are referenced ONLY in:
+1. index.ts (re-export)
+2. lifecycle.test.ts (tests)
+3. lifecycle.ts (definitions)
+Nothing in apps/cli/src/ or any runtime path calls them. The grep for "lifecycle" across apps/packages returned exit code 1 (no matches outside the core lifecycle files). So the lifecycle contracts are completely orphaned from the runtime. This is the central doc-vs-code misalignment.
+The session analysis (.md == .txt, identical) is a raw OpenCode transcript of a previous session where the user said "push all uncommitted changes first." It's mostly the previous agent's thinking + git state observations. It has "# Questions" at line 213 and 923. Let me look at the questions sections since those likely contain the analysis/conclusions. The session is a transcript, 980 lines. The user says "Session-11-23-2026.md or .txt is your last session analysis." So this is the transcript of the last session (11-23).
+I should read the key parts of it — especially the "# Questions" sections which likely contain the structured analysis the user wants me to build on. Let me read around those. But I need to be careful with context. Let me read the questions sections and skim.
+Actually, let me reconsider the whole approach. The user's task is enormous and I'm on a local 27b model with OOM risk. The user explicitly said in step 11: "if you encouter server error or out of memory stop and notify me." So I should be careful and efficient.
+Let me prioritize. The deliverable (step 10) is: "from that detailed doc - we can start a new session for the full blast implementation." So the PRIMARY deliverable is a detailed analysis/report document in /docs/opencode that reconciles all this and plans the implementation phases, so a future session can execute.
+The user also wants:
+- step 5: Can we integrate /skill-scan into make-it-ezy process? (ANSWER: yes as research/eval tool, not runtime dep — REANALYSIS already concluded this; I should give a crisp architecture answer)
+- step 6: create analysis per # inside /docs/opencode
+- step 7: use brainstorming across all and plan per phase, local-per-trench in a single new branch
+- step 8: compare the two analysis branches (DONE — they differ only in docs, no code)
+- step 9: use local graphify in /graphify-out to map analysis
+- step 10: if mismatch across docs, update but provide detailed report
+Let me think about what "local-per-trench" and "single new branch" means. The user wants me to create a new branch and plan the work per phase, locally, in a single branch. And use brainstorming.
+Given the constraints (local model, OOM risk, "stop and notify if OOM"), I should:
+1. Finish gathering the evidence I need (the session questions sections, confirm a few more doc-vs-code points).
+2. Load the brainstorming skill (the user explicitly asked to "use brainstorming across all").
+3. Create a new branch (single new branch).
+4. Write the detailed analysis report(s) into docs/opencode (one per the # items, or a master doc).
+5. Update mismatched docs (readme, roadmap, architecture, etc.) — but carefully, with a detailed report.
+6. Use graphify to map (but graphify-out exists; I can reference it / add analysis nodes). Actually graphify may be heavy. Let me check if graphify is available as a local tool. The skill graphify exists. But running graphify build might be expensive. The user says "use local graphify in /graphify-out to map out your overall analysis." graphify-out already has a graph.json from Nov 6. I could extend it or generate a fresh analysis graph. But running the full graphify might be expensive/heavy on a local model. I'll consider a lighter approach: produce a structured analysis graph/mermaid within the report and note the existing graphify-out. Actually, the user wants me to use the local graphify. Let me check what's available — is there a graphify CLI? Let me check.
+Let me be strategic about context. I'll read the session questions sections (the structured analysis), then load brainstorming skill, then start producing deliverables.
+Let me read the session's question sections and a bit around them. Line 213 and 923 are "# Questions". Let me read lines 200-260 and 900-980, plus maybe a middle section to understand. Actually, let me read the two Questions blocks.
+Also, I realize I should check whether there are other doc-vs-code mismatches beyond the lifecycle wiring. The user wants a comprehensive mismatch report across README, roadmap, architecture, MVP, HOW-IT-WORKS, skills/ezy. REANALYSIS already did a reconciliation on the analysis/full-scan-reconciliation branch. But the user wants ME to verify and produce a detailed report, possibly on a NEW branch.
+Let me check the CLI src to understand the actual command surface (plan, next, brief, install, brain, doctor, etc.) and compare to docs. Let me read apps/cli/src/index.ts and select.ts. And check whether "next" and "brain enrich" commands exist as docs claim.
+Let me also verify: does the CLI have a brain enrich command? Does next exist? These are referenced in AGENTS.md and docs. Let me check.
+Let me read:
+- apps/cli/src/index.ts (CLI commands)
+- the session Questions sections
+- grep for command registrations
+Let me be efficient and do a few parallel calls. I'll read the CLI index and the session questions.
+Decisive confirmation: the 6 lifecycle functions (buildIntentIntake, evaluateSkillCandidate, composeSkillSpec, evaluateOutcome, aggregateEvidence, proposeImprovement) are referenced only in index.ts (re-export), lifecycle.ts (defs), and lifecycle.test.ts (tests). Nothing in apps/cli or the runtime planner calls them — the grep across apps/packages returned no other matches. They are exported-but-orphaned. That's the central doc↔code gap.
+The session file is a raw OpenCode transcript (.md == .txt). Let me read its structured "Questions" sections and the CLI command surface to finish the evidence-gathering, then I'll load the brainstorming skill.
+Read docs/opencode/Session-11-23-2026.md:205-279
+Read docs/opencode/Session-11-23-2026.md:915-984
+Read apps/cli/src/index.ts
+Thought: 5m 1s
+Now I have the full CLI picture. The CLI commands are: doctor, analyze, search, inspect, recommend, brief, brain (refresh/enrich), plan, next, install. There is NO verify command, NO evidence command, NO evaluate command. The lifecycle functions are not exposed at the CLI level. The HELP text even says "Skill execution / outcome run is not in this slice."
+This confirms REANALYSIS: the lifecycle contracts are orphaned from both the planner and the CLI.
+The session analysis (last session, 11-23) shows the user's clear directive:
+- The previous agent had proposed 5-6 branches (Branch 1: Capability role taxonomy #9, Branch 2: Intent clarification #1, Branch 3: Skill evaluation #2, Branch 4: Skill spec/composition #3, Branch 5: Outcome-eval extension point #4, Branch 6: shared-evidence self-improvement #5).
+- BUT the user then REJECTED that plan. At the end (lines 915-980), the user said:
+- Use CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md as the PRIMARY implementation instruction.
+- Do NOT use CLAUDE-IMPLEMENTATION-COMMAND-REVIEW-FIX-PASS-2026-11-23.md as the implementation authority (it's historical/review context only).
+- "Stop before making any code changes."
+- Do a RECONCILIATION pass first: re-read CODING-AGENT-INSTRUCTION, re-read CLAUDE command as historical only, compare them, inspect branch/HEAD to confirm what's implemented vs missing, do NOT modify code/create branches/push, produce a final IMPLEMENTATION DECISION MATRIX with columns: Capability / Existing implementation / Required by current instruction? / Missing work / Phase 8 or Phase 9 / Runtime/CLI impact / Required tests / Recommended action.
+- "do not ask me to choose between your options 1–4 until you have reconciled the actual instruction hierarchy and determined what the instruction itself requires."
+- "The goal is NOT to maximize implementation. The goal is to implement exactly what the authoritative coding-agent instruction requires, no more and no less."
+- "After the reconciliation, STOP and report. Do not implement anything yet."
+This is critical. The user's last session explicitly demanded a reconciliation/decision matrix BEFORE any code changes, and stopped the agent from branching into 5-6 implementation branches. So my job now is to fulfill that reconciliation — produce the decision matrix — and the broader analysis the user is asking for in THIS session.
+So the key tension the user wants resolved:
+- CLAUDE-IMPLEMENTATION-COMMAND says "implement the fixes" (wire everything, fix lifecycle gaps, privacy, docs) — broader.
+- CODING-AGENT-INSTRUCTION says "implement the missing capabilities as smallest contracts/adapters, don't expand Phase 8, create interface for Phase 9" — narrower.
+- The user wants me to determine which is authoritative and what's actually required now (Phase 8) vs deferred (Phase 9).
+The reconciliation conclusion (from REANALYSIS + code): The lifecycle contracts ARE already implemented (types + functions + tests + exports). What's missing is RUNTIME WIRING (contracts not called by plan.ts/CLI). Per the CODING-AGENT-INSTRUCTION §11 (Phase discipline), the runtime wiring beyond the contract slice is essentially Phase 9 territory, OR a minimal adapter. The instruction says "If full outcome verification belongs to Phase 9, create the interface/extension point now but do not pull a large Phase 9 implementation into the Phase 8 release."
+So the "missing work" is: wiring the already-built contracts into plan/next/handoff as minimal adapters (the 6 recommended-order items in REANALYSIS §8). But the user wants to know if that's in-scope for Phase 8 or Phase 9.
+Now, the user's current request (this session) is broader than the last session's stop-and-report. They want:
+ 1. Read the two docs (done)
+ 2. Identify docs vs code misalignment (done — I've found the central one + can enumerate others)
+ 3. Check ANALYSIS.md vs REANALYSIS-2026-11-24.md (done reading both — REANALYSIS supersedes/extends ANALYSIS)
+ 4. Session analysis is the last session (done reading key parts)
+ 5. Can we integrate /skill-scan into make-it-ezy process? (Answer: yes, as research/eval tool, Tier 1+2, not runtime dependency — REANALYSIS §6 already concluded this; I'll give a crisp architecture integration proposal)
+ 6. Create analysis per # in /docs/opencode
+ 7. Use brainstorming across all + plan per phase, local-per-trench in a single new branch
+ 8. Compare the two analysis branches (done — doc-only diff)
+ 9. Use local graphify in /graphify-out to map analysis
+10. If mismatch across docs/readme/architecture/roadmap, update BUT provide detailed report (from that detailed doc, start new session for full implementation)
+11. If server error/OOM, stop and notify.
+This is a large but mostly ANALYSIS + DOCUMENTATION task. The user explicitly does NOT want me to do the "full blast implementation" now — that's for a new session. My job: produce the detailed report(s) in /docs/opencode, on a single new branch, using brainstorming, with a per-phase plan, and update mismatched docs + a detailed report, and map with graphify.
+Given the local model + OOM risk, I need to be efficient. Let me be careful not to blow context. I've used a fair amount already. Let me plan the remaining work:
+Remaining evidence to gather:
+- Read the other core docs to check for mismatches: README.md, ROADMAP.md, HOW-IT-WORKS.md, MVP-SPECIFICATION.md, ARCHITECTURE.md, CAPABILITY-MODEL.md, skills/ezy/SKILL.md, docs/architecture/lifecycle doc. The REANALYSIS already reconciled most on the current branch. But the user wants ME to verify and report. Let me at least read the key ones that could still mismatch: the lifecycle architecture doc, CAPABILITY-MODEL, ROADMAP, README. I've seen the diffs already (REANALYSIS changed README badge, ROADMAP broker-workflow, ARCHITECTURE +2 lines, CAPABILITY-MODEL +2 lines, HOW-IT-WORKS +5). Let me verify these are actually consistent now by reading the relevant sections.
+Actually, given context budget, let me be strategic. The REANALYSIS doc is the authoritative reconciliation on the current branch. I've verified the core code claim. Let me do a targeted check of the docs that most likely still mismatch, and verify the lifecycle architecture doc.
+Let me also check: does a lifecycle architecture doc exist in docs/architecture/? And what does CAPABILITY-MODEL say now? And is there a "docs/architecture/lifecycle" or similar? Let me list docs/architecture.
+Also I should verify the build/tests actually pass, since the user wants a "detailed report" and CI status. But running full CI might be heavy. The REANALYSIS said CI was not run. Let me at least run the core unit tests for lifecycle to confirm they pass (cheap), and maybe typecheck. Actually, let me check whether there's a build already (dist exists). Let me consider running pnpm -r test or just the core tests. But pnpm might trigger network. Let me check the CI script first.
+Let me also reconsider the "single new branch" instruction. The user wants me to create a single new branch for this analysis/plan work, "local-per-trench." So I should create a new branch (e.g., docs/opencode-analysis-2026-11-24 or analysis/phase-plan-2026-11-24) off the current branch, and do the work there. Per repo rules, feature/analysis work branches from a base; don't push to main. I won't push (no PR/push unless asked).
+Wait — the current branch is analysis/full-scan-reconciliation which already contains the REANALYSIS reconciliation. The user wants a NEW branch for the analysis/plan. Let me create it off the current HEAD (which has the reconciliation + REANALYSIS). That's sensible: build the analysis + phase plan + doc updates on top of the reconciliation.
+Actually, let me re-read step 7: "Use brainstorming across all those I ask and plan what we need to do first per phase, local-per-trench in a single new branch." So: create ONE new branch, and in it do brainstorming + a per-phase plan (first thing to do per phase), "local-per-trench" (local, not pushed). And step 8: "compare the analysis/full-scan-reconciliation and doc/skill-scan-analysis branches" (done — I'll document it).
+Let me now decide the branch name. Something like docs/opencode-reconciliation-plan-2026-11-24. Hmm, but the user said "single new branch." Let me make it clear. Maybe analysis/ezy-capability-reconciliation-2026-11-24. Actually simpler: docs/opencode-analysis-2026-11-24.
+Let me also load the brainstorming skill since the user explicitly asked to "use brainstorming across all those I ask." And there's a brainstorming skill available. Let me load it. Also the graphify skill for step 9. And possibly verification-before-completion.
+But loading skills costs context. The user explicitly asked for brainstorming. Let me load brainstorming skill. Let me also check the graphify skill to know how to "use local graphify." But graphify build might be expensive. Let me read the graphify skill to see if there's a lightweight path.
+Actually, given OOM risk with a local 27b model and lots of context, I should be judicious. Let me load the brainstorming skill (explicitly requested) and the graphify skill (explicitly requested step 9). Then proceed.
+Let me also gather the remaining doc mismatch evidence efficiently. Let me:
+1. Load brainstorming skill.
+2. Read docs/architecture listing + the lifecycle architecture doc + CAPABILITY-MODEL.md + ROADMAP.md + README.md relevant sections.
+3. Check the CI script and run core tests.
+Let me do the doc reads + listing + CI check in parallel, then load skills.
+Actually, let me load brainstorming + graphify skills first (they're explicit requests and shape my approach), and in parallel read the architecture docs and check CI. Skills and shell/read are independent. Let me batch them.
+Wait — the skill tool and read/shell are all independent. But I want to read the skill outputs to inform. Let me do: load brainstorming skill, load graphify skill, list docs/architecture, read CAPABILITY-MODEL + ROADMAP + README. That's a lot in one batch but they're all reads/independent. Let me be careful — reading too much at once increases OOM risk. Let me prioritize.
+Let me do a first batch: load brainstorming skill (explicitly requested), and read the architecture listing + key docs. Then a second batch for graphify + tests.
+Actually, I'll be more conservative given OOM. Let me do:
+Batch A: skill brainstorming + list docs/architecture + read ROADMAP.md (it's the phase owner, small 7KB) + check CI script.
+Then Batch B: based on findings, read more.
+Let me go.
+Actually, I realize I should also confirm what docs/architecture contains and whether there's a dedicated lifecycle doc. Let me list it. And read ROADMAP (7KB), and the CAPABILITY-MODEL. Let me also grep the CI script.
+Let me do Batch A.
+Now I have the complete picture. The CLI (apps/cli/src/index.ts) exposes: doctor, analyze, search, inspect, recommend, brief, brain, plan, next, install — no verify/evidence/evaluate command, and its HELP literally says "Skill execution / outcome run is not in this slice." The 6 lifecycle functions are orphaned from both the planner and the CLI.
+Critically, the last session (11-23) ended with the user rejecting a 5–6 branch plan and demanding a reconciliation-first, decision-matrix approach (lines 915–980): use CODING-AGENT-INSTRUCTION as authority, treat CLAUDE-IMPLEMENTATION-COMMAND as historical only, produce a decision matrix, stop before code changes. That's exactly the task shape here.
+Let me load the brainstorming skill (explicitly requested) and gather the remaining doc-mismatch evidence.
+Skill "brainstorming"
+$ cd /Users/michael.yucor/Documents/GitHub/make-it-ezy
+echo "=== docs/architecture listing ==="…
+(82 earlier lines)
+  "ezy": "node apps/cli/dist/index.js",
+  "dev:ezy": "pnpm --filter @make-it-ezy/cli exec tsx src/index.ts",
+  "skills:global": "node scripts/bootstrap-global-skills.mjs",
+  "skills:install": "node scripts/bootstrap-global-skills.mjs && node scripts/link-builder-skills.mjs",
+  "skills:clean": "node scripts/clean-builder-skill-links.mjs"
+}
+Read docs/ROADMAP.md
+⚠ Retry due · attempt 2 · mlx runner failed: panic: mlx: [METAL] Command buffer execution failed: Insufficient Memory (00000008:kIOGPUCommandBufferCallbackErrorOutOfMemory). at /Users/runner/work/ollama/ollama/build/darwin-sources/_deps/mlx-c-src/mlx/c/transforms.cpp:73

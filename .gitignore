@@ -6,7 +6,7 @@ coverage/
 .env
 .env.*
 !.env.example
-graphify-out/
+#graphify-out/
 .pnpm-store/
 # Builder skills: global home + pnpm skills:install symlinks (see docs/BUILDER-SKILLS.md).
 .agents/skills/
