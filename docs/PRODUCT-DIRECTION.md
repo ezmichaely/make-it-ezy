@@ -99,6 +99,34 @@ The eventual capability model should be able to represent multiple domains witho
 
 Domain expansion should happen when the core composition and execution model can support it cleanly, not by prematurely implementing every domain.
 
+## Unified UI and routing direction
+
+The long-term product should converge on a **single Make It Ezy UI/control plane** rather than requiring the user to manually stitch together separate agent applications.
+
+The UI should take inspiration from the **T3-style multi-agent control concept**: a unified workspace for agent sessions, tasks, workspaces, context, skills, execution state, and results.
+
+This is a conceptual reference, not a requirement to clone T3 or its implementation.
+
+Provider routing should similarly take inspiration from the **OmniRoute-style routing/fallback concept**. Ezy should eventually be able to route execution across suitable cloud, local, and hybrid providers and apply fallback policies based on availability, task fit, quality, cost, latency, and other constraints.
+
+The intended relationship is:
+
+~~~text
+Make It Ezy UI
+      ↓
+Agent / Task Control
+      ↓
+Ezy Control Plane
+      ↓
+Ezy Router
+      ↓
+Cloud / Local / Hybrid Providers
+      ↓
+Execution + Verification
+~~~
+
+Agent control and provider routing are therefore part of the same long-term control-plane vision. They are future capabilities, not reasons to expand today's implementation prematurely.
+
 ## Agent and provider control
 
 Ezy should remain agent- and provider-agnostic at the core.
