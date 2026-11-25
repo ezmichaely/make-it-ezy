@@ -1,173 +1,91 @@
-<p align="center">
-  <img src="make-it-ezy.png" width="280" alt="Make It Ezy">
-</p>
+# Make It Ezy
 
-<h1 align="center">Make It Ezy</h1>
+> **Tell Ezy what you want. It figures out what you need.**
 
-<p align="center">
-  <em>Tell Ezy what you want. It figures out what you need.</em><br>
-  <sub>Starting with coding tasks in your repo.</sub>
-</p>
+Make It Ezy is a local-first capability and context decision layer for coding tasks. It understands the requested outcome and project, discovers candidate capabilities, selects a minimum useful set, and prepares a handoff for the host agent.
 
-<p align="center">
-  <img src="https://img.shields.io/github/license/ezmichaely/make-it-ezy?style=flat-square&color=111111" alt="MIT license">
-  <img src="https://img.shields.io/badge/status-phase%208%20launch-111111?style=flat-square" alt="Phase 8 launch">
-  <img src="https://img.shields.io/badge/node-%3E%3D20-111111?style=flat-square" alt="Node 20+">
-</p>
+**Ezy decides. The host agent executes.**
 
----
+Ezy is not itself a coding agent, a generic multi-agent runtime, or a skills marketplace.
 
-**Make It Ezy** is a local-first capability and context decision layer. Give it a goal, and it identifies what the project needs, selects a minimum useful set of capabilities, and prepares a handoff. The host agent (Claude Code, Cursor, Codex, or another runtime) performs the work.
+## For AI agents working in this repository
 
-Ezy is **not** another coding agent, skills marketplace, or multi-agent runtime. Its role is to help choose and compose what the execution agent needs.
+**Start with [`AGENTS.md`](./AGENTS.md). Do not infer current work from this README.**
 
-**How it works in practice:** Ezy discovers and filters capabilities, then hands off; your agent runs the recommended skills (from the net or local) and implements. Short walkthrough: [`docs/HOW-IT-WORKS.md`](./docs/HOW-IT-WORKS.md).
+Required workflow:
 
-```text
-             HUMAN
-                │
-                ▼
-          MAKE IT EZY
-       "What do I need?"
-                │
-      ┌─────────┼─────────┐
-      ▼         ▼         ▼
-    Skills     Tools     Agents
-      │         │         │
-      └─────────┼─────────┘
-                ▼
-              WORK
-```
+`AGENTS.md` → `docs/AGENT-WORKFLOW.md` → current product docs → accepted decisions → implementation/tests.
 
-## Scope
+## Current scope
 
-**General by design, specific by launch.** The vision is any goal in any domain. **Today, Ezy targets coding tasks in your repo** (JS/TS first, Python next); other domains — video, research, documents — come later, one at a time. Ezy decides what's needed; your agent (Claude Code, Cursor, Codex) does the work. Details: [`docs/ROADMAP.md#scope`](./docs/ROADMAP.md).
+**Today:** coding tasks in a repository, JS/TS first and Python next.
 
-## What Ezy does
+**Later:** other domains, one at a time.
+
+## How it works
 
 ```text
-User: "Build me a SaaS" / "Add Stripe subscriptions" / "Refactor auth"
-                     │
-                     ▼
-              ┌─────────────┐
-              │ MAKE IT EZY │
-              └──────┬──────┘
-                     │
-        ┌────────────┼────────────┐
-        ▼            ▼            ▼
-   Understand     Discover     Understand
-     Goal       Capabilities    Project
-        │            │            │
-        └────────────┼────────────┘
-                     ▼
-           Select what's actually needed
-                     │
-                     ▼
-              Execution / handoff plan
-                     │
-                     ▼
-          Agents · Tools · Skills · Services
-                     │
-                     ▼
-               Verify (later) · Update knowledge (later)
+User outcome
+    ↓
+Make It Ezy
+    ├─ understand project
+    ├─ derive requirements
+    ├─ discover capabilities
+    ├─ select a minimum useful set
+    └─ prepare a workflow / handoff
+              ↓
+        Host agent
+              ↓
+          executes
 ```
 
-**Two jobs in one layer:**
+The host agent remains responsible for research, implementation, and execution. Ezy does not silently install or execute third-party skills.
 
-1. **Capability router** — what skills, tools, agents, workflows, or services are actually needed?
-2. **Context router** — what does that stack need to know, so the next agent doesn’t rediscover the whole repo?
+## Current status
 
-```text
-"Add subscriptions to my app."
+- Phases 0–7: shipped
+- Phase 8 — Launch and Distribution: current
+- Broker-directed workflow: first slice shipped
+- Phase 9 — Outcome verification: later
+- Phase 10 — Web UI: later
+- Lifecycle contracts: exported internal boundary contracts, **not** the controlling CLI/planner pipeline
 
-              Ezy
-               │
-       ┌───────┴────────┐
-       ▼                ▼
- Capability          Context
- selection            selection
-       │                │
-       ▼                ▼
- Stripe skill       Existing auth
- Testing            DB / billing
- Security           Project conventions
- Coding agent
-       │                │
-       └───────┬────────┘
-               ▼
-             Agent
-```
+For exact shipped CLI behavior, read [`docs/MVP-SPECIFICATION.md`](./docs/MVP-SPECIFICATION.md).
 
-A **capability** can be a skill, tool, MCP, agent, model, workflow, service, API, knowledge source—or later, a human expert. Today the product focuses on software development; the engine is capability-centered so it can grow beyond that.
-
-**Principle:** minimum sufficient capabilities + minimum sufficient context.
-
-## Quick start
-
-### Install Ezy
-
-After the first public npm release:
-
-```bash
-npm install --global @make-it-ezy/cli
-ezy --help
-```
-
-Then run Ezy from the project you want to work on:
-
-```bash
-cd /path/to/your-project
-ezy next "Improve onboarding"
-```
-
-### Contribute from source
+## Development
 
 ```bash
 pnpm install
-pnpm skills:install   # contributor only — link builder skills (global home; see BUILDER-SKILLS.md)
 pnpm build
 pnpm test
 ```
 
-Node.js 20+ · pnpm 9+ (10.x recommended). Builder skills: [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md).
+For builder-skill setup, read [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md).
+
+For Ezy dogfooding:
 
 ```bash
-export MAKE_IT_EZY_ROOT=/absolute/path/to/make-it-ezy
+pnpm ezy brief "<outcome>"
+pnpm ezy plan "<outcome>" --local-only
+pnpm ezy next "<outcome>" --local-only
 ```
 
-```bash
-pnpm ezy brief "Build me a beautiful SaaS dashboard"   # agent researches, writes .ezy/brief.json
-pnpm ezy next "Build me a beautiful SaaS dashboard" --brief .ezy/brief.json
-pnpm ezy plan "Build me a beautiful SaaS dashboard" --local-only
-pnpm ezy next "Build me a beautiful SaaS dashboard" --local-only
-pnpm ezy install --plan "Build me a beautiful SaaS dashboard"   # ↑/↓ pick on TTY
-pnpm ezy inspect taste
-```
+## Documentation map
 
-## Agent Skill (`/ezy`)
-
-Product adapter: [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md) — run the CLI, gated-install, then **keep building** in the host agent (Claude Code / Cursor / Codex).
-
-```bash
-mkdir -p /path/to/your-app/.agents/skills
-cp -R /path/to/make-it-ezy/skills/ezy /path/to/your-app/.agents/skills/ezy
-```
-
-Then: `/ezy build me a profile page` (or ask the agent to use the `ezy` skill).
-
-## Status
-
-**Phases 0–7 shipped; Phase 8 — Launch and Distribution is current** — project-aware `plan` / `next`, agent brief (`ezy brief`, `--brief`), Project Brain (`.ezy/brain.json`, `ezy brain`), gated install + `/ezy`.
-
-| Optional maintenance | Roadmap sequence | Deferred |
-|---|---|---|
-| Audit findings **5–10** only if approved. [Details](./docs/audits/2026-11-07-codebase-gaps.md) (1–4 fixed) | **Phase 8 — Launch and Distribution** | Soft-C, deep verify, trusted-auto |
-|  | Phase 9 — Outcome verification; Phase 10 — Web UI | Codex marketplace plugin, giant catalog |
-
-Full read-only audit (**2026-11-25**, 28 findings F-01–F-28): [`docs/audits/FULL-REPOSITORY-AUDIT.md`](./docs/audits/FULL-REPOSITORY-AUDIT.md) · Ranked follow-up plan (nothing implemented): [`docs/work-plan/FOLLOW-UP-WORK-PLAN.md`](./docs/work-plan/FOLLOW-UP-WORK-PLAN.md) · Research corpus disposition: [`docs/research/SKILL-SCAN-CORPUS-PLAN.md`](./docs/research/SKILL-SCAN-CORPUS-PLAN.md)
-
-Shared agent guide: [`AGENTS.md`](./AGENTS.md) · Roadmap: [`docs/ROADMAP.md`](./docs/ROADMAP.md) · Intent: [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md)
+| Need | Read |
+|---|---|
+| Agent operating rules | [`AGENTS.md`](./AGENTS.md) |
+| Agent workflow / anti-hallucination | [`docs/AGENT-WORKFLOW.md`](./docs/AGENT-WORKFLOW.md) |
+| Human product overview | This README |
+| One-page current workflow | [`docs/HOW-IT-WORKS.md`](./docs/HOW-IT-WORKS.md) |
+| Current phase | [`docs/ROADMAP.md`](./docs/ROADMAP.md) |
+| Shipped behavior | [`docs/MVP-SPECIFICATION.md`](./docs/MVP-SPECIFICATION.md) |
+| Accepted decisions | [`docs/decisions/`](./docs/decisions/) |
+| Current architecture | [`docs/architecture/ARCHITECTURE.md`](./docs/architecture/ARCHITECTURE.md) |
+| Product intent/trust | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md) |
+| Builder skills | [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md) |
+| Audits/research | Read only when the current task specifically requires evidence |
 
 ## License
 
-[MIT](LICENSE).
+MIT
