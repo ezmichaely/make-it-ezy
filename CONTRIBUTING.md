@@ -41,14 +41,14 @@ When a phase moves from **in progress** to **shipped**, update **code + tests + 
 | [`AGENTS.md`](./AGENTS.md) | **Current path** + `skills/ezy` dogfood notes if CLI changed |
 | [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md) | Host procedure for new commands (adapter #1) |
 | [`docs/handoff/README.md`](./docs/handoff/README.md) | Phase map + MVP pointer (“through phase N”) |
-| [`docs/audits/FULL-REPOSITORY-AUDIT.md`](./docs/audits/FULL-REPOSITORY-AUDIT.md) | Only when a phase resolves a finding it lists; never rewrite its history |
-| [`docs/work-plan/FOLLOW-UP-WORK-PLAN.md`](./docs/work-plan/FOLLOW-UP-WORK-PLAN.md) | Mark an item as implemented/withdrawn when it lands; keep ranks and citations honest |
+| Current audit evidence is archived; do not treat it as a work order. |
+| The former follow-up plan is archived; approved work must enter the roadmap or an accepted decision. |
 | [`docs/research/SKILL-SCAN-CORPUS-PLAN.md`](./docs/research/SKILL-SCAN-CORPUS-PLAN.md) | Only if corpus location or policy changes |
 | [`docs/skill-scan/README.md`](./docs/skill-scan/README.md) | Corpus size, layout and untrusted-content rule |
 | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md) | **Shipped → next → future** table only (not full handoff rewrite) |
-| [`docs/superpowers/plans/…`](./docs/superpowers/plans/) | Check off implementation tasks for that phase |
+| Completed plans are historical. Do not use unchecked historical tasks as current work orders. |
 | [`docs/superpowers/specs/…`](./docs/superpowers/specs/) | Set spec **Status** to shipped when behavior matches |
-| [`docs/audits/2026-11-07-codebase-gaps.md`](./docs/audits/2026-11-07-codebase-gaps.md) | “Status as of …” line if it names next phase |
+| Audits are diagnostic only; do not update archived audit documents during normal phase shipping. |
 
 Optional: golden cases, [`CAPABILITY-MODEL.md`](./docs/architecture/CAPABILITY-MODEL.md), audit doc only when the phase touches that topic. **Do not** rewrite historical handoff snapshots or `docs/convo/` unless explicitly asked.
 
