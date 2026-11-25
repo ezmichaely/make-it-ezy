@@ -117,7 +117,7 @@ Several open questions can be settled during the remaining handoff/adapter work 
 
 ## Implementation status vs plan (2026-11-19)
 
-Compared to [`2026-11-18-broker-workflow.md`](../plans/2026-11-18-broker-workflow.md):
+Compared to [`2026-11-18-broker-workflow.md`](../archive/plans/2026-11-18-broker-workflow.md):
 
 | Slice | Spec intent | Code / docs (this repo, `feat/phase8-launch`) |
 |-------|-------------|-----------------------------------------------|
