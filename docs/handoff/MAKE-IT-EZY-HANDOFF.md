@@ -1,3 +1,5 @@
+> **Role:** Product intent, trust principles, and long-term direction. This is not the authoritative source for current CLI behavior. Start with `AGENTS.md`, then `ROADMAP.md` and `MVP-SPECIFICATION.md`.
+
 # Make It Ezy — Product Handoff
 
 **Purpose:** This document consolidates the Make It Ezy project decisions, direction, architecture, research conclusions, constraints, roadmap, and unresolved questions that have emerged across the project conversations.
