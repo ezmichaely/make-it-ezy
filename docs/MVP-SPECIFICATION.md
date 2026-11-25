@@ -25,6 +25,17 @@ Available commands:
 - `next`
 - `install`
 
+## Distribution
+
+The intended public CLI package is:
+
+```bash
+npm install --global make-it-ezy
+ezy --help
+```
+
+The npm package is self-contained for runtime use. `@make-it-ezy/core` remains an internal workspace package and is bundled into the CLI during the release build.
+
 ## Phase 4 — Install + adapters
 
 Shipped:
@@ -86,6 +97,9 @@ Not shipped:
 
 Current:
 
+- one public npm package: `make-it-ezy`;
+- global executable: `ezy`;
+- internal core bundled into the CLI package;
 - distribution/release quality;
 - current CLI/adapter consistency;
 - safe user-controlled installation;
