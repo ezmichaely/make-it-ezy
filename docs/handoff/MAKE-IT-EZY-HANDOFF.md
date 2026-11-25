@@ -4,15 +4,15 @@
 
 **Purpose:** This document consolidates the Make It Ezy project decisions, direction, architecture, research conclusions, constraints, roadmap, and unresolved questions that have emerged across the project conversations.
 
-**Status:** Current product handoff (not a phase/status tracker—use [`docs/ROADMAP.md`](../ROADMAP.md) for that)  
+**Status:** Product-intent and trust-context handoff; not a source of current implementation truth.  
 **Date:** 2026-11-08
 
-> **Important:** This is the **only current** product handoff file (`MAKE-IT-EZY-HANDOFF.md`). It is more authoritative than raw historical conversations and older `MAKE-IT-EZY-HANDOFF-v*.md` snapshots. When they conflict, the latest explicit project decisions in this file, [`AGENTS.md`](../../AGENTS.md), and [`docs/ROADMAP.md`](../ROADMAP.md) win.
+ > **Important:** This file is the surviving long-form product handoff, but it is **not** the current authority. Follow the source-of-truth hierarchy in [`AGENTS.md`](../../AGENTS.md). Product direction is [`docs/PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md); current state is [`docs/STATUS.md`](../STATUS.md); phase order is [`docs/ROADMAP.md`](../ROADMAP.md); shipped behavior is [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md).
 >
 > **Precedence with other repo docs:** shared agent workflow/current work → root `AGENTS.md`. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → `docs/ROADMAP.md` (its phase numbers win over older numbering). Current CLI behavior → `docs/MVP-SPECIFICATION.md`. Audit **1–4** (fixed 2026-11-17) and open **5–10** → `docs/audits/2026-11-07-codebase-gaps.md` (does not change phase numbering).
 >
 >
-> **Recent decision synthesis (2026-11-22):** [`CONVERSATION-SYNTHESIS-2026-11-22.md`](./CONVERSATION-SYNTHESIS-2026-11-22.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
+> **Recent decision synthesis (2026-11-22):** [`docs/handoff/archive/CONVERSATION-SYNTHESIS-2026-11-22.md`](./archive/CONVERSATION-SYNTHESIS-2026-11-22.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
 
 > **Start here if this file feels too big:** [`docs/HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) — one page on who does what (Ezy = decide and hand off; host agent = run ecosystem skills and code). Diagrams below are product intent; intake, deep research, and heavy security are normally **skills the agent runs**, not code inside the CLI.
 
@@ -2774,9 +2774,10 @@ These should be resolved through implementation/research, not guessed.
 
 When working on Make It Ezy:
 
-1. Read this document first.
-2. Treat it as the current canonical product context.
-3. Do not reconstruct the product from historical conversation dumps.
+1. Read `AGENTS.md` first.
+2. Read `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, and `docs/MVP-SPECIFICATION.md` for current authority.
+3. Use this document as product-intent and trust context; do not treat it as the canonical current state.
+4. Do not reconstruct the product from historical conversation dumps.
 4. Do not assume every discussed repository is a trusted dependency.
 5. Do not turn discovery resources into recommendations without evaluation.
 6. Do not remove the registry simply because the registry is not the product.
