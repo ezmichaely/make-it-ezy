@@ -96,7 +96,51 @@ Lifecycle contracts in `packages/core/src/lifecycle.ts` are exported boundary co
 
 **Later.**
 
-Use the same core decision layer.
+Use the same core decision layer. The UI should not create a second product architecture.
+
+## Future horizon — directional roadmap
+
+These phases are now the explicit destination path beyond the currently scheduled phases. Their detailed scope should be refined when the preceding phase is complete; they are not permission to start all of them at once.
+
+### Phase 11 — Capability Ecosystem
+
+**Future.**
+
+- mature capability registry and metadata;
+- stronger capability evaluation/trust state;
+- capability composition beyond the first broker slice;
+- controlled external capability discovery;
+- lifecycle behavior only where it is actually implemented.
+
+### Phase 12 — Host Integration Expansion
+
+**Future.**
+
+- prove one or two host integrations end-to-end;
+- standardize adapter boundaries;
+- expand to additional coding hosts where justified;
+- keep the core decision layer host-agnostic.
+
+Potential hosts include Codex, Claude Code, Cursor, OpenCode, Qwen Code, and other compatible hosts.
+
+### Phase 13 — Project Continuity
+
+**Future.**
+
+- strengthen Project Brain as a durable current-state model;
+- make resume/recovery reliable after long gaps;
+- preserve decisions, outcomes, blockers, and next actions;
+- make stale historical material clearly distinguishable from current state.
+
+The goal is that a user can return after forgetting most of the project and recover what matters without reconstructing the project manually.
+
+### Phase 14 — Broader Domain Expansion
+
+**Future / conditional.**
+
+Only after the coding workflow is stable.
+
+Expand beyond repository coding one domain at a time, reusing the core decision/context/routing model rather than creating unrelated domain-specific architectures.
 
 ## Deliberately not current
 
