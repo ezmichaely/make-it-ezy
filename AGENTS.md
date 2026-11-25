@@ -47,6 +47,58 @@ Use this order:
 
 When two sources disagree, do not silently choose one. Identify the conflict, verify implementation, and update the appropriate authority.
 
+### Long-term architecture routing
+
+The current MVP and shipped behavior define **what we implement today**. The long-term ecosystem architecture defines **what today's architecture must not unnecessarily prevent tomorrow**.
+
+The authoritative long-term destination is:
+
+`docs/architecture/FUTURE-ECOSYSTEM.md`
+
+Agents must consult `docs/architecture/FUTURE-ECOSYSTEM.md` when making decisions involving:
+
+- architecture or system boundaries;
+- integration versus rebuilding of existing capabilities;
+- skills, domains, capabilities, or tools;
+- context, ECC, RAG, or persistent memory;
+- agent orchestration or multi-agent control;
+- provider/model routing, fallback, cloud/local/hybrid execution;
+- future control-plane or UI architecture;
+- Home Ezy Node or the eventual Home AI ecosystem;
+- infrastructure seams that may constrain future expansion.
+
+Treat the future ecosystem as an **architectural compass, not today's implementation backlog**.
+
+That means:
+
+- Do not implement future capabilities merely because they are documented there.
+- Do not create speculative abstractions solely for hypothetical future providers or agents.
+- Do preserve clean boundaries and seams when doing so is practical and relevant to the current task.
+- Prefer integrating existing capabilities over rebuilding them when the future architecture calls for composition.
+- If a proposed change would materially block or contradict the long-term direction, flag the conflict before implementation.
+
+The intended relationship is:
+
+```
+AI AGENT BOOT
+      |
+      v
+ AGENTS.md
+   /       \
+  v         v
+CURRENT   FUTURE
+TRUTH     ARCHITECTURE
+  |          |
+  +----+-----+
+       |
+       v
+ CURRENT WORK
+       |
+       v
+ Do not architect against
+ the long-term path
+```
+
 ### Never treat these as automatic work orders
 
 - old audits;
