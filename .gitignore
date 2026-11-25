@@ -6,7 +6,7 @@ coverage/
 .env
 .env.*
 !.env.example
-#graphify-out/
+graphify-out/
 .pnpm-store/
 # Builder skills: global home + pnpm skills:install symlinks (see docs/BUILDER-SKILLS.md).
 .agents/skills/
@@ -15,7 +15,7 @@ coverage/
 .claude/settings.local.json
 .ezy/
 .qwen/*
-# skill-scan/*
+docs/skill-scan/skill-eval/
 /.qwen
 .qwen/settings.json
 docs/skill-scan/.qwen/settings.json
