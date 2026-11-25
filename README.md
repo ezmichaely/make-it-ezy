@@ -69,6 +69,17 @@ The host agent remains responsible for research, implementation, and execution. 
 
 For exact shipped CLI behavior, read [`docs/MVP-SPECIFICATION.md`](./docs/MVP-SPECIFICATION.md).
 
+## Distribution
+
+For end users, the intended installation is one public npm package:
+
+```bash
+npm install --global make-it-ezy
+ezy --help
+```
+
+The published CLI package contains the internal core runtime, so users do not need to install a second Ezy package.
+
 ## Development
 
 ```bash
