@@ -135,7 +135,7 @@ Domain-neutral na ang brief/plan/select pipeline; ang JS/TS-specific part mostly
 - Deep skill verification, trusted-auto, Soft-C spawn, Web UI (Phase 10)
 - Full “trust score” pipeline nga naa sa product handoff vision — **partial** lang today (heuristics + brief + risk notes sa inspect)
 
-**Maintenance (optional):** audit findings **5–10** sa [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Current roadmap:** Phase 8 Launch and Distribution.
+**Maintenance (optional):** audit findings **5–10** sa archived audit evidence. **Current roadmap:** Phase 8 Launch and Distribution.
 
 ---
 
