@@ -1,4 +1,21 @@
-# Make It Ezy
+<p align="center">
+  <img src="make-it-ezy.png" width="280" alt="Make It Ezy">
+</p>
+
+<h1 align="center">Make It Ezy</h1>
+
+<p align="center">
+  <em>Tell Ezy what you want. It figures out what you need.</em><br>
+  <sub>Starting with coding tasks in your repo.</sub>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/license/ezmichaely/make-it-ezy?style=flat-square&color=111111" alt="MIT license">
+  <img src="https://img.shields.io/badge/status-phase%208%20current-111111?style=flat-square" alt="Phase 8 current">
+  <img src="https://img.shields.io/badge/node-%3E%3D20-111111?style=flat-square" alt="Node 20+">
+</p>
+
+---
 
 > **Tell Ezy what you want. It figures out what you need.**
 
