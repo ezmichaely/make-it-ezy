@@ -1,11 +1,17 @@
-# Documentation Archive
+# Archive
 
-This directory contains historical material retained for provenance.
+Archived material is historical evidence, not current product authority and not an automatic work order.
 
-**Archive contents are not current instructions and are not automatic work orders.**
+## Current authority
 
-Current agents must start at `AGENTS.md` and follow `docs/AGENT-WORKFLOW.md`.
+Start with `AGENTS.md`, then `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, `docs/MVP-SPECIFICATION.md`, current architecture, and accepted decisions.
 
-Archived material may explain why an earlier decision was made, but current behavior must be verified against the current roadmap, decisions, implementation, and tests.
+## Archive categories
 
-Current active documentation lives outside this archive.
+- `audits/` — completed diagnostic reports and historical scan evidence.
+- `work-plans/` — completed or superseded implementation plans.
+- `specs/` — historical design specifications whose implemented behavior is represented by current docs/code.
+- `conversations/` — exported conversation notes and brainstorming history.
+- `agent-sessions/` — old agent session logs and phase notes.
+
+Historical documents may contain useful evidence. They must be classified before being used to make a current implementation decision.
