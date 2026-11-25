@@ -167,6 +167,70 @@ A task may eventually involve multiple agents, parallel work, reviewers, retries
 
 Those are future capabilities, not today's requirements.
 
+## Unified UI and control-plane vision
+
+A major part of the eventual product is a **single Make It Ezy UI that acts as the user's AI control cockpit**.
+
+The UI should take inspiration from the **T3-style multi-agent control concept**: one workspace where the user can see, start, coordinate, and eventually supervise multiple agent sessions rather than switching manually between unrelated tools.
+
+This is an architectural inspiration, not a requirement to clone T3 or its implementation.
+
+Conceptually:
+
+~~~text
+                    MAKE IT EZY UI
+                         │
+             ┌───────────┼───────────┐
+             │           │           │
+          Agents       Tasks      Workspace
+             │           │           │
+          Claude       Plans      Context
+          Codex        Runs       Project state
+          Cursor       Results    Skills
+          Local
+             └───────────┬───────────┘
+                         │
+                  Ezy Control Plane
+                         │
+                    Ezy Router
+~~~
+
+
+### Provider routing and fallback
+
+The eventual control plane should also include an **OmniRoute-style provider routing/fallback capability**.
+
+The goal is not to clone OmniRoute. The goal is to provide the routing behavior Make It Ezy needs:
+
+- choose a suitable provider/model for a task;
+- route execution between available providers;
+- support cloud, local, and hybrid execution;
+- apply explicit fallback policies when a provider is unavailable, unsuitable, or exhausted;
+- consider task fit, quality, availability, cost, latency, and other relevant constraints;
+- keep provider-specific details behind a replaceable routing boundary.
+
+Conceptually:
+
+~~~text
+Task
+ ↓
+Agent / execution request
+ ↓
+Ezy Router
+ ├── Primary provider
+ ├── Alternate provider
+ ├── Local provider
+ └── Fallback provider
+ ↓
+Execution
+ ↓
+Verification
+~~~
+
+The exact routing and quota behavior will depend on the capabilities and APIs exposed by each provider. Ezy should not assume that subscription limits or remaining quota are always directly observable.
+
+The long-term goal is a **single UI and control plane** where agent control and provider routing work together rather than existing as separate applications.
+
 ## Home Ezy Node
 
 The eventual self-hosted destination is a persistent Home Ezy Node.
