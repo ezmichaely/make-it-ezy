@@ -1,4 +1,4 @@
-> **Role:** Product intent, trust principles, and long-term direction. This is not the authoritative source for current CLI behavior. Start with `AGENTS.md`, then `ROADMAP.md` and `MVP-SPECIFICATION.md`.
+> **Role:** Product intent, trust principles, and historical synthesis. This document is context, not the authoritative source for current product direction, phase status, or CLI behavior. Start with `AGENTS.md`, then `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, and `docs/MVP-SPECIFICATION.md`.
 
 # Make It Ezy — Product Handoff
 
@@ -9,7 +9,7 @@
 
  > **Important:** This file is the surviving long-form product handoff, but it is **not** the current authority. Follow the source-of-truth hierarchy in [`AGENTS.md`](../../AGENTS.md). Product direction is [`docs/PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md); current state is [`docs/STATUS.md`](../STATUS.md); phase order is [`docs/ROADMAP.md`](../ROADMAP.md); shipped behavior is [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md).
 >
-> **Precedence with other repo docs:** shared agent workflow/current work → root `AGENTS.md`. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → `docs/ROADMAP.md` (its phase numbers win over older numbering). Current CLI behavior → `docs/MVP-SPECIFICATION.md`. Audit **1–4** (fixed 2026-11-17) and open **5–10** → `docs/audits/2026-11-07-codebase-gaps.md` (does not change phase numbering).
+> **Current authority:** Follow the source-of-truth hierarchy in `AGENTS.md`. Product direction is `docs/PRODUCT-DIRECTION.md`; current state is `docs/STATUS.md`; phase order is `docs/ROADMAP.md`; shipped behavior is `docs/MVP-SPECIFICATION.md`; current architecture is `docs/architecture/`.
 >
 >
 > **Recent decision synthesis (2026-11-22):** [`docs/handoff/archive/CONVERSATION-SYNTHESIS-2026-11-22.md`](./archive/CONVERSATION-SYNTHESIS-2026-11-22.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
@@ -1533,7 +1533,7 @@ Historical conversations contain:
 
 An agent cannot safely infer which statements are authoritative.
 
-Therefore Ezy itself needs a canonical project specification.
+Therefore the repository needs a clear current documentation hierarchy, which is now defined by `AGENTS.md`, `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, and `docs/MVP-SPECIFICATION.md`.
 
 ---
 
@@ -2469,7 +2469,7 @@ Trustworthy skill intelligence was a major architectural focus at that time. Cur
 
 # 72. Historical Build Priorities (superseded)
 
-An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus open audit items in `docs/audits/2026-11-07-codebase-gaps.md` (findings 1–4 resolved).
+An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus archived audit evidence in `docs/archive/audits/2026-11-07-codebase-gaps.md`.
 
 ---
 
