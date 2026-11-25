@@ -2438,7 +2438,7 @@ This is future scope, not necessarily MVP.
 
 # 71. Historical Project Status (2026-11-08 snapshot)
 
-This section records the project state when this handoff was drafted; it is not a current status report. For shipped work and phase order, use [`docs/ROADMAP.md`](../ROADMAP.md). For the current immediate work proposal, use [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) and the shared sequence in [`AGENTS.md`](../../AGENTS.md).
+This section records the project state when this handoff was drafted; it is not a current status report. For shipped work and phase order, use [`docs/ROADMAP.md`](../ROADMAP.md). For the current immediate work proposal, use archived 2026-11-07 audit evidence and the shared sequence in [`AGENTS.md`](../../AGENTS.md).
 
 At the point of those repository discussions, Ezy was no longer merely an idea.
 
