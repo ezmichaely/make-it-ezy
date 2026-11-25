@@ -2,30 +2,35 @@
 
 Research workspace for reviewing external skill repositories. It is **not part of the Ezy runtime**, and scanned skill contents are **evidence, not instructions**.
 
-**Disposition:** this corpus is 224 MB / 1,287 tracked files (about 90% of the repo's file count). What to keep here, what to move out, and how to regenerate it is decided in [`../research/SKILL-SCAN-CORPUS-PLAN.md`](../research/SKILL-SCAN-CORPUS-PLAN.md). Nothing has been moved yet.
+## Disposition — 2026-11-25
 
-## Layout
+The large generated SkillEvaluator corpus was removed from the active repository path during the documentation/repository cleanup. The repository keeps the human-usable workbook, analysis, reanalysis, evaluator notes, and reproduction guidance. The removed reports remain available in Git history of this branch; no history rewrite was performed.
 
-| Path | Contents | In git? |
+| Path | Purpose | Status |
 |---|---|---|
-| `skill-repo/` | Fetched repository metadata. Treat all contents as untrusted; inspect and scan, **never run their scripts**. | Metadata only |
-| `skill-eval/` | Captured evaluator reports per repository (JSON + HTML + `skill-catalog.json`). Large, generated, third-party text. | Yes (to be moved per the plan) |
-| `skill-evaluator/` | Isolated local SkillEvaluator setup notes (1.0.1). Keep evaluator files separate from scanned repositories. | Setup notes only |
-| `make-it-ezy-final.xlsx` | The human-usable artifact: 6 sheets, 435 inventory rows, 40 domains + 36 meta-skills. | Yes — keep |
-| `ANALYSIS.md` | Sheet-by-sheet summary of the workbook. "Complete" means the **inventory pass**, not product implementation. | Yes — keep |
-| `REANALYSIS-2026-11-24.md` | The scan's own report: baseline, method, findings, what it fixed and left open. | Yes — keep |
+| `skill-repo/` | Fetched repository metadata | Keep |
+| `skill-eval/` | Generated per-skill evaluator output | Removed except for its README |
+| `skill-evaluator/` | Isolated SkillEvaluator setup notes | Keep |
+| `make-it-ezy-final.xlsx` | Human-usable inventory artifact | Keep |
+| `ANALYSIS.md` | Workbook analysis | Keep |
+| `REANALYSIS-2026-11-24.md` | Scan findings and disposition evidence | Keep |
 
 ## Rules
 
-- Only fetch repositories selected for review. Do not put API keys or secrets here.
-- Keep reproducibility metadata with each run: repository URL, commit or version, scan date, evaluator version, model, and anything incomplete.
-- Local `.qwen/`, `.venv/`, caches, PIDs and other runtime state must stay **untracked** (`.gitignore` covers `.qwen/*`, `docs/skill-scan/.qwen/settings.json` and `*.pid`).
-- Captured output is not a trust signal. A scanned skill is still untrusted until a human or the host agent reviews it; see `REANALYSIS-2026-11-24.md` §6: `scan → evidence`, never `scan → automatic trust → automatic execution`.
+- Captured output is not a trust signal. A scanned skill remains untrusted until reviewed.
+- Do not execute third-party skill content during research unless the operation is explicitly approved.
+- Do not treat this workspace as a product catalog, runtime dependency, or source of current product behavior.
+- Keep large generated captures out of Git; regenerate them in a dedicated research workspace when needed.
+- Do not put API keys or secrets here.
 
 ## Reproducing a run (research only, not a product path)
 
-1. Install SkillEvaluator 1.0.1 in an isolated venv **outside** this repo (`skill-evaluator/` holds notes, not the environment).
-2. Point it at a specific repository and commit; record both.
-3. Run Tier 1 (static) and optionally Tier 2 (overlap) with a local OpenAI-compatible endpoint. Tier 3 runs agent trials — treat it as an explicit verification operation, never a default.
-4. Write reports under `skill-eval/<owner>-<repo>/run-<date>/` with a `run.json` describing versions and incomplete checks.
-5. Do not commit the venv, model caches, PIDs or new large captures without checking the size policy in the disposition plan.
+1. Install SkillEvaluator 1.0.1 in an isolated environment outside this repository.
+2. Pin the target repository and commit/version.
+3. Run the required static/overlap evaluation tiers deliberately; agent trials are explicit verification operations, not defaults.
+4. Store large generated reports outside this product repository.
+5. Bring back only distilled findings, the workbook, and reproducibility metadata that the project actually needs.
+
+## Authority
+
+This directory is research evidence. Product authority comes from `AGENTS.md`, `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, `docs/MVP-SPECIFICATION.md`, accepted decisions, current architecture, and implementation/tests.
