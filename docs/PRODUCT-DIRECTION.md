@@ -127,6 +127,21 @@ Execution + Verification
 
 Agent control and provider routing are therefore part of the same long-term control-plane vision. They are future capabilities, not reasons to expand today's implementation prematurely.
 
+
+### Reference study: Linger
+
+Linger is a complementary reference for the **local execution and personal-agent side** of the long-term Ezy vision.
+
+Study Linger for local inference, hardware-aware model selection, runtime adapters, persistent wiki/memory, computer use, background work, agent teams, model scheduling, BYOK, and self-hosted execution. Do not treat Linger as an Ezy dependency or clone target.
+
+The important Ezy question is not "How do we rebuild Linger?" It is:
+
+> **Which Linger capabilities should Ezy USE, ADAPT, WRAP, REPLACE, or DEFER, and where must Ezy provide a stronger composition/control layer?**
+
+Ezy should remain distinct as a capability-discovery and orchestration/control layer with explicit Domain / Capability / Skill / Agent / Runtime / Provider / Execution boundaries.
+
+The authoritative study and comparison lives in \`docs/architecture/FUTURE-ECOSYSTEM.md\`.
+
 ## Agent and provider control
 
 Ezy should remain agent- and provider-agnostic at the core.
