@@ -1,5 +1,0 @@
-  Session   Push uncommitted changes
-  Continue  opencode -s ses_df6c1415bffeOCdfUkkakvhY5i
-
-  Session   Doc and code misalignment audit
-  Continue  opencode -s ses_df2fa8ef4ffeb4E5GTogtIDdvR
