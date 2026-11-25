@@ -26,6 +26,8 @@ jobs:
           config: |
             paths-ignore:
               - .agents
+              - docs/skill-scan
+              - graphify-out
 
       - uses: github/codeql-action/autobuild@v3
 
