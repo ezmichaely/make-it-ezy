@@ -30,7 +30,7 @@ analyze → requirements → search → select → plan → handoff
 
 ## Current focus
 
-Phase 8 is focused on launch/distribution quality, CLI/adapter consistency, safe user-controlled installation, maintaining the first broker workflow slice, and keeping documentation aligned with implemented behavior.
+Phase 8 is focused on launch/distribution quality, CLI/adapter consistency, safe user-controlled installation, maintaining the first broker workflow slice, and keeping documentation aligned with implemented behavior. The public distribution target is now one npm package (`make-it-ezy`) with the `ezy` executable; `packages/core` is internal and bundled into the CLI package.
 
 ## Not yet the current lifecycle
 
