@@ -1,33 +1,50 @@
 # Decisions
 
-This directory contains durable product and architecture decisions.
+This directory contains **accepted, durable product and architecture decisions**.
 
-Use this area for decisions that should survive across conversations and coding agents:
-- decision statement
-- context/problem
-- options considered
-- chosen direction
-- trade-offs
-- consequences
-- explicit non-goals
-- date/status when useful
+A decision is not a brainstorm, audit, research note, implementation plan, or conversation transcript.
 
-A decision should be concise and durable. Do not copy whole conversations here.
+## Decision format
+
+A durable decision should state:
+
+- decision;
+- context/problem;
+- options considered;
+- chosen direction;
+- trade-offs;
+- consequences;
+- explicit non-goals;
+- date/status.
+
+Keep it concise. Do not copy conversations here.
 
 ## Current decisions
 
-| Decision | Date | Status |
-|---|---|---|
-| [`DECISION-SHARED-MEMORY-3C.md`](./DECISION-SHARED-MEMORY-3C.md) — git as shared memory across Claude/Cursor/Codex | 2026-11-23 | Accepted direction; implementation not specified |
-
-Open questions that need a decision (not decisions yet): the lifecycle contract boundary vs runtime wiring, and the `docs/skill-scan/` corpus location. Inputs live in [`../audits/FULL-REPOSITORY-AUDIT.md`](../audits/FULL-REPOSITORY-AUDIT.md), [`../work-plan/FOLLOW-UP-WORK-PLAN.md`](../work-plan/FOLLOW-UP-WORK-PLAN.md) and [`../research/SKILL-SCAN-CORPUS-PLAN.md`](../research/SKILL-SCAN-CORPUS-PLAN.md).
+| Decision | Status |
+|---|---|
+| `DECISION-SHARED-MEMORY-3C.md` | Accepted direction; implementation details remain separate |
+| Agent documentation/source-of-truth workflow | Accepted by repository operating policy in `AGENTS.md` + `docs/AGENT-WORKFLOW.md` |
 
 ## Precedence
 
-When guidance conflicts:
-1. Current approved decision
-2. Current architecture
-3. Current implementation handoff
-4. Historical conversation/research
+For product/architecture questions:
 
-If a new discussion changes an existing decision, update or supersede the decision explicitly instead of silently creating conflicting guidance.
+1. explicit user instruction;
+2. accepted decision in `docs/decisions/`;
+3. `AGENTS.md` operating rules;
+4. `docs/ROADMAP.md` phase/status;
+5. `docs/MVP-SPECIFICATION.md` shipped behavior;
+6. current architecture docs;
+7. current implementation/tests;
+8. current handoff;
+9. specs/plans;
+10. audits/research/history.
+
+For current behavior, implementation/tests are the final verification layer.
+
+For current phase, `ROADMAP.md` is authoritative.
+
+For agent workflow, `AGENTS.md` is authoritative.
+
+When guidance conflicts, do not create a second competing source. Resolve the conflict in the existing authority.
