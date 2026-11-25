@@ -18,10 +18,9 @@
   },
   "keywords": ["ai", "coding-agent", "cli", "capability-router"],
   "scripts": {
-    "build": "tsc -p tsconfig.json && esbuild dist/index.js --bundle --platform=node --format=esm --outfile=dist/index.js --banner:js=\\\"#!/usr/bin/env node\\\""
+    "build": "tsc -p tsconfig.json && node scripts/prepare-package.mjs"
   },
   "devDependencies": {
-    "@make-it-ezy/core": "workspace:*",
-    "esbuild": "^0.28.2"
+    "@make-it-ezy/core": "workspace:*"
   }
 }
