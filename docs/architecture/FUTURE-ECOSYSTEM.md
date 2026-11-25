@@ -167,6 +167,157 @@ A task may eventually involve multiple agents, parallel work, reviewers, retries
 
 Those are future capabilities, not today's requirements.
 
+
+## Reference studies: Linger, T3-style control, and OmniRoute-style routing
+
+These projects are **study references and architectural evidence**, not dependencies or implementation mandates.
+
+The purpose of studying them is to answer a concrete question:
+
+> **What has already been solved elsewhere, what should Ezy reuse or adapt, and where must Ezy be better or deliberately different?**
+
+### Linger — local personal-agent reference
+
+The verified public Linger project is \`simplexai-labs/linger\`.
+
+Linger is especially relevant to the **local execution / Home Ezy Node** side of the Ezy destination. Its current public repository describes a local-first personal agent with local inference, hardware-aware model selection, persistent wiki/memory, proactive/background work, computer/browser use, agent teams, model scheduling, and adapters for runtimes such as Claude Code, Codex, and Pi. It also acknowledges existing components such as PolyStrata, Hindsight, Cua, LiveKit, and River rather than pretending every subsystem must be built from scratch.
+
+For Ezy, Linger should be treated as a **reference implementation to study**, not a product to clone.
+
+#### Linger → Ezy mapping
+
+\`\`\`text
+Linger capability                    Ezy implication
+────────────────────────────────────────────────────────────────
+Local inference                      Home Ezy Node / local execution
+Hardware-aware model selection       Ezy Router / local model fit
+Runtime adapters                     Agent/runtime boundary
+Persistent wiki + memory             Project Brain / context integration
+RAG-like memory search               Retrieval/context integration
+Computer + browser use               Tool/MCP/computer-use capability
+Agent teams                          Future multi-agent orchestration
+Background delegation                Future job/task execution
+Model scheduling                     Future local execution scheduler
+BYOK / runtime choices               Provider/runtime boundary
+Desktop control surface              Future unified Ezy UI
+Self-hosted/server mode              Home Ezy Node topology
+\`\`\`
+
+#### Where Ezy needs to improve or remain different
+
+Ezy should not become "Linger with a different name." The overlap is useful precisely because it exposes gaps and boundary decisions.
+
+**Ezy should improve in:**
+- explicit **Domain / Capability / Skill / Agent / Runtime / Provider / Execution** separation;
+- capability discovery and evidence-backed evaluation before use;
+- composable external skills and reusable ecosystem components;
+- provider-agnostic orchestration rather than a primarily personal-agent-centric runtime;
+- T3-style unified multi-agent control as a first-class control-plane goal;
+- OmniRoute-style provider routing/fallback across cloud, local, and hybrid execution;
+- stronger project-state and evidence semantics around what is current versus historical;
+- deliberate verification and trust gates before capabilities become execution dependencies;
+- a clean path from today's coding-focused decision/handoff layer to the future Home Ezy Node without prematurely implementing the full local-agent runtime.
+
+**Ezy should deliberately remain different where appropriate:**
+- Ezy is a **composition/control layer first**, not a single personal agent first.
+- Ezy should not require Linger's runtime, local inference stack, memory implementation, or desktop architecture.
+- Ezy should integrate mature subsystems when they are useful and replaceable rather than owning every subsystem.
+- Linger may eventually be an integration target, peer reference, or source of reusable ideas; it is not automatically an Ezy dependency.
+
+#### Reuse classification
+
+When evaluating Linger or any of its underlying projects, use:
+
+- **USE** — adopt an existing capability when the interface, license, trust, and fit are good;
+- **ADAPT** — modify or wrap the concept/interface for Ezy;
+- **WRAP** — keep the external implementation behind an Ezy boundary;
+- **REPLACE** — use another implementation when Linger's choice is not the right fit;
+- **DEFER** — study now but postpone integration until the execution path requires it;
+- **BUILD** — implement only when a meaningful gap remains after reuse options are exhausted.
+
+**BUILD is not the default.**
+
+#### Linger research backlog
+
+Future Linger study should verify:
+- repository architecture and runtime boundaries;
+- local inference and PolyStrata separately;
+- model/hardware planning and benchmark methodology;
+- memory/wiki implementation and Hindsight integration;
+- computer-use/Cua integration;
+- background jobs and scheduling;
+- agent-team coordination;
+- runtime adapters and BYOK behavior;
+- self-hosted/server topology;
+- licensing and third-party NOTICE obligations;
+- which components are suitable for direct reuse versus conceptual study only.
+
+### T3-style control reference
+
+T3 is an architectural inspiration for the **unified control cockpit**.
+
+Study it for:
+- multi-agent/session control;
+- task and workspace organization;
+- how multiple execution surfaces can coexist behind one UI;
+- interaction patterns that reduce tool switching;
+- how agent state, results, and user control can be presented together.
+
+Do not clone T3's implementation or product scope. Ezy's control plane should remain centered on **capability composition, routing, execution, verification, and project continuity**.
+
+### OmniRoute-style routing reference
+
+OmniRoute is an architectural inspiration for the **Ezy Router**.
+
+Study it for:
+- provider abstraction;
+- model/provider routing;
+- fallback behavior;
+- cloud/local/hybrid execution;
+- task-fit and availability decisions;
+- keeping provider-specific details behind a replaceable boundary.
+
+Do not assume provider quotas, subscription limits, or billing state are always observable. Ezy's routing layer must degrade safely when provider metadata is incomplete.
+
+### Combined lesson
+
+Linger, T3-style control, and OmniRoute-style routing should be studied together because they illuminate different parts of the same destination:
+
+\`\`\`text
+                         MAKE IT EZY
+                              │
+                     Unified Control UI
+                         (T3-style)
+                              │
+                       Ezy Control Plane
+                              │
+                     Capability / Agent
+                         Orchestration
+                              │
+                         Ezy Router
+                       (OmniRoute-style)
+                              │
+              ┌───────────────┼───────────────┐
+              │               │               │
+           Cloud           Local           Hybrid
+           Models          Models          Providers
+              │               │               │
+              └───────────────┼───────────────┘
+                              │
+                      Local execution
+                       (Linger study)
+                              │
+                        Home Ezy Node
+                              │
+                       Home AI ecosystem
+\`\`\`
+
+The key Ezy opportunity is **the composition layer between these ideas**:
+
+> **Discover the right capability → understand the domain → assemble context and skills → choose/control agents → route execution → verify the result → preserve project state.**
+
+The studies are valuable when they expose a capability Ezy can reuse or a boundary Ezy must improve. They are not reasons to expand the MVP prematurely.
+
 ## Unified UI and control-plane vision
 
 A major part of the eventual product is a **single Make It Ezy UI that acts as the user's AI control cockpit**.
