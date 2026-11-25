@@ -4,15 +4,15 @@
 
 ## Why Ezy exists
 
-Make It Ezy should reduce the amount of project knowledge a user or coding agent must remember manually.
+Make It Ezy should reduce the amount of project knowledge, capability knowledge, and execution coordination a user must manage manually.
 
-The user should be able to describe an outcome in ordinary language. Ezy should recover relevant project context, identify the capabilities and evidence needed, help form a sound execution plan, hand that plan to the host agent, and preserve useful project state for the next session.
+The user should be able to describe an outcome in ordinary language. Ezy should recover relevant context, identify the domain and capabilities needed, discover and evaluate reusable skills and tools, form a sound execution plan, route work to suitable agents/models, and preserve useful project state for the next session.
 
-## Product boundary
+## Product boundary today
 
-Ezy is a **local-first decision, context, and routing layer for coding work**.
+Ezy is a **local-first decision, context, capability-discovery, and handoff layer for coding work**.
 
-Ezy should:
+Today Ezy should:
 - understand the requested outcome;
 - understand current project state;
 - derive requirements;
@@ -23,21 +23,14 @@ Ezy should:
 - preserve useful project knowledge;
 - help the user recover current state later.
 
-The host agent remains responsible for coding, research execution, and execution of selected external skills.
-
-Ezy is not intended to become:
-- the coding agent itself;
-- a generic autonomous agent runtime;
-- a model-hosting platform;
-- a mandatory Superpowers or Graphify runtime;
-- a giant skills marketplace merely for its own sake.
+The current implementation should remain focused until the coding path is solid. The broader destination described below is intentionally not the current implementation scope.
 
 ## North-star workflow
 
 ~~~text
 User outcome
     ↓
-Project context
+Project / domain context
     ↓
 Intent + requirements
     ↓
@@ -45,13 +38,13 @@ Capability discovery
     ↓
 Evidence / evaluation
     ↓
-Capability selection
+Capability composition
     ↓
 Plan / workflow
     ↓
-Host-agent handoff
+Agent / model / provider selection
     ↓
-Host-agent execution
+Execution
     ↓
 Verification
     ↓
@@ -60,9 +53,63 @@ Project state update
 Future session recovery
 ~~~
 
-The exact implementation may evolve. The responsibility boundaries should remain clear.
+The exact implementation may evolve. The responsibility boundaries and composition principle should remain clear.
 
-## Project Brain
+## The composition principle
+
+**Do not rebuild a capability merely because Make It Ezy needs to use it.**
+
+When a useful capability already exists and is suitable for integration, Ezy should prefer to:
+- discover it;
+- inspect its quality, interface, license, trust, compatibility, and maintenance state;
+- evaluate whether it actually solves the need;
+- integrate, wrap, adapt, or reference it as appropriate;
+- keep it replaceable when practical.
+
+This applies to skills, context systems, retrieval/RAG systems, MCP tools, evaluation systems, agent harnesses, model providers, routers, and domain-specific capabilities.
+
+Examples such as ECC or RAG are **integration candidates, not automatic dependencies**. Their presence in the ecosystem does not by itself justify adopting them.
+
+The goal is not to own every piece. The goal is to make the pieces work together into a useful whole.
+
+## Capability system
+
+Capabilities are tools Ezy can discover, reason about, compose, and eventually execute through appropriate hosts.
+
+A capability may represent:
+- a domain capability;
+- a reusable skill;
+- a context or evidence system;
+- a retrieval/RAG system;
+- an MCP tool or external API;
+- an evaluation or verification mechanism;
+- an agent capability;
+- a model/provider capability;
+- a workflow component.
+
+A future capability system may support local capabilities, external skill sources, metadata, trust/evaluation state, compatibility information, lifecycle/version information, workflow composition, and host-specific adapters.
+
+No external capability should become a runtime dependency merely because it exists in a catalog.
+
+## Domain expansion
+
+The current product is coding-first. The long-term system is **not coding-only**.
+
+The eventual capability model should be able to represent multiple domains without requiring a separate application for each one. Potential domains include development, research, data, design, finance, legal, property, documentation, and other useful domains.
+
+Domain expansion should happen when the core composition and execution model can support it cleanly, not by prematurely implementing every domain.
+
+## Agent and provider control
+
+Ezy should remain agent- and provider-agnostic at the core.
+
+Potential host integrations include Codex, Claude Code, Cursor, OpenCode, Qwen Code, local agents, and other compatible hosts.
+
+A mature Ezy control plane may select and coordinate multiple agents and providers based on task requirements, capability fit, quality, availability, cost, latency, and fallback rules.
+
+Provider routing and fallback are future capabilities. They should grow from real execution needs rather than becoming speculative infrastructure today.
+
+## Project Brain and persistent context
 
 Project Brain should become the durable, structured representation of project continuity.
 
@@ -78,55 +125,76 @@ It should distinguish at least:
 - useful historical context;
 - session/task outcomes.
 
+A mature system may combine structured project state with retrieval/context systems such as RAG when that provides a real benefit.
+
 The Brain should help reconstruct project state. It should not silently turn historical notes, stale plans, or generated research into current instructions.
 
-## Capability system
+## Long-term destination
 
-Capabilities should be treated as tools Ezy can discover and reason about, not as the product's sole purpose.
+The final destination is a **composable AI control and orchestration ecosystem**, eventually capable of running as a self-hosted **Home Ezy Node**.
 
-A future capability system may support local capabilities, external skill sources, metadata, trust/evaluation state, compatibility information, lifecycle/version information, workflow composition, and host-specific adapters.
+Conceptually:
 
-No external capability should become a runtime dependency merely because it exists in a catalog.
+~~~text
+                         MAKE IT EZY
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+       Domains             Capabilities         Agents
+          │                   │                   │
+     Coding/Research     Skills/ECC/RAG       Claude/Codex
+     Finance/Legal       MCP/Tools             Cursor/Local
+     Property/Design     Knowledge/Evidence
+          │                   │                   │
+          └───────────────────┼───────────────────┘
+                              │
+                         Orchestrator
+                              │
+                         Ezy Router
+                              │
+                ┌─────────────┼─────────────┐
+                │             │             │
+              Cloud         Local         Hybrid
+             Models        Models         Providers
+                │             │             │
+                └─────────────┼─────────────┘
+                              │
+                       HOME EZY NODE
+                              │
+                    HOME AI ECOSYSTEM
+~~~
 
-## Host-agent integrations
+This is the **final destination**, not a near-term implementation commitment.
 
-Ezy should remain host-agnostic at the core.
-
-Potential host integrations include Codex, Claude Code, Cursor, OpenCode, Qwen Code, and other compatible hosts.
-
-An integration should translate Ezy's structured decision/handoff output into the host's conventions. It should not force Ezy to become that host.
-
-## Evidence and verification
-
-A mature Ezy workflow should distinguish:
-- what the user requested;
-- what the repository proves;
-- what has been decided;
-- what is inferred;
-- what remains unknown;
-- what was actually verified.
-
-Outcome verification is a planned expansion, not something to claim as fully implemented today.
-
-## User continuity
-
-A core success criterion is:
-
-> A user can return after forgetting most of the project and recover what matters without reconstructing the entire history manually.
-
-The system should make this possible through concise current-state artifacts, structured project knowledge, accepted decisions, and clear next actions.
+The ecosystem may take years to build. The timeline is intentionally open-ended.
 
 ## Future expansion rule
 
-Future features should be evaluated against the north-star loop. Prefer features that improve outcome understanding, project context, capability selection, evidence quality, handoff quality, verification, or continuity.
+Future work should preserve the ability to compose existing capabilities while improving one or more of:
+- outcome understanding;
+- domain capability selection;
+- project context;
+- retrieval and evidence;
+- skill discovery;
+- agent selection;
+- provider routing;
+- execution;
+- verification;
+- continuity;
+- local/cloud interoperability.
 
-Do not expand into unrelated infrastructure merely because it is technically interesting.
+Do not build speculative infrastructure simply because it could be useful someday.
+
+At the same time, do not make today's implementation choices that unnecessarily prevent the long-term ecosystem.
+
+**Build today's useful product. Preserve tomorrow's architecture. Assemble the ecosystem piece by piece.**
 
 ## Documentation roles
 
 - AGENTS.md — how agents operate in this repository.
 - docs/STATUS.md — where the project is now.
 - docs/PRODUCT-DIRECTION.md — what Make It Ezy is becoming.
+- docs/architecture/FUTURE-ECOSYSTEM.md — the preserved long-term destination and composition principles.
 - docs/ROADMAP.md — the accepted path from current state toward the destination.
 - docs/MVP-SPECIFICATION.md — shipped/current product behavior.
 - docs/HOW-IT-WORKS.md — current operating flow.
