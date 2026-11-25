@@ -28,32 +28,21 @@ Prefer thin, tested slices with a short design under `docs/superpowers/specs/` w
 
 ## Shipping a roadmap phase (doc sync)
 
-When a phase moves from **in progress** to **shipped**, update **code + tests + adapter + docs in the same PR** (do not mark the phase done in only one file). Use this checklist; [`docs/ROADMAP.md`](./docs/ROADMAP.md) owns phase status.
+When a phase moves from **in progress** to **shipped**, update code + tests and then synchronize the authoritative documentation that actually changed.
 
-| Must update | What to change |
-|---|---|
-| [`docs/ROADMAP.md`](./docs/ROADMAP.md) | Phase section → **done**; “current work” → next phase |
-| [`docs/MVP-SPECIFICATION.md`](./docs/MVP-SPECIFICATION.md) | New CLI behavior section; remove from “Later” if listed |
-| [`docs/HOW-IT-WORKS.md`](./docs/HOW-IT-WORKS.md) | Workflow step if user-facing; **Shipped → next** paragraph |
-| [`docs/architecture/ARCHITECTURE.md`](./docs/architecture/ARCHITECTURE.md) | “Current implementation” + shipped table + command/module list |
-| [`ARCHITECTURE-EXPLAINED.md`](./docs/architecture/ARCHITECTURE-EXPLAINED.md) | Same alignment (if maintained) |
-| [`README.md`](./README.md) | Status / badge / quick-start if commands changed |
-| [`AGENTS.md`](./AGENTS.md) | **Current path** + `skills/ezy` dogfood notes if CLI changed |
-| [`skills/ezy/SKILL.md`](./skills/ezy/SKILL.md) | Host procedure for new commands (adapter #1) |
-| [`docs/handoff/README.md`](./docs/handoff/README.md) | Phase map + MVP pointer (“through phase N”) |
-| Current audit evidence is archived; do not treat it as a work order. |
-| The former follow-up plan is archived; approved work must enter the roadmap or an accepted decision. |
-| [`docs/research/SKILL-SCAN-CORPUS-PLAN.md`](./docs/research/SKILL-SCAN-CORPUS-PLAN.md) | Only if corpus location or policy changes |
-| [`docs/skill-scan/README.md`](./docs/skill-scan/README.md) | Corpus size, layout and untrusted-content rule |
-| [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md) | **Shipped → next → future** table only (not full handoff rewrite) |
-| Completed plans are historical. Do not use unchecked historical tasks as current work orders. |
-| [`docs/superpowers/specs/…`](./docs/superpowers/specs/) | Set spec **Status** to shipped when behavior matches |
-| Audits are diagnostic only; do not update archived audit documents during normal phase shipping. |
+- `docs/ROADMAP.md` — phase/status owner.
+- `docs/STATUS.md` — current-state dashboard when current state changes.
+- `docs/MVP-SPECIFICATION.md` — shipped behavior.
+- `docs/HOW-IT-WORKS.md` — current user/host workflow when it changes.
+- `docs/architecture/ARCHITECTURE.md` — technical architecture when it changes.
+- `README.md` — user-facing summary when behavior or setup changes.
+- `AGENTS.md` — only when repository operating rules or current navigation changes.
+- `skills/ezy/SKILL.md` — when the end-user adapter changes.
+- `docs/decisions/` — when a durable product/architecture decision changes.
 
-Optional: golden cases, [`CAPABILITY-MODEL.md`](./docs/architecture/CAPABILITY-MODEL.md), audit doc only when the phase touches that topic. **Do not** rewrite historical handoff snapshots or `docs/convo/` unless explicitly asked.
+Do not update archived audits, historical conversations, or completed plans as part of normal phase shipping. Do not create competing documentation merely to mirror a change; update the document that owns the claim and only the dependent docs that need synchronization.
 
 Run `pnpm check:ci` before push (see [`.agents/skills/ci-before-push/SKILL.md`](./.agents/skills/ci-before-push/SKILL.md)).
-
 ## Principles
 
 1. Simplify before adding complexity.
