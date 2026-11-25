@@ -2,7 +2,7 @@
 
 ## AI assistants (Codex, Cursor, Claude Code)
 
-Read root [`AGENTS.md`](./AGENTS.md) first (Claude Code: [`CLAUDE.md`](./CLAUDE.md) imports the same guide). Product intent: [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md). Phase status: [`docs/ROADMAP.md`](./docs/ROADMAP.md).
+Read root [`AGENTS.md`](./AGENTS.md) first, then [`docs/AGENT-WORKFLOW.md`](./docs/AGENT-WORKFLOW.md). Use `docs/ROADMAP.md` for phase status and `docs/MVP-SPECIFICATION.md` for shipped behavior.
 
 ## Develop
 
