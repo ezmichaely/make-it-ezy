@@ -1,3 +1,5 @@
+> **Historical diagnostic evidence — not current instructions.** This audit is preserved for findings and rationale. For current repository state, product direction, roadmap, and implementation authority, follow `AGENTS.md`, `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, `docs/MVP-SPECIFICATION.md`, accepted decisions, current architecture, and implementation/tests. Some paths mentioned in this audit were intentionally archived or removed during the 2026-11-25 cleanup.
+
 # Make It Ezy — Full Repository Direction Audit
 
 Audit target: `analysis/full-scan-reconciliation`.
