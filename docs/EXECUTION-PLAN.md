@@ -41,7 +41,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 ### Gate 0 — Truth and release gate
 
-- [ ] **001** — Fix cold-start CLI test timeout
+- [x] **001** — CLOSED: historical one-off timeout; not reproducible; no fix justified (see `docs/execution/001-fix-cli-cold-start-timeout.md`)
 - [ ] **002** — Record single-package distribution decision and archive superseded Phase 8 launch docs
 - [ ] **003** — Reconcile agent reading order / execution-plan routing
 
