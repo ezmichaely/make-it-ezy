@@ -72,6 +72,18 @@ An audit may identify a problem, but it does not by itself authorize implementat
 
 Current work must come from an explicit user instruction, an accepted decision, an approved roadmap item, or an explicitly approved work plan.
 
+### Audit report naming
+
+When an agent produces a repository audit report, save it under `docs/audits/` using:
+
+`FULL-REPOSITORY-AUDIT-{MODEL-NAME}-{YYYY-MM-DD}.md`
+
+Example:
+
+`FULL-REPOSITORY-AUDIT-OPENCODE-ICEMAN-FREE-2026-11-27.md`
+
+Use the actual auditing model/provider identifier. Normalize filename-unsafe characters to uppercase letters, numbers, and hyphens. Do not overwrite previous audit reports with a generic filename.
+
 ## 7. Completion record
 
 Every substantive task should end with:
