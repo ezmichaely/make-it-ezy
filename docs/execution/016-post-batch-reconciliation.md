@@ -16,16 +16,18 @@ Format:
 
 Example:
 
-`FULL-REPOSITORY-AUDIT-OPENCODE-ICEMAN-FREE-2026-11-27.md`
+`FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`
 
-Use the actual model/provider identifier used for the audit. Normalize filename-unsafe characters to uppercase letters, numbers, and hyphens. Do not overwrite a prior audit with a generic filename such as `FULL-REPOSITORY-AUDIT.md`.
+Use the actual model/provider identifier used for the audit. Normalize filename-unsafe characters to uppercase letters, numbers, and hyphens. Do not overwrite a prior audit with a generic filename such as `FULL-REPOSITORY-AUDIT.md`. Keep exactly one active audit under `docs/audits/`; archive superseded reports.
+
+This task is the **post-batch** gate. It is not the audit-cleanup/consolidation pass; it runs only after Tasks 001–015 are completed and validated.
 
 ## Read First
 
 - `AGENTS.md`
 - `docs/EXECUTION-PLAN.md`
 - Completed Task 001–015 execution results/diffs
-- The audit baseline that produced Tasks 001–015
+- The canonical audit: `docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`
 
 ## Scope
 

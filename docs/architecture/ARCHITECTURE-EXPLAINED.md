@@ -160,7 +160,7 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 | Exact CLI contract | [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) |
 | Short technical architecture | [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
 
-**Ayaw:** plan ug product decisions gikan sa `MAKE-IT-EZY-HANDOFF-V2.md`, `v6`, etc. — historical snapshots ra na.
+**Ayaw:** plan ug product decisions gikan sa `docs/archive/handoff/` — historical snapshots ra na.
 
 ---
 

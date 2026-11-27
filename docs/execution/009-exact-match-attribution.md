@@ -37,6 +37,11 @@ Add focused regression coverage for exact and non-exact names, then run the CI g
 
 If exact-match semantics are not currently defined in code, stop and report the ambiguity instead of inventing a matching policy.
 
+## Additional verified findings (folded in)
+
+- `inspect` output should sanitize skill-derived strings consistently, using the same sanitization path already applied to brief and remote metadata.
+- CLI help/banner is stale (`Phase 6 brief + Phase 7 project brain`; inspect described as local-only while it queries skills.sh by default). Update help text to match current behavior.
+
 ## Next
 
 Task 010.

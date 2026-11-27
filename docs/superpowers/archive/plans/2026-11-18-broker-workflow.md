@@ -20,7 +20,7 @@ Work on `feat/phase8-launch`. Tasks 1–2 and adapter steps in `skills/ezy/SKILL
 | Task 2 — Ordered workflow in handoff | **Done** |
 | Task 3 — `/ezy` adapter + doc sync | **Done** (adapter + HOW-IT-WORKS/MVP/ROADMAP synced; build/test not run in this environment) |
 
-Spec comparison detail: [spec § Implementation status](../specs/2026-11-18-broker-orchestrated-skills-design.md#implementation-status-vs-plan-2026-11-19).
+Spec comparison detail: [spec § Implementation status](../../specs/2026-11-18-broker-orchestrated-skills-design.md#implementation-status-vs-plan-2026-11-19).
 
 ## Global Constraints
 

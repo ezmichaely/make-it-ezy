@@ -23,7 +23,7 @@ Persist **small, local project knowledge** across sessions: **Ezy writes trusted
 | Layer | Owner | Same pattern as |
 |--------|--------|-----------------|
 | Machine slice | Ezy CLI (deterministic) | `analyze` + plan output |
-| Agent slice | Host agent + [`skills/ezy/SKILL.md`](../../../skills/ezy/SKILL.md) | `ezy brief` → `.ezy/brief.json` |
+| Agent slice | Host agent + [`skills/ezy/SKILL.md`](../../../../skills/ezy/SKILL.md) | `ezy brief` → `.ezy/brief.json` |
 | Deep navigation | Optional **Graphify** skill (installed locally) | Ezy recommends; agent runs `/graphify` — not embedded in CLI |
 
 Ezy does **not** reimplement Graphify or a memory marketplace; it **composes** skills and holds a **thin JSON contract**.
@@ -129,7 +129,7 @@ Ezy does **not** reimplement Graphify or a memory marketplace; it **composes** s
 
 - New: `packages/core/src/brain-types.ts`, `brain.ts`, `brain.test.ts` (fingerprint, merge-save, `parseAgentSlice`, `formatBrainEnrichInstructions`)
 - Modify: `plan.ts`, `apps/cli/src/index.ts` (`brain`, `brain refresh`, `brain enrich`)
-- Modify: [`skills/ezy/SKILL.md`](../../../skills/ezy/SKILL.md) — brain + Graphify subsection (Task 6)
+- Modify: [`skills/ezy/SKILL.md`](../../../../skills/ezy/SKILL.md) — brain + Graphify subsection (Task 6)
 - Docs: `MVP-SPECIFICATION.md`, `ARCHITECTURE.md`, `HOW-IT-WORKS.md` (two-slice model)
 - No new vendored skill in v1; optional later: promote a verified memory skill via `find-skills`
 

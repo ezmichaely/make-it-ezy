@@ -108,11 +108,13 @@ pnpm ezy next "<outcome>" --local-only
 | One-page current workflow | [`docs/HOW-IT-WORKS.md`](./docs/HOW-IT-WORKS.md) |
 | Current phase | [`docs/ROADMAP.md`](./docs/ROADMAP.md) |
 | Shipped behavior | [`docs/MVP-SPECIFICATION.md`](./docs/MVP-SPECIFICATION.md) |
+| Current execution queue | [`docs/EXECUTION-PLAN.md`](./docs/EXECUTION-PLAN.md) |
 | Accepted decisions | [`docs/decisions/`](./docs/decisions/) |
 | Current architecture | [`docs/architecture/ARCHITECTURE.md`](./docs/architecture/ARCHITECTURE.md) |
 | Product intent/trust | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md) |
 | Builder skills | [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md) |
-| Audits/research | Read only when the current task specifically requires evidence |
+| Current audit | [`docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`](./docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md) |
+| Audits/research | Read only when the current task specifically requires evidence; historical audits are in `docs/archive/audits/` |
 
 ## License
 

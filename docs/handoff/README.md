@@ -9,6 +9,7 @@ Then read:
 4. [../ROADMAP.md](../ROADMAP.md)
 5. [../MVP-SPECIFICATION.md](../MVP-SPECIFICATION.md)
 6. [../HOW-IT-WORKS.md](../HOW-IT-WORKS.md)
+7. [../EXECUTION-PLAN.md](../EXECUTION-PLAN.md) and the current task under `../execution/`
 
 The long handoff [MAKE-IT-EZY-HANDOFF.md](./MAKE-IT-EZY-HANDOFF.md) is product intent/trust context, not a replacement for current implementation truth.
 
@@ -26,8 +27,9 @@ The long handoff [MAKE-IT-EZY-HANDOFF.md](./MAKE-IT-EZY-HANDOFF.md) is product i
 | MAKE-IT-EZY-HANDOFF.md | Product intent and trust principles |
 | ../architecture/ | Current architecture |
 | ../decisions/ | Accepted durable decisions |
-| ./archive/ | Historical handoffs only |
-| ../audits/ | Diagnostic evidence, not work orders |
+| ../archive/handoff/ | Historical handoffs only |
+| ../audits/ | Canonical diagnostic evidence, not work orders |
+| ../archive/audits/ | Historical audit evidence only |
 | ../research/ | Research evidence, not product authority |
 
 Historical conversation/session exports are archived and are never current instructions.

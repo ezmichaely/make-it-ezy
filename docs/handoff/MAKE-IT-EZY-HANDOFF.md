@@ -12,7 +12,7 @@
 > **Current authority:** Follow the source-of-truth hierarchy in `AGENTS.md`. Product direction is `docs/PRODUCT-DIRECTION.md`; current state is `docs/STATUS.md`; phase order is `docs/ROADMAP.md`; shipped behavior is `docs/MVP-SPECIFICATION.md`; current architecture is `docs/architecture/`.
 >
 >
-> **Recent decision synthesis (2026-11-22):** [`docs/handoff/archive/CONVERSATION-SYNTHESIS-2026-11-22.md`](./archive/CONVERSATION-SYNTHESIS-2026-11-22.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
+> **Recent decision synthesis (2026-11-22):** [`docs/archive/handoff/README.md`](../archive/handoff/README.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
 
 > **Start here if this file feels too big:** [`docs/HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) — one page on who does what (Ezy = decide and hand off; host agent = run ecosystem skills and code). Diagrams below are product intent; intake, deep research, and heavy security are normally **skills the agent runs**, not code inside the CLI.
 
@@ -2469,7 +2469,7 @@ Trustworthy skill intelligence was a major architectural focus at that time. Cur
 
 # 72. Historical Build Priorities (superseded)
 
-An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus archived audit evidence in `docs/archive/audits/2026-11-07-codebase-gaps.md`.
+An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus archived audit evidence in [`docs/archive/audits/README.md`](../archive/audits/README.md) (see §7, codebase gaps 2026-11-07).
 
 ---
 

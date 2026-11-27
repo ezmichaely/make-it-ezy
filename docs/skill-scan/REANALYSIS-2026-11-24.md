@@ -155,7 +155,7 @@ Current branch:
 Fixed (partial):
 - the visible badge text now says Phase 8 launch.
 
-**Correction (2026-11-25):** this fix was incomplete. The badge image's `alt` text still read "Phase 7 shipped" until the docs-sync pass changed it (`README.md:14`). The visible text and the alt text are separate strings, so a reader using a screen reader or looking at a broken image still saw the old phase. See `docs/audits/DOCS-SYNC-AUDIT-2026-11-25.md` item 1.
+**Correction (2026-11-25):** this fix was incomplete. The badge image's `alt` text still read "Phase 7 shipped" until the docs-sync pass changed it (`README.md:14`). The visible text and the alt text are separate strings, so a reader using a screen reader or looking at a broken image still saw the old phase. See `docs/archive/audits/README.md` (§4, docs sync audit 2026-11-25) and git history for the original full report.
 
 ### B. Roadmap broker-workflow status was stale
 

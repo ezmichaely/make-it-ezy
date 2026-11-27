@@ -9,6 +9,8 @@ Turn the audit findings into small, sequential tasks that can be handed to a cod
 
 The agent must **not** implement the whole audit in one pass.
 
+**Current state (2026-11-27):** the audit/reconciliation phase is complete for this batch. Exactly one canonical audit is active under `docs/audits/`; superseded audits are archived. The next step is execution of Tasks 001–015 in order. Task 016 remains the post-batch reconciliation gate and runs only after 001–015 are completed and validated.
+
 ### Execution rules
 
 1. Read `AGENTS.md` first.
@@ -30,7 +32,8 @@ The agent must **not** implement the whole audit in one pass.
 - `docs/MVP-SPECIFICATION.md` — shipped behavior.
 - `docs/EXECUTION-PLAN.md` — current audit-reconciliation execution queue.
 - `docs/execution/NNN-*.md` — atomic implementation instructions.
-- Audit report — diagnostic evidence; it does not replace repository truth.
+- Canonical audit: [`docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`](./audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md) — diagnostic evidence; it does not replace repository truth.
+- Historical audits: `docs/archive/audits/` — evidence only.
 
 The execution queue does **not** redefine the product roadmap. Phase 8 remains the product roadmap's current phase until that authority is deliberately reconciled.
 
@@ -59,6 +62,9 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 - [ ] **013** — Decide/document Windows support
 - [ ] **014** — Node 20 + 22 CI matrix
 - [ ] **015** — Publish checklist / package metadata verification
+
+### Gate 3 — Post-batch reconciliation (after 001–015)
+
 - [ ] **016** — Post-batch reconciliation / next-batch generation
 
 ## Later, deliberately not queued for implementation yet

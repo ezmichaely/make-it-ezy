@@ -4,7 +4,7 @@ This document expands the mandatory workflow in root `AGENTS.md`.
 
 ## 1. First session sequence
 
-`AGENTS.md` → `docs/AGENT-WORKFLOW.md` → `README.md` → `docs/HOW-IT-WORKS.md` + `docs/ROADMAP.md` + `docs/MVP-SPECIFICATION.md` → accepted decisions → relevant architecture → implementation + callers + tests.
+`AGENTS.md` → `docs/AGENT-WORKFLOW.md` → `README.md` → `docs/HOW-IT-WORKS.md` + `docs/ROADMAP.md` + `docs/MVP-SPECIFICATION.md` → accepted decisions → relevant architecture → `docs/EXECUTION-PLAN.md` + current task under `docs/execution/` → implementation + callers + tests.
 
 Do not start coding before this sequence is complete enough to establish current state.
 
@@ -80,9 +80,11 @@ When an agent produces a repository audit report, save it under `docs/audits/` u
 
 Example:
 
-`FULL-REPOSITORY-AUDIT-OPENCODE-ICEMAN-FREE-2026-11-27.md`
+`FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`
 
 Use the actual auditing model/provider identifier. Normalize filename-unsafe characters to uppercase letters, numbers, and hyphens. Do not overwrite previous audit reports with a generic filename.
+
+There should be **exactly one active audit** under `docs/audits/`. Move superseded audits to `docs/archive/audits/` rather than keeping multiple current reports.
 
 ## 7. Completion record
 

@@ -9,8 +9,10 @@ Make the install command enforce the option the user supplied and reject unsuppo
 ### In scope
 
 - `apps/cli/src/index.ts`
-- `packages/core/src/install.ts)
+- `packages/core/src/install.ts`
 - `apps/cli/src/cli.test.ts`
+- `docs/MVP-SPECIFICATION.md` (network/local-only behavior only)
+- `docs/architecture/SECURITY-MODEL.md` (network/local-only behavior only)
 - focused install tests if present
 
 ## Out of scope
@@ -36,6 +38,11 @@ Make the install command enforce the option the user supplied and reject unsuppo
 ## Validation
 
 Run focused CLI/install tests, then the repository CI gate.
+
+## Additional verified findings (folded in)
+
+- `docs/MVP-SPECIFICATION.md` omits the network matrix: which commands contact skills.sh, that network is the default, and that `install` currently ignores `--local-only` (until this task fixes it). Document the actual behavior once fixed.
+- `docs/architecture/SECURITY-MODEL.md` says `inspect` has "optional remote metadata" (it is default-on) and carries a dated 2026-11-05 license snapshot. Update to match current behavior and clearly label historical snapshots.
 
 ## Stop condition
 

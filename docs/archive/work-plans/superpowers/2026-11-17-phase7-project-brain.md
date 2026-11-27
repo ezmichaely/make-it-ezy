@@ -6,7 +6,7 @@
 
 **Architecture:** `brain.ts` mirrors `brief.ts` split: deterministic merge-save for machine fields; `parseAgentSlice` / sanitize for agent JSON; `formatBrainEnrichInstructions` like `formatBriefInstructions`. `planOutcome` → `persistBrainAfterPlan` (merge, don’t wipe `agent`).
 
-**Spec:** [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](../specs/2026-11-17-phase7-project-brain-design.md)
+**Spec:** [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](../../specs/superpowers/2026-11-17-phase7-project-brain-design.md)
 
 ## Global constraints
 
@@ -82,7 +82,7 @@
 
 ### Task 7: Docs
 
-**Files:** see [`CONTRIBUTING.md`](../../../CONTRIBUTING.md) → *Shipping a roadmap phase (doc sync)*
+**Files:** see [`CONTRIBUTING.md`](../../../../CONTRIBUTING.md) → *Shipping a roadmap phase (doc sync)*
 
 - [x] Document hybrid model and commands (ROADMAP, MVP, HOW-IT-WORKS, ARCHITECTURE, README, handoff table, audit status).
 - [x] `pnpm check:ci`.

@@ -13,6 +13,7 @@ Prevent Ezy from presenting a contractor workflow as immediately usable when the
 - `packages/core/src/format.ts`
 - `packages/core/src/handoff.test.ts`
 - `packages/core/src/contractors.ts` only if required to identify the contractor skill
+- `docs/architecture/CAPABILITY-MODEL.md` (status wording only, if touched)
 
 ## Out of scope
 
@@ -41,6 +42,10 @@ When a supported contractor is selected:
 ## Validation
 
 Run the focused handoff tests, then the full CI gate.
+
+## Additional verified findings (folded in)
+
+- `docs/architecture/CAPABILITY-MODEL.md` lists Superpowers/BMAD/gstack as "STUDY/OPTIONAL" while contractor routing is shipped. Update the status wording to reflect the shipped first-slice contractor while keeping non-shipped contractors clearly optional/study.
 
 ## Stop condition
 

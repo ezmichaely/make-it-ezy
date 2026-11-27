@@ -38,6 +38,11 @@ Create the package artifact and inspect its file list.
 
 Do not publish or change npm ownership as part of this task.
 
+## Additional verified findings (folded in)
+
+- `npm pack --dry-run` currently omits `LICENSE`; ensure the MIT license file is included in the published tarball.
+- Packed `devDependencies` retain `workspace:*`; verify whether to clean this metadata before publication.
+
 ## Next
 
 After Task 015, stop the immediate release-hardening sequence and reconcile documentation before beginning the JSON contract work.

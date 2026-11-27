@@ -11,6 +11,7 @@ Make `ezy brain` tell the user when the persisted brain is stale.
 - `apps/cli/src/index.ts`
 - `packages/core/src/format.ts`
 - existing brain staleness helpers in `packages/core/src/brain.ts`
+- `docs/MVP-SPECIFICATION.md` (brain behavior only)
 - focused CLI/brain tests
 
 ## Out of scope
@@ -37,6 +38,12 @@ Run focused brain/CLI tests and then the CI gate.
 ## Stop condition
 
 If the existing staleness helper is incorrect, stop and report it rather than rewriting the helper in this task.
+
+## Additional verified findings (folded in)
+
+- `packages/core/src/plan.test.ts` calls `planOutcome` without a `cwd`, writing the repository `.ezy/brain.json`; make the test use a temporary project directory.
+- `plan`/`next` output says "Discovery only — nothing was installed or executed" while the same run writes `.ezy/brain.json`; make the note accurate without overclaiming.
+- `docs/MVP-SPECIFICATION.md` omits brain auto-write on `plan`/`next` and the `brain refresh` / `brain enrich` subcommands. Update shipped behavior to match implementation.
 
 ## Next
 

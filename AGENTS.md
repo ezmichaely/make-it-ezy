@@ -17,6 +17,7 @@ Before changing code, docs, tests, or configuration:
 8. Read the relevant architecture document.
 9. Read the relevant implementation under `apps/`, `packages/`, or `skills/`.
 10. Read relevant callers and tests before editing behavior.
+11. For active work, read `docs/EXECUTION-PLAN.md` and the current task under `docs/execution/`.
 
 Before implementation, you must be able to state:
 
@@ -44,6 +45,8 @@ Use this order:
 9. Current handoff for product intent/trust context.
 10. Specs and plans for proposed/historical implementation context.
 11. Audits, research, conversations, and generated output for evidence only.
+
+Current audit evidence: [`docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`](./docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md). Historical audits live in `docs/archive/audits/`. An audit is diagnostic evidence, never an automatic work order.
 
 When two sources disagree, do not silently choose one. Identify the conflict, verify implementation, and update the appropriate authority.
 

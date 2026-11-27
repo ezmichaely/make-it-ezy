@@ -16,6 +16,8 @@ For repository instructions, read AGENTS.md first. For intended destination, rea
 analyze → requirements → search → select → plan → handoff
 ~~~
 
+**Current audit:** [`docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`](./audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md). Historical audits are archived under `docs/archive/audits/`.
+
 ## Shipped
 
 - minimal CLI;
@@ -68,6 +70,7 @@ Read in this order:
 5. docs/MVP-SPECIFICATION.md
 6. docs/HOW-IT-WORKS.md
 7. accepted decisions in docs/decisions/
+8. docs/EXECUTION-PLAN.md and the current task under docs/execution/
 
 Then inspect implementation and tests relevant to the current objective.
 
@@ -84,4 +87,4 @@ When implementation changes materially:
 
 ## Last verified
 
-2026-11-25 — documentation reconciliation pass on analysis/full-scan-reconciliation.
+2026-11-27 — archive consolidation, audit consolidation, and execution-plan routing pass.
