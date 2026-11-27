@@ -1,6 +1,6 @@
 # Make It Ezy — architecture explained (human version)
 
-> **Para kanimo, dili para sa LLM.** Taglish / Bisaya-English explainer. Kung mag-clash ni sa official docs, sundoga ang official stack: [`AGENTS.md`](../../AGENTS.md), [`MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md), [`ROADMAP.md`](../ROADMAP.md), [`MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md). Technical reference: [`ARCHITECTURE.md`](./ARCHITECTURE.md).
+> **Para kanimo, dili para sa LLM.** Taglish / Bisaya-English explainer. Kung mag-clash ni sa official docs, sundoga ang current hierarchy: [`AGENTS.md`](../../AGENTS.md), [`STATUS.md`](../STATUS.md), [`PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md), [`ROADMAP.md`](../ROADMAP.md), [`MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md). Technical reference: [`ARCHITECTURE.md`](./ARCHITECTURE.md). This is a human explainer, not an authority.
 
 ---
 
@@ -109,7 +109,7 @@ Layer A **dili** required runtime sa product. Dili ta mo-LangGraph/LangChain cor
 
 | | |
 |---|---|
-| **Vision** | Any goal, any domain |
+| **Long-term direction** | Broader domains, one at a time |
 | **Karon (shipped focus)** | **Coding tasks sa imong repo** — JS/TS first, Python later |
 | **Later** | Other domains **one at a time** (each needs golden cases + detection + lexicon) |
 
@@ -130,12 +130,12 @@ Domain-neutral na ang brief/plan/select pipeline; ang JS/TS-specific part mostly
 
 **Wala pa / later:**
 
-- **Phase 8 — Launch and Distribution** (make the CLI installable outside this repository)
+- **Phase 8 — Launch and Distribution** — **current** (make the CLI installable outside this repository)
 - **Phase 9 — Verification** (did the outcome actually happen?)
 - Deep skill verification, trusted-auto, Soft-C spawn, Web UI (Phase 10)
 - Full “trust score” pipeline nga naa sa product handoff vision — **partial** lang today (heuristics + brief + risk notes sa inspect)
 
-**Maintenance (optional):** audit findings **5–10** sa [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Current roadmap:** Phase 8 Launch and Distribution.
+****Historical:** archived audit findings are evidence only. **Current roadmap:** Phase 8 Launch and Distribution.
 
 ---
 
@@ -155,12 +155,12 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 | Ikaw nagtanong… | Open this |
 |-----------------|-----------|
 | Unsa buhaton sa agent karon? | [`AGENTS.md`](../../AGENTS.md) |
-| Unsa gyud ang product / trust rules? | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md) |
+| Unsa gyud ang product direction? | [`docs/PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md) |
 | Phase 0–7 done na ba? Unsay sunod? | [`docs/ROADMAP.md`](../ROADMAP.md) |
 | Exact CLI contract | [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) |
 | Short technical architecture | [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
 
-**Ayaw:** plan ug product decisions gikan sa `MAKE-IT-EZY-HANDOFF-V2.md`, `v6`, etc. — historical snapshots ra na.
+**Ayaw:** plan ug product decisions gikan sa `docs/archive/handoff/` — historical snapshots ra na.
 
 ---
 
@@ -170,4 +170,4 @@ Ang golden case `packages/core/src/golden/stripe-subscriptions/` naa ang automat
 
 ---
 
-*Last aligned: 2026-11-18 — Phase 7 Project Brain shipped; Phase 8 Launch and Distribution current.*
+*Last aligned: 2026-11-25 — human explainer aligned to current Phase 8 docs; lifecycle contracts remain unwired; current authority is the repository documentation hierarchy.*

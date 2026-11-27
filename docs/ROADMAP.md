@@ -1,115 +1,162 @@
 # Roadmap
 
-Locked phase sequence and shipped status. Product definition / trust rules: [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md).
+**This file owns phase order and current phase status.**
 
-## Current work (2026-11-18)
+## Current phase — 2026-11-25
 
-Phases 0–7 are shipped. Audit findings **1–4** in [`audits/2026-11-07-codebase-gaps.md`](./audits/2026-11-07-codebase-gaps.md) are **resolved** (sanitized skill output, monorepo root detection, local-first selection, YAML chomping). **Phase 8 — Launch and Distribution** is current. Phase 9 — outcome verification is post-launch work; exhaustive per-skill testing is not a launch gate. Audit findings **5–10** remain optional follow-up maintenance.
+**Phase 8 — Launch and Distribution is current.**
 
-Shared instructions for Codex, Cursor, Claude Code, and Qwen Code: [`../AGENTS.md`](../AGENTS.md). The roadmap remains authoritative for phase order; the audit does not renumber or replace phases.
+Phases 0–7 are shipped.
 
-**In progress (not a new phase):** [Broker-directed workflow](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md) — contractor routing + ordered handoff stages. Task 1 in core; Tasks 2–3 (handoff output, `skills/ezy`, doc sync) remain. User-visible CLI unchanged until Task 2–3 ship.
+The first broker-directed workflow slice is shipped within Phase 8:
 
-## Scope (decided 2026-11-06) — canonical
+- contractor routing;
+- ordered workflow output;
+- host-agent adapter support.
+
+Phase 9 is outcome verification. Phase 10 is Web UI.
+
+### Status rule
+
+Do not use audits or work plans to infer the current phase. Only this file controls phase ordering.
+
+## Scope
 
 **General by design, specific by launch.**
 
-| | |
+| Status | Scope |
 |---|---|
-| **Vision** | Any goal, any domain: *"Tell Ezy what you want. It figures out what you need."* Ezy **decides** what's needed; the agent runtime (Claude Code / Cursor / Codex) **does** the work. |
-| **Today** | **Coding tasks in your repo.** JS/TS projects first, Python next. Skills from local `.agents/skills` and skills.sh. |
-| **Later** | Other domains (video, research, documents, engineering, …), added **one at a time** — not "everything at once". |
+| Today | Coding tasks in a repository; JS/TS first and Python next |
+| Later | Other domains, one at a time |
 
-Why: every domain needs its own project inspection, skill sources, golden cases and (Phase 9) verification. One domain at a time keeps each phase small and testable. The brief path (Phase 6) is already domain-neutral, so adding a domain does **not** require a redesign.
+Ezy decides what is needed. The host agent does the work.
 
-### Adding a domain (checklist)
+## Phase 0 — Research
 
-1. **Golden cases first** — 2–4 realistic outcomes under `packages/core/src/golden/<domain>-<case>/` with must-include / must-exclude expectations. They show where Ezy breaks before any code changes.
-2. **Project inspection** — detection for that domain's project markers (today: `packages/core/src/detect-*.ts`).
-3. **Fallback lexicon** — entries in `packages/core/src/capabilities.ts` (the brief path needs none).
-4. **Skill sources** — confirm candidate skills exist (local or skills.sh); otherwise requirements show as *Uncovered*, which is honest but not useful.
-5. **Docs** — move the domain from *Later* to *Today* in this section and the README.
+**Done.**
 
-**Folder structure:** unchanged today. When the **second** domain lands, group domain-specific inspection + lexicon under `packages/core/src/domains/<domain>/`; the brief, scoring, selection and output modules stay shared. Do not restructure before then.
+## Phase 1 — Minimal CLI
 
-## Phase 0 — Research (**done**)
+**Done.**
 
-## Phase 1 — Minimal CLI (**done**)
+## Phase 2 — Discovery
 
-## Phase 2 — Discovery (**done**)
+**Done.**
 
-- `search` / `inspect` / `recommend`
+## Phase 3 — Decision engine
 
-## Phase 3 — Decision engine (**done**)
+**Done.**
 
-- `ezy plan "<outcome>"` (initial heuristic, outcome-only; superseded by the project-aware planner in Phase 5)
+## Phase 4 — Install + adapters
 
-## Phase 4 — Install + adapters (**mostly done**)
+**Done.**
 
-- `ezy install <skill> [--yes] [--source …]`
-- `ezy install --plan "…" / --query "…"` with TTY arrow picker
-- Install via `npx skills add` → `.agents/skills` (Cursor-local) — adapter #0
-- `ezy next "<outcome>"` — paste-ready checklist + agent prompt
-- Agent Skill adapter #1: `skills/ezy/SKILL.md` (Claude `/ezy`, Cursor/Codex skills)
-- CI: strict ESLint + `tsc` + Vitest + build + `pnpm audit` + CodeQL (`docs/CI.md`)
-- Still TODO later: deep verify, soft-C spawn, Codex marketplace plugin, trusted auto
+## Phase 5 — Project Capability Planner
 
-## Phase 5 — Project Capability Planner (**done**)
+**Done.**
 
-> Spec: `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`  
-> Plan: `docs/superpowers/plans/2026-11-05-phase5-project-capability-planner.md`
+- project-aware `plan` / `next`;
+- goal + project requirements;
+- minimum useful skill selection.
 
-- Wire `analyze` into `plan` / `next`
-- Requirements from goal **+** project
-- Filter to minimum useful skill set with exclusion reasons
-- No LLM, no Soft-C, no mandatory Graphify
+## Phase 6 — Agent Brief + Decision Quality
 
-## Phase 6 — Agent Brief + Decision Quality (**done**)
+**Done.**
 
-> Spec: `docs/superpowers/specs/2026-11-06-phase6-agent-brief-design.md`  
-> Plan: `docs/superpowers/plans/2026-11-06-phase6-agent-brief.md`
+- `ezy brief`;
+- validated `.ezy/brief.json`;
+- requirement-covering selection.
 
-- `ezy brief` → host agent researches the outcome and writes `.ezy/brief.json`
-- `plan` / `next` / `install --plan` accept `--brief`; invalid briefs exit 2
-- Requirement-covering minimum set with explanations; heuristic fallback without a brief
+## Phase 7 — Project Brain
 
-## Phase 7 — Project Brain (**done**)
+**Done.**
 
-> Spec: [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](./superpowers/specs/2026-11-17-phase7-project-brain-design.md)  
-> Plan: [`docs/superpowers/plans/2026-11-17-phase7-project-brain.md`](./superpowers/plans/2026-11-17-phase7-project-brain.md)
+- `.ezy/brain.json`;
+- machine slice;
+- optional host-maintained agent slice.
 
-- `ezy brain` / `brain refresh` / `brain enrich`; `.ezy/brain.json` machine slice on plan/next
-- Optional host-maintained `agent` slice (decisions, conventions, rejected skills)
+Project Brain is persistent context, not an autonomous memory/decision engine.
 
 ## Phase 8 — Launch and Distribution
-### Lifecycle contract slice
 
-The Phase 8 branch now includes small internal contracts for intent clarification/intake, explicit skill evaluation state, skill specification/composition, outcome evaluation (PASS / FAIL / UNCERTAIN), and privacy-safe evidence aggregation with reversible improvement proposals.
+**Current.**
 
-These contracts are not a hosted telemetry system and do not auto-modify Ezy. Full execution-time outcome verification remains Phase 9.
+Current work is launch/distribution quality and maintaining the first broker workflow slice.
 
- (**current**)
+Lifecycle contracts in `packages/core/src/lifecycle.ts` are exported boundary contracts. They are **not** the controlling CLI/planner pipeline.
 
-- Make the CLI installable and usable outside this repository. The root workspace remains private; the release workflow creates GitHub releases but does not publish the CLI/core packages to npm.
-- Document and verify the first-user install path.
-- Keep external skill discovery broad and automated; do not require manual tests for every skill before launch.
-- Rank recommendations with task fit plus public reputation and maintenance evidence (for example installs, source provenance, and update activity).
-- Show the evidence and Ezy review state clearly. Reputation supports discovery; it does not certify safety or quality.
-- Keep installs user-approved. Deep per-skill verification can add stronger evidence after launch.
+## Phase 9 — Outcome Verification
 
-## Phase 9 — Verification (**later**)
+**Later.**
 
-- Check that the outcome was actually achieved after handoff/execution
-- Add deeper skill verification when it serves a concrete launch or user need; do not block launch on validating every catalog entry
+- verify whether the requested outcome was achieved;
+- add deeper verification where justified.
 
-## Phase 10 — Web UI (**later**)
+## Phase 10 — Web UI
 
-- Same core as CLI
+**Later.**
 
-## Deliberately not scheduled as “next”
+Use the same core decision layer. The UI should not create a second product architecture.
 
-- Soft-C (CLI spawning Codex/Claude)
-- Deep skill verification / trusted-auto allowlists
-- Codex marketplace plugin
-- Giant skill marketplace / filled `catalog/`
-- Mandatory Superpowers or Graphify at product runtime
+## Future horizon — directional roadmap
+
+These phases are now the explicit destination path beyond the currently scheduled phases. Their detailed scope should be refined when the preceding phase is complete; they are not permission to start all of them at once.
+
+### Phase 11 — Capability Ecosystem
+
+**Future.**
+
+- mature capability registry and metadata;
+- stronger capability evaluation/trust state;
+- capability composition beyond the first broker slice;
+- controlled external capability discovery;
+- lifecycle behavior only where it is actually implemented.
+
+### Phase 12 — Host Integration Expansion
+
+**Future.**
+
+- prove one or two host integrations end-to-end;
+- standardize adapter boundaries;
+- expand to additional coding hosts where justified;
+- keep the core decision layer host-agnostic.
+
+Potential hosts include Codex, Claude Code, Cursor, OpenCode, Qwen Code, and other compatible hosts.
+
+### Phase 13 — Project Continuity
+
+**Future.**
+
+- strengthen Project Brain as a durable current-state model;
+- make resume/recovery reliable after long gaps;
+- preserve decisions, outcomes, blockers, and next actions;
+- make stale historical material clearly distinguishable from current state.
+
+The goal is that a user can return after forgetting most of the project and recover what matters without reconstructing the project manually.
+
+### Phase 14 — Broader Domain Expansion
+
+**Future / conditional.**
+
+Only after the coding workflow is stable.
+
+Expand beyond repository coding one domain at a time, reusing the core decision/context/routing model rather than creating unrelated domain-specific architectures.
+
+## Deliberately not current
+
+Do not pull these into current work without an explicit decision:
+
+- autonomous Soft-C execution;
+- deep trusted-auto verification;
+- mandatory Superpowers;
+- mandatory Graphify;
+- giant skill marketplace/catalog;
+- hosted telemetry;
+- autonomous self-improvement;
+- multi-domain expansion before the coding path is stable.
+
+## Adding roadmap work
+
+A roadmap item is not approved merely because it appears in an audit, plan, research document, or conversation.
+
+New work enters the roadmap only after explicit acceptance.

@@ -1,5 +1,5 @@
 {
-  "name": "@make-it-ezy/cli",
+  "name": "make-it-ezy",
   "version": "0.1.5",
   "description": "Local-first AI capability discovery and planning CLI",
   "type": "module",
@@ -16,14 +16,11 @@
     "url": "https://github.com/ezmichaely/make-it-ezy.git",
     "directory": "apps/cli"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "keywords": ["agent-skills", "ai", "coding-agent", "cli"],
+  "keywords": ["ai", "coding-agent", "cli", "capability-router"],
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json && node scripts/prepare-package.mjs"
   },
-  "dependencies": {
+  "devDependencies": {
     "@make-it-ezy/core": "workspace:*"
   }
 }

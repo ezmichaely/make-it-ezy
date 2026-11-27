@@ -1,16 +1,18 @@
+> **Role:** Product intent, trust principles, and historical synthesis. This document is context, not the authoritative source for current product direction, phase status, or CLI behavior. Start with `AGENTS.md`, then `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, and `docs/MVP-SPECIFICATION.md`.
+
 # Make It Ezy — Product Handoff
 
 **Purpose:** This document consolidates the Make It Ezy project decisions, direction, architecture, research conclusions, constraints, roadmap, and unresolved questions that have emerged across the project conversations.
 
-**Status:** Current product handoff (not a phase/status tracker—use [`docs/ROADMAP.md`](../ROADMAP.md) for that)  
+**Status:** Product-intent and trust-context handoff; not a source of current implementation truth.  
 **Date:** 2026-11-08
 
-> **Important:** This is the **only current** product handoff file (`MAKE-IT-EZY-HANDOFF.md`). It is more authoritative than raw historical conversations and older `MAKE-IT-EZY-HANDOFF-v*.md` snapshots. When they conflict, the latest explicit project decisions in this file, [`AGENTS.md`](../../AGENTS.md), and [`docs/ROADMAP.md`](../ROADMAP.md) win.
+ > **Important:** This file is the surviving long-form product handoff, but it is **not** the current authority. Follow the source-of-truth hierarchy in [`AGENTS.md`](../../AGENTS.md). Product direction is [`docs/PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md); current state is [`docs/STATUS.md`](../STATUS.md); phase order is [`docs/ROADMAP.md`](../ROADMAP.md); shipped behavior is [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md).
 >
-> **Precedence with other repo docs:** shared agent workflow/current work → root `AGENTS.md`. Product definition / trust rules / what Ezy is-not → **this file**. Locked phase sequence and shipped status → `docs/ROADMAP.md` (its phase numbers win over older numbering). Current CLI behavior → `docs/MVP-SPECIFICATION.md`. Audit **1–4** (fixed 2026-11-17) and open **5–10** → `docs/audits/2026-11-07-codebase-gaps.md` (does not change phase numbering).
+> **Current authority:** Follow the source-of-truth hierarchy in `AGENTS.md`. Product direction is `docs/PRODUCT-DIRECTION.md`; current state is `docs/STATUS.md`; phase order is `docs/ROADMAP.md`; shipped behavior is `docs/MVP-SPECIFICATION.md`; current architecture is `docs/architecture/`.
 >
 >
-> **Recent decision synthesis (2026-11-22):** [`CONVERSATION-SYNTHESIS-2026-11-22.md`](./CONVERSATION-SYNTHESIS-2026-11-22.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
+> **Recent decision synthesis (2026-11-22):** [`docs/archive/handoff/README.md`](../archive/handoff/README.md) captures the latest broker/contractor, ECC vs Superpowers, Graphify, OmniRoute, Paperclip, local AI, and shared-evidence conclusions without treating raw conversation transcripts as product authority.
 
 > **Start here if this file feels too big:** [`docs/HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) — one page on who does what (Ezy = decide and hand off; host agent = run ecosystem skills and code). Diagrams below are product intent; intake, deep research, and heavy security are normally **skills the agent runs**, not code inside the CLI.
 
@@ -20,8 +22,8 @@ Early sections describe **product intent and target lifecycle**. They are easy t
 
 | Layer | Meaning | Examples |
 |--------|---------|----------|
-| **Shipped** | In the CLI / `skills/ezy` today (Phases **0–7**; audit **1–4**) | `doctor`, `analyze`, `search`, `inspect`, `recommend`, `brief`, `brain`, `plan`, `next`, gated `install`; project-aware requirements; brief JSON or heuristic fallback; `.ezy/brain.json` (machine on plan/next + optional agent slice); local + skills.sh discovery; handoff prompt; **no LLM inside Ezy** |
-| **Next** | Agreed roadmap work, not shipped yet | **Phase 8** launch and distribution; after launch: **Phase 9** outcome verification and Phase **10** Web UI; optional audit findings **5–10** if approved |
+| **Shipped** | In the CLI / `skills/ezy` today (Phases **0–7**; audit **1–4**) | `doctor`, `analyze`, `search`, `inspect`, `recommend`, `brief`, `brain`, `plan`, `next`, gated `install`; project-aware requirements; brief JSON or heuristic fallback; `.ezy/brain.json` (machine on plan/next + optional agent slice); local + skills.sh discovery; handoff prompt; **no LLM inside Ezy**; **Phase 8 first slice**: broker-directed workflow (contractor routing + ordered `Workflow` in `next`) |
+| **Next** | Agreed roadmap work, not shipped yet | Remaining **Phase 8** launch/distribution work; after launch: **Phase 9** outcome verification and Phase **10** Web UI; optional audit findings **5–10** if approved |
 | **Future** | Vision / research; not the current implementation queue | Soft-C (spawn agents), deep skill verify, trusted-auto installs, Codex marketplace plugin, full in-product trust scoring, token-economy scoring in Ezy, multi-domain expansion beyond the coding launch slice |
 
 **How to read §1–3:** vision and problem framing (conceptually correct). **How to read diagrams** (e.g. evaluate security/trust as Ezy steps): target responsibility split — much of that work is **host agent + installed skills** today, not reimplemented in TypeScript.
@@ -1531,7 +1533,7 @@ Historical conversations contain:
 
 An agent cannot safely infer which statements are authoritative.
 
-Therefore Ezy itself needs a canonical project specification.
+Therefore the repository needs a clear current documentation hierarchy, which is now defined by `AGENTS.md`, `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, and `docs/MVP-SPECIFICATION.md`.
 
 ---
 
@@ -2438,7 +2440,7 @@ This is future scope, not necessarily MVP.
 
 # 71. Historical Project Status (2026-11-08 snapshot)
 
-This section records the project state when this handoff was drafted; it is not a current status report. For shipped work and phase order, use [`docs/ROADMAP.md`](../ROADMAP.md). For the current immediate work proposal, use [`docs/audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) and the shared sequence in [`AGENTS.md`](../../AGENTS.md).
+This section records the project state when this handoff was drafted; it is not a current status report. For shipped work and phase order, use [`docs/ROADMAP.md`](../ROADMAP.md). For the current immediate work proposal, use archived 2026-11-07 audit evidence and the shared sequence in [`AGENTS.md`](../../AGENTS.md).
 
 At the point of those repository discussions, Ezy was no longer merely an idea.
 
@@ -2467,7 +2469,7 @@ Trustworthy skill intelligence was a major architectural focus at that time. Cur
 
 # 72. Historical Build Priorities (superseded)
 
-An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus open audit items in `docs/audits/2026-11-07-codebase-gaps.md` (findings 1–4 resolved).
+An earlier proposal listed registry design, trust evaluation, skill bundles, handoff improvements, verification, and Project Brain as future priorities. That list is retained as historical context only and is not an implementation queue. Use the current sequence in root `AGENTS.md` and `docs/ROADMAP.md`, plus archived audit evidence in [`docs/archive/audits/README.md`](../archive/audits/README.md) (see §7, codebase gaps 2026-11-07).
 
 ---
 
@@ -2772,9 +2774,10 @@ These should be resolved through implementation/research, not guessed.
 
 When working on Make It Ezy:
 
-1. Read this document first.
-2. Treat it as the current canonical product context.
-3. Do not reconstruct the product from historical conversation dumps.
+1. Read `AGENTS.md` first.
+2. Read `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, and `docs/MVP-SPECIFICATION.md` for current authority.
+3. Use this document as product-intent and trust context; do not treat it as the canonical current state.
+4. Do not reconstruct the product from historical conversation dumps.
 4. Do not assume every discussed repository is a trusted dependency.
 5. Do not turn discovery resources into recommendations without evaluation.
 6. Do not remove the registry simply because the registry is not the product.

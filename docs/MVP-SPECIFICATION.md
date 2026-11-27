@@ -1,101 +1,123 @@
 # MVP Specification
 
-> **Scope:** coding tasks in your repo (JS/TS first, Python next). Other domains are later — see [`ROADMAP.md` → Scope](./ROADMAP.md).
+**This file describes shipped product behavior. It is not a future roadmap.**
 
-## Phases 1–3 (done)
+## Scope
 
-`doctor` / `analyze` / `search` / `inspect` / `recommend` / `plan` — discover & plan only.  
-`plan` was outcome-only in Phase 3; Phase 5 made `plan` / `next` project-aware. See the Phase 5 behavior below.
+Today: coding tasks in a repository, JS/TS first and Python next.
 
-## Phase 4 slice (done)
+## Current CLI behavior
 
-```bash
-pnpm ezy install <skill> --source owner/repo --yes
-pnpm ezy install --plan "Build a SaaS dashboard"   # TTY: arrow select + confirm
-pnpm ezy next "Build a SaaS dashboard" --local-only
-```
+Current planning path:
 
-- Preview source, destination, risk notes, exact command
-- Require `--yes` or interactive confirm
-- Install with `npx skills add …` into `.agents/skills`
-- `ezy next` — checklist + paste-ready agent prompt (does not install/run)
-- After `install --plan` / `--query`, reprints that handoff
-- Agent Skill `skills/ezy` — agent runs CLI then **continues building** (adapter #1)
-- **Does not** soft-C spawn Codex/Claude; deep verify is later
+`analyze → requirements → search → select → plan → handoff`
 
-## Phase 5 — Project Capability Planner (done)
+Available commands:
 
-`ezy plan` / `ezy next` are **project-aware**:
+- `doctor`
+- `analyze`
+- `search`
+- `inspect`
+- `recommend`
+- `brief`
+- `brain`
+- `plan`
+- `next`
+- `install`
 
-- Wire `analyze` into planning
-- Requirements from goal + project
-- Filter to a minimum useful skill set with exclusion reasons
-- No LLM, no Soft-C, no mandatory Graphify
+## Distribution
+
+The intended public CLI package is:
 
 ```bash
-pnpm ezy plan "Add a small button to the settings page" --local-only
-pnpm ezy next "Add a small button to the settings page" --local-only
+npm install --global make-it-ezy
+ezy --help
 ```
 
-Spec: `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`  
-Plan: `docs/superpowers/plans/2026-11-05-phase5-project-capability-planner.md`  
-Sequence: `docs/ROADMAP.md`
+The npm package is self-contained for runtime use. `@make-it-ezy/core` remains an internal workspace package and is bundled into the CLI during the release build.
 
-## Phase 6 — Agent Brief + Decision Quality (done)
+## Phase 4 — Install + adapters
 
-```bash
-pnpm ezy brief "Add Stripe subscriptions"                     # instructions for the agent
-pnpm ezy next "Add Stripe subscriptions" --brief .ezy/brief.json
-```
+Shipped:
 
-- Host agent researches the outcome and writes `.ezy/brief.json` (requirements + search terms, exclusions, research)
-- Ezy validates it as untrusted data (invalid → exit 2), picks a requirement-covering minimum skill set, explains picks / exclusions / uncovered
-- Without a brief: heuristic fallback, labelled as such
+- gated `install`;
+- `install --plan` / `install --query`;
+- `next` handoff;
+- `skills/ezy` adapter.
 
-## Phase 7 — Project Brain (done)
+Ezy does not silently install or execute external skills.
 
-```bash
-pnpm ezy brain
-pnpm ezy brain refresh
-pnpm ezy brain enrich
-```
+## Phase 5 — Project Capability Planner
 
-- `.ezy/brain.json` — machine slice (analyze + last plan) written by Ezy on `plan` / `next`; optional `agent` slice maintained by the host after `brain enrich`
-- Does not drive planning in v1 (brief still owns requirements for `--brief`)
+Shipped:
 
-Spec: [`docs/superpowers/specs/2026-11-17-phase7-project-brain-design.md`](./superpowers/specs/2026-11-17-phase7-project-brain-design.md)  
-Plan: [`docs/superpowers/plans/2026-11-17-phase7-project-brain.md`](./superpowers/plans/2026-11-17-phase7-project-brain.md)
+- project-aware planning;
+- goal + project requirements;
+- minimum useful capability selection;
+- no mandatory LLM;
+- no mandatory Graphify;
+- no Soft-C runtime.
 
-## Broker workflow (approved — not in CLI output yet)
+## Phase 6 — Agent Brief
 
-> Design: [`superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md)  
-> Plan: [`superpowers/plans/2026-11-18-broker-workflow.md`](./superpowers/plans/2026-11-18-broker-workflow.md)
+Shipped:
 
-**Shipped (first slice):** Coding briefs can recommend **Superpowers** as a contractor; `ezy next` prints an ordered **Workflow** section (contractor → recommended skills → custom uncovered steps) and matching prompt text. Flat skill list remains for compatibility.
+- `ezy brief`;
+- `.ezy/brief.json`;
+- untrusted brief validation;
+- requirement-covering selection;
+- heuristic fallback when no brief is supplied.
 
-**Not in this slice:** broader GitHub discovery beyond existing skills.sh search; workflow does not auto-install contractors as atomic skills.
+## Phase 7 — Project Brain
 
-## Phase 8 — Launch and Distribution (current)
+Shipped:
 
-- Make the CLI installable and usable outside this repository.
-- Use task fit plus public reputation and maintenance evidence for skill recommendations; show the evidence and review state.
-- Keep external skill content untrusted and installs user-approved.
-- Launch does not require hand-testing every indexed skill; deeper tests can support stronger verification labels after launch.
-- Planned global install command after first publication: `npm install --global @make-it-ezy/cli`.
+- `.ezy/brain.json`;
+- machine slice;
+- optional host-maintained `agent` slice;
+- brain does not replace the brief or become an autonomous planner.
 
-## Post-launch (not release blockers)
+## Broker workflow — first slice
 
-| Phase | Work |
+Shipped:
+
+- supported coding briefs may recommend Superpowers as a contractor;
+- `ezy next` can print ordered Workflow stages;
+- individual skills can fill selected stages;
+- uncovered work remains explicit as custom host-agent work.
+
+Not shipped:
+
+- generalized contractor catalog;
+- automatic contractor installation;
+- complete broad GitHub discovery broker;
+- Ezy executing third-party skills.
+
+## Phase 8 — Launch and Distribution
+
+Current:
+
+- one public npm package: `make-it-ezy`;
+- global executable: `ezy`;
+- internal core bundled into the CLI package;
+- distribution/release quality;
+- current CLI/adapter consistency;
+- safe user-controlled installation;
+- recommendation evidence/review-state work only where actually implemented.
+
+## Lifecycle contracts
+
+`packages/core/src/lifecycle.ts` contains exported contracts for intent intake, skill evaluation, composition, outcome evaluation, evidence aggregation, and improvement proposals.
+
+These are **boundary contracts, not current CLI behavior**.
+
+No CLI command currently uses them as the controlling lifecycle.
+
+## Post-launch
+
+| Phase | Status |
 |---|---|
-| 9 | Outcome verification |
-| 10 | Web UI |
-| — | Soft-C, deep skill verify, trusted-auto, Codex marketplace plugin |
+| 9 — Outcome verification | Later |
+| 10 — Web UI | Later |
 
-## Source of truth
-
-- One-page workflow (Ezy vs host agent): [`HOW-IT-WORKS.md`](./HOW-IT-WORKS.md)
-- Shared agent guide / current work path: `AGENTS.md`
-- Phase sequence: `docs/ROADMAP.md`
-- Product intent: `docs/handoff/MAKE-IT-EZY-HANDOFF.md`
-- Phase 4 designs: `docs/superpowers/specs/2026-11-05-phase4-*-design.md`
-- Phase 5 design: `docs/superpowers/specs/2026-11-05-phase5-project-capability-planner-design.md`
+Soft-C, trusted-auto, mandatory Superpowers/Graphify, and a giant marketplace remain outside the current MVP.

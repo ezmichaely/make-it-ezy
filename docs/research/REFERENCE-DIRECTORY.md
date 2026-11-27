@@ -1,9 +1,9 @@
 # Reference Directory
 
 Verified against GitHub API on **2026-11-05** unless marked otherwise.  
-Source of truth for product intent: `docs/handoff/MAKE-IT-EZY-HANDOFF.md`.
+This is a research evidence file, not a product source of truth. Product authority is defined by `AGENTS.md`, accepted decisions, `docs/STATUS.md`, `docs/PRODUCT-DIRECTION.md`, `docs/ROADMAP.md`, `docs/MVP-SPECIFICATION.md`, and current implementation. Use `docs/INTEGRATIONS.md` for accepted integration targets.
 
-License / activity fields below are live API snapshots. Re-check before integration.
+License / activity fields below are external-source snapshots. Re-check before integration.
 
 ## Skills / catalogs
 

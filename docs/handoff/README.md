@@ -1,54 +1,39 @@
 # Handoff
 
-For the shared agent entry point and current work sequence, start at [`../../AGENTS.md`](../../AGENTS.md). Claude Code reaches the same guide through the root `CLAUDE.md` bridge.
+For repository work, start at [../../AGENTS.md](../../AGENTS.md).
 
-**Current product handoff:**
+Then read:
+1. [../AGENT-WORKFLOW.md](../AGENT-WORKFLOW.md)
+2. [../STATUS.md](../STATUS.md)
+3. [../PRODUCT-DIRECTION.md](../PRODUCT-DIRECTION.md)
+4. [../ROADMAP.md](../ROADMAP.md)
+5. [../MVP-SPECIFICATION.md](../MVP-SPECIFICATION.md)
+6. [../HOW-IT-WORKS.md](../HOW-IT-WORKS.md)
+7. [../EXECUTION-PLAN.md](../EXECUTION-PLAN.md) and the current task under `../execution/`
 
-[`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) (2026-11-08). Read this for **product intent and trust** after the shared agent guide; use the roadmap and MVP spec for **shipped** behavior. The handoff opens with **shipped → next → future** so vision sections are not mistaken for today's CLI.
+The long handoff [MAKE-IT-EZY-HANDOFF.md](./MAKE-IT-EZY-HANDOFF.md) is product intent/trust context, not a replacement for current implementation truth.
 
-Historical material is segregated so current handoffs stay small and unambiguous:
+## Current document roles
 
-- [`archive/`](./archive/) — superseded handoff snapshots and historical handoff analysis
-- [`../convo/`](../convo/) — raw conversation exports / transcripts (research history only)
-
-Do not reconstruct the current product from archived handoffs or raw conversation exports.
-
-## Precedence
-
-| Doc | Role |
+| Source | Role |
 |---|---|
-| [`../../AGENTS.md`](../../AGENTS.md) | **Shared agent entry point / current work path** |
-| [`../HOW-IT-WORKS.md`](../HOW-IT-WORKS.md) | **One-page workflow** (Ezy vs host agent; read before the long handoff) |
-| [`MAKE-IT-EZY-HANDOFF.md`](./MAKE-IT-EZY-HANDOFF.md) | **Product definition / trust / architecture intent** |
-| [`../ROADMAP.md`](../ROADMAP.md) | **Locked phase sequence / status** (wins on phase numbering) |
-| [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md) | **2026-11-07 audit** — findings **1–4 fixed**; **5–10** optional follow-up |
-| [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md) | What the CLI/skill do today (through Phase 7) |
-| [`../architecture/ARCHITECTURE.md`](../architecture/ARCHITECTURE.md) | Current layout |
-| [`../BUILDER-SKILLS.md`](../BUILDER-SKILLS.md) | Vendored builder skills (lockfile; not in git) |
-| [`../superpowers/specs/`](../superpowers/specs/) | Slice designs (Phases 4–7 done) |
-| [`../../skills/ezy/SKILL.md`](../../skills/ezy/SKILL.md) | Agent Skill adapter #1 |
+| ../../AGENTS.md | Agent operating rules and navigation |
+| ../AGENT-WORKFLOW.md | Anti-hallucination workflow |
+| ../STATUS.md | Current project state |
+| ../PRODUCT-DIRECTION.md | Intended product destination |
+| ../ROADMAP.md | Accepted phase order |
+| ../MVP-SPECIFICATION.md | Shipped behavior |
+| ../HOW-IT-WORKS.md | Current product boundary |
+| MAKE-IT-EZY-HANDOFF.md | Product intent and trust principles |
+| ../architecture/ | Current architecture |
+| ../decisions/ | Accepted durable decisions |
+| ../archive/handoff/ | Historical handoffs only |
+| ../audits/ | Canonical diagnostic evidence, not work orders |
+| ../archive/audits/ | Historical audit evidence only |
+| ../research/ | Research evidence, not product authority |
 
-## Scope (2026-11-06)
+Historical conversation/session exports are archived and are never current instructions.
 
-General by design, specific by launch: **coding tasks in your repo today**, other domains later, one at a time. See [`../ROADMAP.md` → Scope](../ROADMAP.md).
+## Rule
 
-## Phase map (see ROADMAP)
-
-Phases 0–7 are done. Audit findings **1–4** are resolved (see the audit doc). **Phase 8 — Launch and Distribution** is current; Phase 9 Verification and Phase 10 Web UI follow launch. Findings **5–10** are optional maintenance.
-
-The product handoff elevates trust/evaluation as product-critical; ROADMAP still schedules outcome verification before Web UI. Do not invent a new phase order in chat — change `docs/ROADMAP.md` explicitly if that priority should move.
-
-
-## Handoff structure
-
-Handoffs are actionable implementation context, not the canonical product definition.
-
-Use:
-- `docs/architecture/` for **what Ezy is** and its stable system boundaries.
-- `docs/decisions/` for **why we chose a direction** and durable decisions.
-- `docs/handoff/` for **what the next coding/review agent should do**.
-
-A good handoff should point agents to the relevant architecture and decisions instead of reconstructing the whole conversation.
-
-Current implementation instruction:
-- [Missing Ezy Capabilities — Coding Agent Instruction](./CODING-AGENT-INSTRUCTION-MISSING-EZY-CAPABILITIES-2026-11-23.md)
+If an agent cannot tell whether a statement is current, proposed, or historical, it must stop and classify the source before acting.

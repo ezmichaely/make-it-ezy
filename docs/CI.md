@@ -32,25 +32,19 @@ Before push/PR, follow root [`AGENTS.md`](../AGENTS.md) and `.agents/skills/ci-b
 
 ## Releases & changelog
 
-On every push to `main`, [release-please](https://github.com/googleapis/release-please) opens/updates a release PR that:
+On every push to `main`, [release-please](https://github.com/googleapis/release-please) opens/updates a release PR for the single public CLI package:
 
-- bumps `package.json` version from Conventional Commits
-- updates `CHANGELOG.md`
-- tags `vX.Y.Z` and creates a GitHub Release when that PR is merged
+- package: `make-it-ezy`
+- install: `npm install --global make-it-ezy`
+- executable: `ezy`
+- version/tag model: `make-it-ezy@X.Y.Z` / `vX.Y.Z`
+- changelog: `apps/cli/CHANGELOG.md`
 
-The current package version is recorded in `.release-please-manifest.json`. Keep using Conventional Commit subjects (`feat:`, `fix:`, etc.).
+Release Please is responsible for the version bump, changelog, tag, and GitHub Release. It does **not** publish to npm by itself.
 
-### npm CLI packages
+The root workspace remains private. `packages/core` is an internal private workspace package and is bundled into the published CLI, so users do not install it separately.
 
-The packages prepared for public npm publishing are `@make-it-ezy/core` and `@make-it-ezy/cli`; publish core first, then CLI, after confirming access to the `@make-it-ezy` npm scope. From the repository root:
-
-```bash
-pnpm build
-pnpm --filter @make-it-ezy/core publish --access public
-pnpm --filter @make-it-ezy/cli publish --access public
-```
-
-The CLI package declares the core workspace dependency; pnpm rewrites it to the published semver when packing. Publishing is a maintainer release action and is not run by CI in this phase.
+Publishing to npm is an explicit maintainer action and is not run automatically by the current release workflow.
 
 ## Not included (paid / optional)
 

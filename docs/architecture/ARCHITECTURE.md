@@ -1,85 +1,103 @@
 # Architecture
 
-Aligned to [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](../handoff/MAKE-IT-EZY-HANDOFF.md) (product intent). Phase status: [`docs/ROADMAP.md`](../ROADMAP.md).
+**Current phase:** [`docs/ROADMAP.md`](../ROADMAP.md)
+**Shipped behavior:** [`docs/MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md)
+**Agent rules:** [`../../AGENTS.md`](../../AGENTS.md)
 
-**Human-friendly explainer (Taglish):** [`ARCHITECTURE-EXPLAINED.md`](./ARCHITECTURE-EXPLAINED.md).
+## Product boundary
 
-## What Make It Ezy is
-
-A **local-first capability-intelligence and routing layer** — discover, evaluate, compose a minimum trusted set, hand off. Not a coding agent, marketplace, or multi-agent framework.
-
-**Scope today:** coding tasks in a repo (JS/TS first). The decision core — brief, scoring, selection, explanation — is domain-neutral; project inspection and the fallback lexicon are the domain-specific extension points. See [`../ROADMAP.md` → Scope](../ROADMAP.md).
-
-Flow:
+Make It Ezy is a local-first **decision and routing layer** for coding tasks.
 
 ```text
 USER OUTCOME
-  → understand project/environment
-  → classify task
-  → plan capabilities
-  → discover candidates (skills/tools/workflows/runtimes)
-  → decide minimum useful set
-  → risk / permission check (thin today)
-  → suggest-then-go install
-  → handoff prompt (ezy next) / Agent Skill continues in runtime
-  → verify (later)
-  → result
+    ↓
+project/context understanding
+    ↓
+requirements
+    ↓
+candidate discovery
+    ↓
+selection
+    ↓
+optional contractor/workflow routing
+    ↓
+handoff
+    ↓
+HOST AGENT EXECUTES
+    ↓
+verification (later Phase 9)
 ```
 
-Prefer: **DISCOVER → EVALUATE → COMPOSE → EXECUTE → VERIFY**  
-Avoid: building a new swarm framework.
+The host agent, not Ezy, performs specialist work and edits the repository.
 
-This is the intended product flow. The shipped CLI covers only the slices listed in [`../MVP-SPECIFICATION.md`](../MVP-SPECIFICATION.md); deep trust verification and outcome verification are not complete.
-
-## Two layers (critical)
-
-| Layer | Purpose | Examples today |
-|---|---|---|
-| **A — Build Make It Ezy** | Skills/workflows used by coding agents developing this repo | Superpowers, Ponytail, Graphify, Anthropic/Vercel skills |
-| **B — Product** | Make It Ezy discovers/evaluates/composes the ecosystem for end users | CLI + `skills/ezy` adapter |
-
-Layer A tools are **not** mandatory runtime dependencies of the product.
-
-## Current implementation (Phases 0–7 shipped; Phase 8 launch and distribution is current)
-
-Audit findings **1–4** are resolved; optional **5–10** remain in [`../audits/2026-11-07-codebase-gaps.md`](../audits/2026-11-07-codebase-gaps.md). **Phase 8 — Launch and Distribution** is current. See [`../ROADMAP.md`](../ROADMAP.md).
+## Current runtime
 
 ```text
-apps/cli            doctor | analyze | search | inspect | recommend | brief | brain | plan | next | install
-packages/core       detection, search, plan, brief, brain, install, handoff
-skills/ezy          Agent Skill adapter #1 (Claude /ezy, Cursor/Codex skills)
-catalog/            reserved (empty)
-docs/               research, architecture, specs, plans, handoff
-skills/ + skills-lock.json   Layer A pins; `.agents/skills/` installed locally (see BUILDER-SKILLS.md)
+apps/cli
+   ↓
+packages/core
+   ├─ detection
+   ├─ requirements
+   ├─ discovery/search
+   ├─ selection
+   ├─ planning
+   ├─ handoff/workflow
+   ├─ install
+   ├─ inspect
+   └─ Project Brain
 ```
 
-`analyze` is wired into `plan` / `next` (Phase 5): requirements come from the goal plus the detected project.
+Current planner path:
 
-No AI SDK. No database. No mandatory hosted backend. Soft-C (CLI spawning Codex/Claude) and deep verify are not shipped.
+`analyze → requirements → search → select → plan → handoff`
 
-## Shipped vs later
+`packages/core/src/lifecycle.ts` is **not** the controlling runtime pipeline. It contains exported boundary contracts that are unit-tested but not called by the CLI/planner.
 
-| Box | Status |
+## Two layers
+
+| Layer | Purpose |
 |---|---|
-| Discovery (search / inspect / recommend) | Shipped |
-| Decision engine (`ezy plan`) | Shipped (brief-driven (agent research) with heuristic fallback) |
-| Gated install + Cursor `.agents/skills` | Shipped (adapter #0) |
-| Handoff (`ezy next`) | Shipped |
-| Agent Skill (`skills/ezy`) | Shipped (adapter #1) |
-| Project Capability Planner (project-aware `plan`) | **Phase 5 — shipped** |
-| Agent Brief + decision quality (`ezy brief`) | **Phase 6 — shipped** |
-| Project Brain (`.ezy/brain.json`, `ezy brain` / enrich) | **Phase 7 — shipped** |
-| Launch and distribution | Phase 8 — current |
-| Outcome verification | Phase 9 |
-| Deep verify / trusted-auto | Later |
-| Soft-C / Codex marketplace plugin | Later |
-| Web UI | Phase 10 |
+| Build layer | Development aids used while building Ezy: builder skills, Graphify, Superpowers, Ponytail, etc. |
+| Product layer | Ezy's actual end-user CLI and `skills/ezy` adapter |
 
-See `docs/ROADMAP.md` for the locked sequence.
+Build-layer tools are not automatically product runtime dependencies.
 
-## Non-goals (near term)
+## Current shipped surface
 
-- LangGraph / CrewAI / AutoGen / Ruflo as core
-- Copying all skills into the repo
-- Mandatory hosted backend or paid Make It Ezy API
-- Treating Superpowers as required end-user runtime
+- `apps/cli`: `doctor`, `analyze`, `search`, `inspect`, `recommend`, `brief`, `brain`, `plan`, `next`, `install`
+- `packages/core`: current planning/discovery/install/handoff implementation
+- `skills/ezy`: end-user host-agent adapter
+- `catalog/`: reserved; not a complete catalog
+- lifecycle contracts: internal boundary only
+
+## Architectural principles
+
+1. Ezy decides; the host agent executes.
+2. External skills are untrusted until inspected/approved.
+3. Prefer local capabilities where the current implementation guarantees local-first behavior.
+4. Do not add runtime dependencies, hosted services, telemetry, or LLM calls without an explicit decision.
+5. Contractors/providers remain replaceable integrations.
+6. Do not turn research artifacts into runtime dependencies.
+7. Keep the core small; expand only when a real product requirement justifies it.
+
+## Future architecture
+
+```text
+intent
+ ↓
+requirements
+ ↓
+discovery
+ ↓
+evaluation
+ ↓
+composition
+ ↓
+host execution
+ ↓
+outcome verification
+ ↓
+privacy-safe evidence
+```
+
+Only the shipped portions should be described as current behavior.

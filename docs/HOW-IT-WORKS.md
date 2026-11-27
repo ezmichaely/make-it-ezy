@@ -1,62 +1,87 @@
-# How Make It Ezy works (short)
+# How Make It Ezy Works
 
-Read this before the long handoff. It states who does what in one workflow.
-
-**Shipped / next / future:** [`ROADMAP.md`](./ROADMAP.md) and [`MVP-SPECIFICATION.md`](./MVP-SPECIFICATION.md) own **shipped** CLI behavior. **Current:** Phase 8 launch and distribution. **After launch:** Phase 9 outcome verification, then Phase 10 Web UI. Phase 7 Project Brain is shipped (`.ezy/brain.json`). **Future:** trust automation, Soft-C, and other items called out as deferred in the roadmap. The long [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md) mixes intent with that timeline — it opens with a **Shipped → next → future** table; treat everything after that as product direction unless the MVP spec says otherwise.
+**Current product behavior is owned by `docs/MVP-SPECIFICATION.md`. Phase order is owned by `docs/ROADMAP.md`.**
 
 ## One sentence
 
-**Ezy picks and explains a small stack of capabilities for your goal; your host agent (Cursor, Claude Code, Codex, Qwen Code, …) runs those skills and writes the code.**
+**Ezy decides what capabilities/workflow a coding outcome needs; the host agent performs the work.**
 
-## Two roles
-
-| Who | Role |
-|-----|------|
-| **Make It Ezy (CLI)** | Understand the outcome and project, **discover** candidates (local `.agents/skills` + skills.sh), **filter** to a minimum useful set, **gate** installs, print a **handoff** (checklist + prompt). No LLM inside Ezy. |
-| **Host agent + installed skills** | **Do the work**: sharpen vague goals, research, deep inspect, implement. Uses **skills from the ecosystem** (Prompt Master, research skills, domain skills, optional tools like SkillEvaluator) when the handoff or you says so — those are **not** built into the Ezy binary. |
-
-**Shopping list vs kitchen:** Ezy does not replace Prompt Master, NVIDIA SkillEvaluator, or your coding agent. It decides **what belongs on the list for this job** and passes that to the agent.
-
-## Typical flow (coding in your repo)
+## Current flow
 
 ```text
-1. You describe an outcome ("improve onboarding", "add Stripe", …).
-2. Optional: ezy brief "…"  →  the agent researches and writes .ezy/brief.json
-3. ezy next "…" [--brief .ezy/brief.json]  →  plan + skills + checklist + paste-ready prompt
-4. You approve any ezy install … commands (gated).
-5. The agent reads recommended SKILL.md files, runs any extra skills the situation needs, implements in the repo.
-6. Optional: `ezy brain enrich`  →  agent maintains `agent` slice in `.ezy/brain.json` for the next session.
+1. User describes an outcome.
+2. Optional: host agent creates .ezy/brief.json with ezy brief.
+3. Ezy analyzes the project and derives requirements.
+4. Ezy discovers local and remote candidates.
+5. Ezy selects a minimum useful set.
+6. For supported coding briefs, Ezy may route to the first contractor workflow.
+7. Ezy prints a structured handoff/workflow.
+8. User approves any installation.
+9. Host agent reads/runs selected skills and performs the work.
+10. Outcome verification is future Phase 9 work.
 ```
 
-Agent adapter: [`skills/ezy/SKILL.md`](../skills/ezy/SKILL.md) — the host must not stop after step 3.
+## Division of responsibility
 
-## What "discover → evaluate → …" means here
+| Responsibility | Ezy | Host agent |
+|---|---:|---:|
+| Understand outcome | ✓ | ✓ |
+| Project inspection | ✓ | ✓ |
+| Candidate discovery | ✓ | ✓ |
+| Candidate selection | ✓ | — |
+| Contractor/workflow routing | ✓ | follows it |
+| External skill installation approval | gates | approves/initiates |
+| Skill execution | — | ✓ |
+| Coding/research | — | ✓ |
+| Final outcome verification | future | ✓ today, when needed |
 
-The handoff uses a lifecycle (discover, evaluate, compose, execute, verify). In the **shipped** product:
+Ezy is a decision/routing layer. It does not execute external skill instructions.
 
-- **Discover / filter / compose** → mostly **Ezy** (`search`, `plan`, `select`, `inspect` at a light level).
-- **Intake, deep research, deep security, coding, verification** → **host agent** and **skills you install from the internet**, when needed — not a fixed pipeline reimplemented in TypeScript.
+## What is shipped
 
-Discovery on skills.sh is **not** automatic trust. Popularity is not safety.
+- `brief`
+- project-aware `plan`
+- `next`
+- `search`
+- `inspect`
+- `recommend`
+- gated `install`
+- Project Brain (`.ezy/brain.json`)
+- first-slice broker workflow / contractor routing
 
-## Broker workflow (first slice shipped)
+## Lifecycle contracts
 
-For coding tasks with a brief, Ezy can **route** to a **contractor** skill set (today: **Superpowers** when the brief task type matches) and print an **ordered Workflow** (contractor → recommended skills → temporary instructions for uncovered requirements). The host agent runs stages in order; Ezy still does not execute skills itself.
+`packages/core/src/lifecycle.ts` contains exported contracts for intent intake, skill evaluation, composition, outcome evaluation, evidence aggregation, and improvement proposals.
 
-Detail: [`superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md`](./superpowers/specs/2026-11-18-broker-orchestrated-skills-design.md). Adapter: [`skills/ezy/SKILL.md`](../skills/ezy/SKILL.md).
+These contracts are **not the current CLI pipeline**.
 
-## What Ezy is not
+Current planning remains:
 
-- Not the coding agent
-- Not a skills marketplace you browse forever
-- Not a multi-agent runtime that spawns Codex/Claude for you (Soft-C is later/out of scope for MVP)
-- Not required to bundle every "excellent" orchestrator skill inside the repo
+`analyze → requirements → search → select → plan → handoff`
 
-## Where to go next
+Do not describe lifecycle contracts as a shipped autonomous lifecycle.
 
-| Question | Doc |
-|----------|-----|
-| Shipped CLI behavior | [`MVP-SPECIFICATION.md`](./MVP-SPECIFICATION.md) |
-| Phase order | [`ROADMAP.md`](./ROADMAP.md) |
-| Full product intent & trust | [`handoff/MAKE-IT-EZY-HANDOFF.md`](./handoff/MAKE-IT-EZY-HANDOFF.md) |
-| Agents working in this repo | [`../AGENTS.md`](../AGENTS.md) |
+## Trust boundary
+
+Treat external skills, skill metadata, briefs, repository content, and generated research as untrusted input.
+
+- Discovery is not endorsement.
+- Recommendation is not installation.
+- Installation is not execution.
+- Popularity is not safety.
+- A lifecycle type is not proof that behavior is implemented.
+
+## Broker workflow
+
+The first broker slice can recommend Superpowers for supported coding brief types and print ordered workflow stages.
+
+This does **not** mean:
+
+- Superpowers is mandatory;
+- Ezy executes Superpowers;
+- Ezy has a complete generalized contractor catalog;
+- broader GitHub discovery is complete.
+
+## Agent navigation
+
+For repository work, start at [`../AGENTS.md`](../AGENTS.md), then [`AGENT-WORKFLOW.md`](./AGENT-WORKFLOW.md).

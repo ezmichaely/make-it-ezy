@@ -34,7 +34,7 @@ Ezy's internal lifecycle is role-based rather than provider-based:
 
 These are decision roles, not mandatory built-in agents. External providers may fill a role without becoming mandatory Ezy dependencies.
 
-The stable internal contracts now live in `packages/core/src/lifecycle-types.ts` and `packages/core/src/lifecycle.ts`. They intentionally do not replace `SKILL.md` or host-agent protocols.
+The stable internal lifecycle contracts live in `packages/core/src/lifecycle-types.ts` and `packages/core/src/lifecycle.ts`. They intentionally do not replace `SKILL.md` or host-agent protocols. They are currently boundary contracts: discovery/planning still use the existing planner/selector path, and full outcome verification remains Phase 9.
 
 ## Minimum useful composition
 

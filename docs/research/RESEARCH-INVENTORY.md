@@ -16,6 +16,10 @@ Decision vocabulary: **BUILD | REUSE | INTEGRATE | STUDY | OPTIONAL | IGNORE**
 6. **Phase 1 CLI already exists** and passes tests; next product work is Phase 2 discovery, not more architecture packages.
 7. **This repo already installed 52 agent skills** — useful evidence for how discovery/install should work later.
 
+## Captured corpus
+
+The 224 MB SkillEvaluator capture lives in [`../skill-scan/`](../skill-scan/) and is **research evidence, not a product catalog**. What to keep in the repository and what to move out is proposed in [`SKILL-SCAN-CORPUS-PLAN.md`](./SKILL-SCAN-CORPUS-PLAN.md) (nothing moved yet).
+
 ## Skill ecosystem
 
 | Project | Decision | Why |
