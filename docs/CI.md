@@ -25,9 +25,9 @@ Before push/PR, follow root [`AGENTS.md`](../AGENTS.md) and `.agents/skills/ci-b
 
 ## PR workflow
 
-1. Branch off `main`
-2. Open PR (GitHub fills `.github/PULL_REQUEST_TEMPLATE.md`) — CI + CodeQL must pass
-3. Merge
+1. One task per branch off latest `main`; run `pnpm check:ci`; review diff; commit; push task branch
+2. Open PR targeting `main` (GitHub fills `.github/PULL_REQUEST_TEMPLATE.md`) — CI + CodeQL must pass; agents create PRs for genuinely completed tasks and report PR details
+3. Stop and wait for user review/merge; agents do not merge unless explicitly authorized; never push normal task work directly to `main`
 4. Enable **Settings → General → Automatically delete head branches** so merged branches disappear (ask a maintainer if you can’t toggle it)
 
 ## Releases & changelog
