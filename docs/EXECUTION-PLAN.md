@@ -59,6 +59,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 - [ ] **013** — Decide/document Windows support
 - [ ] **014** — Node 20 + 22 CI matrix
 - [ ] **015** — Publish checklist / package metadata verification
+- [ ] **016** — Post-batch reconciliation / next-batch generation
 
 ## Later, deliberately not queued for implementation yet
 
