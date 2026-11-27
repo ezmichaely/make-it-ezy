@@ -6,6 +6,20 @@ After Tasks 001–015 have been completed and validated, reconcile the execution
 
 This is a **reconciliation gate**, not an implementation task.
 
+## Audit Report Naming
+
+When a repository audit is produced for this workflow, save the report under `docs/audits/` with the auditing model/provider name and audit date in the filename.
+
+Format:
+
+`FULL-REPOSITORY-AUDIT-{MODEL-NAME}-{YYYY-MM-DD}.md`
+
+Example:
+
+`FULL-REPOSITORY-AUDIT-OPENCODE-ICEMAN-FREE-2026-11-27.md`
+
+Use the actual model/provider identifier used for the audit. Normalize filename-unsafe characters to uppercase letters, numbers, and hyphens. Do not overwrite a prior audit with a generic filename such as `FULL-REPOSITORY-AUDIT.md`.
+
 ## Read First
 
 - `AGENTS.md`
