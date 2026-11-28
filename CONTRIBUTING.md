@@ -44,7 +44,7 @@ When a phase moves from **in progress** to **shipped**, update code + tests and 
 
 Do not update archived audits, historical conversations, or completed plans as part of normal phase shipping. Do not create competing documentation merely to mirror a change; update the document that owns the claim and only the dependent docs that need synchronization.
 
-Run `pnpm check:ci` before push (see [`.agents/skills/ci-before-push/SKILL.md`](./.agents/skills/ci-before-push/SKILL.md)).
+Run `pnpm check:ci` before push (see [`skills/ci-before-push/SKILL.md`](./skills/ci-before-push/SKILL.md)).
 ## Principles
 
 1. Simplify before adding complexity.

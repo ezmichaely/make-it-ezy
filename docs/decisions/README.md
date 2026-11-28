@@ -29,23 +29,15 @@ Keep it concise. Do not copy conversations here.
 
 ## Precedence
 
-For product/architecture questions:
+The authoritative source-of-truth hierarchy is [`AGENTS.md`](../AGENTS.md) §2. **This directory does not define a second ordering.**
 
-1. explicit user instruction;
-2. accepted decision in `docs/decisions/`;
-3. `AGENTS.md` operating rules;
-4. `docs/ROADMAP.md` phase/status;
-5. `docs/MVP-SPECIFICATION.md` shipped behavior;
-6. current architecture docs;
-7. current implementation/tests;
-8. current handoff;
-9. specs/plans;
-10. audits/research/history.
+Scoped notes:
 
-For current behavior, implementation/tests are the final verification layer.
-
-For current phase, `ROADMAP.md` is authoritative.
-
-For agent workflow, `AGENTS.md` is authoritative.
-
-When guidance conflicts, do not create a second competing source. Resolve the conflict in the existing authority.
+- The hierarchy in `AGENTS.md` §2 is authoritative; this directory does not re-order it.
+- Accepted decisions outrank `docs/ROADMAP.md`, `docs/MVP-SPECIFICATION.md`, architecture, implementation/tests, handoff, specs/plans, and evidence, but do not override explicit user instruction or `AGENTS.md`.
+- Current phase: `docs/ROADMAP.md` is authoritative.
+- Shipped behavior: `docs/MVP-SPECIFICATION.md`; current behavior is finally verified against implementation/tests.
+- Agent workflow: `AGENTS.md` + `docs/AGENT-WORKFLOW.md` are authoritative.
+- `docs/STATUS.md` = current state; `docs/PRODUCT-DIRECTION.md` = product direction; handoff = context, not current authority.
+- Specs/plans and audits/research/history are lower precedence evidence, not work orders.
+- When guidance conflicts, do not create a second competing source. Resolve the conflict in the existing authority.

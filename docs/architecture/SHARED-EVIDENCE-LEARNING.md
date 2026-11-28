@@ -8,12 +8,12 @@ This document extends the existing evidence-driven self-improvement direction. I
 
 ## Implementation status
 
-Privacy-safe lifecycle contracts are now implemented locally in:
+Privacy-safe lifecycle **contracts and local helpers** are implemented in:
 - `packages/core/src/lifecycle-types.ts`
 - `packages/core/src/lifecycle.ts`
 - `packages/core/src/lifecycle.test.ts`
 
-They provide structured outcome evidence, local aggregation, and reversible improvement proposals. They do **not** upload telemetry, require a hosted service, or automatically modify Ezy.
+They provide exported contracts for structured outcome evidence, local aggregation (`aggregateEvidence`), and reversible improvement proposals. They are **boundary contracts, not wired into the controlling CLI/planner pipeline**. No CLI command currently uses them as the controlling lifecycle. They do **not** upload telemetry, require a hosted service, or automatically modify Ezy. See `docs/MVP-SPECIFICATION.md` “Lifecycle contracts.”
 
 A future shared-learning service remains out of scope until there is an explicit product decision and privacy/consent model.
 

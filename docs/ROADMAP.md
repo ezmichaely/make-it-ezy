@@ -96,7 +96,7 @@ Lifecycle contracts in `packages/core/src/lifecycle.ts` are exported boundary co
 
 **Later.**
 
-Use the same core decision layer. The UI should not create a second product architecture.
+Use the same core decision layer. The UI must not create a second product architecture. A minimal Phase 10 UI is **not** the eventual FUTURE-ECOSYSTEM single control cockpit (agent control, provider routing, unified control plane); see [`docs/architecture/FUTURE-ECOSYSTEM.md`](./architecture/FUTURE-ECOSYSTEM.md).
 
 ## Future horizon — directional roadmap
 
@@ -141,6 +141,10 @@ The goal is that a user can return after forgetting most of the project and reco
 Only after the coding workflow is stable.
 
 Expand beyond repository coding one domain at a time, reusing the core decision/context/routing model rather than creating unrelated domain-specific architectures.
+
+### Beyond Phase 14 — unscheduled / decision-gated
+
+Phases 0–14 are a directional horizon, not a committed queue. Beyond Phase 14, agent-control/router integration, Home Node / eventual Home AI ecosystem, and the long-term single UI + control plane are **unscheduled and decision-gated**; see [`docs/architecture/FUTURE-ECOSYSTEM.md`](./architecture/FUTURE-ECOSYSTEM.md). They are not current work and are not approved merely by appearing here. FUTURE-ECOSYSTEM is an architectural compass, not today's implementation backlog.
 
 ## Deliberately not current
 
