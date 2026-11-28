@@ -10,14 +10,17 @@ Before changing code, docs, tests, or configuration:
 1. Read `AGENTS.md` completely.
 2. Read `docs/AGENT-WORKFLOW.md`.
 3. Read `README.md` only for the human-facing product summary.
-4. Read `docs/HOW-IT-WORKS.md` for the current Ezy/host-agent boundary.
-5. Read `docs/ROADMAP.md` for the current phase and shipped status.
-6. Read `docs/MVP-SPECIFICATION.md` for behavior that is actually shipped.
-7. Read relevant accepted decisions in `docs/decisions/`.
-8. Read the relevant architecture document.
-9. Read the relevant implementation under `apps/`, `packages/`, or `skills/`.
-10. Read relevant callers and tests before editing behavior.
-11. For active work, read `docs/EXECUTION-PLAN.md` and the current task under `docs/execution/`.
+4. Read `docs/STATUS.md` for current state and `docs/PRODUCT-DIRECTION.md` for product direction.
+5. Read `docs/HOW-IT-WORKS.md` for the current Ezy/host-agent boundary.
+6. Read `docs/ROADMAP.md` for the current phase and shipped status.
+7. Read `docs/MVP-SPECIFICATION.md` for behavior that is actually shipped.
+8. Read relevant accepted decisions in `docs/decisions/`.
+9. Read the relevant architecture document.
+10. For active work, read `docs/EXECUTION-PLAN.md` and the current task under `docs/execution/`.
+11. Read the relevant implementation under `apps/`, `packages/`, or `skills/`.
+12. Read relevant callers and tests before editing behavior.
+
+`docs/EXECUTION-PLAN.md` is the active audit-reconciliation queue; `docs/execution/` files are atomic instructions. The execution plan does **not** override `docs/ROADMAP.md` or `docs/MVP-SPECIFICATION.md`. Current phase is `docs/ROADMAP.md`; shipped behavior is `docs/MVP-SPECIFICATION.md`. `docs/handoff/` is context, not current authority.
 
 Before implementation, you must be able to state:
 

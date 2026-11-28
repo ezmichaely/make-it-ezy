@@ -69,3 +69,33 @@ AGENTS.md
 ## Next
 
 Task 004.
+
+## Completion record
+
+### WHAT CHANGED
+
+- Reconciled `AGENTS.md` §1 and `docs/AGENT-WORKFLOW.md` §1 into one reading path: `AGENTS.md → AGENT-WORKFLOW → STATUS + PRODUCT-DIRECTION → README → HOW-IT-WORKS → ROADMAP → MVP-SPECIFICATION → accepted decisions → relevant architecture → EXECUTION-PLAN → current task → implementation + callers + tests`. Read `EXECUTION-PLAN` + current task before implementation; execution plan does not override `ROADMAP` or `MVP-SPECIFICATION`.
+- Reconciled precedence: `docs/decisions/README.md` defers to `AGENTS.md` §2 instead of listing a second ordering; scoped notes retained.
+- `README.md`: product intent/trust handoff marked context-not-authority; added `PRODUCT-DIRECTION` and `STATUS` rows.
+- `docs/architecture/SHARED-EVIDENCE-LEARNING.md`: lifecycle contracts clarified as boundary contracts + local helpers, not wired into the controlling CLI/planner pipeline.
+- `docs/ROADMAP.md`: Phase 10 Web UI disambiguated from FUTURE-ECOSYSTEM control cockpit; added “Beyond Phase 14 — unscheduled / decision-gated” note.
+- Fixed `ci-before-push` links to tracked `skills/ci-before-push/SKILL.md`.
+- Marked Task 003 complete.
+
+### WHY
+
+Previously `AGENTS.md` ordered implementation/callers before `EXECUTION-PLAN`, conflicting with `AGENT-WORKFLOW.md`; `docs/decisions/README.md` listed a reversed `AGENTS.md` vs accepted-decision ordering; `STATUS`/`PRODUCT-DIRECTION` were not in the mandatory path; the ci-before-push link pointed to a gitignored symlink; lifecycle docs could be read as active runtime; roadmap horizon stopped before agent-control/Home Node.
+
+### VALIDATION
+
+- Read modified documents together; one unambiguous path; no competing source introduced.
+- No `.agents/skills/ci-before-push/SKILL.md` active links remain in `CONTRIBUTING.md`/`docs/CI.md`.
+- `pnpm check:ci` PASS (21 files / 189 tests; build/lint/typecheck/audit).
+
+### DISPOSITION
+
+Task complete. Graphify map from PR #31 remains optional and is not a mandatory Graphify runtime. Task 004 not started.
+
+## Next
+
+Task 004.

@@ -111,7 +111,9 @@ pnpm ezy next "<outcome>" --local-only
 | Current execution queue | [`docs/EXECUTION-PLAN.md`](./docs/EXECUTION-PLAN.md) |
 | Accepted decisions | [`docs/decisions/`](./docs/decisions/) |
 | Current architecture | [`docs/architecture/ARCHITECTURE.md`](./docs/architecture/ARCHITECTURE.md) |
-| Product intent/trust | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md) |
+| Product intent/trust | [`docs/handoff/MAKE-IT-EZY-HANDOFF.md`](./docs/handoff/MAKE-IT-EZY-HANDOFF.md) (context, not current authority) |
+| Product direction | [`docs/PRODUCT-DIRECTION.md`](./docs/PRODUCT-DIRECTION.md) |
+| Current state | [`docs/STATUS.md`](./docs/STATUS.md) |
 | Builder skills | [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md) |
 | Current audit | [`docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md`](./docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md) |
 | Audits/research | Read only when the current task specifically requires evidence; historical audits are in `docs/archive/audits/` |
