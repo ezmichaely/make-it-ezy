@@ -51,12 +51,14 @@ function buildWorkflow(
   skills: HandoffSkill[],
   uncovered: Requirement[],
   outcome: string,
+  cwd: string,
 ): WorkflowStage[] {
   const stages: WorkflowStage[] = [];
   let order = 1;
 
   const primary = contractors[0];
   if (primary) {
+    const installed = isSkillInstalledLocally(primary.contractor.name, cwd);
     stages.push({
       type: "contractor",
       order: order++,
@@ -64,6 +66,7 @@ function buildWorkflow(
       reason: primary.reason,
       contractorName: primary.contractor.name,
       contractorSource: primary.contractor.source,
+      installed,
     });
   }
 
@@ -99,12 +102,22 @@ function appendWorkflowToPrompt(lines: string[], workflow: WorkflowStage[]): voi
   lines.push("", "Workflow (run in order):");
   for (const stage of workflow) {
     if (stage.type === "contractor") {
+      const installLine = `ezy install ${stage.contractorName} --source ${stage.contractorSource}`;
       lines.push(
         `${stage.order}. Contractor ${stage.contractorName} (${stage.contractorSource}) — ${stage.reason}`,
       );
-      lines.push(
-        `   Route to the contractor as one unit. Load its skills under .agents/skills/ and follow its own process (e.g. brainstorming before implementation). Context: ${stage.task}`,
-      );
+      if (stage.installed) {
+        lines.push(
+          `   Route to the contractor as one unit. Load its skills under .agents/skills/ and follow its own process (e.g. brainstorming before implementation). Context: ${stage.task}`,
+        );
+      } else {
+        lines.push(
+          `   This contractor must be installed first. Run \`${installLine}\` before using this workflow.`,
+        );
+        lines.push(
+          `   After install, route to the contractor as one unit. Load its skills under .agents/skills/ and follow its own process (e.g. brainstorming before implementation). Context: ${stage.task}`,
+        );
+      }
     } else if (stage.type === "skill") {
       const install = stage.installed ? "" : " (install first)";
       lines.push(
@@ -264,10 +277,16 @@ export function composeHandoffFromItems(
   ];
 
   const uncovered = items.uncovered ?? [];
-  const workflow = buildWorkflow(contractors, skills, uncovered, trimmed);
+  const workflow = buildWorkflow(contractors, skills, uncovered, trimmed, cwd);
 
   const checklist: string[] = [];
   const seenInstall = new Set<string>();
+  for (const stage of workflow) {
+    if (stage.type === "contractor" && !stage.installed && !seenInstall.has(stage.contractorName)) {
+      seenInstall.add(stage.contractorName);
+      checklist.push(`ezy install ${stage.contractorName} --source ${stage.contractorSource}`);
+    }
+  }
   for (const s of skills) {
     if (s.bucket === "recommended" && !s.installed && !seenInstall.has(s.name)) {
       seenInstall.add(s.name);

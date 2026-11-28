@@ -393,8 +393,9 @@ export function formatHandoff(report: HandoffReport): string {
     lines.push("Workflow");
     for (const stage of report.workflow) {
       if (stage.type === "contractor") {
+        const status = stage.installed ? "installed" : "not installed — install first";
         lines.push(
-          `${stage.order}. contractor · ${stage.contractorName} · ${stage.contractorSource} — ${stage.reason}`,
+          `${stage.order}. contractor · ${stage.contractorName} · ${status} · ${stage.contractorSource} — ${stage.reason}`,
         );
       } else if (stage.type === "skill") {
         const status = stage.installed ? "installed" : "not installed";

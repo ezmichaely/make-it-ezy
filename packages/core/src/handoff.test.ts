@@ -316,8 +316,8 @@ describe("buildHandoff", () => {
     expect(report.workflow.some((s) => s.type === "custom")).toBe(true);
   });
 
-  it("adds a contractor workflow stage when the plan recommends one", async () => {
-    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-contractor-"));
+  it("marks absent contractor as install-first and does not present it as available runtime", async () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-contractor-absent-"));
     writeFileSync(join(root, "package.json"), JSON.stringify({ name: "contractor" }));
     const fakePlan: PlanReport = {
       outcome: "Add a settings button",
@@ -343,9 +343,67 @@ describe("buildHandoff", () => {
     };
     vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
     const report = await buildHandoff("Add a settings button", { cwd: root, localOnly: true });
-    expect(report.workflow[0]).toMatchObject({ type: "contractor", contractorName: "superpowers" });
+    expect(report.workflow[0]).toMatchObject({
+      type: "contractor",
+      contractorName: "superpowers",
+      installed: false,
+    });
+    expect(report.checklist).toContain("ezy install superpowers --source obra/superpowers");
     expect(report.prompt).toContain("Workflow (run in order)");
-    expect(formatHandoff(report)).toContain("Workflow\n1. contractor · superpowers");
+    expect(report.prompt).toMatch(/must be installed first/i);
+    expect(report.prompt).toContain("ezy install superpowers --source obra/superpowers");
+    const text = formatHandoff(report);
+    expect(text).toContain("Workflow");
+    expect(text).toMatch(/superpowers/);
+    expect(text).toMatch(/not installed|install first/i);
+    expect(text).toContain("ezy install superpowers --source obra/superpowers");
+  });
+
+  it("reports contractor normally when its required skill is installed locally", async () => {
+    const root = mkdtempSync(join(tmpdir(), "ezy-handoff-contractor-present-"));
+    writeFileSync(join(root, "package.json"), JSON.stringify({ name: "contractor" }));
+    const skillDir = join(root, ".agents", "skills", "superpowers");
+    mkdirSync(skillDir, { recursive: true });
+    writeFileSync(
+      join(skillDir, "SKILL.md"),
+      "---\nname: superpowers\ndescription: Structured development workflow\n---\n",
+    );
+    const fakePlan: PlanReport = {
+      outcome: "Add a settings button",
+      capabilities: ["ui"],
+      requirements: [],
+      project: { projectRoot: root, packageName: "contractor", language: null, frameworks: [], localSkills: [] },
+      decisions: [],
+      recommended: [],
+      optional: [],
+      notNeeded: [],
+      notes: [],
+      basis: "brief",
+      taskType: "feature",
+      research: [],
+      uncovered: [],
+      excluded: [],
+      contractors: [
+        {
+          contractor: SUPERPOWERS_CONTRACTOR,
+          reason: "Coding task type matches Superpowers workflow scope",
+        },
+      ],
+    };
+    vi.spyOn(planMod, "planOutcome").mockResolvedValue(fakePlan);
+    const report = await buildHandoff("Add a settings button", { cwd: root, localOnly: true });
+    expect(report.workflow[0]).toMatchObject({
+      type: "contractor",
+      contractorName: "superpowers",
+      installed: true,
+    });
+    expect(report.checklist).not.toContain("ezy install superpowers --source obra/superpowers");
+    expect(report.prompt).toContain("Workflow (run in order)");
+    expect(report.prompt).not.toMatch(/must be installed first/i);
+    const text = formatHandoff(report);
+    expect(text).toContain("Workflow");
+    expect(text).toMatch(/superpowers/);
+    expect(text).not.toMatch(/must be installed first/i);
   });
 
   it("prints the heuristic basis and defaults uncovered/excluded on the query path", () => {
