@@ -2,7 +2,7 @@
 
 > **Status:** historical implementation plans. Completed or superseded. Not authority, not a work order.
 
-These are the task-by-task plans that built Phases 2–7. They are kept as the "how it was built"
+These are the task-by-task plans that built Phases 2–8. They are kept as the "how it was built"
 record. Current work is driven by [`docs/EXECUTION-PLAN.md`](../../EXECUTION-PLAN.md).
 
 ## Index
@@ -17,6 +17,7 @@ record. Current work is driven by [`docs/EXECUTION-PLAN.md`](../../EXECUTION-PLA
 | [`superpowers/2026-11-05-phase5-project-capability-planner.md`](./superpowers/2026-11-05-phase5-project-capability-planner.md) | 5 | Made `plan` / `next` project-aware; kept install/handoff gates unchanged. |
 | [`superpowers/2026-11-06-phase6-agent-brief.md`](./superpowers/2026-11-06-phase6-agent-brief.md) | 6 | Added `brief.ts` and `select.ts`; coverage scoring plus greedy cover; `ezy brief` and `--brief`. |
 | [`superpowers/2026-11-17-phase7-project-brain.md`](./superpowers/2026-11-17-phase7-project-brain.md) | 7 | Added `brain.ts`, `.ezy/brain.json` merge-save, and `ezy brain enrich`. |
+| [`superpowers/2026-11-18-phase8-launch.md`](./superpowers/2026-11-18-phase8-launch.md) | 8 | Early launch plan for publishing two packages. Superseded by shipped single-package `make-it-ezy` distribution; kept for history. |
 | [`FOLLOW-UP-WORK-PLAN-2026-11-25.md`](./FOLLOW-UP-WORK-PLAN-2026-11-25.md) | — | **Proposal only — nothing was started.** Superseded by the canonical audit and `docs/EXECUTION-PLAN.md`. |
 
 ## Reading rule

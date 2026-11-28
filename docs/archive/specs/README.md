@@ -3,7 +3,7 @@
 > **Status:** historical design specifications. The behavior they describe is now represented by
 > current docs and code. Not authority, not a work order.
 
-These are the approved Phase 2–7 designs. They are kept because they explain *why* the shipped
+These are the approved Phase 2–8 designs. They are kept because they explain *why* the shipped
 behavior looks the way it does. They are **not** a description of current behavior — read
 `docs/MVP-SPECIFICATION.md` and the implementation for that.
 
@@ -20,13 +20,7 @@ behavior looks the way it does. They are **not** a description of current behavi
 | [`2026-11-06-phase6-agent-brief-design.md`](./superpowers/2026-11-06-phase6-agent-brief-design.md) | shipped | 6 | Agent Brief + decision quality — requirement coverage, explained minimum set. |
 | [`2026-11-06-phase6-project-brain-design.md`](./superpowers/2026-11-06-phase6-project-brain-design.md) | superseded | 6 | Early Project Brain design (silent cache refreshed by `plan` / `next`). Superseded by the Phase 7 hybrid design; kept for history. |
 | [`2026-11-17-phase7-project-brain-design.md`](./superpowers/2026-11-17-phase7-project-brain-design.md) | shipped | 7 | `.ezy/brain.json` hybrid B — machine slice in the CLI, optional agent slice via `ezy brain enrich`. |
-
-## Not in this folder
-
-- **Phase 8 (Launch and Distribution)** specs are still under `docs/superpowers/specs/` because
-  they are the current phase's documents — although they currently contradict shipped
-  distribution and are the subject of **Task 002**.
-- Phase 0–1 designs predate the archived set.
+| [`2026-11-18-phase8-launch-design.md`](./superpowers/2026-11-18-phase8-launch-design.md) | superseded | 8 | Early launch design that chose publishing CLI and core as two public packages. Shipped distribution is one `make-it-ezy` package with core bundled; kept for history. |
 
 ## Reading rule
 
