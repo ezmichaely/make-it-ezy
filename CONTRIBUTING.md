@@ -18,9 +18,11 @@ Vendored builder skills: see [`docs/BUILDER-SKILLS.md`](./docs/BUILDER-SKILLS.md
 
 ## Pull requests
 
-1. Branch from `main`, open a PR (do not push straight to `main` for feature work).
-2. Wait for **CI** + **CodeQL** (free on this public repo — see `docs/CI.md`).
-3. Merge when green; delete the branch after merge (enable auto-delete in repo Settings if available).
+1. One task per task-specific branch from latest `main`; do not push straight to `main` for feature work. See `AGENTS.md` + `docs/AGENT-WORKFLOW.md`.
+2. Run `pnpm check:ci`, verify/review diff, commit task changes, push task branch.
+3. Open a PR targeting `main` with actual changes/verification/known limitations; agents create this automatically for genuinely completed tasks, not just when separately asked.
+4. Wait for **CI** + **CodeQL** (free on this public repo — see `docs/CI.md`).
+5. Stop and wait for user review/merge; agents do not merge unless explicitly authorized. Delete branch after merge (enable auto-delete in repo Settings if available).
 
 ## Scope
 
