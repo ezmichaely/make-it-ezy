@@ -56,11 +56,11 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 ### Gate 2 — Package/release hardening
 
-- [ ] **010** — Packaged-artifact smoke test
-- [ ] **011** — Prepack build/clean hardening
-- [ ] **012** — Install name/source validation and installer pin
-- [ ] **013** — Decide/document Windows support
-- [ ] **014** — Node 20 + 22 CI matrix
+- [x] **010** — Packaged-artifact smoke test
+- [x] **011** — Prepack build/clean hardening
+- [x] **012** — Install name/source validation and installer pin
+- [x] **013** — Decide/document Windows support
+- [x] **014** — Node 20 + 22 CI matrix
 - [ ] **015** — Publish checklist / package metadata verification
 
 ### Gate 3 — Post-batch reconciliation (after 001–015)
