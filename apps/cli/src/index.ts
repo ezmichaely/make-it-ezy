@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import {
   analyzeProject,
   buildProjectSummary,
@@ -202,6 +203,7 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
   skillName: string;
   source?: string;
   code: number;
+  planReport?: Awaited<ReturnType<typeof planOutcome>>;
 }> {
   if (parsed.skill) {
     return {
@@ -222,13 +224,14 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
 
   const choices: SelectChoice[] = [];
   const sourceByName = new Map<string, string>();
+  let planReport: Awaited<ReturnType<typeof planOutcome>> | undefined;
 
   if (parsed.plan) {
-    const report = await planOutcome(parsed.plan, {
+    planReport = await planOutcome(parsed.plan, {
       ...(parsed.brief ? { brief: parsed.brief } : {}),
       ...(parsed.localOnly ? { localOnly: true } : {}),
     });
-    for (const item of [...report.recommended, ...report.optional]) {
+    for (const item of [...planReport.recommended, ...planReport.optional]) {
       const label = `${item.hit.name} (${item.hit.sourceKind}) — ${item.reason}`;
       if (!choices.some((c) => c.value === item.hit.name)) {
         choices.push({ value: item.hit.name, label });
@@ -254,7 +257,7 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
 
   if (!choices.length) {
     process.stderr.write("No install candidates found for that plan/query.\n");
-    return { skillName: "", code: 1 };
+    return { skillName: "", code: 1, ...(planReport ? { planReport } : {}) };
   }
 
   const picked = await selectWithArrows("Select a skill to install:", choices);
@@ -267,10 +270,10 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
       for (const c of choices.slice(0, 8)) {
         process.stderr.write(`  ezy install ${c.value} --yes\n`);
       }
-      return { skillName: "", code: 1 };
+      return { skillName: "", code: 1, ...(planReport ? { planReport } : {}) };
     }
     process.stderr.write("Cancelled.\n");
-    return { skillName: "", code: 1 };
+    return { skillName: "", code: 1, ...(planReport ? { planReport } : {}) };
   }
 
   const fromMap = sourceByName.get(picked);
@@ -278,16 +281,44 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
     skillName: picked,
     ...(parsed.source ? { source: parsed.source } : fromMap ? { source: fromMap } : {}),
     code: 0,
+    ...(planReport ? { planReport } : {}),
   };
 }
 
-async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
+async function appendInstallHandoff(
+  parsed: InstallArgs,
+  planReport?: Awaited<ReturnType<typeof planOutcome>>,
+): Promise<void> {
   if (parsed.plan) {
-    const handoff = await buildHandoff(parsed.plan, {
-      ...(parsed.brief ? { brief: parsed.brief } : {}),
-      ...(parsed.localOnly ? { localOnly: true } : {}),
-    });
-    handoff.notes.push(...(parsed.briefNotes ?? []));
+    const handoff = planReport
+      ? composeHandoffFromItems(
+          planReport.outcome,
+          {
+            capabilities: planReport.capabilities,
+            projectSummary: planReport.project.projectRoot
+              ? [planReport.project.packageName ?? planReport.project.projectRoot]
+                  .concat(planReport.project.frameworks.length ? [planReport.project.frameworks.join(", ")] : [])
+                  .join(" · ")
+              : "no project markers (greenfield / empty)",
+            recommended: planReport.recommended,
+            optional: planReport.optional,
+            coversByName: new Map(planReport.decisions.map((d) => [d.name.toLowerCase(), d.covers])),
+            basis: planReport.basis,
+            research: planReport.research,
+            uncovered: planReport.uncovered,
+            excluded: planReport.excluded,
+            notes: planReport.notes,
+            contractors: planReport.contractors,
+          },
+          { cwd: process.cwd() },
+        )
+      : await buildHandoff(parsed.plan, {
+          ...(parsed.brief ? { brief: parsed.brief } : {}),
+          ...(parsed.localOnly ? { localOnly: true } : {}),
+        });
+    if (parsed.briefNotes?.length) {
+      handoff.notes.push(...parsed.briefNotes);
+    }
     process.stdout.write("\n" + formatHandoff(handoff) + "\n");
     return;
   }
@@ -303,7 +334,7 @@ async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
   }
 }
 
-async function handleInstall(argv: string[]): Promise<number> {
+export async function handleInstall(argv: string[]): Promise<number> {
   const { path: briefPath, missing, rest } = extractBriefPath(argv);
   if (missing) {
     reportMissingBriefPath();
@@ -346,7 +377,7 @@ async function handleInstall(argv: string[]): Promise<number> {
       stderr: "",
       error: null,
     }) + "\n");
-    await appendInstallHandoff(parsed);
+    await appendInstallHandoff(parsed, target.planReport);
     return 0;
   }
 
@@ -378,7 +409,7 @@ async function handleInstall(argv: string[]): Promise<number> {
     process.stdout.write(result.stdout.trim() + "\n");
   }
   if (result.ok) {
-    await appendInstallHandoff(parsed);
+    await appendInstallHandoff(parsed, target.planReport);
   }
   return result.ok ? 0 : 1;
 }
@@ -535,11 +566,13 @@ async function main(argv: string[]): Promise<number> {
   return 1;
 }
 
-main(process.argv)
-  .then((code) => {
-    process.exitCode = code;
-  })
-  .catch((err: unknown) => {
-    process.stderr.write(String(err instanceof Error ? err.stack ?? err.message : err) + "\n");
-    process.exitCode = 1;
-  });
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main(process.argv)
+    .then((code) => {
+      process.exitCode = code;
+    })
+    .catch((err: unknown) => {
+      process.stderr.write(String(err instanceof Error ? err.stack ?? err.message : err) + "\n");
+      process.exitCode = 1;
+    });
+}
