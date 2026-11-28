@@ -4,7 +4,8 @@ import { findProjectRoot } from "./find-project-root.js";
 import type { InspectFinding, SkillInspection } from "./inspect-types.js";
 import { loadSkillsLock } from "./load-local-skills.js";
 import { parseSkillFrontmatter } from "./parse-skill-frontmatter.js";
-import { searchSkillsSh } from "./search-remote.js";
+import { sanitizeText } from "./brief.js";
+import { isExactRemoteSkillMatch, searchSkillsSh } from "./search-remote.js";
 
 type LockEntry = {
   source?: string;
@@ -156,9 +157,12 @@ export async function inspectSkill(query: string, options: InspectOptions = {}):
     "Shallow scan ≠ security audit. Read the skill before trusting it.",
   ];
 
+  let remoteInstalls: number | null = null;
+  let remoteError: string | null = null;
+
   const empty = (extra: string[]): SkillInspection => ({
     found: false,
-    query: trimmed,
+    query: sanitizeText(trimmed),
     name: null,
     description: null,
     source: null,
@@ -171,8 +175,8 @@ export async function inspectSkill(query: string, options: InspectOptions = {}):
     files: [],
     findings: [],
     remoteInstalls: null,
-    remoteError: null,
-    notes: [...notes, ...extra],
+    remoteError: remoteError ? sanitizeText(remoteError) : null,
+    notes: [...notes, ...extra].map(sanitizeText),
     bodyPreview: null,
   });
 
@@ -184,16 +188,13 @@ export async function inspectSkill(query: string, options: InspectOptions = {}):
   const projectRoot = findProjectRoot(cwd) ?? cwd;
   const skillDir = resolveLocalSkillDir(projectRoot, trimmed);
 
-  let remoteInstalls: number | null = null;
-  let remoteError: string | null = null;
-
   if (!options.skipRemote) {
     const remote = await searchSkillsSh(trimmed, {
       limit: 5,
       ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {}),
     });
     remoteError = remote.error;
-    const match = remote.hits.find((h) => h.name.toLowerCase() === trimmed.toLowerCase()) ?? remote.hits[0];
+    const match = remote.hits.find((h) => isExactRemoteSkillMatch(h.name, trimmed));
     if (match?.installs != null) {
       remoteInstalls = match.installs;
     }
@@ -208,7 +209,7 @@ export async function inspectSkill(query: string, options: InspectOptions = {}):
       "Try: ezy search \"" + trimmed + "\" then install only after approval.",
     ]);
     result.remoteInstalls = remoteInstalls;
-    result.remoteError = remoteError;
+    result.remoteError = remoteError ? sanitizeText(remoteError) : null;
     return result;
   }
 
@@ -236,26 +237,27 @@ export async function inspectSkill(query: string, options: InspectOptions = {}):
       .trim()
       .split("\n")
       .slice(0, 12)
+      .map(sanitizeText)
       .join("\n");
   }
 
   return {
     found: true,
-    query: trimmed,
-    name: fm.name ?? dirName,
-    description: fm.description,
-    source,
-    sourcePath: lockEntry.skillPath ?? null,
-    skillMdPath,
-    contentHash: lockEntry.computedHash ?? null,
-    installMode: lockEntry.installMode ?? null,
-    url: source.includes("/") ? `https://github.com/${source}` : null,
+    query: sanitizeText(trimmed),
+    name: sanitizeText(fm.name ?? dirName),
+    description: fm.description ? sanitizeText(fm.description) : null,
+    source: sanitizeText(source),
+    sourcePath: lockEntry.skillPath ? sanitizeText(lockEntry.skillPath) : null,
+    skillMdPath: sanitizeText(skillMdPath),
+    contentHash: lockEntry.computedHash ? sanitizeText(lockEntry.computedHash) : null,
+    installMode: lockEntry.installMode ? sanitizeText(lockEntry.installMode) : null,
+    url: source.includes("/") ? sanitizeText(`https://github.com/${source}`) : null,
     installedLocally: true,
-    files,
-    findings,
+    files: files.map(sanitizeText),
+    findings: findings.map((f) => ({ ...f, detail: sanitizeText(f.detail) })),
     remoteInstalls,
-    remoteError,
-    notes,
+    remoteError: remoteError ? sanitizeText(remoteError) : null,
+    notes: notes.map(sanitizeText),
     bodyPreview,
   };
 }

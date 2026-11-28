@@ -22,6 +22,11 @@ export type RemoteSearchResult = {
   error: string | null;
 };
 
+/** Explicit exact-match condition for remote skill attribution. */
+export function isExactRemoteSkillMatch(hitName: string, query: string): boolean {
+  return hitName.trim().toLowerCase() === query.trim().toLowerCase();
+}
+
 /**
  * Query the public skills.sh search API.
  * Network is optional — failures become soft errors, never crashes.

@@ -123,7 +123,7 @@ export function formatInspect(report: SkillInspection): string {
   if (!report.found) {
     lines.push("Status: not found locally");
     if (report.remoteInstalls != null) {
-      lines.push(`skills.sh installs (best match): ${report.remoteInstalls.toLocaleString()}`);
+      lines.push(`skills.sh installs (exact match): ${report.remoteInstalls.toLocaleString()}`);
     }
     lines.push("");
     lines.push("Notes");

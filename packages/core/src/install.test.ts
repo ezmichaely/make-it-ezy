@@ -112,4 +112,54 @@ describe("install", () => {
     expect(fetchImpl).not.toHaveBeenCalled();
     expect(preview.source).toBe("(unresolved)");
   });
+
+  it("does not attribute remote source from a non-exact name match", async () => {
+    const root = fixtureEmpty();
+    const preview = await buildInstallPreview("taste", {
+      cwd: root,
+      fetchImpl: async () =>
+        new Response(
+          JSON.stringify({
+            skills: [{ name: "taste-helper", source: "other/taste-helper", installs: 50 }],
+          }),
+          { status: 200 },
+        ),
+    });
+    expect(preview.source).toBe("(unresolved)");
+    expect(preview.command).not.toContain("other/taste-helper");
+  });
+
+  it("resolves remote source only for an exact name match", async () => {
+    const root = fixtureEmpty();
+    const preview = await buildInstallPreview("taste", {
+      cwd: root,
+      fetchImpl: async () =>
+        new Response(
+          JSON.stringify({
+            skills: [
+              { name: "taste-helper", source: "other/taste-helper", installs: 50 },
+              { name: "taste", source: "Leonxlnx/taste-skill", installs: 100 },
+            ],
+          }),
+          { status: 200 },
+        ),
+    });
+    expect(preview.source).toBe("Leonxlnx/taste-skill");
+    expect(preview.command).toContain("npx skills add Leonxlnx/taste-skill --skill taste");
+  });
+
+  it("treats case-insensitive exact remote name match as exact", async () => {
+    const root = fixtureEmpty();
+    const preview = await buildInstallPreview("Taste", {
+      cwd: root,
+      fetchImpl: async () =>
+        new Response(
+          JSON.stringify({
+            skills: [{ name: "taste", source: "Leonxlnx/taste-skill", installs: 100 }],
+          }),
+          { status: 200 },
+        ),
+    });
+    expect(preview.source).toBe("Leonxlnx/taste-skill");
+  });
 });
