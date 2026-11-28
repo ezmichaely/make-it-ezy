@@ -21,6 +21,7 @@ The large generated SkillEvaluator corpus was removed from the active repository
 - Do not execute third-party skill content during research unless the operation is explicitly approved.
 - Do not treat this workspace as a product catalog, runtime dependency, or source of current product behavior.
 - Keep large generated captures out of Git; regenerate them in a dedicated research workspace when needed.
+- Ignored local artifacts (see root `.gitignore`): `docs/skill-scan/.DS_Store`, `docs/skill-scan/skill-eval/*` (except `README.md`), `docs/skill-scan/skill-repo/*` (except `README.md`), `docs/skill-scan/skill-evaluator/.venv/`, `.cache/`, `__pycache__/`, and `*.pyc`. Tracked docs/READMEs must remain tracked.
 - Do not put API keys or secrets here.
 
 ## Reproducing a run (research only, not a product path)
