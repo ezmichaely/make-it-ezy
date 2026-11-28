@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from "vitest";
-// @ts-expect-error no types in .mjs
 import { hasGraphify, ensureGraphify } from "../scripts/ensure-graphify.mjs";
 
 describe("hasGraphify", () => {
@@ -44,13 +43,13 @@ describe("ensureGraphify", () => {
       }
       return { status: 1 };
     };
-    expect(ensureGraphify(run, () => {})).toBe(true);
+    expect(ensureGraphify(run, () => undefined)).toBe(true);
     expect(calls.some((c) => c === "uv tool install graphifyy")).toBe(true);
   });
 
   it("is non-fatal when no installer exists / nothing becomes available", () => {
     const run = () => ({ status: 1 });
-    expect(ensureGraphify(run, () => {})).toBe(false);
+    expect(ensureGraphify(run, () => undefined)).toBe(false);
   });
 
   it("is non-fatal when installer command throws", () => {
@@ -58,6 +57,6 @@ describe("ensureGraphify", () => {
       if (cmd === "graphify") return { status: 1 };
       throw new Error("ENOENT");
     };
-    expect(ensureGraphify(run, () => {})).toBe(false);
+    expect(ensureGraphify(run, () => undefined)).toBe(false);
   });
 });

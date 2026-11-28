@@ -7,6 +7,8 @@
   "include": [
     "apps/**/*.ts",
     "packages/**/*.ts",
+    "tests/**/*.ts",
+    "scripts/**/*.mjs",
     "eslint.config.js",
     "vitest.config.ts"
   ]
