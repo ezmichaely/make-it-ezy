@@ -19,7 +19,8 @@
     "ezy": "node apps/cli/dist/index.js",
     "dev:ezy": "pnpm --filter ./apps/cli exec tsx src/index.ts",
     "skills:global": "node scripts/bootstrap-global-skills.mjs",
-    "skills:install": "node scripts/bootstrap-global-skills.mjs && node scripts/link-builder-skills.mjs",
+    "skills:install": "node scripts/bootstrap-global-skills.mjs && node scripts/link-builder-skills.mjs && node scripts/ensure-graphify.mjs",
+    "skills:graphify": "node scripts/ensure-graphify.mjs",
     "skills:clean": "node scripts/clean-builder-skill-links.mjs"
   },
   "devDependencies": {
