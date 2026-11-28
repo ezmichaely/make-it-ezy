@@ -1,6 +1,11 @@
 # Phase 8 — Launch and Distribution
 
-**Status:** In progress
+**Status:** HISTORICAL — superseded by shipped single-package distribution. Not authority.
+
+> This design selected publishing the CLI and core as two separate public npm packages.
+> The shipped distribution is one public `make-it-ezy` package with core bundled into the CLI.
+> See [`docs/decisions/DECISION-SINGLE-PACKAGE-DISTRIBUTION.md`](../../../decisions/DECISION-SINGLE-PACKAGE-DISTRIBUTION.md)
+> and [`docs/MVP-SPECIFICATION.md`](../../../MVP-SPECIFICATION.md). Kept as design history.
 
 ## Intent
 
