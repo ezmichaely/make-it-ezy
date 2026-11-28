@@ -1,17 +1,17 @@
 # Graph Report - make-it-ezy  (2026-11-28)
 
 ## Corpus Check
-- 212 files · ~94,464 words
+- 217 files · ~99,459 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: (none) 6)
 
 ## Summary
-- 1793 nodes · 2714 edges · 153 communities (116 shown, 37 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 192 edges (avg confidence: 0.95)
+- 1870 nodes · 2760 edges · 162 communities (125 shown, 37 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 195 edges (avg confidence: 0.95)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e320a47c`
+- Built from commit: `0ca75ab7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -24,13 +24,14 @@
 - planOutcome
 - Full-Scan Re-Analysis — 2026-11-24
 - brain.ts
-- Make It Ezy — Future Ecosystem
-- core/src/index.ts
-- analyze
 - README.md
+- Make It Ezy — Future Ecosystem
+- core/src/select.ts
+- analyze
+- cli/src/index.ts
 - CLEAN-UP-COMMAND.md
 - Roadmap
-- types.ts
+- findProjectRoot
 - cli/package.json
 - Shared Evidence & Self-Improvement
 - Phase 6 — Project Brain design
@@ -42,16 +43,17 @@
 - core/package.json
 - Make It Ezy — Agent Operating Guide
 - Changelog
-- install-types.ts
+- requirements.ts
 - ref_node_path
-- inspect-skill.ts
+- core/src/index.ts
 - cli.test.ts
-- cli/src/index.ts
+- main
 - make-it-ezy-final.xlsx - Analysis Summary
 - Broker-Orchestrated Skills Design
+- PlanReport
 - release-please.yml
 - install.ts
-- CI & free review gates
+- Architecture
 - 46. Proposed Constitution Rules
 - compilerOptions
 - Conversation Summary
@@ -65,7 +67,7 @@
 - specs/README.md
 - Phase 2 — `ezy recommend` design
 - Phase 3 — `ezy plan` design
-- searchSkills
+- plan.ts
 - Task 003 — Reconcile Agent Reading Order
 - Task 004 — Contractor Presence Detection and Guidance
 - Task 005 — Honor install --local-only and Reject Unknown Flags
@@ -74,8 +76,11 @@
 - Make It Ezy — Sequential Execution Plan
 - MVP Specification
 - Reference Directory
+- plan-types.ts
 - Phase 4 — Make It Ezy Agent Skill (adapter #1 / approach A)
-- buildHandoff
+- ensureGraphify
+- handoff.ts
+- install-plan-once.test.ts
 - Task 006 — Make install --plan Plan Once
 - Task 007 — Unify Requirement Stopwords
 - Task 015 — Publish Checklist and Package Metadata Verification
@@ -94,7 +99,7 @@
 - run-local.sh
 - Make It Ezy — Current Status
 - bootstrap-global-skills.mjs
-- golden.test.ts
+- prepare-package.mjs
 - Phase 4 — `ezy install` design (slice 1)
 - work-plans/README.md
 - How Make It Ezy Works
@@ -102,15 +107,19 @@
 - stripe-subscriptions/project/package.json
 - core/tsconfig.json
 - Contributing
+- Phase 5 — Project Capability Planner design
+- Global constraints
 - Decision: Git as Shared Memory Across 3C Agents
 - 32. Security Threat Model
 - 75. What Would Make Ezy Useless?
-- Architecture
+- 5. Documentation mismatches found and fixed
+- 10. Final assessment
 - Security Model
 - Re-analysis summary — 2026-11-05
 - tsconfig.eslint.json
 - Capability Model
 - Integration Strategy
+- Builder Graphify CLI Auto-Install
 - 6. Registry vs Trusted Pool vs Recommendation
 - 8. Trust Levels
 - 9. Hard Security Gate
@@ -118,13 +127,15 @@
 - Make It Ezy (agent adapter)
 - Archived conversations — summary
 - Archive
+- Builder skills (Layer A — not product runtime)
 - Decisions
 - Official / high-confidence sources
 - Project Comparison
 - Local SkillEvaluator setup
 - repo-research/project/package.json
 - small-ui-button/project/package.json
-- CI before push
+- cli/src/select.ts
+- Review Focus
 - 42. Verification
 - 19. Ruflo
 - 1. Executive Definition
@@ -135,7 +146,6 @@
 - tsconfig.json
 - cli/README.md
 - CLAUDE.md
-- Make It Ezy — Product Handoff
 - skill-eval/README.md
 - skill-repo/README.md
 - core/README.md
@@ -170,41 +180,41 @@
 - pnpm-workspace.yaml
 
 ## God Nodes (most connected - your core abstractions)
-1. `main()` - 41 edges
-2. `planOutcome()` - 40 edges
-3. `analyzeProject()` - 28 edges
-4. `vitest` - 24 edges
-5. `findProjectRoot()` - 23 edges
-6. `searchSkills()` - 20 edges
-7. `buildHandoff()` - 18 edges
-8. `loadLocalSkills()` - 17 edges
-9. `recommendSkills()` - 17 edges
-10. `Roadmap` - 17 edges
+1. `planOutcome()` - 37 edges
+2. `vitest` - 26 edges
+3. `analyzeProject()` - 26 edges
+4. `findProjectRoot()` - 21 edges
+5. `searchSkills()` - 18 edges
+6. `Roadmap` - 17 edges
+7. `loadLocalSkills()` - 17 edges
+8. `PlanReport` - 16 edges
+9. `sanitizeText()` - 16 edges
+10. `46. Proposed Constitution Rules` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Task branch and Git delivery lifecycle` --references--> `main()`  [INFERRED]
-  docs/AGENT-WORKFLOW.md → apps/cli/src/index.ts
-- `Index` --references--> `planOutcome()`  [INFERRED]
-  docs/archive/specs/README.md → packages/core/src/plan.ts
-- `What’s left to the builder` --references--> `HandoffReport`  [INFERRED]
-  docs/archive/specs/superpowers/2026-11-05-phase4-handoff-design.md → packages/core/src/handoff-types.ts
-- `7. Typechecked tests + shared fixture factory` --references--> `SkillHit`  [INFERRED]
-  docs/archive/work-plans/FOLLOW-UP-WORK-PLAN-2026-11-25.md → packages/core/src/search-types.ts
-- `Deliberately not proposed` --references--> `evaluateSkillCandidate()`  [INFERRED]
-  docs/archive/work-plans/FOLLOW-UP-WORK-PLAN-2026-11-25.md → packages/core/src/lifecycle.ts
+- `Constraints` --references--> `main()`  [INFERRED]
+  docs/archive/specs/superpowers/2026-11-05-phase4-install-design.md → apps/cli/src/index.ts
+- `1. Scope and baseline` --references--> `main()`  [INFERRED]
+  docs/skill-scan/REANALYSIS-2026-11-24.md → apps/cli/src/index.ts
+- `Structural validation performed` --references--> `main()`  [INFERRED]
+  docs/skill-scan/REANALYSIS-2026-11-24.md → apps/cli/src/index.ts
+- `Behavior — agent slice (host agent)` --references--> `parseAgentSlice()`  [INFERRED]
+  docs/archive/specs/superpowers/2026-11-17-phase7-project-brain-design.md → packages/core/src/brain.ts
+- `12. `plan` stops mutating the repository **[new]**` --references--> `persistBrainAfterPlan()`  [INFERRED]
+  docs/archive/work-plans/FOLLOW-UP-WORK-PLAN-2026-11-25.md → packages/core/src/brain.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (153 total, 37 thin omitted)
+## Communities (162 total, 37 thin omitted)
 
 ### Community 0 - "MAKE-IT-EZY-HANDOFF.md"
 Cohesion: 0.03
-Nodes (67): 10. Security Must Be More Than a Score, 11. Ezy Must Be Able to Say "No", 12. Research Before Skill Selection, 14. Superpowers, 15. ECC, 16. Other Skill/Agent Sources Studied, 17. Research-Specific Sources, 18. Frameworks and Platforms Considered (+59 more)
+Nodes (69): 10. Security Must Be More Than a Score, 11. Ezy Must Be Able to Say "No", 12. Research Before Skill Selection, 14. Superpowers, 15. ECC, 16. Other Skill/Agent Sources Studied, 17. Research-Specific Sources, 18. Frameworks and Platforms Considered (+61 more)
 
 ### Community 1 - "Research Inventory"
-Cohesion: 0.04
-Nodes (46): 10. `ezy coverage` — local capability-gap report **[new]**, 11. Machine-readable handoff + adapter conformance **[new]**, 12. `plan` stops mutating the repository **[new]**, 13. Split/archive the research corpus + repo size gate, 14. Privacy decision + transcript quarantine gate, 15. `pnpm release:check` **[new]**, 16. Shadowed-skill transparency **[new]**, 17. Exit-code + output contract **[new]** (+38 more)
+Cohesion: 0.06
+Nodes (49): 10. `ezy coverage` — local capability-gap report **[new]**, 11. Machine-readable handoff + adapter conformance **[new]**, 12. `plan` stops mutating the repository **[new]**, 13. Split/archive the research corpus + repo size gate, 14. Privacy decision + transcript quarantine gate, 15. `pnpm release:check` **[new]**, 16. Shadowed-skill transparency **[new]**, 17. Exit-code + output contract **[new]** (+41 more)
 
 ### Community 2 - "Task 002 — Record Single-Package Distribution Decision"
 Cohesion: 0.05
@@ -212,39 +222,39 @@ Nodes (36): Approaches, Constraints and remaining calls, Goals, Intent, Launch t
 
 ### Community 3 - "package.json"
 Cohesion: 0.06
-Nodes (38): description, devDependencies, eslint@^10.14.0, @eslint/js@^10.0.1, globals@^17.14.0, tsx@^4.19.3, @types/node@^22.13.10, typescript@^5.8.2 (+30 more)
+Nodes (39): description, devDependencies, eslint@^10.14.0, @eslint/js@^10.0.1, globals@^17.14.0, tsx@^4.19.3, @types/node@^22.13.10, typescript@^5.8.2 (+31 more)
 
 ### Community 4 - "vitest"
-Cohesion: 0.20
-Nodes (4): cliEntry, repoRoot, tsx, vitest
+Cohesion: 0.14
+Nodes (5): cases, Expectation, goldenDir, tempDirs, vitest
 
 ### Community 5 - "planOutcome"
-Cohesion: 0.19
-Nodes (12): Global Constraints, Phase 4 `ezy next` Handoff Implementation Plan, Self-review (plan author), Global Constraints, Phase 6 — Agent Brief + Decision Quality Implementation Plan, Review Focus, Task 1: Whole-token relevance scoring, Task 7: CLI — `ezy brief` and `--brief` (+4 more)
+Cohesion: 0.11
+Nodes (27): Builder calls (settled), Goals, 5. Network opt-in by default **[new]**, Global Constraints, Phase 2 `ezy recommend` Implementation Plan, Review Focus, Task 1: Core recommend + format, Task 2: CLI + docs (+19 more)
 
 ### Community 6 - "Full-Scan Re-Analysis — 2026-11-24"
-Cohesion: 0.06
-Nodes (34): 10. Final assessment, 1. Scope and baseline, 2. Scan method, 3. Executive result, 4.2 Lifecycle contracts are not wired into the existing runtime, 4.3 Capability role taxonomy remains conceptual, 4.4 Skill discovery and skill evaluation remain separate, 4.5 Outcome verification remains Phase 9 (+26 more)
+Cohesion: 0.10
+Nodes (19): 1. Scope and baseline, 2. Scan method, 3. Executive result, 4.2 Lifecycle contracts are not wired into the existing runtime, 4.3 Capability role taxonomy remains conceptual, 4.4 Skill discovery and skill evaluation remain separate, 4.5 Outcome verification remains Phase 9, 4. Runtime findings (+11 more)
 
 ### Community 7 - "brain.ts"
-Cohesion: 0.10
-Nodes (37): Behavior — agent slice (host agent), Touchpoints, Global constraints, Out of scope (v1), Phase 7 — Project Brain Implementation Plan (Hybrid B), Task 1: Brain types, fingerprint, machine build, Task 2: Load, merge-save, format display, Task 3: Agent slice parse + enrich instructions (+29 more)
+Cohesion: 0.14
+Nodes (28): Touchpoints, Out of scope (v1), Phase 7 — Project Brain Implementation Plan (Hybrid B), Task 1: Brain types, fingerprint, machine build, assertSize(), brainPath(), buildLastPlanDigest(), computeFingerprint() (+20 more)
+
+### Community 8 - "README.md"
+Cohesion: 0.20
+Nodes (8): Current scope, Current status, Development, Distribution, Documentation map, For AI agents working in this repository, How it works, License
 
 ### Community 9 - "Make It Ezy — Future Ecosystem"
 Cohesion: 0.07
 Nodes (27): 1. Domain capabilities, 2. Skills and reusable capabilities, 3. Context, evidence, and retrieval, 4. Agents, 5. Models and providers, 6. Tools and MCP, 7. Orchestration, Combined lesson (+19 more)
 
-### Community 10 - "core/src/index.ts"
-Cohesion: 0.06
-Nodes (77): Data (minimum), 5. Output changes, 18. Intent intake + a steps-to-skills table **[new]**, 2. Machine-readable plan receipt (`--json`, `.ezy/plan.json`) **[new]**, Task 1: Types for snapshot + decisions, Task 3: Coverage scoring and greedy selection, Task 5: Plan integration, 4.1 Lifecycle contracts are implemented (+69 more)
+### Community 10 - "core/src/select.ts"
+Cohesion: 0.20
+Nodes (17): Task 3: Coverage scoring and greedy selection, descriptionWords(), nameTokens(), requirementRelevance(), scoreSkillText(), scoreTokens(), significantTokens(), stemToken() (+9 more)
 
 ### Community 11 - "analyze"
 Cohesion: 0.08
 Nodes (23): name, permissions, runs-on, steps, timeout-minutes, jobs, analyze, name (+15 more)
-
-### Community 12 - "README.md"
-Cohesion: 0.22
-Nodes (8): Current scope, Current status, Development, Distribution, Documentation map, For AI agents working in this repository, How it works, License
 
 ### Community 13 - "CLEAN-UP-COMMAND.md"
 Cohesion: 0.09
@@ -252,11 +262,11 @@ Nodes (21): Current Phase, Current Runtime, FINAL RESPONSE, Historical Cleanup C
 
 ### Community 14 - "Roadmap"
 Cohesion: 0.09
-Nodes (22): Adding roadmap work, Current phase — 2026-11-25, Deliberately not current, Future horizon — directional roadmap, Phase 0 — Research, Phase 10 — Web UI, Phase 11 — Capability Ecosystem, Phase 12 — Host Integration Expansion (+14 more)
+Nodes (23): Adding roadmap work, Beyond Phase 14 — unscheduled / decision-gated, Current phase — 2026-11-25, Deliberately not current, Future horizon — directional roadmap, Phase 0 — Research, Phase 10 — Web UI, Phase 11 — Capability Ecosystem (+15 more)
 
-### Community 15 - "types.ts"
-Cohesion: 0.25
-Nodes (7): DoctorOptions, runDoctor(), tryVersion(), Confidence, DoctorCheck, DoctorReport, ProjectAnalysis
+### Community 15 - "findProjectRoot"
+Cohesion: 0.20
+Nodes (10): DoctorOptions, runDoctor(), tryVersion(), findProjectRoot(), hasProjectMarker(), hasWorkspaceSkillsRoot(), MARKERS, Confidence (+2 more)
 
 ### Community 16 - "cli/package.json"
 Cohesion: 0.10
@@ -267,8 +277,8 @@ Cohesion: 0.10
 Nodes (19): Architecture, Core Principle, Dogfooding Across Users, Evidence Events, Future Direction, Implementation status, Important Non-Goals, Learning Loop (+11 more)
 
 ### Community 18 - "Phase 6 — Project Brain design"
-Cohesion: 0.20
-Nodes (10): Anti-goals, Approaches considered, Behavior (target), Data / code touchpoints, Goals, Intent, Non-goals (this phase), Phase 6 — Project Brain design (+2 more)
+Cohesion: 0.18
+Nodes (11): Anti-goals, Approaches considered, Behavior (target), Data / code touchpoints, Goals, Intent, Non-goals (this phase), Phase 6 — Project Brain design (+3 more)
 
 ### Community 19 - "steps"
 Cohesion: 0.10
@@ -279,12 +289,12 @@ Cohesion: 0.10
 Nodes (20): 1. Audit baseline — OPUS 5.5 (2026-11-26), 2. Direction audit, 3. Full repository audit — 2026-11-25, 4. Docs sync audit — 2026-11-25, 5. Iceman full audit — 2026-11-27, 6. Iceman repo-audit handoff — 2026-11-27, 7. Codebase gaps — 2026-11-07, Archived audits — consolidated record (+12 more)
 
 ### Community 21 - "requirements.ts"
-Cohesion: 0.07
-Nodes (33): 1. Division of labor, 2. Brief contract (v1), 3. `ezy brief "<outcome>"`, 4. Evaluation and selection, 6. Heuristic fallback fixes (no brief), 7. Golden cases, 8. Adapter (`skills/ezy/SKILL.md`), 9. CLI surface (+25 more)
+Cohesion: 0.11
+Nodes (18): 1. Division of labor, 2. Brief contract (v1), 3. `ezy brief "<outcome>"`, 4. Evaluation and selection, 6. Heuristic fallback fixes (no brief), 7. Golden cases, 8. Adapter (`skills/ezy/SKILL.md`), 9. CLI surface (+10 more)
 
 ### Community 22 - "brief.ts"
-Cohesion: 0.22
-Nodes (19): Task 2: Brief types, validation, sanitizing, loading, compact(), formatBriefInstructions(), isInvisible(), isRecord(), KNOWN_KEYS, loadBrief(), parseBrief() (+11 more)
+Cohesion: 0.21
+Nodes (20): Code touchpoints, Task 2: Brief types, validation, sanitizing, loading, compact(), formatBriefInstructions(), isInvisible(), isRecord(), KNOWN_KEYS, loadBrief() (+12 more)
 
 ### Community 23 - "Completion record (closed)"
 Cohesion: 0.10
@@ -302,45 +312,49 @@ Nodes (19): 10. Final rule, 1. Mandatory start sequence, 2. Source-of-truth hier
 Cohesion: 0.11
 Nodes (18): [0.1.0](https://github.com/ezmichaely/make-it-ezy/releases/tag/v0.1.0) (2026-11-05), [0.1.1](https://github.com/ezmichaely/make-it-ezy/compare/v0.1.0...v0.1.1) (2026-11-05), [0.1.2](https://github.com/ezmichaely/make-it-ezy/compare/v0.1.1...v0.1.2) (2026-11-05), [0.1.3](https://github.com/ezmichaely/make-it-ezy/compare/v0.1.2...v0.1.3) (2026-11-05), [0.1.4](https://github.com/ezmichaely/make-it-ezy/compare/v0.1.3...v0.1.4) (2026-11-06), [0.1.5](https://github.com/ezmichaely/make-it-ezy/compare/v0.1.4...v0.1.5) (2026-11-18), Bug Fixes, Bug Fixes (+10 more)
 
-### Community 27 - "install-types.ts"
-Cohesion: 0.29
-Nodes (5): Phase 4 `ezy install` Implementation Plan, Task 1 — core install preview + runner, Task 2 — CLI picker + command, InstallPreview, InstallResult
+### Community 27 - "requirements.ts"
+Cohesion: 0.15
+Nodes (16): CapabilityMatch, extractCapabilities(), extractCapabilityMatches(), LEXICON, LexiconEntry, baseSkipHints(), DOMAIN_LABELS, extractRequirements() (+8 more)
 
 ### Community 28 - "ref_node_path"
-Cohesion: 0.13
-Nodes (14): AnalyzeOptions, allDeps(), detectFrameworks(), hasDep(), PackageJsonLike, readPackageJson(), detectPackageManager(), PackageManagerId (+6 more)
+Cohesion: 0.19
+Nodes (10): AnalyzeOptions, analyzeProject(), allDeps(), detectFrameworks(), hasDep(), PackageJsonLike, readPackageJson(), detectPackageManager() (+2 more)
 
-### Community 29 - "inspect-skill.ts"
-Cohesion: 0.13
-Nodes (22): InspectOptions, inspectSkill(), listSkillFiles(), LockEntry, resolveLocalSkillDir(), scanFindings(), loadLocalSkills(), loadSkillsLock() (+14 more)
+### Community 29 - "core/src/index.ts"
+Cohesion: 0.11
+Nodes (28): Goals, formatAnalysis(), formatDoctor(), formatInspect(), formatInstallPreview(), formatInstallResult(), formatPlan(), formatSearch() (+20 more)
 
 ### Community 30 - "cli.test.ts"
-Cohesion: 0.29
-Nodes (4): globalSkills, localSkills, lock, repoRoot
+Cohesion: 0.12
+Nodes (9): cliEntry, repoRoot, tsx, agents, repoRoot, globalSkills, localSkills, lock (+1 more)
 
-### Community 31 - "cli/src/index.ts"
-Cohesion: 0.19
-Nodes (19): extractBriefPath(), handleInstall(), InstallArgs, loadBriefOrFail(), main(), parseInstallArgs(), reportMissingBriefPath(), resolveInstallTarget() (+11 more)
+### Community 31 - "main"
+Cohesion: 0.24
+Nodes (12): appendInstallHandoff(), extractBriefPath(), handleInstall(), loadBriefOrFail(), main(), parseInstallArgs(), reportMissingBriefPath(), resolveInstallTarget() (+4 more)
 
 ### Community 32 - "make-it-ezy-final.xlsx - Analysis Summary"
 Cohesion: 0.12
 Nodes (16): All 36 Verified ✅:, Coverage:, Domains Completed:, Key Findings, Major Domains Found:, make-it-ezy-final.xlsx - Analysis Summary, Overview, Recommendations (+8 more)
 
 ### Community 33 - "Broker-Orchestrated Skills Design"
-Cohesion: 0.11
-Nodes (17): Broker Workflow Implementation Plan, Global Constraints, Implementation status (2026-11-19), Review Focus, Task 3: Make `/ezy` follow the routed workflow and sync docs, Acceptance criteria for a future implementation, Approaches considered, Broker-Orchestrated Skills Design (+9 more)
+Cohesion: 0.12
+Nodes (15): Broker Workflow Implementation Plan, Global Constraints, Implementation status (2026-11-19), Acceptance criteria for a future implementation, Approaches considered, Broker-Orchestrated Skills Design, Catalog and discovery, Constraints and trust (+7 more)
+
+### Community 34 - "PlanReport"
+Cohesion: 0.15
+Nodes (19): Data (minimum), 5. Output changes, 2. Machine-readable plan receipt (`--json`, `.ezy/plan.json`) **[new]**, Sequencing (do in this order), Task 0: Lock the phase map in docs, Task 1: Types for snapshot + decisions, Task 2: Requirements from outcome + project, Task 3: Wire snapshot + filter into `planOutcome` (+11 more)
 
 ### Community 35 - "release-please.yml"
 Cohesion: 0.12
 Nodes (16): jobs, release-please, name, on, push, permissions, contents, issues (+8 more)
 
 ### Community 36 - "install.ts"
-Cohesion: 0.25
-Nodes (8): buildCommand(), buildInstallPreview(), BuildInstallPreviewOptions, isSkillInstalledLocally(), runInstall(), RunInstallOptions, runSpawn(), skillsDir()
+Cohesion: 0.23
+Nodes (11): buildCommand(), buildInstallPreview(), BuildInstallPreviewOptions, runInstall(), RunInstallOptions, runSpawn(), skillsDir(), isExactRemoteSkillMatch() (+3 more)
 
-### Community 37 - "CI & free review gates"
-Cohesion: 0.29
-Nodes (6): CI & free review gates, Local, Not included (paid / optional), On every PR / push to `main`, PR workflow, Releases & changelog
+### Community 37 - "Architecture"
+Cohesion: 0.10
+Nodes (17): Architectural principles, Architecture, Current runtime, Current shipped surface, Future architecture, Product boundary, Two layers, CI & free review gates (+9 more)
 
 ### Community 38 - "46. Proposed Constitution Rules"
 Cohesion: 0.12
@@ -355,8 +369,8 @@ Cohesion: 0.13
 Nodes (15): 1. Do not reconstruct the project from old conversations, 2. Do not create competing master documents, 3. Audits are evidence, not authorization, 4. Specs and plans are not implementation, 5. Keep the repository lean, Conversation Summary, Current Product State, Current Repository Direction (+7 more)
 
 ### Community 41 - "analyzeProject"
-Cohesion: 0.09
-Nodes (25): Anti-goals, Approaches considered, Behavior (target), Goals, Intent, Non-goals (this phase), Phase 5 — Project Capability Planner design, Spec lock before coding (+17 more)
+Cohesion: 0.14
+Nodes (14): Anti-goals, Approaches, Behavior — agent slice (host agent), Behavior — machine slice (CLI), Brief vs brain, Goals, Intent, JSON shape (version 1) (+6 more)
 
 ### Community 42 - "Make It Ezy — Local AI Model Routing"
 Cohesion: 0.14
@@ -383,7 +397,7 @@ Cohesion: 0.17
 Nodes (12): 1. Ezy stays a decision / composition / routing layer, 2. Paperclip and other agent runtimes, 3. Local / Home AI is an execution environment, 4. Intent-to-outcome pipeline, 5. Two evaluators, not one, 6. Revised Ezy boundary, Current sources, Handoff archive (+4 more)
 
 ### Community 48 - "specs/README.md"
-Cohesion: 0.18
+Cohesion: 0.17
 Nodes (3): Archived specs — index, Index, Reading rule
 
 ### Community 49 - "Phase 2 — `ezy recommend` design"
@@ -394,13 +408,13 @@ Nodes (12): Anti-goals, Approaches considered, Behavior, Builder calls (settled)
 Cohesion: 0.17
 Nodes (11): Anti-goals, Approaches considered, Behavior, Constraints, Goals, Intent, Non-goals, Out of scope for builder (+3 more)
 
-### Community 51 - "searchSkills"
-Cohesion: 0.13
-Nodes (20): Builder calls (settled), Global Constraints, Phase 2 `ezy recommend` Implementation Plan, Review Focus, Task 1: Core recommend + format, Task 2: CLI + docs, Task 3: Push phase-2, fixtureProject() (+12 more)
+### Community 51 - "plan.ts"
+Cohesion: 0.22
+Nodes (11): Brief, SkillsLock, PlanOptions, fixtureProject(), hit(), item(), stripeFixture(), RecommendItem (+3 more)
 
 ### Community 52 - "Task 003 — Reconcile Agent Reading Order"
-Cohesion: 0.17
-Nodes (11): Acceptance criteria, Additional verified findings (folded in), Goal, In scope, Next, Out of scope, Required behavior, Scope (+3 more)
+Cohesion: 0.11
+Nodes (17): Acceptance criteria, Additional verified findings (folded in), Completion record, DISPOSITION, Goal, In scope, Next, Next (+9 more)
 
 ### Community 53 - "Task 004 — Contractor Presence Detection and Guidance"
 Cohesion: 0.17
@@ -423,20 +437,32 @@ Cohesion: 0.17
 Nodes (12): Completion rule, Critical-path principle, Current execution sequence, Execution rules, Gate 0 — Truth and release gate, Gate 1 — Shipped-behavior fixes, Gate 2 — Package/release hardening, Gate 3 — Post-batch reconciliation (after 001–015) (+4 more)
 
 ### Community 58 - "MVP Specification"
-Cohesion: 0.17
-Nodes (12): Broker workflow — first slice, Current CLI behavior, Distribution, Lifecycle contracts, MVP Specification, Phase 4 — Install + adapters, Phase 5 — Project Capability Planner, Phase 6 — Agent Brief (+4 more)
+Cohesion: 0.15
+Nodes (13): Broker workflow — first slice, Current CLI behavior, Distribution, Lifecycle contracts, MVP Specification, Network and local-only behavior, Phase 4 — Install + adapters, Phase 5 — Project Capability Planner (+5 more)
 
 ### Community 59 - "Reference Directory"
 Cohesion: 0.17
 Nodes (11): Browser / code understanding / simplification, Domain optional, Local install evidence (this repo, 2026-11-05), Orchestration (study / avoid as core deps), Reference Directory, Skills / catalogs, Specialist catalogs, Target runtimes (+3 more)
 
+### Community 60 - "plan-types.ts"
+Cohesion: 0.18
+Nodes (13): BriefRequirement, BriefResult, BriefTaskType, Exclusion, ResearchFinding, ResearchKind, Contractor, ContractorRecommendation (+5 more)
+
 ### Community 61 - "Phase 4 — Make It Ezy Agent Skill (adapter #1 / approach A)"
 Cohesion: 0.18
 Nodes (11): Anti-goals, Approaches, Behavior (happy path), Builder calls, Constraints, Goals, Intent, Non-goals (+3 more)
 
-### Community 63 - "buildHandoff"
+### Community 62 - "ensureGraphify"
+Cohesion: 0.23
+Nodes (13): Builder Graphify CLI Auto-Install Implementation Plan, Builder Task 1: Write failing tests for `hasGraphify` and `ensureGraphify`, Builder Task 2: Implement `scripts/ensure-graphify.mjs`, Builder Task 3: Add tests for missing-CLI installer order and non-fatal fallback, Builder Task 4: Docs + full verification, Execution Handoff, Global Constraints, Review Focus (+5 more)
+
+### Community 63 - "handoff.ts"
 Cohesion: 0.15
-Nodes (21): appendInstallHandoff(), Goals, Review Focus, Task 1: Core `buildHandoff` + format, Task 2: CLI `next` + post-install handoff + docs, Sequencing (do in this order), Task 0: Lock the phase map in docs, Task 2: Requirements from outcome + project (+13 more)
+Nodes (23): Phase 4 `ezy next` Handoff Implementation Plan, Review Focus, Self-review (plan author), Task 1: Core `buildHandoff` + format, Task 2: CLI `next` + post-install handoff + docs, Task 6: Explained output and handoff carry-through, Task 2: Produce an ordered workflow in the handoff, Implementation status vs plan (2026-11-19) (+15 more)
+
+### Community 64 - "install-plan-once.test.ts"
+Cohesion: 0.17
+Nodes (10): buildHandoffSpy, buildInstallPreviewSpy, composeHandoffFromItemsSpy, formatHandoffSpy, formatInstallPreviewSpy, formatInstallResultSpy, minimalHandoff, minimalPlan (+2 more)
 
 ### Community 65 - "Task 006 — Make install --plan Plan Once"
 Cohesion: 0.18
@@ -507,20 +533,20 @@ Cohesion: 0.20
 Nodes (10): Current focus, Current state, Current-state discipline, Deliberately not current, If I come back after six months, Last verified, Later, Make It Ezy — Current Status (+2 more)
 
 ### Community 82 - "bootstrap-global-skills.mjs"
-Cohesion: 0.20
+Cohesion: 0.13
 Nodes (7): expected, globalLock, globalSkills, lock, repoLock, repoRoot, repoSkills
 
-### Community 83 - "golden.test.ts"
-Cohesion: 0.10
-Nodes (14): bundledCore, coreDist, distDir, entry, here, packageRoot, rewritten, source (+6 more)
+### Community 83 - "prepare-package.mjs"
+Cohesion: 0.22
+Nodes (8): bundledCore, coreDist, distDir, entry, here, packageRoot, rewritten, source
 
 ### Community 84 - "Phase 4 — `ezy install` design (slice 1)"
 Cohesion: 0.22
 Nodes (9): Anti-goals, Approaches, Behavior (happy path), Constraints, Goals, Intent, Non-goals, Phase 4 — `ezy install` design (slice 1) (+1 more)
 
 ### Community 85 - "work-plans/README.md"
-Cohesion: 0.10
-Nodes (15): Archived work plans — index, Index, Reading rule, Global Constraints, Phase 3 `ezy plan` Implementation Plan, Review Focus, Task 1: Capabilities + planOutcome, Task 2: CLI + docs (+7 more)
+Cohesion: 0.05
+Nodes (33): Archived work plans — index, Index, Reading rule, Phase 4 Agent Skill `ezy` Implementation Plan, Task 1 — SKILL.md + docs, Phase 4 `ezy install` Implementation Plan, Task 1 — core install preview + runner, Task 2 — CLI picker + command (+25 more)
 
 ### Community 86 - "How Make It Ezy Works"
 Cohesion: 0.22
@@ -539,8 +565,16 @@ Cohesion: 0.22
 Nodes (8): compilerOptions, composite, outDir, rootDir, exclude, extends, include, ../../tsconfig.base.json
 
 ### Community 90 - "Contributing"
-Cohesion: 0.13
-Nodes (13): AI assistants (Codex, Cursor, Claude Code), Contributing, Develop, Principles, Pull requests, Scope, Shipping a roadmap phase (doc sync), Tests (+5 more)
+Cohesion: 0.25
+Nodes (8): AI assistants (Codex, Cursor, Claude Code), Contributing, Develop, Principles, Pull requests, Scope, Shipping a roadmap phase (doc sync), Tests
+
+### Community 91 - "Phase 5 — Project Capability Planner design"
+Cohesion: 0.22
+Nodes (9): Anti-goals, Approaches considered, Behavior (target), Intent, Non-goals (this phase), Phase 5 — Project Capability Planner design, Spec lock before coding, Success criteria (+1 more)
+
+### Community 92 - "Global constraints"
+Cohesion: 0.25
+Nodes (8): Global constraints, Task 2: Load, merge-save, format display, Task 3: Agent slice parse + enrich instructions, Task 4: Wire `planOutcome`, Task 5: CLI `brain`, `brain refresh`, `brain enrich`, Task 6: `skills/ezy` adapter (product face of hybrid), Task 7: Docs, formatBrainHuman()
 
 ### Community 93 - "Decision: Git as Shared Memory Across 3C Agents"
 Cohesion: 0.25
@@ -554,13 +588,17 @@ Nodes (8): 32. Security Threat Model, Dependency compromise, Hidden executable b
 Cohesion: 0.25
 Nodes (8): 75. What Would Make Ezy Useless?, A blind installer, A generic agent framework, A giant catalog, A glorified search engine, A popularity ranking, A security theater layer, A token optimizer
 
-### Community 97 - "Architecture"
+### Community 96 - "5. Documentation mismatches found and fixed"
+Cohesion: 0.25
+Nodes (8): 5. Documentation mismatches found and fixed, A. README status badge was stale, B. Roadmap broker-workflow status was stale, C. Architecture docs over-implied lifecycle implementation completeness, D. HOW-IT-WORKS lifecycle description was too easy to read as "host-only", E. Skill-scan analysis overclaimed what "complete" meant, F. Skill-scan workspace docs blurred local state and reproducible setup, G. Local runtime state was accidentally tracked
+
+### Community 97 - "10. Final assessment"
 Cohesion: 0.29
-Nodes (7): Architectural principles, Architecture, Current runtime, Current shipped surface, Future architecture, Product boundary, Two layers
+Nodes (7): 10. Final assessment, Architecture, Documentation, Overall, Phase discipline, Repository hygiene, Skill-scan workspace
 
 ### Community 98 - "Security Model"
 Cohesion: 0.29
-Nodes (6): Install gate (Phase 4 — partial), License caution (live 2026-11-05), Risk levels, Security Model, Trust posture, What is safe by default
+Nodes (6): Install gate (Phase 4 — partial), License caution (historical snapshot, 2026-11-05), Risk levels, Security Model, Trust posture, What is safe by default
 
 ### Community 99 - "Re-analysis summary — 2026-11-05"
 Cohesion: 0.29
@@ -568,7 +606,7 @@ Nodes (6): Critical live findings, Graphify, Re-analysis summary — 2026-11-05,
 
 ### Community 100 - "tsconfig.eslint.json"
 Cohesion: 0.29
-Nodes (6): compilerOptions, allowJs, noEmit, extends, include, ./tsconfig.base.json
+Nodes (6): ./tsconfig.base.json, compilerOptions, allowJs, noEmit, extends, include
 
 ### Community 101 - "Capability Model"
 Cohesion: 0.33
@@ -577,6 +615,10 @@ Nodes (5): Capability Model, Domains, Format stance, Lifecycle roles, Minimum us
 ### Community 102 - "Integration Strategy"
 Cohesion: 0.33
 Nodes (5): Above package managers, Compatibility claims, Integration Strategy, Layer A vs Layer B, Phased integrations
+
+### Community 103 - "Builder Graphify CLI Auto-Install"
+Cohesion: 0.29
+Nodes (6): Approach, Builder Graphify CLI Auto-Install, Goals, Intent, Non-goals, Validation
 
 ### Community 104 - "6. Registry vs Trusted Pool vs Recommendation"
 Cohesion: 0.33
@@ -606,6 +648,10 @@ Nodes (5): Archived conversations — summary, Rule, What each conversation cont
 Cohesion: 0.40
 Nodes (5): Archive, Cleanup record (2026-11-27), Current authority, Folder map, Reading rule
 
+### Community 111 - "Builder skills (Layer A — not product runtime)"
+Cohesion: 0.33
+Nodes (5): After clone (any Make It Ezy repo), Builder skills (Layer A — not product runtime), Global home (install once per machine), Source of truth, Why
+
 ### Community 112 - "Decisions"
 Cohesion: 0.40
 Nodes (4): Current decisions, Decision format, Decisions, Precedence
@@ -630,9 +676,9 @@ Nodes (4): devDependencies, typescript@5.0.0, typescript, name
 Cohesion: 0.50
 Nodes (4): dependencies, react@19.0.0, react, name
 
-### Community 118 - "CI before push"
-Cohesion: 0.40
-Nodes (4): CI before push, Do not, Gate (must match `.github/workflows/ci.yml`), Procedure
+### Community 119 - "Review Focus"
+Cohesion: 0.67
+Nodes (3): Review Focus, Task 1: Capabilities + planOutcome, Task 2: CLI + docs
 
 ### Community 120 - "42. Verification"
 Cohesion: 0.50
@@ -664,23 +710,23 @@ Nodes (3): Current document roles, Handoff, Rule
 
 ## Knowledge Gaps
 - **11 isolated node(s):** `./tsconfig.base.json`, `../../tsconfig.base.json`, `SKILL_EVAL_EMBEDDING_API_KEY`, `SKILL_EVAL_EMBEDDING_BASE_URL`, `SKILL_EVAL_EMBEDDING_MODEL` (+6 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1146 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1209 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **37 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `cli/src/index.ts` to `planOutcome`, `CI & free review gates`, `brain.ts`, `Full-Scan Re-Analysis — 2026-11-24`, `analyzeProject`, `core/src/index.ts`, `Agent Workflow`, `types.ts`, `searchSkills`, `Phase 4 — Make It Ezy Agent Skill (adapter #1 / approach A)`, `Phase 4 — `ezy install` design (slice 1)`, `brief.ts`, `Make It Ezy — Agent Operating Guide`, `Contributing`, `ref_node_path`, `inspect-skill.ts`, `buildHandoff`?**
-  _High betweenness centrality (0.148) - this node is a cross-community bridge._
-- **Are the 15 inferred relationships involving `main()` (e.g. with `8. Safe repository behavior` and `Pull requests`) actually correct?**
-  _`main()` has 15 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `main()` connect `main` to `planOutcome`, `Full-Scan Re-Analysis — 2026-11-24`, `analyzeProject`, `cli/src/index.ts`, `Phase 4 — `ezy install` design (slice 1)`, `Phase 4 — Make It Ezy Agent Skill (adapter #1 / approach A)`?**
+  _High betweenness centrality (0.147) - this node is a cross-community bridge._
+- **Are the 20 inferred relationships involving `planOutcome()` (e.g. with `Index` and `Goals`) actually correct?**
+  _`planOutcome()` has 20 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `./tsconfig.base.json`, `../../tsconfig.base.json`, `SKILL_EVAL_EMBEDDING_API_KEY` to the rest of the system?**
   _11 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `MAKE-IT-EZY-HANDOFF.md` be split into smaller, more focused modules?**
-  _Cohesion score 0.029411764705882353 - nodes in this community are weakly interconnected._
-- **Why does `21. Existing Repository Direction` connect `cli/src/index.ts` to `MAKE-IT-EZY-HANDOFF.md`?**
-  _High betweenness centrality (0.109) - this node is a cross-community bridge._
-- **Are the 20 inferred relationships involving `planOutcome()` (e.g. with `Index` and `Goals`) actually correct?**
-  _`planOutcome()` has 20 INFERRED edges - model-reasoned connections that need verification._
+  _Cohesion score 0.02857142857142857 - nodes in this community are weakly interconnected._
+- **Why does `21. Existing Repository Direction` connect `main` to `MAKE-IT-EZY-HANDOFF.md`?**
+  _High betweenness centrality (0.123) - this node is a cross-community bridge._
+- **Are the 12 inferred relationships involving `analyzeProject()` (e.g. with `Behavior (target)` and `Goals`) actually correct?**
+  _`analyzeProject()` has 12 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Research Inventory` be split into smaller, more focused modules?**
-  _Cohesion score 0.04081632653061224 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.058069381598793365 - nodes in this community are weakly interconnected._
