@@ -31,6 +31,29 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Packaged artifact smoke test
+        run: |
+          set -euo pipefail
+          pack_dir="$(mktemp -d)"
+          smoke_prefix="$(mktemp -d)"
+          work_dir="$(mktemp -d)"
+          cleanup() { rm -rf "$pack_dir" "$smoke_prefix" "$work_dir"; }
+          trap cleanup EXIT
+
+          pnpm --filter ./apps/cli pack --pack-destination "$pack_dir"
+          tarball="$(find "$pack_dir" -maxdepth 1 -name 'make-it-ezy-*.tgz' -print -quit)"
+          if [ -z "$tarball" ]; then
+            echo "No make-it-ezy tarball produced" >&2
+            exit 1
+          fi
+
+          npm install -g --prefix "$smoke_prefix" "$tarball"
+          export PATH="$smoke_prefix/bin:$PATH"
+
+          cd "$work_dir"
+          ezy --help
+          ezy plan x --local-only
+
       - name: ESLint (strict)
         run: pnpm lint
 

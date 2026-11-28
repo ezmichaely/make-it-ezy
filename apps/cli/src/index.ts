@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { realpathSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -569,7 +570,18 @@ async function main(argv: string[]): Promise<number> {
   return 1;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+function isCliEntrypoint(argv1: string | undefined): boolean {
+  if (!argv1) return false;
+  const argvHref = pathToFileURL(argv1).href;
+  if (import.meta.url === argvHref) return true;
+  try {
+    return import.meta.url === pathToFileURL(realpathSync(argv1)).href;
+  } catch {
+    return false;
+  }
+}
+
+if (isCliEntrypoint(process.argv[1])) {
   main(process.argv)
     .then((code) => {
       process.exitCode = code;
