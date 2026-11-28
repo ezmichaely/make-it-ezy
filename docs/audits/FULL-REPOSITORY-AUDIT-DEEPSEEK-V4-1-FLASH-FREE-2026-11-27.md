@@ -2,6 +2,7 @@
 
 > **Canonical active audit. Diagnostic evidence only — not a work order, not product authority.**
 > This file consolidates the verified current state. Historical audits are archived under `docs/archive/audits/`.
+> **2026-11-28 reconciliation (Task 016):** 001–015 completed/merged; sections 6 and 9 updated; full open/finding reconciliation queued as Task 017.
 
 - **Date:** 2026-11-27
 - **Branch:** `analysis/full-scan-reconciliation`
@@ -102,10 +103,10 @@ These require explicit decisions before implementation. They are not authorized 
 ## 6. Relationship to execution plan
 
 - `docs/EXECUTION-PLAN.md` is the active execution queue.
-- **Tasks 001–015** are the current execution batch. All remain valid against the current code; none is proven fixed.
-- **Task 016** remains the post-batch reconciliation gate. It runs **after** Tasks 001–015 are completed and validated, and generates the next atomic batch.
-- This audit consolidation is **not** completion of Task 016.
-- Small related findings are folded into existing tasks:
+- **Tasks 001–015** completed and merged to `main` on 2026-11-28 (PRs #31–#46; current `main` includes release-please PR #25). Task 001 closed as not reproducible/no justified fix. `make-it-ezy@0.1.6` is published; registry metadata and outside-repo install smoke verified.
+- **Task 016** reconciliation completed on 2026-11-28 (execution queue updated; next batch 017–019 created). This was a reconciliation pass, not a full re-audit.
+- **Task 017** is queued to fully reconcile this audit's open/fixed sections against post-015 repo state.
+- Small related findings were folded into existing tasks:
   - Task 003 — reading-order/precedence reconciliation.
   - Task 008 — brain staleness plus test-side-effect/notes wording.
   - Task 009 — exact-match attribution plus inspect output sanitization.
@@ -114,7 +115,7 @@ These require explicit decisions before implementation. They are not authorized 
 ## 7. Limitations / unverified
 
 - GitHub Actions results for this branch were not queried.
-- npm publication status and name ownership were not queried.
+- npm publication status for `make-it-ezy@0.1.6` was verified with `npm view` and outside-repo registry install smoke; npm package-name ownership was not verified.
 - Windows behavior of `spawn("npx")` was not verified.
 - Node 20 runtime was not verified (local Node 24; CI Node 22).
 - Actual `npx skills add` install location/behavior was not executed.
@@ -127,4 +128,4 @@ Historical audits are preserved under `docs/archive/audits/` for traceability. T
 
 ## 9. What remains
 
-Execute Tasks 001–015 in order, then run Task 016 to reconcile and generate the next batch. Documentation-only and repository-hygiene findings are recorded here for Task 016 or a later decision; they are not new execution tasks yet.
+Tasks 001–015 executed and merged; Task 016 reconciliation completed (2026-11-28). Next batch (execution queue): **017** reconcile this audit's open/fixed sections, **018** add vitest `testTimeout` guard, **019** ignore local `docs/skill-scan` evaluator bloat. `make-it-ezy@0.1.6` is published; further publication remains a manual maintainer action. Decision-gated later items remain out of scope.

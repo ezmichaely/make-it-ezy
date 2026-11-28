@@ -87,4 +87,4 @@ When implementation changes materially:
 
 ## Last verified
 
-2026-11-27 — archive consolidation, audit consolidation, and execution-plan routing pass.
+2026-11-28 — Task 016 post-batch reconciliation: 001–015 marked complete; `make-it-ezy@0.1.6` registry smoke verified; next batch 017–019 queued; canonical audit sections 6/9 reconciled; completed cleanup evidence removed.

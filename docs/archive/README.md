@@ -22,7 +22,7 @@ The canonical current audit lives at
 | [`specs/`](./specs/) | Completed Phase 2–8 design specifications. | [`specs/README.md`](./specs/README.md) |
 | [`work-plans/`](./work-plans/) | Completed Phase 2–8 implementation plans, plus one superseded proposal. | [`work-plans/README.md`](./work-plans/README.md) |
 | [`handoff/`](./handoff/) | Consolidated historical handoff summary. | [`handoff/README.md`](./handoff/README.md) |
-| [`evidence/`](./evidence/) | One-time cleanup instruction retained for provenance. | [`evidence/CLEAN-UP-COMMAND.md`](./evidence/CLEAN-UP-COMMAND.md) |
+| `evidence/` | Completed one-time cleanup instruction removed; recover from git history if provenance is needed. | — |
 
 ## Cleanup record (2026-11-27)
 
@@ -37,7 +37,7 @@ Removed from this folder because they were derivative or duplicated:
 Everything removed is recoverable from git history.
 
 Kept deliberately: the raw audits (the evidence base for the execution plan), the Phase 2–7
-specs and plans, and the cleanup provenance file.
+specs and plans. Completed one-time cleanup instructions are recoverable from git history.
 
 ## Reading rule
 
