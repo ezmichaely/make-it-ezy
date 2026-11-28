@@ -77,6 +77,10 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 - [ ] **020** — Classify current Dependabot alerts before any dependency changes (docs-only)
 
+### Brief schema guidance
+
+- [ ] **022** — Surface brief schema limits in `ezy brief` output (see `docs/execution/022-brief-limit-guidance.md`)
+
 ## Post-batch reconciliation note (2026-11-28)
 
 **Scope:** Task 016 reconciliation only. No implementation fixes, no full re-audit.
