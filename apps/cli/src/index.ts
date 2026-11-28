@@ -384,10 +384,11 @@ export async function handleInstall(argv: string[]): Promise<number> {
     return 0;
   }
 
-  if (preview.source === "(unresolved)") {
-    process.stderr.write(
-      "Cannot install: unresolved source. Pass --source owner/repo.\n",
-    );
+  if (preview.source === "(unresolved)" || preview.source === "(invalid)") {
+    const reason =
+      preview.notes.find((n) => n.startsWith("Invalid ")) ??
+      "Cannot install: unresolved source. Pass --source owner/repo.";
+    process.stderr.write(reason + "\n");
     return 1;
   }
 

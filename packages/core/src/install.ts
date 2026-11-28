@@ -20,6 +20,8 @@ export type RunInstallOptions = {
   spawnImpl?: typeof defaultSpawn;
 };
 
+const SKILLS_INSTALLER_PACKAGE = "skills@1.9.1";
+
 function skillsDir(projectRoot: string): string {
   return join(projectRoot, ".agents", "skills");
 }
@@ -30,11 +32,39 @@ export function isSkillInstalledLocally(skillName: string, cwd = process.cwd()):
   return existsSync(join(dir, "SKILL.md")) || existsSync(dir);
 }
 
+export function validateInstallSkillName(name: string): string | null {
+  if (!name) return "Skill name is required";
+  if (name.startsWith("-")) return `Invalid skill name "${name}": must not start with '-'`;
+  if (name.includes("/") || name.includes("\\") || name.includes("..")) {
+    return `Invalid skill name "${name}": must be a single skill name`;
+  }
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(name)) {
+    return `Invalid skill name "${name}": use letters, numbers, '.', '_', or '-'`;
+  }
+  return null;
+}
+
+export function validateInstallSource(source: string): string | null {
+  if (!source) return "Source is required";
+  if (source.startsWith("-")) return `Invalid source "${source}": must not start with '-'`;
+  if (source.includes("\\") || /\s/.test(source)) {
+    return `Invalid source "${source}": expected owner/repo`;
+  }
+  const parts = source.split("/");
+  if (parts.length !== 2 || parts.some((p) => !p || p === "." || p === "..")) {
+    return `Invalid source "${source}": expected owner/repo`;
+  }
+  if (!parts.every((p) => /^[A-Za-z0-9_.-]+$/.test(p))) {
+    return `Invalid source "${source}": owner/repo may contain letters, numbers, '.', '_', or '-'`;
+  }
+  return null;
+}
+
 function buildCommand(source: string, skillName: string): { command: string; args: string[] } {
-  // npx skills add <source> --skill <name>
+  // npx --yes skills@<pinned> add <source> --skill <name>
   return {
     command: "npx",
-    args: ["skills", "add", source, "--skill", skillName],
+    args: ["--yes", SKILLS_INSTALLER_PACKAGE, "add", source, "--skill", skillName],
   };
 }
 
@@ -50,7 +80,6 @@ export async function buildInstallPreview(
   const cwd = options.cwd ?? process.cwd();
   const projectRoot = findProjectRoot(cwd) ?? cwd;
   const destination = join(skillsDir(projectRoot), name);
-  const alreadyInstalled = isSkillInstalledLocally(name, cwd);
   const notes = [
     "Suggest-then-go install — requires explicit approval (--yes or confirm).",
     "Skill execution / outcome run is not in this slice.",
@@ -59,8 +88,45 @@ export async function buildInstallPreview(
     "Review SKILL.md after install. Popularity is not safety.",
   ];
 
+  const nameError = validateInstallSkillName(name);
+  if (nameError) {
+    notes.push(nameError);
+    return {
+      skillName: name,
+      source: "(invalid)",
+      destination,
+      projectRoot,
+      alreadyInstalled: false,
+      command: "npx --yes skills@<pinned> add <source> --skill <skill>",
+      commandArgs: ["--yes", SKILLS_INSTALLER_PACKAGE, "add", "<source>", "--skill", "<skill>"],
+      riskNotes,
+      notes,
+      url: null,
+    };
+  }
+
+  const alreadyInstalled = isSkillInstalledLocally(name, cwd);
   let source = options.source?.trim() ?? "";
   let url: string | null = null;
+
+  if (source) {
+    const sourceError = validateInstallSource(source);
+    if (sourceError) {
+      notes.push(sourceError);
+      return {
+        skillName: name,
+        source: "(invalid)",
+        destination,
+        projectRoot,
+        alreadyInstalled,
+        command: `npx --yes ${SKILLS_INSTALLER_PACKAGE} add <source> --skill ${name}`,
+        commandArgs: ["--yes", SKILLS_INSTALLER_PACKAGE, "add", "<source>", "--skill", name],
+        riskNotes,
+        notes,
+        url: null,
+      };
+    }
+  }
 
   if (!source) {
     const report = await searchSkills(name, {
@@ -88,6 +154,15 @@ export async function buildInstallPreview(
     url = source.includes("/") ? `https://github.com/${source}` : null;
   }
 
+  if (source) {
+    const sourceError = validateInstallSource(source);
+    if (sourceError) {
+      notes.push(sourceError);
+      source = "";
+      url = null;
+    }
+  }
+
   if (!source) {
     notes.push(
       `Could not resolve a source for "${name}". Pass --source owner/repo (e.g. anthropics/skills).`,
@@ -96,7 +171,7 @@ export async function buildInstallPreview(
 
   const { command, args } = source
     ? buildCommand(source, name)
-    : { command: "npx", args: ["skills", "add", "<source>", "--skill", name] };
+    : { command: "npx", args: ["--yes", SKILLS_INSTALLER_PACKAGE, "add", "<source>", "--skill", name] };
 
   return {
     skillName: name,
@@ -163,6 +238,20 @@ export async function runInstall(
     };
   }
 
+  const nameError = validateInstallSkillName(preview.skillName);
+  if (nameError) {
+    return {
+      ok: false,
+      skillName: preview.skillName,
+      destination: preview.destination,
+      alreadyInstalled: false,
+      skipped: true,
+      stdout: "",
+      stderr: "",
+      error: nameError,
+    };
+  }
+
   if (!preview.source || preview.source === "(unresolved)") {
     return {
       ok: false,
@@ -173,6 +262,33 @@ export async function runInstall(
       stdout: "",
       stderr: "",
       error: "Unresolved source — pass --source owner/repo",
+    };
+  }
+
+  if (preview.source === "(invalid)") {
+    return {
+      ok: false,
+      skillName: preview.skillName,
+      destination: preview.destination,
+      alreadyInstalled: false,
+      skipped: true,
+      stdout: "",
+      stderr: "",
+      error: "Invalid source — pass --source owner/repo",
+    };
+  }
+
+  const sourceError = validateInstallSource(preview.source);
+  if (sourceError) {
+    return {
+      ok: false,
+      skillName: preview.skillName,
+      destination: preview.destination,
+      alreadyInstalled: false,
+      skipped: true,
+      stdout: "",
+      stderr: "",
+      error: sourceError,
     };
   }
 
