@@ -8,7 +8,7 @@ Do not collapse everything into “agent.”
 | Capability | Task that must be done | `ezy plan` / `ezy next` — requirements from the agent brief (Phase 6), heuristic fallback otherwise |
 | Skill | Reusable `SKILL.md` knowledge/scripts | Discovery + gated install; Agent Skills format |
 | Tool | Software that acts (CLI, MCP, FFmpeg) | Optional INTEGRATE |
-| Workflow | Ordered process | Superpowers/BMAD/gstack = STUDY/OPTIONAL |
+| Workflow | Ordered process | Superpowers = shipped first-slice contractor (optional, not mandatory); BMAD/gstack = STUDY/OPTIONAL |
 | Runtime | Claude Code / Codex / Cursor / … | Adapter #0 files; adapter #1 `skills/ezy` |
 | Model provider | Anthropic / OpenAI / Ollama / … | User-owned; never Make It Ezy-mandated |
 

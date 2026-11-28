@@ -21,6 +21,7 @@ export type WorkflowStage =
       reason: string;
       contractorName: string;
       contractorSource: string;
+      installed: boolean;
     }
   | {
       type: "skill";
