@@ -1,16 +1,20 @@
 import { findProjectRoot } from "./find-project-root.js";
 import { loadLocalSkills } from "./load-local-skills.js";
-import { searchSkillsSh } from "./search-remote.js";
 import type { SearchReport, SkillHit } from "./search-types.js";
+import type { SourceState } from "./skill-source.js";
+import { SkillsShSource } from "./skills-sh-source.js";
+import { GitHubSkillSource } from "./github-skill-source.js";
 
 export type SearchOptions = {
   cwd?: string;
-  /** Skip skills.sh network search. */
+  /** Skip remote skill discovery. */
   localOnly?: boolean;
   /** Skip local .agents/skills. */
   remoteOnly?: boolean;
   limit?: number;
   fetchImpl?: typeof fetch;
+  /** Sources to use. Defaults to skills.sh + github. */
+  sources?: import("./skill-source.js").SkillSource[];
 };
 
 function mergeHits(local: SkillHit[], remote: SkillHit[]): SkillHit[] {
@@ -55,6 +59,7 @@ export async function searchSkills(query: string, options: SearchOptions = {}): 
       localCount: 0,
       remoteCount: 0,
       remoteError: null,
+      sourceStates: {},
       notes: [...notes, "Provide a search query, e.g. ezy search \"frontend design\"."],
     };
   }
@@ -65,20 +70,28 @@ export async function searchSkills(query: string, options: SearchOptions = {}): 
 
   const local = options.remoteOnly ? [] : loadLocalSkills(projectRoot, trimmed);
   let remote: SkillHit[] = [];
+  const sourceStates: Record<string, SourceState> = {};
   let remoteError: string | null = null;
 
   if (!options.localOnly) {
-    const remoteResult = await searchSkillsSh(trimmed, {
-      limit,
-      ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {}),
-    });
-    remote = remoteResult.hits;
-    remoteError = remoteResult.error;
-    if (remoteError) {
-      notes.push(`Remote skills.sh search unavailable: ${remoteError}`);
+    const sources = options.sources ?? [new SkillsShSource(), new GitHubSkillSource()];
+    const results = await Promise.all(
+        sources.map((s) =>
+          options.fetchImpl
+            ? s.discover(trimmed, { limit, fetchImpl: options.fetchImpl })
+            : s.discover(trimmed, { limit }),
+        ),
+    );
+    for (const r of results) {
+      sourceStates[r.source] = r.state;
+      remote = remote.concat(r.hits);
+      if (r.error) {
+        notes.push(`${r.source} search: ${r.state} (${r.error})`);
+        remoteError ??= r.error;
+      }
     }
   } else {
-    notes.push("Local-only mode: skills.sh was not queried.");
+    notes.push("Local-only mode: remote sources were not queried.");
   }
 
   // Mark remote hits that are also installed locally
@@ -96,6 +109,10 @@ export async function searchSkills(query: string, options: SearchOptions = {}): 
     localCount: local.length,
     remoteCount: remote.length,
     remoteError,
+    sourceStates,
     notes,
   };
 }
+
+// Re-export for backward compatibility
+export { searchSkillsSh } from "./search-remote.js";

@@ -54,9 +54,9 @@ describe("searchSkills", () => {
 
   it("merges remote catalog hits when fetch succeeds", async () => {
     const root = fixtureProject();
-    let requestedUrl = "";
+    const requestedUrls: string[] = [];
     const fetchImpl = async (input: string | URL | Request) => {
-      requestedUrl = typeof input === "string" ? input : input instanceof URL ? input.href : input.url;
+      requestedUrls.push(typeof input === "string" ? input : input instanceof URL ? input.href : input.url);
       return new Response(
         JSON.stringify({
           query: "frontend",
@@ -86,7 +86,7 @@ describe("searchSkills", () => {
       cwd: root,
       fetchImpl,
     });
-    expect(requestedUrl).toBe("https://skills.sh/api/v1/skills/search?q=frontend&limit=12");
+    expect(requestedUrls).toContain("https://skills.sh/api/v1/skills/search?q=frontend&limit=12");
     expect(report.remoteCount).toBe(2);
     expect(report.remoteError).toBeNull();
     const local = report.hits.find((h) => h.name === "frontend-design");
