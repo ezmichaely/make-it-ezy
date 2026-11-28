@@ -132,6 +132,13 @@ describe("extractRequirements", () => {
     expect(requirements.map((r) => r.label)).not.toContain("UI change");
   });
 
+  it("does not leak verb stopwords as fallback requirements", () => {
+    const { requirements } = extractRequirements("add a settings page", nextAnalysis);
+    const labels = requirements.map((r) => r.label);
+    expect(labels).not.toContain("add");
+    expect(labels.length).toBeGreaterThan(0);
+  });
+
   it("UI change searchTerms include the UI token", () => {
     const { requirements } = extractRequirements("add a button to the header", nextAnalysis);
     const ui = requirements.find((r) => r.label === "UI change");
