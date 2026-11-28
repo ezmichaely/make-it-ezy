@@ -35,7 +35,9 @@ describe("install", () => {
     });
     expect(preview.alreadyInstalled).toBe(false);
     expect(preview.source).toBe("Leonxlnx/taste-skill");
-    expect(preview.command).toContain("npx skills add Leonxlnx/taste-skill --skill taste");
+    expect(preview.command).toContain(
+      "npx --yes skills@1.9.1 add Leonxlnx/taste-skill --skill taste",
+    );
     expect(preview.destination).toContain(".agents/skills/taste");
   });
 
@@ -80,7 +82,8 @@ describe("install", () => {
     expect(spawnImpl).toHaveBeenCalled();
     expect(spawnImpl.mock.calls[0]?.[0]).toBe("npx");
     expect(spawnImpl.mock.calls[0]?.[1]).toEqual([
-      "skills",
+      "--yes",
+      "skills@1.9.1",
       "add",
       "Leonxlnx/taste-skill",
       "--skill",
@@ -145,7 +148,9 @@ describe("install", () => {
         ),
     });
     expect(preview.source).toBe("Leonxlnx/taste-skill");
-    expect(preview.command).toContain("npx skills add Leonxlnx/taste-skill --skill taste");
+    expect(preview.command).toContain(
+      "npx --yes skills@1.9.1 add Leonxlnx/taste-skill --skill taste",
+    );
   });
 
   it("treats case-insensitive exact remote name match as exact", async () => {
@@ -161,5 +166,59 @@ describe("install", () => {
         ),
     });
     expect(preview.source).toBe("Leonxlnx/taste-skill");
+  });
+
+  it("rejects invalid skill names before invoking installer", async () => {
+    const root = fixtureEmpty();
+    const spawnImpl = vi.fn();
+    for (const name of ["../x", "-x", "a/b/c"]) {
+      const preview = await buildInstallPreview(name, {
+        cwd: root,
+        source: "owner/repo",
+      });
+      expect(preview.source).toBe("(invalid)");
+      expect(preview.command).not.toContain(`--skill ${name}`);
+
+      const result = await runInstall(preview, {
+        cwd: root,
+        spawnImpl: spawnImpl as unknown as typeof import("node:child_process").spawn,
+      });
+      expect(result.ok).toBe(false);
+      expect(result.skipped).toBe(true);
+      expect(spawnImpl).not.toHaveBeenCalled();
+    }
+  });
+
+  it("rejects invalid sources before invoking installer", async () => {
+    const root = fixtureEmpty();
+    const spawnImpl = vi.fn();
+    for (const source of ["../x", "-x", "a/b/c"]) {
+      const preview = await buildInstallPreview("taste", {
+        cwd: root,
+        source,
+      });
+      expect(preview.source).toBe("(invalid)");
+      expect(preview.command).not.toContain(source);
+
+      const result = await runInstall(preview, {
+        cwd: root,
+        spawnImpl: spawnImpl as unknown as typeof import("node:child_process").spawn,
+      });
+      expect(result.ok).toBe(false);
+      expect(result.skipped).toBe(true);
+      expect(spawnImpl).not.toHaveBeenCalled();
+    }
+  });
+
+  it("keeps valid skill names and owner/repo sources installable", async () => {
+    const root = fixtureEmpty();
+    const preview = await buildInstallPreview("frontend-design", {
+      cwd: root,
+      source: "anthropics/skills",
+    });
+    expect(preview.source).toBe("anthropics/skills");
+    expect(preview.command).toContain(
+      "npx --yes skills@1.9.1 add anthropics/skills --skill frontend-design",
+    );
   });
 });
