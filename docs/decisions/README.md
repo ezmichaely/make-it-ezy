@@ -25,6 +25,7 @@ Keep it concise. Do not copy conversations here.
 |---|---|
 | `DECISION-SINGLE-PACKAGE-DISTRIBUTION.md` | Accepted; matches shipped distribution |
 | `DECISION-SHARED-MEMORY-3C.md` | Accepted direction; implementation details remain separate |
+| `DECISION-WINDOWS-SUPPORT.md` | Accepted; focused Windows install-spawn CI verification added; full Windows support not claimed |
 | Agent documentation/source-of-truth workflow | Accepted by repository operating policy in `AGENTS.md` + `docs/AGENT-WORKFLOW.md` |
 
 ## Precedence

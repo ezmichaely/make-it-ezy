@@ -12,7 +12,12 @@ const bundledCore = resolve(distDir, "core");
 const entry = resolve(distDir, "index.js");
 
 function run(command, args, cwd) {
-  const result = spawnSync(command, args, { cwd, stdio: "inherit", encoding: "utf8" });
+  const result = spawnSync(command, args, {
+    cwd,
+    stdio: "inherit",
+    encoding: "utf8",
+    ...(process.platform === "win32" ? { shell: true } : {}),
+  });
   if (result.error) throw result.error;
   if (result.status !== 0) {
     throw new Error(`${command} ${args.join(" ")} exited with status ${String(result.status)}`);

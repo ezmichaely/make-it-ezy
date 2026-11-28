@@ -197,6 +197,7 @@ function runSpawn(
     const child = spawnImpl(command, args, {
       ...opts,
       stdio: ["ignore", "pipe", "pipe"],
+      ...(process.platform === "win32" ? { shell: true } : {}),
     });
     let stdout = "";
     let stderr = "";
