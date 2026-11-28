@@ -48,7 +48,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 ### Gate 1 — Shipped-behavior fixes
 
 - [x] **004** — Contractor presence detection and install guidance
-- [ ] **005** — `install --local-only` and unknown-flag rejection
+- [x] **005** — `install --local-only` and unknown-flag rejection
 - [ ] **006** — `install --plan` plans once
 - [ ] **007** — Unify requirement stopwords
 - [ ] **008** — Surface Project Brain staleness

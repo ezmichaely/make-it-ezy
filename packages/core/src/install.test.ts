@@ -98,4 +98,18 @@ describe("install", () => {
     expect(result.ok).toBe(false);
     expect(result.error).toMatch(/Unresolved source/i);
   });
+
+  it("does not perform remote lookup when localOnly is set", async () => {
+    const root = fixtureEmpty();
+    const fetchImpl = vi.fn(async () =>
+      new Response(JSON.stringify({ skills: [] }), { status: 200 }),
+    );
+    const preview = await buildInstallPreview("totally-unknown-skill-xyz", {
+      cwd: root,
+      localOnly: true,
+      fetchImpl,
+    });
+    expect(fetchImpl).not.toHaveBeenCalled();
+    expect(preview.source).toBe("(unresolved)");
+  });
 });

@@ -185,6 +185,14 @@ describe("ezy CLI", () => {
     expect(result.stdout).toMatch(/Already installed|already installed/i);
   });
 
+  it("rejects unknown install flags", () => {
+    const cwd = fixtureWithSkill("ponytail");
+    const result = runEzy(["install", "ponytail", "--bogus"], cwd);
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toMatch(/unknown|unsupported|unrecognized/i);
+    expect(result.stderr).toContain("--bogus");
+  });
+
   it("runs doctor", () => {
     const result = runEzy(["doctor"]);
     expect(result.status).toBe(0);
