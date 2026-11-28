@@ -28,15 +28,18 @@ Each repo only **links** into that store:
 
 ```bash
 pnpm install
-pnpm skills:install    # bootstrap global home if needed, then link
+pnpm skills:install    # bootstrap global home if needed, link, then best-effort install `graphify` CLI
 ```
 
 First run (or after lockfile changes) downloads into the **global home** only. New repos only run the link step; they do not re-download unless the global copy is missing or stale.
+
+`pnpm skills:install` then runs `node scripts/ensure-graphify.mjs`: no-op if `graphify --version` works; otherwise best-effort `uv tool install graphifyy`, `pipx install graphifyy`, or `python3/python -m pip install graphifyy` (+ `--break-system-packages`). **Non-fatal** — `pnpm skills:install` still succeeds without Python/uv/pipx/network; vendored `graphify` skill + committed `graphify-out/` still work; `graphify query` needs `graphify` on PATH. Not part of `pnpm check:ci`; not a `make-it-ezy` product runtime dependency.
 
 | Task | Command |
 |------|---------|
 | Force refresh global vendored tree | `pnpm skills:global` |
 | Link this repo after global is ready | `node scripts/link-builder-skills.mjs` |
+| Only ensure `graphify` CLI (`graphifyy`) is available | `pnpm skills:graphify` |
 | Drop local symlinks only (keep global home) | `pnpm skills:clean` then `pnpm skills:install` |
 | Add or upgrade a vendored skill | `npx skills add <owner/repo>` (updates lock), then `pnpm skills:global` and `pnpm skills:install` |
 
