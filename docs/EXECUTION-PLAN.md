@@ -9,7 +9,7 @@ Turn the audit findings into small, sequential tasks that can be handed to a cod
 
 The agent must **not** implement the whole audit in one pass.
 
-**Current state (2026-11-27):** the audit/reconciliation phase is complete for this batch. Exactly one canonical audit is active under `docs/audits/`; superseded audits are archived. The next step is execution of Tasks 001–015 in order. Task 016 remains the post-batch reconciliation gate and runs only after 001–015 are completed and validated.
+**Current state (2026-11-28):** Tasks 001–015 completed and merged to `main` (PRs #31–#46). Task 016 reconciliation completed in this batch: execution queue updated, no new implementation performed. Next batch is Tasks 017–019 (docs accuracy/sync), sequential, one PR per task.
 
 ### Execution rules
 
@@ -61,11 +61,32 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 - [x] **012** — Install name/source validation and installer pin
 - [x] **013** — Decide/document Windows support
 - [x] **014** — Node 20 + 22 CI matrix
-- [ ] **015** — Publish checklist / package metadata verification
+- [x] **015** — Publish checklist / package metadata verification (see `docs/RELEASE-CHECKLIST.md`; npm publish remains a manual maintainer action)
 
-### Gate 3 — Post-batch reconciliation (after 001–015)
+### Gate 3 — Post-batch reconciliation
 
-- [ ] **016** — Post-batch reconciliation / next-batch generation
+- [x] **016** — Post-batch reconciliation / next-batch generation (this batch)
+
+### Gate 4 — Post-release docs/hygiene hardening (next batch)
+
+- [ ] **017** — Reconcile canonical audit after 001–015 (mark fixed/stale findings, add reconciliation note)
+- [ ] **018** — Add vitest `testTimeout` guard for cold-start CLI tests
+- [ ] **019** — Ignore local `docs/skill-scan` evaluator/clone bloat and document scan artifact policy
+
+## Post-batch reconciliation note (2026-11-28)
+
+**Scope:** Task 016 reconciliation only. No implementation fixes, no full re-audit.
+
+**Verified completed (001–015):** PRs #31–#46 merged to `main` through `026b66a`. Task 001 closed as not reproducible/no justified fix. Tasks 002–015 landed the planned docs/behavior/package hardening. `pnpm check:ci` passed on Task 015 branch; packaged artifact smoke and Node 20/22 CI matrix are in place.
+
+**Still real / carry forward:**
+- Canonical audit `docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md` still contains pre-batch “open findings” that are now fixed; it needs a reconciliation update (017).
+- Cold-start CLI timeout remains structurally unguarded (`vitest.config.ts` has no `testTimeout`); Task 001 closed as not reproducible, but a small guard is still useful (018).
+- `docs/skill-scan/` has 10 tracked docs/files but ~744M local untracked evaluator/clone data in the worktree; risk of accidental bloat/noise. Needs explicit ignore/policy, not mass deletion (019).
+
+**Confirmed no longer open from audit list (spot-checked):** contractor presence signal, install `--local-only`/unknown-flag handling, install `--plan` double-plan, stopword duplication, brain staleness surfacing, plan.test cwd side effect, exact-match remote attribution + inspect sanitization, unpinned installer + install validation, prepack clean/build, packaged-artifact CI smoke, LICENSE in tarball, Node 20/22 matrix, distribution decision recorded, CLI help/banner stale Phase 6/7 wording, CONTRIBUTING/CI ci-before-push link to tracked skill, MVP spec brain refresh/enrich + network matrix, CAPABILITY-MODEL Superpowers contractor wording.
+
+**Not queued:** npm publish itself (manual maintainer action after release-please PR #25 merge), release-please PR #25 merge, and all decision-gated later items.
 
 ## Later, deliberately not queued for implementation yet
 
