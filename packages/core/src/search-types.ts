@@ -1,4 +1,4 @@
-export type SkillSourceKind = "local" | "skills.sh";
+export type SkillSourceKind = "local" | "skills.sh" | "github";
 
 export type SkillHit = {
   id: string;
@@ -19,5 +19,7 @@ export type SearchReport = {
   localCount: number;
   remoteCount: number;
   remoteError: string | null;
+  /** Per-source discovery state. */
+  sourceStates?: Record<string, import("./skill-source.js").SourceState>;
   notes: string[];
 };
