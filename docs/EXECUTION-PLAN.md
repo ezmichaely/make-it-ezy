@@ -70,7 +70,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 ### Gate 4 — Post-release docs/hygiene hardening (next batch)
 
 - [x] **017** — Reconcile canonical audit after 001–015 (mark fixed/stale findings, add reconciliation note)
-- [ ] **018** — Add vitest `testTimeout` guard for cold-start CLI tests
+- [x] **018** — Add vitest `testTimeout` guard for cold-start CLI tests
 - [ ] **019** — Ignore local `docs/skill-scan` evaluator/clone bloat and document scan artifact policy
 
 ### Gate 5 — Dependabot triage
@@ -85,7 +85,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 **Still real / carry forward:**
 - Canonical audit `docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md` reconciliation was completed in Task 017; remaining open findings are evidence-backed.
-- Cold-start CLI timeout remains structurally unguarded (`vitest.config.ts` has no `testTimeout`); Task 001 closed as not reproducible, but a small guard is still useful (018).
+- Cold-start CLI timeout guard added in Task 018 (`testTimeout: 10_000` in `vitest.config.ts`); Task 001 remains closed as not reproducible.
 - `docs/skill-scan/` has 10 tracked docs/files but ~744M local untracked evaluator/clone data in the worktree; risk of accidental bloat/noise. Needs explicit ignore/policy, not mass deletion (019).
 
 **Confirmed no longer open from audit list (spot-checked):** contractor presence signal, install `--local-only`/unknown-flag handling, install `--plan` double-plan, stopword duplication, brain staleness surfacing, plan.test cwd side effect, exact-match remote attribution + inspect sanitization, unpinned installer + install validation, prepack clean/build, packaged-artifact CI smoke, LICENSE in tarball, Node 20/22 matrix, distribution decision recorded, CLI help/banner stale Phase 6/7 wording, CONTRIBUTING/CI ci-before-push link to tracked skill, MVP spec brain refresh/enrich + network matrix, CAPABILITY-MODEL Superpowers contractor wording.
