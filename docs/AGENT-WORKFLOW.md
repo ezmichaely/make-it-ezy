@@ -34,6 +34,15 @@ READ → VERIFY → CLASSIFY → PLAN → CHANGE → TEST → SYNC DOCS → VERI
 
 Never replace this with: `GUESS → CODE → write a document explaining the guess`.
 
+### Optional local code graph (Graphify)
+
+A committed `graphify-out/` map can reduce repeated broad code scanning. Only two generated files are tracked: `graphify-out/graph.json` and `graphify-out/GRAPH_REPORT.md`. Caches, HTML, build state, and manifests stay local and ignored. Graphify is **not** a product/runtime dependency.
+
+- **Before a task:** read `graphify-out/GRAPH_REPORT.md` and, when Graphify is installed, use `graphify query "<question>"` (or `graphify path` / `graphify explain`) for cross-package “what calls X / trace this flow” questions instead of re-scanning the repo.
+- **Freshness:** the report records `Built from commit`. Treat the graph as fresh when `git log --oneline <build-commit>..HEAD -- apps packages` is empty. If it lists code commits, run `graphify update .` before trusting it; otherwise treat the map as a hint and verify against current code.
+- **After a task:** if the task changed code structure, run `graphify update .` and commit the updated `graph.json` + `GRAPH_REPORT.md` with the task. Docs-only changes do not require a refresh.
+- Graph output is **evidence, not authority**. Current code and accepted docs still win.
+
 ### Task branch and Git delivery lifecycle
 
 For every execution task, unless the task explicitly requires another strategy:

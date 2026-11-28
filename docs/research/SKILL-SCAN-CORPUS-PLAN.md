@@ -25,13 +25,15 @@ The useful conclusions are preserved in the workbook and distilled reports. The 
 
 ## Policy
 
-Generated scan output and Graphify output must stay out of the product repository. `.gitignore` now protects these paths and CodeQL ignores them.
+Generated scan output must stay out of the product repository. `.gitignore` protects those paths and CodeQL ignores them.
+
+**Later exception (2026-11-28):** the small code map (`graphify-out/graph.json` + `graphify-out/GRAPH_REPORT.md`) is tracked intentionally so a fresh clone can navigate without rebuilding it. Graphify caches, HTML, build state, and manifests remain ignored. See [`docs/AGENT-WORKFLOW.md`](../AGENT-WORKFLOW.md).
 
 Do not use Git history as a reason to restore the generated corpus to an active path. If a future research run needs the full reports, generate them in a dedicated research workspace and bring back only the distilled evidence required by the product.
 
 ## Acceptance
 
 - The active product tree no longer carries the 224 MB SkillEvaluator corpus.
-- Generated `graphify-out/` output is no longer tracked.
+- Generated `graphify-out/` caches, HTML, and build state are no longer tracked (the later 2026-11-28 exception tracks only the small code map).
 - Research artifacts remain documented and reproducible without becoming product authority.
 - No history rewrite was performed.

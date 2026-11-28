@@ -252,6 +252,8 @@ Repo-owned skills:
 
 `.agents/skills/` may contain locally linked builder skills. More specific skill instructions can constrain implementation, but they must not redefine product intent or roadmap decisions.
 
+Optional local code graph: `graphify-out/GRAPH_REPORT.md` and `graphify-out/graph.json` are committed for cross-machine navigation; caches, HTML, and build state stay local. See [`docs/AGENT-WORKFLOW.md`](./docs/AGENT-WORKFLOW.md) for when to query or refresh. It is not a product/runtime dependency.
+
 ## 8. Safe repository behavior
 
 - Preserve existing user changes.
