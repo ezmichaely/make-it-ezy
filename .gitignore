@@ -17,7 +17,16 @@ graphify-out/*
 .claude/settings.local.json
 .ezy/
 .qwen/*
-docs/skill-scan/skill-eval/
+# Skill-scan research workspace: keep tracked docs/READMEs only; ignore generated/local artifacts.
+docs/skill-scan/.DS_Store
+docs/skill-scan/skill-eval/*
+!docs/skill-scan/skill-eval/README.md
+docs/skill-scan/skill-repo/*
+!docs/skill-scan/skill-repo/README.md
+docs/skill-scan/skill-evaluator/.venv/
+docs/skill-scan/skill-evaluator/.cache/
+docs/skill-scan/skill-evaluator/__pycache__/
+docs/skill-scan/skill-evaluator/*.pyc
 /.qwen
 .qwen/settings.json
 docs/skill-scan/.qwen/settings.json

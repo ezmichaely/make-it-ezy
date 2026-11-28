@@ -71,7 +71,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 - [x] **017** — Reconcile canonical audit after 001–015 (mark fixed/stale findings, add reconciliation note)
 - [x] **018** — Add vitest `testTimeout` guard for cold-start CLI tests
-- [ ] **019** — Ignore local `docs/skill-scan` evaluator/clone bloat and document scan artifact policy
+- [x] **019** — Ignore local `docs/skill-scan` evaluator/clone bloat and document scan artifact policy
 
 ### Gate 5 — Dependabot triage
 
