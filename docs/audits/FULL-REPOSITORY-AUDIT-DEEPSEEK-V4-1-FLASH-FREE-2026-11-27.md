@@ -103,7 +103,7 @@ These require explicit decisions before implementation. They are not authorized 
 ## 6. Relationship to execution plan
 
 - `docs/EXECUTION-PLAN.md` is the active execution queue.
-- **Tasks 001–015** completed and merged to `main` on 2026-11-28 (PRs #31–#46). Task 001 closed as not reproducible/no justified fix.
+- **Tasks 001–015** completed and merged to `main` on 2026-11-28 (PRs #31–#46; current `main` includes release-please PR #25). Task 001 closed as not reproducible/no justified fix. `make-it-ezy@0.1.6` is published; registry metadata and outside-repo install smoke verified.
 - **Task 016** reconciliation completed on 2026-11-28 (execution queue updated; next batch 017–019 created). This was a reconciliation pass, not a full re-audit.
 - **Task 017** is queued to fully reconcile this audit's open/fixed sections against post-015 repo state.
 - Small related findings were folded into existing tasks:
@@ -115,7 +115,7 @@ These require explicit decisions before implementation. They are not authorized 
 ## 7. Limitations / unverified
 
 - GitHub Actions results for this branch were not queried.
-- npm publication status and name ownership were not queried.
+- npm publication status for `make-it-ezy@0.1.6` was verified with `npm view` and outside-repo registry install smoke; npm package-name ownership was not verified.
 - Windows behavior of `spawn("npx")` was not verified.
 - Node 20 runtime was not verified (local Node 24; CI Node 22).
 - Actual `npx skills add` install location/behavior was not executed.
@@ -128,4 +128,4 @@ Historical audits are preserved under `docs/archive/audits/` for traceability. T
 
 ## 9. What remains
 
-Tasks 001–015 executed and merged; Task 016 reconciliation completed (2026-11-28). Next batch (execution queue): **017** reconcile this audit's open/fixed sections, **018** add vitest `testTimeout` guard, **019** ignore local `docs/skill-scan` evaluator bloat. npm publish of `make-it-ezy` remains a manual maintainer action (release-please PR #25 pending). Decision-gated later items remain out of scope.
+Tasks 001–015 executed and merged; Task 016 reconciliation completed (2026-11-28). Next batch (execution queue): **017** reconcile this audit's open/fixed sections, **018** add vitest `testTimeout` guard, **019** ignore local `docs/skill-scan` evaluator bloat. `make-it-ezy@0.1.6` is published; further publication remains a manual maintainer action. Decision-gated later items remain out of scope.

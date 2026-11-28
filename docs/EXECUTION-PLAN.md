@@ -61,7 +61,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 - [x] **012** — Install name/source validation and installer pin
 - [x] **013** — Decide/document Windows support
 - [x] **014** — Node 20 + 22 CI matrix
-- [x] **015** — Publish checklist / package metadata verification (see `docs/RELEASE-CHECKLIST.md`; npm publish remains a manual maintainer action)
+- [x] **015** — Publish checklist / package metadata verification (see `docs/RELEASE-CHECKLIST.md`; `make-it-ezy@0.1.6` is published and registry smoke verified; further publication remains a manual maintainer action)
 
 ### Gate 3 — Post-batch reconciliation
 
@@ -77,7 +77,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 **Scope:** Task 016 reconciliation only. No implementation fixes, no full re-audit.
 
-**Verified completed (001–015):** PRs #31–#46 merged to `main` through `026b66a`. Task 001 closed as not reproducible/no justified fix. Tasks 002–015 landed the planned docs/behavior/package hardening. `pnpm check:ci` passed on Task 015 branch; packaged artifact smoke and Node 20/22 CI matrix are in place.
+**Verified completed (001–015):** PRs #31–#46 merged to `main`; Task 001 closed as not reproducible/no justified fix. Tasks 002–015 landed the planned docs/behavior/package hardening. `pnpm check:ci` passed on current `main`; packaged artifact smoke and Node 20/22 CI matrix are in place. `make-it-ezy@0.1.6` is published on npm; registry metadata and outside-repo install smoke were verified.
 
 **Still real / carry forward:**
 - Canonical audit `docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md` still contains pre-batch “open findings” that are now fixed; it needs a reconciliation update (017).
@@ -86,7 +86,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 **Confirmed no longer open from audit list (spot-checked):** contractor presence signal, install `--local-only`/unknown-flag handling, install `--plan` double-plan, stopword duplication, brain staleness surfacing, plan.test cwd side effect, exact-match remote attribution + inspect sanitization, unpinned installer + install validation, prepack clean/build, packaged-artifact CI smoke, LICENSE in tarball, Node 20/22 matrix, distribution decision recorded, CLI help/banner stale Phase 6/7 wording, CONTRIBUTING/CI ci-before-push link to tracked skill, MVP spec brain refresh/enrich + network matrix, CAPABILITY-MODEL Superpowers contractor wording.
 
-**Not queued:** npm publish itself (manual maintainer action after release-please PR #25 merge), release-please PR #25 merge, and all decision-gated later items.
+**Not queued:** further npm publication (manual maintainer action), and all decision-gated later items.
 
 ## Later, deliberately not queued for implementation yet
 
