@@ -76,7 +76,7 @@ export async function planOutcome(
   const cwd = options.cwd ?? process.cwd();
   const brief = options.brief;
   const baseNotes = [
-    "Discovery only — nothing was installed or executed.",
+    "Discovery only — no skills were installed or executed. Project summary may be cached at .ezy/brain.json.",
     "Installation uses suggest-then-go (ezy install).",
   ];
 

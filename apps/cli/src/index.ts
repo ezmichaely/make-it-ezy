@@ -13,6 +13,7 @@ import {
   findProjectRoot,
   formatAnalysis,
   formatBrainEnrichInstructions,
+  computeFingerprint,
   formatBrainHuman,
   formatDoctor,
   formatHandoff,
@@ -23,6 +24,7 @@ import {
   formatRecommend,
   formatSearch,
   inspectSkill,
+  isBrainStale,
   loadBrainFile,
   planOutcome,
   refreshBrainProject,
@@ -499,7 +501,7 @@ async function main(argv: string[]): Promise<number> {
         process.stderr.write(`brain refresh failed: ${r.reason}\n`);
         return 1;
       }
-      process.stdout.write(formatBrainHuman(r.brain) + "\n");
+      process.stdout.write(formatBrainHuman(r.brain, { stale: false }) + "\n");
       return 0;
     }
     if (sub === "enrich") {
@@ -520,7 +522,8 @@ async function main(argv: string[]): Promise<number> {
       process.stderr.write(`No brain file (${loaded.reason}). Run: ezy brain refresh\n`);
       return 1;
     }
-    process.stdout.write(formatBrainHuman(loaded.brain) + "\n");
+    const stale = isBrainStale(loaded.brain, computeFingerprint(root));
+    process.stdout.write(formatBrainHuman(loaded.brain, { stale }) + "\n");
     return 0;
   }
 

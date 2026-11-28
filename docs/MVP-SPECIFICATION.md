@@ -83,9 +83,11 @@ Shipped:
 
 Shipped:
 
-- `.ezy/brain.json`;
-- machine slice;
-- optional host-maintained `agent` slice;
+- `.ezy/brain.json` with machine slice and optional host-maintained `agent` slice;
+- `ezy plan` / `ezy next` auto-write/update the machine slice (project summary cache) when a project root is available;
+- `ezy brain` shows the brain and reports staleness (current/stale) using the existing fingerprint/age check;
+- `ezy brain refresh` rewrites the machine slice from analyze;
+- `ezy brain enrich` prints instructions for maintaining the agent slice;
 - brain does not replace the brief or become an autonomous planner.
 
 ## Broker workflow — first slice

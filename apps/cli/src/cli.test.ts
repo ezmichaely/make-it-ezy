@@ -144,7 +144,8 @@ describe("ezy CLI", () => {
     expect(result.stdout).toContain("Make It Ezy — plan");
     expect(result.stdout).toContain("Project");
     expect(result.stdout).toContain("Requirements");
-    expect(result.stdout).toContain("nothing was installed");
+    expect(result.stdout).toContain("no skills were installed or executed");
+    expect(result.stdout).toContain(".ezy/brain.json");
   });
 
   it("requires a plan outcome", () => {
@@ -211,6 +212,31 @@ describe("ezy CLI", () => {
     const result = runEzy(["--help"]);
     expect(result.stdout).toContain("ezy brief");
     expect(result.stdout).toContain("ezy brain");
+  });
+
+  it("reports stale project brain", () => {
+    const cwd = fixtureWithSkill();
+    const brainDir = join(cwd, ".ezy");
+    mkdirSync(brainDir, { recursive: true });
+    writeFileSync(
+      join(brainDir, "brain.json"),
+      JSON.stringify({
+        version: 1,
+        updatedAt: new Date().toISOString(),
+        fingerprint: "stale-fingerprint",
+        project: {
+          projectRoot: cwd,
+          packageName: "fixture",
+          language: "TypeScript",
+          frameworks: [],
+          packageManager: "pnpm",
+          localSkills: [],
+        },
+      }),
+    );
+    const result = runEzy(["brain"], cwd);
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("Status: stale");
   });
 
   it("brief prints instructions and schema", () => {

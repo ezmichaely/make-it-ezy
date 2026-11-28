@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   computeFingerprint,
+  formatBrainHuman,
   isBrainStale,
   loadBrainFile,
   mergeBrainMachine,
@@ -120,5 +121,23 @@ describe("isBrainStale", () => {
       updatedAt: new Date(0).toISOString(),
     });
     expect(isBrainStale(brain, "same", new Date())).toBe(true);
+  });
+});
+describe("formatBrainHuman staleness", () => {
+  it("shows stale status when stale is true", () => {
+    const out = formatBrainHuman(sampleBrain(), { stale: true });
+    expect(out).toMatch(/Status: stale/i);
+    expect(out).toContain("ezy brain refresh");
+  });
+
+  it("shows current status when stale is false", () => {
+    const out = formatBrainHuman(sampleBrain(), { stale: false });
+    expect(out).toMatch(/Status: current/i);
+    expect(out).not.toMatch(/Status: stale/i);
+  });
+
+  it("omits status when staleness is unknown", () => {
+    const out = formatBrainHuman(sampleBrain());
+    expect(out).not.toContain("Status:");
   });
 });

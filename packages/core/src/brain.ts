@@ -239,13 +239,18 @@ export function mergeBrainMachine(
   };
 }
 
-export function formatBrainHuman(brain: BrainFile): string {
+export function formatBrainHuman(brain: BrainFile, opts?: { stale?: boolean }): string {
   const lines = [
     "Project Brain (.ezy/brain.json)",
     "",
     "Machine (from Ezy analyze/plan)",
     `- Updated: ${brain.updatedAt}`,
     `- Fingerprint: ${brain.fingerprint.slice(0, 12)}\u2026`,
+    ...(opts?.stale === undefined
+      ? []
+      : [
+          `- Status: ${opts.stale ? "stale (project changed or brain older than 7 days) — run ezy brain refresh" : "current"}`,
+        ]),
     `- Root: ${brain.project.projectRoot ?? "(none)"}`,
     `- Name: ${brain.project.packageName ?? "(unknown)"}`,
     `- Language: ${brain.project.language ?? "(unknown)"}`,

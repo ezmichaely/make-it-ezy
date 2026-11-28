@@ -76,7 +76,8 @@ describe("planOutcome", () => {
     expect(report.project.projectRoot).toBe(root);
     expect(report.project.localSkills).toContain("frontend-design");
     expect(report.recommended.some((r) => r.hit.name === "frontend-design")).toBe(true);
-    expect(report.notes.some((n) => n.includes("nothing was installed"))).toBe(true);
+    expect(report.notes.some((n) => n.includes("no skills were installed or executed"))).toBe(true);
+    expect(report.notes.some((n) => n.includes(".ezy/brain.json"))).toBe(true);
     expect(report.notes.some((n) => /suggest-then-go|heuristic/i.test(n))).toBe(true);
   });
 
@@ -92,7 +93,7 @@ describe("planOutcome", () => {
   });
 
   it("returns guidance when outcome is empty", async () => {
-    const report = await planOutcome("  ");
+    const report = await planOutcome("  ", { cwd: mkdtempSync(join(tmpdir(), "ezy-plan-empty-")) });
     expect(report.capabilities).toEqual([]);
     expect(report.requirements).toEqual([]);
     expect(report.recommended).toEqual([]);
@@ -133,7 +134,10 @@ describe("planOutcome", () => {
       notes: [],
     }));
 
-    const report = await planOutcome("Improve onboarding flow", { localOnly: true });
+    const report = await planOutcome("Improve onboarding flow", {
+      cwd: mkdtempSync(join(tmpdir(), "ezy-plan-dedupe-")),
+      localOnly: true,
+    });
     const all = [...report.recommended, ...report.optional];
     expect(all.filter((i) => i.hit.name === "onboarding")).toHaveLength(1);
     expect(all[0]?.hit.source).toBe("bob/skills");
