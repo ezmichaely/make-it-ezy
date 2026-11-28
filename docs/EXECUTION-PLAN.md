@@ -75,7 +75,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 ### Gate 5 — Dependabot triage
 
-- [ ] **020** — Classify current Dependabot alerts before any dependency changes (docs-only)
+- [x] **020** — Classify current Dependabot alerts before any dependency changes (docs-only)
 
 ## Post-batch reconciliation note (2026-11-28)
 
