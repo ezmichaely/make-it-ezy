@@ -190,6 +190,11 @@ describe("formatBriefInstructions", () => {
     expect(out).toContain(".ezy/brief.json");
     expect(out).toContain("singular and plural");
     expect(out).toContain("searchTerms");
+    expect(out).toContain("at most 200");
+    expect(out).toContain("at most 10");
+    expect(out).toContain("requirements");
+    expect(out).toContain("exclusions");
+    expect(out).toContain("research");
     expect(out).toContain("primary sources");
     expect(out).toContain('ezy next "add stripe" --brief .ezy/brief.json');
     expect(out).toContain("skill-7");
