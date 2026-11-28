@@ -34,6 +34,15 @@ READ → VERIFY → CLASSIFY → PLAN → CHANGE → TEST → SYNC DOCS → VERI
 
 Never replace this with: `GUESS → CODE → write a document explaining the guess`.
 
+### Optional local code graph (Graphify)
+
+A local `graphify-out/` cache can reduce repeated broad code scanning. It is **optional, machine-local, and gitignored** — never commit it and never make it a product/runtime dependency.
+
+- **Before a task:** if `graphify-out/graph.json` exists and is not older than the last code change, use `graphify query "<question>"` (or `graphify path` / `graphify explain`) for cross-package “what calls X / trace this flow” questions instead of re-scanning the repo.
+- **After a task:** if the task changed code, run `graphify update .` to refresh the graph. Docs-only changes do not require a refresh.
+- **Absence or staleness:** proceed with the normal reading order. A missing graph is not a blocker; stale output is worse than none, so ignore it rather than trusting it.
+- Graph output is **evidence, not authority**. Current code and accepted docs still win.
+
 ### Task branch and Git delivery lifecycle
 
 For every execution task, unless the task explicitly requires another strategy:
