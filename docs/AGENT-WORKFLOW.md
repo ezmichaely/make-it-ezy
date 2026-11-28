@@ -125,7 +125,7 @@ A task is not fully delivered merely because code/tests pass locally. Unless an 
 5. Commit coherent task work; no empty/unrelated commit. Preserve existing commit conventions (Conventional Commits style such as `docs:`, `feat:`, `fix:`, `test:` where used); verify working tree before committing.
 6. Push task branch to remote (`git push -u origin <task-branch>` by default); verify pushed branch contains intended commit(s). Never push normal task work directly to `main`; preserve repository protections.
 7. Create PR targeting `main` automatically after genuine completion. Do not require separate user requests for push, PR creation, or PR summary. PR title/body must be generated from actual implementation and verification, not assumptions/task text alone.
-8. PR must include: clear task-specific title; concise summary; **Before/Now** (what behavior/result changed); why; important files/areas; tests/verification; known limitations; task completion status. Do not claim a bug is fixed without evidence + acceptance.
+8. PR must include: clear task-specific title; concise summary; **Before/Now** (what behavior/result changed); why; important files/areas; tests/verification; known limitations; task completion status. Add **Before/Now** to the established PR structure; do not replace existing sections. Do not claim a bug is fixed without evidence + acceptance.
 9. Report PR number + URL; branch; commit SHA(s); PR title; **Before/Now**; summary; tests; known limitations; stop/wait for user review/merge.
 10. **Do not merge** unless explicitly authorized. Creating PR is agent responsibility; merging is not. Stop at PR.
 
