@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { spawn as defaultSpawn, type SpawnOptions } from "node:child_process";
 import { findProjectRoot } from "./find-project-root.js";
 import { searchSkills } from "./search.js";
+import { isExactRemoteSkillMatch } from "./search-remote.js";
 import type { InstallPreview, InstallResult } from "./install-types.js";
 
 export type BuildInstallPreviewOptions = {
@@ -68,14 +69,17 @@ export async function buildInstallPreview(
       ...(options.localOnly ? { localOnly: true } : {}),
       ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {}),
     });
-    const hit =
-      report.hits.find((h) => h.name.toLowerCase() === name.toLowerCase()) ?? report.hits[0];
+    const hit = report.hits.find((h) => isExactRemoteSkillMatch(h.name, name));
     if (hit?.source) {
       source = hit.source;
       url = hit.url;
       if (hit.sourceKind === "local" || hit.installedLocally) {
         notes.push("Matched a local/catalog hit; source taken from search metadata.");
       }
+    } else if (report.hits.length > 0) {
+      notes.push(
+        `Remote search returned no exact name match for "${name}"; pass --source owner/repo.`,
+      );
     }
     if (report.remoteError) {
       notes.push(`skills.sh lookup unavailable: ${report.remoteError}`);

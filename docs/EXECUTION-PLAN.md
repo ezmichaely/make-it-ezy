@@ -52,7 +52,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 - [x] **006** — `install --plan` plans once
 - [x] **007** — Unify requirement stopwords
 - [x] **008** — Surface Project Brain staleness
-- [ ] **009** — Exact-match-only remote attribution
+- [x] **009** — Exact-match-only remote attribution
 
 ### Gate 2 — Package/release hardening
 

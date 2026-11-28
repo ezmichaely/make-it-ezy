@@ -35,7 +35,7 @@ import {
 } from "@make-it-ezy/core";
 import { confirmYesNo, selectWithArrows, type SelectChoice } from "./select.js";
 
-const HELP = `Make It Ezy — local-first AI capability discovery (Phase 6 brief + Phase 7 project brain)
+const HELP = `Make It Ezy — local-first capability and context decision layer for coding tasks
 
 Usage:
   ezy --help
@@ -58,7 +58,7 @@ Commands:
   doctor      Check Node, pnpm, Git, OS, and project root
   analyze     Read-only project/environment inspection
   search      Discover skills (local + skills.sh). Never installs.
-  inspect     Inspect a local skill (provenance, files, risk notes)
+  inspect     Inspect a skill (local files, provenance, risk; skills.sh lookup unless --local-only)
   recommend   Shortlist Recommended / Optional / Not needed. Never installs.
   brief       Print instructions for the agent to research and write .ezy/brief.json
   brain       Show .ezy/brain.json (machine slice + optional agent slice)

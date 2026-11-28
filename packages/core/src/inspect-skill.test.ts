@@ -73,4 +73,51 @@ describe("inspectSkill", () => {
     expect(report.found).toBe(false);
     expect(report.notes.join(" ")).toContain("Provide a skill name");
   });
+
+  it("does not attribute remote installs from a non-exact name match", async () => {
+    const root = fixtureWithSkill();
+    const fetchImpl = async () =>
+      new Response(
+        JSON.stringify({
+          skills: [
+            { name: "ponytail-helper", source: "other/ponytail-helper", installs: 999 },
+          ],
+        }),
+        { status: 200 },
+      );
+    const report = await inspectSkill("ponytail", { cwd: root, fetchImpl });
+    expect(report.found).toBe(true);
+    expect(report.remoteInstalls).toBeNull();
+  });
+
+  it("attributes remote installs only for an exact name match", async () => {
+    const root = fixtureWithSkill();
+    const fetchImpl = async () =>
+      new Response(
+        JSON.stringify({
+          skills: [
+            { name: "ponytail-helper", source: "other/ponytail-helper", installs: 999 },
+            { name: "ponytail", source: "DietrichGebert/ponytail", installs: 42 },
+          ],
+        }),
+        { status: 200 },
+      );
+    const report = await inspectSkill("ponytail", { cwd: root, fetchImpl });
+    expect(report.found).toBe(true);
+    expect(report.remoteInstalls).toBe(42);
+  });
+
+  it("does not attribute remote installs for a missing local skill on loose match", async () => {
+    const root = fixtureWithSkill();
+    const fetchImpl = async () =>
+      new Response(
+        JSON.stringify({
+          skills: [{ name: "nope-skill-extra", source: "other/nope", installs: 500 }],
+        }),
+        { status: 200 },
+      );
+    const report = await inspectSkill("nope-skill", { cwd: root, fetchImpl });
+    expect(report.found).toBe(false);
+    expect(report.remoteInstalls).toBeNull();
+  });
 });
