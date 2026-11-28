@@ -34,7 +34,7 @@
 
 ---
 
-### Task 1: Write failing tests for `hasGraphify` and `ensureGraphify`
+### Builder Task 1: Write failing tests for `hasGraphify` and `ensureGraphify`
 
 **Files:**
 - Create: `tests/ensure-graphify.test.ts`
@@ -83,7 +83,7 @@ Expected: FAIL — `Cannot find module '../scripts/ensure-graphify.mjs'`
 
 - [ ] **Step 3: Commit failing test** (`test: add ensure-graphify tests`)
 
-### Task 2: Implement `scripts/ensure-graphify.mjs`
+### Builder Task 2: Implement `scripts/ensure-graphify.mjs`
 
 **Files:**
 - Create: `scripts/ensure-graphify.mjs`
@@ -112,7 +112,7 @@ export function hasGraphify(run = spawnSync) {
 }
 ```
 
-- [ ] **Step 2: Run Task 1 tests; the `hasGraphify` tests pass, `ensureGraphify` still failing**
+- [ ] **Step 2: Run Builder Task 1 tests; the `hasGraphify` tests pass, `ensureGraphify` still failing**
 
 Run: `pnpm exec vitest run tests/ensure-graphify.test.ts`
 
@@ -175,7 +175,7 @@ Expected: PASS
 
 - [ ] **Step 8: Commit** `feat: best-effort graphify CLI install for builders`
 
-### Task 3: Add tests for missing-CLI installer order and non-fatal fallback
+### Builder Task 3: Add tests for missing-CLI installer order and non-fatal fallback
 
 **Files:** `tests/ensure-graphify.test.ts`
 
@@ -216,9 +216,9 @@ it("is non-fatal when installer command throws", () => {
 - [ ] **Step 2: Run** `pnpm exec vitest run tests/ensure-graphify.test.ts` — PASS
 - [ ] **Step 3: Commit** `test: cover graphify install order and non-fatal fallback`
 
-### Task 4: Docs + full verification
+### Builder Task 4: Docs + full verification
 
-**Files:** `docs/BUILDER-SKILLS.md`, `package.json` (done Task 2)
+**Files:** `docs/BUILDER-SKILLS.md`, `package.json` (done Builder Task 2)
 
 - [ ] **Step 1:** `pnpm skills:install` section: `pnpm install` + `pnpm skills:install`; `pnpm skills:install` = bootstrap + link + `pnpm skills:graphify`; best-effort `graphifyy` CLI; non-fatal; not product; `pnpm check:ci` unaffected. `pnpm skills:graphify` alias. Keep `skills:global`, `skills:clean`.
 - [ ] **Step 2:** `git diff --check`
