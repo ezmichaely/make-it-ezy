@@ -9,8 +9,8 @@ Make the repository's distribution truth explicit and remove the superseded Phas
 ### In scope
 
 - `docs/decisions/`
-- `docs/superpowers/specs/2026-11-18-phase8-launch-design.md`
-- `docs/superpowers/plans/2026-11-18-phase8-launch.md`
+- `docs/archive/specs/superpowers/2026-11-18-phase8-launch-design.md` (moved from `docs/superpowers/specs/`)
+- `docs/archive/work-plans/superpowers/2026-11-18-phase8-launch.md` (moved from `docs/superpowers/plans/`)
 - relevant index/readme links only when required
 
 ### Out of scope
@@ -51,3 +51,28 @@ If the repository contains an existing accepted decision that already establishe
 ## Next
 
 Task 003.
+
+## Completion record
+
+### WHAT CHANGED
+
+- Added [`docs/decisions/DECISION-SINGLE-PACKAGE-DISTRIBUTION.md`](../decisions/DECISION-SINGLE-PACKAGE-DISTRIBUTION.md) recording the shipped distribution: one public `make-it-ezy` package with `@make-it-ezy/core` bundled into the CLI, not published separately.
+- Moved the superseded Phase 8 launch spec and plan into the archive:
+  - `docs/archive/specs/superpowers/2026-11-18-phase8-launch-design.md`
+  - `docs/archive/work-plans/superpowers/2026-11-18-phase8-launch.md`
+- Marked both moved documents HISTORICAL/superseded and pointed them at the new decision and current specification.
+- Updated archive indexes and the decision index; marked Task 002 complete in `docs/EXECUTION-PLAN.md`.
+
+### WHY
+
+The Phase 8 spec/plan selected publishing two public packages (`@make-it-ezy/cli` + `@make-it-ezy/core`). Shipped distribution and current docs (`docs/MVP-SPECIFICATION.md`, `docs/CI.md`, `README.md`, `apps/cli/package.json`, `apps/cli/scripts/prepare-package.mjs`) describe one public package with core bundled. Leaving the old documents active created contradictory instructions.
+
+### VALIDATION
+
+- Searched Markdown for active references to `docs/superpowers/specs/2026-11-18-phase8-launch-design.md` and `docs/superpowers/plans/2026-11-18-phase8-launch.md`; remaining references are in archived/historical material and this task record.
+- No package source, metadata, release automation, or test files changed.
+- `pnpm check:ci` run before commit.
+
+### DISPOSITION
+
+Task complete. No separate public core package introduced. Task 003 not started.

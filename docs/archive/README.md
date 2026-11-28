@@ -19,8 +19,8 @@ The canonical current audit lives at
 |---|---|---|
 | [`audits/`](./audits/) | Superseded diagnostic reports and handoff snapshots. | [`audits/README.md`](./audits/README.md) |
 | [`conversations/`](./conversations/) | Summary of removed raw chat exports; durable decisions only. | [`conversations/README.md`](./conversations/README.md) |
-| [`specs/`](./specs/) | Completed Phase 2–7 design specifications. | [`specs/README.md`](./specs/README.md) |
-| [`work-plans/`](./work-plans/) | Completed Phase 2–7 implementation plans, plus one superseded proposal. | [`work-plans/README.md`](./work-plans/README.md) |
+| [`specs/`](./specs/) | Completed Phase 2–8 design specifications. | [`specs/README.md`](./specs/README.md) |
+| [`work-plans/`](./work-plans/) | Completed Phase 2–8 implementation plans, plus one superseded proposal. | [`work-plans/README.md`](./work-plans/README.md) |
 | [`handoff/`](./handoff/) | Consolidated historical handoff summary. | [`handoff/README.md`](./handoff/README.md) |
 | [`evidence/`](./evidence/) | One-time cleanup instruction retained for provenance. | [`evidence/CLEAN-UP-COMMAND.md`](./evidence/CLEAN-UP-COMMAND.md) |
 

@@ -23,6 +23,7 @@ Keep it concise. Do not copy conversations here.
 
 | Decision | Status |
 |---|---|
+| `DECISION-SINGLE-PACKAGE-DISTRIBUTION.md` | Accepted; matches shipped distribution |
 | `DECISION-SHARED-MEMORY-3C.md` | Accepted direction; implementation details remain separate |
 | Agent documentation/source-of-truth workflow | Accepted by repository operating policy in `AGENTS.md` + `docs/AGENT-WORKFLOW.md` |
 

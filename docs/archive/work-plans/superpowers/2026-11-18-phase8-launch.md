@@ -1,5 +1,12 @@
 # Phase 8 — Launch and Distribution Implementation Plan
 
+**Status:** HISTORICAL — superseded by shipped single-package distribution. Not authority, not a work order.
+
+> This plan assumed two public packages published in dependency order. The shipped
+> distribution is one public `make-it-ezy` package with core bundled into the CLI.
+> See [`docs/decisions/DECISION-SINGLE-PACKAGE-DISTRIBUTION.md`](../../../decisions/DECISION-SINGLE-PACKAGE-DISTRIBUTION.md)
+> and [`docs/MVP-SPECIFICATION.md`](../../../MVP-SPECIFICATION.md). Kept as implementation history.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Prepare Ezy’s CLI and core packages for public npm distribution and document global installation.
@@ -8,7 +15,7 @@
 
 **Tech Stack:** Node.js 20+, pnpm workspace, npm packages, release-please.
 
-**Spec:** `docs/superpowers/specs/2026-11-18-phase8-launch-design.md`
+**Spec:** [`../../specs/superpowers/2026-11-18-phase8-launch-design.md`](../../specs/superpowers/2026-11-18-phase8-launch-design.md)
 
 ## Global Constraints
 
