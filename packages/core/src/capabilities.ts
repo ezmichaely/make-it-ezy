@@ -1,4 +1,4 @@
-import { tokenizeQuery } from "./score-skill.js";
+import { STOPWORDS, tokenizeQuery } from "./score-skill.js";
 
 type LexiconEntry = {
   /** Outcome tokens that activate this entry (any match). */
@@ -102,9 +102,8 @@ export function extractCapabilityMatches(outcome: string): CapabilityMatch[] {
     return found;
   }
 
-  // Fallback: use distinctive tokens as pseudo-capabilities (skip tiny glue).
-  const skip = new Set(["the", "a", "an", "me", "my", "for", "with", "and", "or", "to", "of", "in", "on"]);
-  const fallback = tokens.filter((t) => !skip.has(t) && t.length > 2).slice(0, 3);
+  // Fallback: use distinctive tokens as pseudo-capabilities (skip canonical stopwords).
+  const fallback = tokens.filter((t) => !STOPWORDS.has(t) && t.length > 2).slice(0, 3);
   return (fallback.length ? fallback : tokens.slice(0, 2)).map((label) => ({ label, matched: [] }));
 }
 
