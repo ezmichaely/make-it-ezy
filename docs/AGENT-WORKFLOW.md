@@ -120,7 +120,7 @@ A task is not fully delivered merely because code/tests pass locally. Unless an 
 
 1. Verify task acceptance criteria.
 2. Run required tests/checks; for this repo run `pnpm check:ci` before push/PR (and before merge when CI gate applies), inspect output, and do not push red.
-3. Synchronize authoritative docs when required.
+3. Synchronize authoritative docs when required. If the task comes from `docs/EXECUTION-PLAN.md`, update its checkbox/status in `docs/EXECUTION-PLAN.md` in the same PR.
 4. Inspect final diff (`git diff`, staged diff, `git status`) and confirm no unrelated changes.
 5. Commit coherent task work; no empty/unrelated commit. Preserve existing commit conventions (Conventional Commits style such as `docs:`, `feat:`, `fix:`, `test:` where used); verify working tree before committing.
 6. Push task branch to remote (`git push -u origin <task-branch>` by default); verify pushed branch contains intended commit(s). Never push normal task work directly to `main`; preserve repository protections.
