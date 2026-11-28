@@ -51,7 +51,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 - [x] **005** — `install --local-only` and unknown-flag rejection
 - [x] **006** — `install --plan` plans once
 - [x] **007** — Unify requirement stopwords
-- [ ] **008** — Surface Project Brain staleness
+- [x] **008** — Surface Project Brain staleness
 - [ ] **009** — Exact-match-only remote attribution
 
 ### Gate 2 — Package/release hardening
