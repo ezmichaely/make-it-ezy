@@ -1,0 +1,85 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+jobs:
+  publish:
+    name: build · pack · publish (npm + GitHub Packages)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Verify package metadata
+        run: |
+          set -euo pipefail
+          cd apps/cli
+          name="$(node -p "require('./package.json').name")"
+          version="$(node -p "require('./package.json').version")"
+          tag="${GITHUB_REF_NAME#v}"
+          echo "package: $name@$version"
+          echo "release tag: $GITHUB_REF_NAME (version $tag)"
+          if [ "$name" != "make-it-ezy" ]; then
+            echo "Unexpected package name: $name" >&2
+            exit 1
+          fi
+          if [ "$version" != "$tag" ]; then
+            echo "Package version ($version) does not match release tag ($tag)" >&2
+            exit 1
+          fi
+
+      - name: Pack
+        run: |
+          set -euo pipefail
+          mkdir -p dist-pack
+          pnpm --filter ./apps/cli pack --pack-destination dist-pack
+          tarball="$(find dist-pack -maxdepth 1 -name 'make-it-ezy-*.tgz' -print -quit)"
+          if [ -z "$tarball" ]; then
+            echo "No tarball produced" >&2
+            exit 1
+          fi
+          echo "tarball=$tarball" >> "$GITHUB_OUTPUT"
+          # smoke the packed CLI
+          smoke="$(mktemp -d)"
+          npm install -g --prefix "$smoke" "$tarball"
+          export PATH="$smoke/bin:$PATH"
+          ezy --help
+        id: pack
+
+      - name: Publish to npm
+        run: npm publish "${{ steps.pack.outputs.tarball }}" --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # GitHub Packages requires a scoped package name
+          work="$(mktemp -d)"
+          tar -xzf "${{ steps.pack.outputs.tarball }}" -C "$work"
+          cd "$work/package"
+          node -e "const p=require('./package.json'); p.name='@ezmichaely/make-it-ezy'; require('fs').writeFileSync('package.json', JSON.stringify(p,null,2)+'\\n')"
+          npm publish --registry https://npm.pkg.github.com --access public
