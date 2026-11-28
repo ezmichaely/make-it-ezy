@@ -5,11 +5,14 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const packageRoot = resolve(here, "..");
+const repoRoot = resolve(packageRoot, "../..");
 const repoCoreDir = resolve(packageRoot, "../../packages/core");
 const distDir = resolve(packageRoot, "dist");
 const coreDist = resolve(repoCoreDir, "dist");
 const bundledCore = resolve(distDir, "core");
 const entry = resolve(distDir, "index.js");
+const licenseSrc = resolve(repoRoot, "LICENSE");
+const licenseDst = resolve(packageRoot, "LICENSE");
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, {
@@ -36,6 +39,11 @@ if (!existsSync(coreDist)) {
 // Remove stale generated core artifact before copying current output.
 rmSync(bundledCore, { recursive: true, force: true });
 cpSync(coreDist, bundledCore, { recursive: true });
+
+if (!existsSync(licenseSrc)) {
+  throw new Error(`LICENSE not found: ${licenseSrc}`);
+}
+cpSync(licenseSrc, licenseDst);
 
 const source = readFileSync(entry, "utf8");
 const rewritten = source
