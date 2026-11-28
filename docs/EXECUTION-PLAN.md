@@ -73,6 +73,10 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 - [ ] **018** — Add vitest `testTimeout` guard for cold-start CLI tests
 - [ ] **019** — Ignore local `docs/skill-scan` evaluator/clone bloat and document scan artifact policy
 
+### Gate 5 — Dependabot triage
+
+- [ ] **020** — Classify current Dependabot alerts before any dependency changes (docs-only)
+
 ## Post-batch reconciliation note (2026-11-28)
 
 **Scope:** Task 016 reconciliation only. No implementation fixes, no full re-audit.
