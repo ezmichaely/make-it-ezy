@@ -30,7 +30,7 @@ Always run commands with **cwd = the project the user wants changed** (not the M
 ## Procedure
 
 1. **Clarify the outcome** in one short phrase if the user was vague.
-2. **Brief:** run `ezy brief "<outcome>"` (or the `node …/dist/index.js brief "…"` form). It prints the project summary, research instructions, the brief schema, and the next command. Research the outcome as instructed (classify the research type; research only what the decision needs; prefer primary sources and record each `source`; list exclusions with reasons), then write `.ezy/brief.json`. Trivial outcomes may skip this step; planning then falls back to heuristics and says so.
+2. **Brief:** run `ezy brief "<outcome>"` (or the `node …/dist/index.js brief "…"` form). It prints the project summary, research instructions, the brief schema, and the next command. Research the outcome as instructed (classify the research type; research only what the decision needs; prefer primary sources and record each `source`; list exclusions with reasons), then write `.ezy/brief.json`. Trivial outcomes may skip this step; planning then falls back to heuristics and says so. The printed schema includes hard limits (max 200 chars per string, max 10 list items, etc.); if `ezy next`/`plan` reports `Invalid brief` and exits `2`, trim/correct `.ezy/brief.json` to those printed limits and re-run — Ezy does not auto-truncate or repair invalid briefs.
 3. **Handoff:**  
    `ezy next "<outcome>" --brief .ezy/brief.json`  
    (omit `--brief` if you skipped the brief). Use network unless the user asked for `--local-only`. If it exits 2, fix the brief at the reported paths and re-run.  

@@ -83,7 +83,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 ### Brief schema guidance
 
-- [ ] **022** — Surface brief schema limits in `ezy brief` output (see `docs/execution/022-brief-limit-guidance.md`)
+- [x] **022** — Surface brief schema limits in `ezy brief` output (implemented in PR #57; task file removed)
 
 ## Post-batch reconciliation note (2026-11-28)
 
