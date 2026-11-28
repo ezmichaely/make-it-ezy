@@ -9,7 +9,7 @@ Turn the audit findings into small, sequential tasks that can be handed to a cod
 
 The agent must **not** implement the whole audit in one pass.
 
-**Current state (2026-11-28):** Tasks 001–016 completed and merged to `main`. Task 016 generated Tasks 017–019; Task 017 reconciliation completed in this batch with no implementation changes. Remaining current batch is Tasks 018–019 (docs/hygiene hardening), sequential, one PR per task.
+**Current state (2026-11-28):** Tasks 001–021 completed and merged to `main`. Task files 001–020 removed from `docs/execution/`; Task 021 retained until completed then removed. Provenance preserved in `docs/EXECUTION-PLAN.md`, PRs, commits, and git history.
 
 ### Execution rules
 
@@ -41,7 +41,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 ### Gate 0 — Truth and release gate
 
-- [x] **001** — CLOSED: historical one-off timeout; not reproducible; no fix justified (see `docs/execution/001-fix-cli-cold-start-timeout.md`)
+- [x] **001** — CLOSED: historical one-off timeout; not reproducible; no fix justified (see PR #29 / git history)
 - [x] **002** — Record single-package distribution decision and archive superseded Phase 8 launch docs (see `docs/decisions/DECISION-SINGLE-PACKAGE-DISTRIBUTION.md`; archived under `docs/archive/`)
 - [x] **003** — Reconcile agent reading order / execution-plan routing
 
@@ -76,6 +76,10 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 ### Gate 5 — Dependabot triage
 
 - [x] **020** — Classify current Dependabot alerts before any dependency changes (docs-only)
+
+### Gate 6 — Repository hygiene
+
+- [x] **021** — Cleanup completed execution tasks (remove 001–020 task files; provenance retained in plan/PRs/git)
 
 ## Post-batch reconciliation note (2026-11-28)
 
