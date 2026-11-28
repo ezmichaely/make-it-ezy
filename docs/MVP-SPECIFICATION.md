@@ -25,6 +25,17 @@ Available commands:
 - `next`
 - `install`
 
+### Network and local-only behavior
+
+| Command | Default network behavior | `--local-only` |
+|---|---|---|
+| `doctor`, `analyze`, `brief`, `brain` | Local only | n/a |
+| `search`, `recommend`, `plan`, `next` | Queries skills.sh for remote discovery; reads local project/skills | Skips skills.sh lookup |
+| `inspect` | Reads local skill; fetches remote metadata by default when available | Skips remote metadata lookup |
+| `install` | Resolves missing source via skills.sh lookup by default; `npx skills add` performs the approved install | Skips skills.sh source lookup; approved install still runs |
+
+Network is the default for discovery/source resolution. `--local-only` keeps lookups local; it does not silently install or execute skills.
+
 ## Distribution
 
 The intended public CLI package is:

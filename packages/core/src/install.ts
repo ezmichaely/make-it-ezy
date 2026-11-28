@@ -10,6 +10,8 @@ export type BuildInstallPreviewOptions = {
   /** Explicit skills source, e.g. anthropics/skills */
   source?: string;
   fetchImpl?: typeof fetch;
+  /** Skip skills.sh network lookups when resolving source. */
+  localOnly?: boolean;
 };
 
 export type RunInstallOptions = {
@@ -63,6 +65,7 @@ export async function buildInstallPreview(
     const report = await searchSkills(name, {
       cwd: projectRoot,
       limit: 8,
+      ...(options.localOnly ? { localOnly: true } : {}),
       ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {}),
     });
     const hit =

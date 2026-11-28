@@ -47,9 +47,9 @@ Usage:
   ezy brain enrich
   ezy plan "<outcome>" [--brief <path>] [--local-only]
   ezy next "<outcome>" [--brief <path>] [--local-only]
-  ezy install <skill> [--yes] [--source owner/repo]
-  ezy install --plan "<outcome>" [--brief <path>] [--yes]
-  ezy install --query "<topic>" [--yes]
+  ezy install <skill> [--yes] [--source owner/repo] [--local-only]
+  ezy install --plan "<outcome>" [--brief <path>] [--yes] [--local-only]
+  ezy install --query "<topic>" [--yes] [--local-only]
 
 Commands:
   doctor      Check Node, pnpm, Git, OS, and project root
@@ -66,7 +66,7 @@ Commands:
   install     Suggest-then-go install into .agents/skills (arrow-pick on TTY).
 
 Flags:
-  --local-only   Skip skills.sh network lookups (search/inspect/recommend/plan/next)
+  --local-only   Skip skills.sh network lookups (search/inspect/recommend/plan/next/install)
   --yes, -y      Approve install without interactive confirm
   --source       Explicit skills source (owner/repo)
   --brief        Use an agent-written brief (JSON) instead of heuristics
@@ -126,11 +126,17 @@ type InstallArgs = {
   source?: string;
   plan?: string;
   query?: string;
+  localOnly?: boolean;
   skill: string;
 };
 
-function parseInstallArgs(args: string[]): InstallArgs {
+type ParseInstallArgsResult =
+  | { ok: true; args: InstallArgs }
+  | { ok: false; error: string };
+
+function parseInstallArgs(args: string[]): ParseInstallArgsResult {
   let yes = false;
+  let localOnly = false;
   let source: string | undefined;
   let plan: string | undefined;
   let query: string | undefined;
@@ -143,6 +149,10 @@ function parseInstallArgs(args: string[]): InstallArgs {
     }
     if (a === "--yes" || a === "-y") {
       yes = true;
+      continue;
+    }
+    if (a === "--local-only") {
+      localOnly = true;
       continue;
     }
     if (a === "--source") {
@@ -170,17 +180,21 @@ function parseInstallArgs(args: string[]): InstallArgs {
       continue;
     }
     if (a.startsWith("--")) {
-      continue;
+      return { ok: false, error: `Unknown install flag: ${a}` };
     }
     positional.push(a);
   }
 
   return {
-    yes,
-    ...(source ? { source } : {}),
-    ...(plan ? { plan } : {}),
-    ...(query ? { query } : {}),
-    skill: positional.join(" ").trim(),
+    ok: true,
+    args: {
+      yes,
+      ...(localOnly ? { localOnly: true } : {}),
+      ...(source ? { source } : {}),
+      ...(plan ? { plan } : {}),
+      ...(query ? { query } : {}),
+      skill: positional.join(" ").trim(),
+    },
   };
 }
 
@@ -199,9 +213,9 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
 
   if (!parsed.plan && !parsed.query) {
     process.stderr.write(
-      'Usage: ezy install <skill> [--yes] [--source owner/repo]\n' +
-        '   or: ezy install --plan "<outcome>" [--brief <path>] [--yes]\n' +
-        '   or: ezy install --query "<topic>" [--yes]\n',
+      'Usage: ezy install <skill> [--yes] [--source owner/repo] [--local-only]\n' +
+        '   or: ezy install --plan "<outcome>" [--brief <path>] [--yes] [--local-only]\n' +
+        '   or: ezy install --query "<topic>" [--yes] [--local-only]\n',
     );
     return { skillName: "", code: 1 };
   }
@@ -210,7 +224,10 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
   const sourceByName = new Map<string, string>();
 
   if (parsed.plan) {
-    const report = await planOutcome(parsed.plan, parsed.brief ? { brief: parsed.brief } : {});
+    const report = await planOutcome(parsed.plan, {
+      ...(parsed.brief ? { brief: parsed.brief } : {}),
+      ...(parsed.localOnly ? { localOnly: true } : {}),
+    });
     for (const item of [...report.recommended, ...report.optional]) {
       const label = `${item.hit.name} (${item.hit.sourceKind}) — ${item.reason}`;
       if (!choices.some((c) => c.value === item.hit.name)) {
@@ -221,7 +238,9 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
       }
     }
   } else if (parsed.query) {
-    const report = await recommendSkills(parsed.query);
+    const report = await recommendSkills(parsed.query, {
+      ...(parsed.localOnly ? { localOnly: true } : {}),
+    });
     for (const item of [...report.recommended, ...report.optional]) {
       const label = `${item.hit.name} (${item.hit.sourceKind}) — ${item.reason}`;
       if (!choices.some((c) => c.value === item.hit.name)) {
@@ -264,13 +283,18 @@ async function resolveInstallTarget(parsed: InstallArgs): Promise<{
 
 async function appendInstallHandoff(parsed: InstallArgs): Promise<void> {
   if (parsed.plan) {
-    const handoff = await buildHandoff(parsed.plan, parsed.brief ? { brief: parsed.brief } : {});
+    const handoff = await buildHandoff(parsed.plan, {
+      ...(parsed.brief ? { brief: parsed.brief } : {}),
+      ...(parsed.localOnly ? { localOnly: true } : {}),
+    });
     handoff.notes.push(...(parsed.briefNotes ?? []));
     process.stdout.write("\n" + formatHandoff(handoff) + "\n");
     return;
   }
   if (parsed.query) {
-    const rec = await recommendSkills(parsed.query);
+    const rec = await recommendSkills(parsed.query, {
+      ...(parsed.localOnly ? { localOnly: true } : {}),
+    });
     const handoff = composeHandoffFromItems(parsed.query, {
       recommended: rec.recommended,
       optional: rec.optional,
@@ -285,7 +309,12 @@ async function handleInstall(argv: string[]): Promise<number> {
     reportMissingBriefPath();
     return 2;
   }
-  const parsed = parseInstallArgs(rest);
+  const parsedResult = parseInstallArgs(rest);
+  if (!parsedResult.ok) {
+    process.stderr.write(parsedResult.error + "\n");
+    return 1;
+  }
+  const parsed = parsedResult.args;
   if (briefPath !== undefined) {
     const loaded = loadBriefOrFail(briefPath);
     if (!loaded) return 2;
@@ -301,6 +330,7 @@ async function handleInstall(argv: string[]): Promise<number> {
     ...(target.source || parsed.source
       ? { source: target.source ?? parsed.source }
       : {}),
+    ...(parsed.localOnly ? { localOnly: true } : {}),
   });
 
   process.stdout.write(formatInstallPreview(preview) + "\n\n");
