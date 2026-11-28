@@ -87,4 +87,4 @@ When implementation changes materially:
 
 ## Last verified
 
-2026-11-28 — Task 016 post-batch reconciliation: 001–015 marked complete; `make-it-ezy@0.1.6` registry smoke verified; next batch 017–019 queued; canonical audit sections 6/9 reconciled; completed cleanup evidence removed.
+2026-11-28 — Tasks 016/017 reconciliation: 001–015 marked complete; `make-it-ezy@0.1.6` registry smoke verified; canonical audit open/fixed findings reconciled; remaining batch 018–019 queued.

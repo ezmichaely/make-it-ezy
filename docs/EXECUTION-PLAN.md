@@ -9,7 +9,7 @@ Turn the audit findings into small, sequential tasks that can be handed to a cod
 
 The agent must **not** implement the whole audit in one pass.
 
-**Current state (2026-11-28):** Tasks 001–015 completed and merged to `main` (PRs #31–#46). Task 016 reconciliation completed in this batch: execution queue updated, no new implementation performed. Next batch is Tasks 017–019 (docs accuracy/sync), sequential, one PR per task.
+**Current state (2026-11-28):** Tasks 001–016 completed and merged to `main`. Task 016 generated Tasks 017–019; Task 017 reconciliation completed in this batch with no implementation changes. Remaining current batch is Tasks 018–019 (docs/hygiene hardening), sequential, one PR per task.
 
 ### Execution rules
 
@@ -69,7 +69,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 
 ### Gate 4 — Post-release docs/hygiene hardening (next batch)
 
-- [ ] **017** — Reconcile canonical audit after 001–015 (mark fixed/stale findings, add reconciliation note)
+- [x] **017** — Reconcile canonical audit after 001–015 (mark fixed/stale findings, add reconciliation note)
 - [ ] **018** — Add vitest `testTimeout` guard for cold-start CLI tests
 - [ ] **019** — Ignore local `docs/skill-scan` evaluator/clone bloat and document scan artifact policy
 
@@ -80,7 +80,7 @@ The execution queue does **not** redefine the product roadmap. Phase 8 remains t
 **Verified completed (001–015):** PRs #31–#46 merged to `main`; Task 001 closed as not reproducible/no justified fix. Tasks 002–015 landed the planned docs/behavior/package hardening. `pnpm check:ci` passed on current `main`; packaged artifact smoke and Node 20/22 CI matrix are in place. `make-it-ezy@0.1.6` is published on npm; registry metadata and outside-repo install smoke were verified.
 
 **Still real / carry forward:**
-- Canonical audit `docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md` still contains pre-batch “open findings” that are now fixed; it needs a reconciliation update (017).
+- Canonical audit `docs/audits/FULL-REPOSITORY-AUDIT-DEEPSEEK-V4-1-FLASH-FREE-2026-11-27.md` reconciliation was completed in Task 017; remaining open findings are evidence-backed.
 - Cold-start CLI timeout remains structurally unguarded (`vitest.config.ts` has no `testTimeout`); Task 001 closed as not reproducible, but a small guard is still useful (018).
 - `docs/skill-scan/` has 10 tracked docs/files but ~744M local untracked evaluator/clone data in the worktree; risk of accidental bloat/noise. Needs explicit ignore/policy, not mass deletion (019).
 
