@@ -4,7 +4,32 @@ This document expands the mandatory workflow in root `AGENTS.md`.
 
 ## 1. First session sequence
 
-`AGENTS.md` → `docs/AGENT-WORKFLOW.md` → `README.md` → `docs/HOW-IT-WORKS.md` + `docs/ROADMAP.md` + `docs/MVP-SPECIFICATION.md` → accepted decisions → relevant architecture → `docs/EXECUTION-PLAN.md` + current task under `docs/execution/` → implementation + callers + tests.
+One unambiguous reading path:
+
+```
+AGENTS.md
+  → docs/AGENT-WORKFLOW.md
+  → README.md (human summary)
+  → docs/STATUS.md + docs/PRODUCT-DIRECTION.md
+  → docs/HOW-IT-WORKS.md
+  → docs/ROADMAP.md (phase/status)
+  → docs/MVP-SPECIFICATION.md (shipped behavior)
+  → accepted decisions in docs/decisions/
+  → relevant architecture
+  → docs/EXECUTION-PLAN.md (active queue)
+  → current atomic task under docs/execution/
+  → implementation + callers + tests
+```
+
+In words:
+
+`AGENTS.md` → `docs/AGENT-WORKFLOW.md` → `README.md` → `docs/STATUS.md` + `docs/PRODUCT-DIRECTION.md` → `docs/HOW-IT-WORKS.md` + `docs/ROADMAP.md` + `docs/MVP-SPECIFICATION.md` → accepted decisions → relevant architecture → `docs/EXECUTION-PLAN.md` + current task under `docs/execution/` → implementation + callers + tests.
+
+- `AGENTS.md` is the first operating guide.
+- `docs/EXECUTION-PLAN.md` is the active audit-reconciliation queue.
+- Individual task files under `docs/execution/` are atomic implementation instructions.
+- The execution plan does **not** override `docs/ROADMAP.md` or `docs/MVP-SPECIFICATION.md`.
+- `docs/STATUS.md` = current state; `docs/PRODUCT-DIRECTION.md` = product direction; `docs/handoff/` = context, not current authority.
 
 Do not start coding before this sequence is complete enough to establish current state.
 

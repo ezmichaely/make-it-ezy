@@ -21,7 +21,7 @@ pnpm check:ci       # build → lint → typecheck → test → audit (same as A
 pnpm check          # build → lint → typecheck → test
 ```
 
-Before push/PR, follow root [`AGENTS.md`](../AGENTS.md) and `.agents/skills/ci-before-push/SKILL.md` (also under `.claude/skills` and `.cursor/skills`, which link to `.agents/skills`).
+Before push/PR, follow root [`AGENTS.md`](../AGENTS.md) and [`skills/ci-before-push/SKILL.md`](../skills/ci-before-push/SKILL.md) (a tracked repo skill; `.agents/skills`, `.claude/skills`, and `.cursor/skills` link to it after `pnpm skills:install`).
 
 ## PR workflow
 
